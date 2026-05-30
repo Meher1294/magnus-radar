@@ -776,13 +776,46 @@ async function sb(path) {
 
 async function loadPrediosFromAPI() {
   try {
-    // PostgREST: 1000 filas por defecto; pedir explícito con Range header
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/predios_publicos?select=*`, {
-      headers: { ...HDRS, Range: '0-9999' }
-    });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const rows = await res.json();
-    const features = rows.map(r => ({
+    // PostgREST tiene cap de 1.000 filas/respuesta. Paginar con Range header.
+    const PAGE = 1000;
+    let allRows = [];
+    let offset = 0;
+    let totalCount = null;
+
+    while (true) {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/predios_publicos?select=*`, {
+        headers: {
+          ...HDRS,
+          Range: `${offset}-${offset + PAGE - 1}`,
+          Prefer: 'count=exact'
+        }
+      });
+      if (!res.ok && res.status !== 206) throw new Error(`HTTP ${res.status}`);
+
+      // Content-Range: 0-999/7686  → total = 7686
+      const contentRange = res.headers.get('content-range');
+      if (contentRange && totalCount === null) {
+        const m = contentRange.match(/\/(\d+|\*)/);
+        if (m && m[1] !== '*') totalCount = parseInt(m[1], 10);
+      }
+
+      const rows = await res.json();
+      allRows = allRows.concat(rows);
+
+      // Actualizar loader con progreso
+      const loaderEl = document.querySelector('#loader .loader-inner div:last-child');
+      if (loaderEl && totalCount) {
+        loaderEl.textContent = `Cargando predios… ${allRows.length.toLocaleString('es-CL')} / ${totalCount.toLocaleString('es-CL')}`;
+      }
+
+      if (rows.length < PAGE) break;
+      offset += PAGE;
+      if (offset > 50000) break; // safety: max 50k predios
+    }
+
+    console.log(`Magnus Radar · predios cargados: ${allRows.length} / ${totalCount}`);
+
+    const features = allRows.map(r => ({
       type: 'Feature',
       properties: {
         rol: r.rol, sector: r.sector || 'Sin sector',
@@ -1371,13 +1404,340 @@ document.getElementById('clearSelection').addEventListener('click', () => {
     </div>`;
 });
 
-// Tab switch (visual only)
+// ============ TABS FUNCIONALES ============
 document.querySelectorAll('.tab').forEach(t => {
   t.addEventListener('click', () => {
     document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
     t.classList.add('active');
+    handleTabChange(t.dataset.tab);
   });
 });
+
+function handleTabChange(tab) {
+  // Limpiar selección previa al cambiar tab
+  if (selectedFeatureId !== null && map.getSource('predios')) {
+    map.setFeatureState({ source: 'predios', id: selectedFeatureId }, { selected: false });
+    selectedFeatureId = null;
+  }
+  document.getElementById('selectionBar').classList.remove('visible');
+
+  switch(tab) {
+    case 'dominga':
+      // Filtrar mapa: solo proyectos Dominga + servidumbres + zona de influencia
+      map.flyTo({ center: [-71.30, -29.30], zoom: 11.5 });
+      // Resaltar solo Dominga, Recurso Reclamación y Desaladora
+      if (map.getLayer('seia-points')) {
+        map.setFilter('seia-points', ['in', ['get', 'id'], ['literal', ['dominga','dominga-recurso','desala-dominga']]]);
+        map.setFilter('seia-labels', ['in', ['get', 'id'], ['literal', ['dominga','dominga-recurso','desala-dominga']]]);
+      }
+      // Difuminar predios
+      if (map.getLayer('predios-fill')) {
+        map.setPaintProperty('predios-fill', 'fill-opacity', 0.15);
+      }
+      showDomingaPanel();
+      break;
+
+    case 'timeline':
+      showTimelinePanel();
+      break;
+
+    case 'alertas':
+      showAlertasPanel();
+      break;
+
+    case 'infra':
+      // Mostrar solo infraestructura: ruta5 + interchile
+      if (map.getLayer('seia-points')) map.setFilter('seia-points', ['in', ['get','tipo'], ['literal',['Transmisión eléctrica','Infraestructura portuaria','Termoeléctrica']]]);
+      if (map.getLayer('predios-fill')) map.setPaintProperty('predios-fill', 'fill-opacity', 0.15);
+      showPanelMsg('Infraestructura', 'Ruta 5, líneas de transmisión, subestaciones y puertos de la comuna.', '🏗️');
+      break;
+
+    case 'agua':
+      if (map.getLayer('seia-points')) map.setFilter('seia-points', ['in', ['get','tipo'], ['literal',['Infraestructura hídrica','Terminal GNL']]]);
+      if (map.getLayer('predios-fill')) map.setPaintProperty('predios-fill', 'fill-opacity', 0.15);
+      showPanelMsg('Agua', 'Derechos de aprovechamiento DGA, pozos, cauces y cuencas. 87 derechos catastrados.', '💧');
+      break;
+
+    case 'docs':
+      showDocsPanel();
+      break;
+
+    case 'catastro':
+    default:
+      // Resetear filtros
+      if (map.getLayer('seia-points')) {
+        map.setFilter('seia-points', null);
+        map.setFilter('seia-labels', null);
+      }
+      if (map.getLayer('predios-fill')) map.setPaintProperty('predios-fill', 'fill-opacity', 0.45);
+      map.flyTo({ center: [-71.05, -29.39], zoom: 9.5 });
+      document.getElementById('panel').innerHTML = `
+        <div class="panel-empty">
+          <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg></div>
+          <div class="e-title">Selecciona un elemento del mapa</div>
+          <div>Click sobre un predio, proyecto SEIA o localidad<br>para ver su ficha de inteligencia territorial.</div>
+        </div>`;
+      break;
+  }
+}
+
+function showPanelMsg(title, msg, icon) {
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-empty" style="text-align:left;padding:40px 24px;margin:0">
+      <div style="font-size:32px;margin-bottom:12px">${icon}</div>
+      <div class="e-title" style="font-size:15px;margin-bottom:8px">${title}</div>
+      <div style="color:var(--muted);font-size:12.5px;line-height:1.6">${msg}</div>
+    </div>`;
+}
+
+function showDomingaPanel() {
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-header">
+      <div class="panel-type-row">
+        <span class="panel-type">Vista: Proyecto Dominga</span>
+        <span class="panel-flag danger">12+ AÑOS LITIGACIÓN</span>
+      </div>
+      <div class="panel-title">Andes Iron SpA</div>
+      <div class="panel-subtitle">Proyecto minero-portuario de hierro y cobre · USD 2.500M</div>
+    </div>
+    <div class="panel-body">
+      <div class="field-grid">
+        <div class="field"><div class="label">RCA actual</div><div class="value">161/2021</div></div>
+        <div class="field"><div class="label">Estado</div><div class="value" style="color:var(--warning)">En litigio</div></div>
+        <div class="field"><div class="label">CS última</div><div class="value mono">2025-09</div></div>
+        <div class="field"><div class="label">Predios afectados</div><div class="value mono">~142</div></div>
+        <div class="field full"><div class="label">Componentes del expediente</div><div class="value" style="font-size:12px">EIA principal · Recurso reclamación · Desaladora · Concentraducto · Línea AT · Puerto Totoralillo</div></div>
+      </div>
+
+      <div class="section">
+        <h4>Cronología pública verificable</h4>
+        <div class="timeline">
+          <div class="timeline-item warning">
+            <div class="timeline-date">2025-09</div>
+            <div class="timeline-title">Corte Suprema declara inadmisibles los recursos</div>
+            <div class="timeline-source">Confirma RCA 161/2021 · reactivación judicial 2026 en curso</div>
+          </div>
+          <div class="timeline-item critical">
+            <div class="timeline-date">2023-01</div>
+            <div class="timeline-title">Comité de Ministros rechaza Dominga (revertido luego)</div>
+            <div class="timeline-source">Rechazo administrativo posteriormente impugnado</div>
+          </div>
+          <div class="timeline-item warning">
+            <div class="timeline-date">2021-08</div>
+            <div class="timeline-title">SEA Coquimbo aprueba RCA 161/2021</div>
+            <div class="timeline-source">Comisión de Evaluación · 11 votos a favor</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2017-03</div>
+            <div class="timeline-title">Primer rechazo Comité de Ministros</div>
+            <div class="timeline-source">Gobierno Bachelet II</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2013-09-13</div>
+            <div class="timeline-title">Ingreso EIA original al SEIA</div>
+            <div class="timeline-source">ID expediente 2128565332</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h4>Expedientes públicos relacionados</h4>
+        <a class="doc-item" href="https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2128565332" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+          <div class="doc-icon">SEA</div>
+          <div class="doc-name">EIA Dominga principal<br><span class="doc-meta">seia.sea.gob.cl · 2013</span></div>
+        </a>
+        <a class="doc-item" href="http://seia.sea.gob.cl/expediente/expedientes.php?id_expediente=2132372562" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+          <div class="doc-icon">SEA</div>
+          <div class="doc-name">Recurso de Reclamación<br><span class="doc-meta">Comité de Ministros · activo</span></div>
+        </a>
+      </div>
+    </div>`;
+}
+
+function showTimelinePanel() {
+  // En MVP: timeline de eventos públicos consolidados de la comuna
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-header">
+      <div class="panel-type-row">
+        <span class="panel-type">Timeline · Comuna La Higuera</span>
+      </div>
+      <div class="panel-title">Eventos públicos cronológicos</div>
+      <div class="panel-subtitle">Hitos SEIA, fallos CS, RCA, resoluciones SMA</div>
+    </div>
+    <div class="panel-body">
+      <div class="section">
+        <h4>2026 · año en curso</h4>
+        <div class="timeline">
+          <div class="timeline-item success">
+            <div class="timeline-date">2026-05-30</div>
+            <div class="timeline-title">Magnus Radar v0.1 desplegado</div>
+            <div class="timeline-source">7.686 predios + 17 SEIA mapeados</div>
+          </div>
+          <div class="timeline-item warning">
+            <div class="timeline-date">2026-04-21</div>
+            <div class="timeline-title">Actualización catastral SII</div>
+            <div class="timeline-source">sii.cl · vista pública</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <h4>2025</h4>
+        <div class="timeline">
+          <div class="timeline-item warning">
+            <div class="timeline-date">2025-09</div>
+            <div class="timeline-title">CS confirma RCA Dominga (declara inadmisible)</div>
+            <div class="timeline-source">Corte Suprema · Andes Iron</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <h4>2023</h4>
+        <div class="timeline">
+          <div class="timeline-item critical">
+            <div class="timeline-date">2023-01</div>
+            <div class="timeline-title">Comité de Ministros rechaza Dominga</div>
+            <div class="timeline-source">Posteriormente revertido en sede judicial</div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <h4>Histórico</h4>
+        <div class="timeline">
+          <div class="timeline-item warning">
+            <div class="timeline-date">2021-08</div>
+            <div class="timeline-title">SEA Coquimbo aprueba RCA Dominga 161/2021</div>
+            <div class="timeline-source">11 votos a 1</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2017-03</div>
+            <div class="timeline-title">Primer rechazo Dominga (Bachelet II)</div>
+            <div class="timeline-source">Comité de Ministros</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2015</div>
+            <div class="timeline-title">RCA Puerto Cruz Grande (CAP/Minera Huasco)</div>
+            <div class="timeline-source">Aprobado</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2015</div>
+            <div class="timeline-title">RCA 1608/2015 LT 2x500 kV Cardones–Polpaico</div>
+            <div class="timeline-source">InterChile (ISA) · operativa</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2013-09-13</div>
+            <div class="timeline-title">Ingreso EIA Dominga al SEIA</div>
+            <div class="timeline-source">Andes Iron · USD 2.500M</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2011</div>
+            <div class="timeline-title">Parque Eólico Punta Colorada en operación</div>
+            <div class="timeline-source">Barrick Chile Generación · 20 MW</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2010</div>
+            <div class="timeline-title">Central Barrancones desistida tras intervención Piñera</div>
+            <div class="timeline-source">Suez Energy · proyecto carbón 540 MW</div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function showAlertasPanel() {
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-header">
+      <div class="panel-type-row">
+        <span class="panel-type">Alertas territoriales</span>
+        <span class="panel-flag info">PRO</span>
+      </div>
+      <div class="panel-title">Monitoreo automático</div>
+      <div class="panel-subtitle">Recibe notificaciones cuando algo ocurre en una zona de tu interés</div>
+    </div>
+    <div class="panel-body">
+      <div class="section">
+        <h4>Cómo funciona</h4>
+        <div class="alert-item info">
+          <div class="alert-title">1 · Dibujas un polígono sobre el mapa</div>
+          <div class="alert-meta">O defines un radio de N km alrededor de un punto</div>
+        </div>
+        <div class="alert-item info">
+          <div class="alert-title">2 · Eliges qué eventos te interesan</div>
+          <div class="alert-meta">SEIA · DGA · SMA · CBR · prensa · lobby</div>
+        </div>
+        <div class="alert-item info">
+          <div class="alert-title">3 · Te llega un correo cuando algo ocurre</div>
+          <div class="alert-meta">Tiempo real vía Supabase Realtime + email</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h4>Ejemplos de uso</h4>
+        <div class="alert-item">
+          <div class="alert-title">Inmobiliaria</div>
+          <div class="alert-meta">Monitorea predios objetivo · detecta servidumbres nuevas</div>
+        </div>
+        <div class="alert-item critical">
+          <div class="alert-title">Energético / minero</div>
+          <div class="alert-meta">Trackea expedientes SEIA cerca de tus operaciones</div>
+        </div>
+        <div class="alert-item success">
+          <div class="alert-title">Abogado ambiental</div>
+          <div class="alert-meta">Sigue procedimientos SMA y fallos CS por comuna</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h4>Activar alerta</h4>
+        <button class="btn btn-primary" style="width:100%;padding:10px 14px" disabled>
+          Dibujar polígono de vigilancia
+        </button>
+        <div style="font-size:11px;color:var(--muted);margin-top:8px;text-align:center">
+          Disponible en plan Pro · v0.2
+        </div>
+      </div>
+    </div>`;
+}
+
+function showDocsPanel() {
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-header">
+      <div class="panel-type-row"><span class="panel-type">Documentación</span></div>
+      <div class="panel-title">Magnus Radar API</div>
+      <div class="panel-subtitle">Endpoints REST públicos · Supabase PostgREST</div>
+    </div>
+    <div class="panel-body">
+      <div class="section">
+        <h4>Endpoints</h4>
+        <div class="doc-item"><div class="doc-icon">GET</div><div class="doc-name">/rest/v1/stats_comuna<br><span class="doc-meta">Estadísticas agregadas por comuna</span></div></div>
+        <div class="doc-item"><div class="doc-icon">GET</div><div class="doc-name">/rest/v1/predios_publicos<br><span class="doc-meta">7.686 predios SII con geometría</span></div></div>
+        <div class="doc-item"><div class="doc-icon">GET</div><div class="doc-name">/rest/v1/proyectos_seia_publicos<br><span class="doc-meta">17 expedientes SEIA</span></div></div>
+      </div>
+      <div class="section">
+        <h4>Fuentes</h4>
+        <div class="alert-item info">
+          <div class="alert-title">Catastro SII</div>
+          <div class="alert-meta">Comuna 4102 · 7.686 predios · actualizado 2026-04-21</div>
+        </div>
+        <div class="alert-item info">
+          <div class="alert-title">SEIA</div>
+          <div class="alert-meta">Servicio de Evaluación Ambiental · 17 proyectos · 2026-05-29</div>
+        </div>
+        <div class="alert-item info">
+          <div class="alert-title">DGA</div>
+          <div class="alert-meta">Derechos de agua · pendiente integración · 2026-05-15</div>
+        </div>
+      </div>
+      <div class="section">
+        <h4>Stack técnico</h4>
+        <div style="font-size:11.5px;color:var(--text-dim);line-height:1.7">
+          Frontend: MapLibre GL JS + HTML/CSS estático<br>
+          Backend: Supabase (Postgres 16 + PostGIS 3 + PostgREST)<br>
+          Hosting: GitHub Pages (auto-deploy con GitHub Actions)<br>
+          Repo: <a href="https://github.com/Meher1294/magnus-radar" target="_blank" style="color:var(--accent)">github.com/Meher1294/magnus-radar</a>
+        </div>
+      </div>
+    </div>`;
+}
 
 // Map state
 map.on('zoom', () => {
