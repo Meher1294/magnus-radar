@@ -1,0 +1,48 @@
+# ============================================================
+# Caddyfile — Magnus Radar
+# Caddy obtiene HTTPS automático con Let's Encrypt cuando uses dominio.
+# Mientras no haya dominio, sirve por IP (HTTPS auto-self-signed).
+# ============================================================
+
+# Cuando tengas dominio, descomenta y reemplaza:
+# magnusradar.cl, www.magnusradar.cl {
+#     @api path /api/*
+#     handle @api {
+#         reverse_proxy api:8000
+#     }
+#     handle {
+#         root * /srv/web
+#         try_files {path} /index.html
+#         file_server
+#     }
+#     encode gzip
+#     log {
+#         output file /data/access.log
+#     }
+# }
+
+# Acceso por IP mientras no haya dominio
+:80, :443 {
+    tls internal
+
+    @api path /api/*
+    handle @api {
+        reverse_proxy api:8000
+    }
+    handle {
+        root * /srv/web
+        try_files {path} /index.html
+        file_server
+    }
+
+    encode gzip
+
+    header {
+        # Security headers
+        Strict-Transport-Security "max-age=31536000; includeSubDomains"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "SAMEORIGIN"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        -Server
+    }
+}

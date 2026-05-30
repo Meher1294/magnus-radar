@@ -1,0 +1,4 @@
+# Scrapers Magnus Radar (UTC)
+0 6 * * * /usr/local/bin/python /app/seia_scraper.py >> /var/log/seia.log 2>&1
+0 7 * * 1 /usr/local/bin/python /app/dga_scraper.py >> /var/log/dga.log 2>&1
+0 8 * * * /usr/local/bin/python /app/sma_scraper.py >> /var/log/sma.log 2>&1

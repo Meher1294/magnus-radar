@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Magnus Radar — La Higuera (live)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<style>
+  :root {
+    --bg: #0A111F;
+    --surface: #111B30;
+    --surface-2: #18243E;
+    --surface-3: #20304F;
+    --border: #243049;
+    --border-soft: #1A2540;
+    --text: #E8EEF8;
+    --text-dim: #B4C0D6;
+    --muted: #7E8CA8;
+    --muted-2: #5A6680;
+    --accent: #C97B3A;
+    --accent-hover: #D88D4D;
+    --accent-soft: rgba(201,123,58,0.12);
+    --accent-line: rgba(201,123,58,0.35);
+    --success: #10B981;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+    --info: #3B82F6;
+    --purple: #A855F7;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); overflow: hidden; -webkit-font-smoothing: antialiased; font-size: 13px; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+  input { font-family: inherit; }
+
+  .app { display: grid; grid-template-rows: 52px 40px 1fr 24px; height: 100vh; }
+
+  /* ============ HEADER ============ */
+  .header {
+    display: grid;
+    grid-template-columns: 280px 1fr 280px;
+    align-items: center;
+    padding: 0 16px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    z-index: 20;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand-logo {
+    width: 28px; height: 28px;
+    background: linear-gradient(135deg, var(--accent) 0%, #8C5024 100%);
+    border-radius: 5px;
+    display: grid; place-items: center;
+    color: white; font-weight: 700; font-size: 13px;
+    box-shadow: 0 2px 6px rgba(201,123,58,0.3);
+  }
+  .brand-text h1 { font-size: 14px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.1; }
+  .brand-text .sub { font-size: 10.5px; color: var(--muted); margin-top: 1px; }
+
+  .header-center { display: flex; align-items: center; gap: 8px; justify-content: center; }
+  .search-box {
+    width: 100%; max-width: 520px;
+    display: flex; align-items: center; gap: 8px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 6px 12px;
+    transition: border-color 0.15s;
+  }
+  .search-box:focus-within { border-color: var(--accent); }
+  .search-box input { flex: 1; background: none; border: none; outline: none; color: var(--text); font-size: 12.5px; }
+  .search-box input::placeholder { color: var(--muted); }
+  .kbd {
+    font-family: 'JetBrains Mono', monospace; font-size: 10px;
+    background: var(--surface-2); border: 1px solid var(--border);
+    padding: 1px 5px; border-radius: 3px; color: var(--muted);
+  }
+  .search-icon { color: var(--muted); width: 13px; height: 13px; }
+
+  .header-right { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
+  .btn {
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 12px; font-weight: 500;
+    transition: all 0.15s;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .btn-primary { background: var(--accent); color: white; }
+  .btn-primary:hover { background: var(--accent-hover); }
+  .btn-ghost { color: var(--text-dim); border: 1px solid var(--border); }
+  .btn-ghost:hover { color: var(--text); border-color: var(--muted); background: var(--surface-2); }
+  .btn-icon {
+    width: 30px; height: 30px;
+    border-radius: 5px;
+    display: grid; place-items: center;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    transition: all 0.15s;
+  }
+  .btn-icon:hover { color: var(--text); background: var(--surface-2); }
+  .user-chip {
+    display: flex; align-items: center; gap: 8px;
+    padding: 4px 10px 4px 4px;
+    background: var(--surface-2); border-radius: 16px;
+    font-size: 11.5px;
+  }
+  .user-avatar {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: linear-gradient(135deg, #C97B3A, #8C5024);
+    display: grid; place-items: center;
+    font-size: 10px; font-weight: 600; color: white;
+  }
+
+  /* ============ TAB BAR ============ */
+  .tabs {
+    display: flex; align-items: center;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0 16px;
+    gap: 2px;
+    overflow-x: auto;
+  }
+  .tab {
+    padding: 10px 14px;
+    font-size: 12px; font-weight: 500;
+    color: var(--muted);
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+    white-space: nowrap;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .tab svg { width: 13px; height: 13px; }
+  .tab:hover { color: var(--text-dim); }
+  .tab.active { color: var(--text); border-bottom-color: var(--accent); }
+  .tab .badge {
+    background: var(--accent-soft); color: var(--accent);
+    font-size: 10px; font-weight: 600;
+    padding: 1px 6px; border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .tab .pro-tag {
+    font-size: 8.5px; font-weight: 700;
+    background: linear-gradient(135deg, var(--accent), #8C5024); color: white;
+    padding: 1px 4px; border-radius: 3px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ============ MAIN GRID ============ */
+  .main {
+    display: grid;
+    grid-template-columns: 260px 1fr 400px;
+    overflow: hidden;
+  }
+
+  /* ============ SIDEBAR LEFT ============ */
+  .sidebar {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    padding: 14px;
+  }
+  .sidebar-section { margin-bottom: 18px; }
+  .sidebar-section h3 {
+    font-size: 10px; font-weight: 600;
+    color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em;
+    margin-bottom: 8px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .sidebar-section h3 .h-action {
+    color: var(--accent); text-transform: none; letter-spacing: 0;
+    font-size: 10px; cursor: pointer; font-weight: 500;
+  }
+  .layer-item {
+    display: flex; align-items: center; gap: 9px;
+    padding: 6px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.12s;
+  }
+  .layer-item:hover { background: var(--surface-2); }
+  .layer-item input[type="checkbox"] { accent-color: var(--accent); cursor: pointer; }
+  .layer-swatch { width: 11px; height: 11px; border-radius: 2px; flex-shrink: 0; border: 1px solid transparent; }
+  .layer-label { flex: 1; }
+  .layer-count { font-size: 10px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+
+  .seg-control {
+    display: flex; background: var(--bg); border: 1px solid var(--border); border-radius: 5px; padding: 2px;
+  }
+  .seg-control button {
+    flex: 1; padding: 4px 8px; font-size: 11px; color: var(--muted);
+    border-radius: 3px; transition: all 0.15s;
+  }
+  .seg-control button.active { background: var(--accent); color: white; }
+  .seg-control button:not(.active):hover { color: var(--text); }
+
+  .legend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+  .legend-chip { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-dim); }
+  .legend-chip .dot { width: 8px; height: 8px; border-radius: 50%; }
+  .legend-chip .bar { width: 14px; height: 4px; border-radius: 1px; }
+
+  .stat-block {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 5px;
+    padding: 10px; display: grid; gap: 6px;
+  }
+  .stat-block .stat-row { display: flex; justify-content: space-between; font-size: 11px; }
+  .stat-block .stat-row .k { color: var(--muted); }
+  .stat-block .stat-row .v { color: var(--text); font-family: 'JetBrains Mono', monospace; }
+
+  /* ============ MAP ============ */
+  #map { width: 100%; height: 100%; background: #050810; }
+  .map-container { position: relative; }
+  .map-overlay { position: absolute; top: 12px; left: 12px; display: flex; gap: 6px; z-index: 5; }
+  .map-btn {
+    background: rgba(17,27,48,0.95);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 6px 11px;
+    border-radius: 5px;
+    font-size: 11px; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 5px;
+    backdrop-filter: blur(8px);
+    transition: all 0.15s;
+  }
+  .map-btn:hover { background: var(--surface-2); }
+  .map-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+  .map-btn svg { width: 12px; height: 12px; }
+
+  .map-overlay-tr { position: absolute; top: 12px; right: 12px; z-index: 5; display: flex; flex-direction: column; gap: 6px; }
+  .legend-card {
+    background: rgba(17,27,48,0.95);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 10px 12px;
+    backdrop-filter: blur(8px);
+    min-width: 180px;
+  }
+  .legend-card .lc-title { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .legend-card .lc-row { display: flex; align-items: center; gap: 8px; font-size: 11px; padding: 2px 0; }
+  .legend-card .lc-bar { width: 16px; height: 10px; border-radius: 2px; }
+
+  .map-scale {
+    position: absolute; bottom: 12px; left: 12px;
+    background: rgba(17,27,48,0.95); border: 1px solid var(--border);
+    padding: 5px 10px; border-radius: 4px;
+    font-size: 10px; color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    z-index: 5; backdrop-filter: blur(8px);
+  }
+
+  .selection-bar {
+    position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: white;
+    padding: 8px 16px;
+    border-radius: 999px;
+    font-size: 12px; font-weight: 500;
+    z-index: 5;
+    display: none; align-items: center; gap: 12px;
+    box-shadow: 0 4px 16px rgba(201,123,58,0.4);
+  }
+  .selection-bar.visible { display: inline-flex; }
+  .selection-bar .sb-action { font-size: 11px; opacity: 0.85; cursor: pointer; text-decoration: underline; }
+
+  /* maplibre overrides */
+  .maplibregl-ctrl-bottom-right { display: none; }
+  .maplibregl-ctrl-bottom-left { display: none; }
+  .maplibregl-ctrl-top-right { display: none; }
+  .maplibregl-ctrl-group { background: var(--surface) !important; border: 1px solid var(--border) !important; }
+  .maplibregl-ctrl-group button { background: var(--surface) !important; }
+  .maplibregl-ctrl-group button span { filter: invert(1); }
+
+  /* ============ PANEL RIGHT ============ */
+  .panel {
+    background: var(--surface);
+    border-left: 1px solid var(--border);
+    overflow-y: auto;
+    display: flex; flex-direction: column;
+  }
+  .panel-empty {
+    padding: 60px 24px; text-align: center;
+    color: var(--muted); font-size: 12.5px;
+    margin: auto; line-height: 1.6;
+  }
+  .panel-empty .icon {
+    width: 56px; height: 56px;
+    margin: 0 auto 16px;
+    background: var(--surface-2);
+    border-radius: 50%;
+    display: grid; place-items: center;
+  }
+  .panel-empty .icon svg { width: 24px; height: 24px; color: var(--muted); }
+  .panel-empty .e-title { color: var(--text-dim); font-weight: 500; margin-bottom: 6px; font-size: 13px; }
+
+  .panel-header { padding: 14px 18px 12px; border-bottom: 1px solid var(--border-soft); }
+  .panel-type-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 6px; }
+  .panel-type {
+    font-size: 9.5px; font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-soft);
+    padding: 2px 7px; border-radius: 3px;
+    text-transform: uppercase; letter-spacing: 0.07em;
+  }
+  .panel-flag {
+    font-size: 9.5px; font-weight: 700;
+    padding: 2px 7px; border-radius: 3px;
+    text-transform: uppercase; letter-spacing: 0.07em;
+  }
+  .panel-flag.danger { color: var(--danger); background: rgba(239,68,68,0.12); }
+  .panel-flag.warning { color: var(--warning); background: rgba(245,158,11,0.12); }
+  .panel-flag.info { color: var(--info); background: rgba(59,130,246,0.12); }
+  .panel-title { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.25; }
+  .panel-subtitle { font-size: 11.5px; color: var(--muted); margin-top: 3px; }
+  .panel-actions { display: flex; gap: 6px; margin-top: 10px; }
+  .panel-action {
+    flex: 1; padding: 6px 10px;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 4px; font-size: 11px; color: var(--text-dim);
+    transition: all 0.15s;
+    display: inline-flex; align-items: center; justify-content: center; gap: 5px;
+  }
+  .panel-action:hover { color: var(--text); border-color: var(--muted); }
+  .panel-action svg { width: 11px; height: 11px; }
+
+  .panel-tabs { display: flex; border-bottom: 1px solid var(--border-soft); padding: 0 8px; }
+  .panel-tab {
+    padding: 9px 12px; font-size: 11.5px; font-weight: 500;
+    color: var(--muted); border-bottom: 2px solid transparent;
+    transition: all 0.15s;
+  }
+  .panel-tab:hover { color: var(--text-dim); }
+  .panel-tab.active { color: var(--text); border-bottom-color: var(--accent); }
+
+  .panel-body { padding: 14px 18px; flex: 1; overflow-y: auto; }
+  .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .field {
+    background: var(--bg); border: 1px solid var(--border-soft);
+    border-radius: 4px; padding: 8px 10px;
+  }
+  .field .label { font-size: 9.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 3px; }
+  .field .value { font-size: 12.5px; font-weight: 500; }
+  .field .value.mono { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; }
+  .field.full { grid-column: span 2; }
+
+  .section { margin-top: 18px; }
+  .section h4 {
+    font-size: 10px; font-weight: 600;
+    color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em;
+    margin-bottom: 9px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .section h4 .action { color: var(--accent); font-size: 10px; text-transform: none; letter-spacing: 0; cursor: pointer; font-weight: 500; }
+
+  .timeline { border-left: 1px solid var(--border); padding-left: 14px; margin-left: 4px; }
+  .timeline-item { position: relative; padding-bottom: 14px; }
+  .timeline-item::before {
+    content: ""; position: absolute;
+    left: -19px; top: 3px;
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--surface); border: 2px solid var(--muted);
+  }
+  .timeline-item.critical::before { background: var(--danger); border-color: var(--danger); }
+  .timeline-item.warning::before { background: var(--warning); border-color: var(--warning); }
+  .timeline-item.success::before { background: var(--success); border-color: var(--success); }
+  .timeline-date { font-size: 10px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+  .timeline-title { font-size: 12px; font-weight: 500; margin-top: 2px; line-height: 1.4; }
+  .timeline-source { font-size: 10.5px; color: var(--accent); margin-top: 2px; cursor: pointer; }
+  .timeline-source:hover { text-decoration: underline; }
+
+  .alert-item {
+    padding: 9px 11px;
+    background: var(--bg); border: 1px solid var(--border-soft);
+    border-left: 3px solid var(--warning);
+    border-radius: 3px; margin-bottom: 6px;
+  }
+  .alert-item.critical { border-left-color: var(--danger); }
+  .alert-item.info { border-left-color: var(--info); }
+  .alert-item.success { border-left-color: var(--success); }
+  .alert-title { font-size: 11.5px; font-weight: 500; margin-bottom: 2px; }
+  .alert-meta { font-size: 10px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .doc-item {
+    display: flex; align-items: center; gap: 9px;
+    padding: 7px 9px; border-radius: 4px;
+    font-size: 11.5px; cursor: pointer;
+    transition: background 0.12s;
+  }
+  .doc-item:hover { background: var(--surface-2); }
+  .doc-icon {
+    width: 26px; height: 26px; border-radius: 4px;
+    background: var(--surface-2); display: grid; place-items: center;
+    font-size: 11px; color: var(--accent);
+  }
+  .doc-name { flex: 1; line-height: 1.3; }
+  .doc-meta { font-size: 9.5px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+
+  /* ============ STATUS BAR ============ */
+  .statusbar {
+    display: flex; align-items: center;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 0 14px; gap: 14px;
+    font-size: 10.5px; color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .status-item { display: flex; align-items: center; gap: 5px; }
+  .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--success); }
+  .status-sep { color: var(--border); }
+
+  /* ============ LOADING ============ */
+  .loader {
+    position: fixed; inset: 0;
+    background: var(--bg); z-index: 100;
+    display: grid; place-items: center;
+    transition: opacity 0.3s;
+  }
+  .loader-inner { text-align: center; }
+  .loader-spin {
+    width: 28px; height: 28px; margin: 0 auto 12px;
+    border: 2px solid var(--border); border-top-color: var(--accent);
+    border-radius: 50%; animation: spin 0.7s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loader.hidden { opacity: 0; pointer-events: none; }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <div class="loader-spin"></div>
+    <div style="color:var(--text-dim);font-size:12px">Conectando con Supabase · La Higuera…</div>
+  </div>
+</div>
+
+<div class="app">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">
+      <div class="brand-logo">M</div>
+      <div class="brand-text">
+        <h1>Magnus Radar</h1>
+        <div class="sub">Inteligencia Territorial · Comuna La Higuera · <span style="color:var(--success)">● LIVE</span></div>
+      </div>
+    </div>
+    <div class="header-center">
+      <div class="search-box">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" placeholder="Buscar rol SII, sector, proyecto SEIA…" />
+        <span class="kbd">⌘K</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <button class="btn-icon" title="Notificaciones">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      </button>
+      <button class="btn btn-ghost">Exportar</button>
+      <div class="user-chip">
+        <div class="user-avatar">MM</div>
+        Max
+      </div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab active" data-tab="catastro">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Catastro <span class="badge" id="badgeCatastro">7.686</span>
+    </button>
+    <button class="tab" data-tab="infra">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      Infraestructura
+    </button>
+    <button class="tab" data-tab="agua">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+      Agua <span class="badge">87</span>
+    </button>
+    <button class="tab" data-tab="dominga">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 19 21 12 17 5 21 12 2"/></svg>
+      Dominga <span class="badge">5</span> <span class="pro-tag">PRO</span>
+    </button>
+    <button class="tab" data-tab="alertas">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Alertas <span class="badge">3</span> <span class="pro-tag">PRO</span>
+    </button>
+    <button class="tab" data-tab="timeline">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Timeline <span class="pro-tag">PRO</span>
+    </button>
+    <button class="tab" data-tab="docs">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Documentación
+    </button>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-section">
+        <h3>Mapa base</h3>
+        <div class="seg-control">
+          <button class="active" data-basemap="satellite">Satélite</button>
+          <button data-basemap="osm">Calles</button>
+          <button data-basemap="topo">Topo</button>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Coloración predios</h3>
+        <div class="seg-control">
+          <button class="active" data-color="sector">Sector</button>
+          <button data-color="area">Superficie</button>
+          <button data-color="estado">Estado</button>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Capas activas <span class="h-action">Todas</span></h3>
+        <div class="layer-item">
+          <input type="checkbox" checked id="l-predios" data-layer="predios"/>
+          <span class="layer-swatch" style="background:rgba(201,123,58,0.45);border-color:#C97B3A"></span>
+          <label for="l-predios" class="layer-label">Predios SII</label>
+          <span class="layer-count">7.686</span>
+        </div>
+        <div class="layer-item">
+          <input type="checkbox" checked id="l-ruta5" data-layer="ruta5"/>
+          <span class="layer-swatch" style="background:#EAB308"></span>
+          <label for="l-ruta5" class="layer-label">Ruta 5</label>
+          <span class="layer-count">1</span>
+        </div>
+        <div class="layer-item">
+          <input type="checkbox" checked id="l-interchile" data-layer="interchile"/>
+          <span class="layer-swatch" style="background:#A855F7"></span>
+          <label for="l-interchile" class="layer-label">Línea AT InterChile</label>
+          <span class="layer-count">1</span>
+        </div>
+        <div class="layer-item">
+          <input type="checkbox" id="l-agua" data-layer="agua"/>
+          <span class="layer-swatch" style="background:#3B82F6"></span>
+          <label for="l-agua" class="layer-label">Derechos agua DGA</label>
+          <span class="layer-count">87</span>
+        </div>
+        <div class="layer-item">
+          <input type="checkbox" checked id="l-seia" data-layer="seia"/>
+          <span class="layer-swatch" style="background:#EF4444"></span>
+          <label for="l-seia" class="layer-label">Proyectos SEIA</label>
+          <span class="layer-count">17</span>
+        </div>
+        <div class="layer-item">
+          <input type="checkbox" id="l-pueblos" data-layer="pueblos"/>
+          <span class="layer-swatch" style="background:#FFF"></span>
+          <label for="l-pueblos" class="layer-label">Localidades</label>
+          <span class="layer-count">9</span>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Filtrar por sector</h3>
+        <div id="sectorFilters" style="display:flex;flex-direction:column;gap:2px"></div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Comuna La Higuera</h3>
+        <div class="stat-block">
+          <div class="stat-row"><span class="k">Superficie</span><span class="v">4.158 km²</span></div>
+          <div class="stat-row"><span class="k">Predios catastrados</span><span class="v">7.686</span></div>
+          <div class="stat-row"><span class="k">Sup. predial total</span><span class="v">417.751 ha</span></div>
+          <div class="stat-row"><span class="k">Localidades</span><span class="v">9</span></div>
+          <div class="stat-row"><span class="k">Proyectos SEIA</span><span class="v">17</span></div>
+        </div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Inversión SEIA mapeada</h3>
+        <div class="stat-block">
+          <div class="stat-row"><span class="k">Total comprometida</span><span class="v">USD 5.879M</span></div>
+          <div class="stat-row"><span class="k">Minería + Puerto</span><span class="v">USD 2.855M</span></div>
+          <div class="stat-row"><span class="k">Energía solar FV</span><span class="v">USD 754M</span></div>
+          <div class="stat-row"><span class="k">Transmisión</span><span class="v">USD 1.000M</span></div>
+          <div class="stat-row"><span class="k">Termo desistida</span><span class="v">USD 1.100M</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAP -->
+    <div class="map-container">
+      <div id="map"></div>
+      <div class="map-overlay">
+        <button class="map-btn" id="zoomReset">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v5h5"/></svg>
+          Vista comuna
+        </button>
+        <button class="map-btn" id="drawBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 19 21 12 17 5 21 12 2"/></svg>
+          Dibujar polígono
+        </button>
+        <button class="map-btn" id="measureBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.3 8.7L15.3 2.7a1 1 0 0 0-1.4 0L2.7 13.9a1 1 0 0 0 0 1.4l6 6a1 1 0 0 0 1.4 0l11.2-11.2a1 1 0 0 0 0-1.4z"/><line x1="7" y1="17" x2="9" y2="15"/><line x1="11" y1="13" x2="13" y2="11"/><line x1="15" y1="9" x2="17" y2="7"/></svg>
+          Medir
+        </button>
+      </div>
+      <div class="map-overlay-tr">
+        <div class="legend-card" id="dynamicLegend">
+          <div class="lc-title">Predios por sector</div>
+          <div class="lc-row"><span class="lc-bar" style="background:#C97B3A"></span>Los Choros · 351</div>
+          <div class="lc-row"><span class="lc-bar" style="background:#3B82F6"></span>Los Hornos · 244</div>
+          <div class="lc-row"><span class="lc-bar" style="background:#22C55E"></span>Chungungo · 163</div>
+          <div class="lc-row"><span class="lc-bar" style="background:#EF4444"></span>Punta Colorada · 147</div>
+          <div class="lc-row"><span class="lc-bar" style="background:#A855F7"></span>Punta de Choros · 142</div>
+          <div class="lc-row"><span class="lc-bar" style="background:#94A3B8"></span>Sin sector · 6.570</div>
+        </div>
+      </div>
+      <div class="map-scale" id="mapScale">— · zoom 10.0</div>
+      <div class="selection-bar" id="selectionBar">
+        <span id="selectionCount">1 predio seleccionado</span>
+        <span class="sb-action" id="clearSelection">Limpiar</span>
+      </div>
+    </div>
+
+    <!-- PANEL -->
+    <div class="panel" id="panel">
+      <div class="panel-empty">
+        <div class="icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+        </div>
+        <div class="e-title">Selecciona un elemento del mapa</div>
+        <div>Click sobre un predio, proyecto SEIA o localidad<br>para ver su ficha de inteligencia territorial.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- STATUS BAR -->
+  <div class="statusbar">
+    <div class="status-item"><span class="status-dot"></span> Sistema operativo</div>
+    <span class="status-sep">|</span>
+    <div class="status-item">Datos SII actualizados 2026-04-21</div>
+    <span class="status-sep">|</span>
+    <div class="status-item">DGA · 2026-05-15</div>
+    <span class="status-sep">|</span>
+    <div class="status-item">SEIA · 2026-05-29</div>
+    <span class="status-sep">|</span>
+    <div class="status-item">CRS · EPSG:4326</div>
+    <span class="status-sep">|</span>
+    <div class="status-item" id="cursorCoords">—</div>
+    <div style="flex:1"></div>
+    <div class="status-item">Magnus Radar v0.2 · La Higuera</div>
+  </div>
+</div>
+
+<script>
+// ============ DATOS SEIA REALES — Comuna La Higuera ============
+// Fuente: seia.sea.gob.cl + investigación pública (SEA, Diario Financiero, La Tercera, Revista EI, BNamericas, etc.)
+const seiaPoints = {
+  type: 'FeatureCollection',
+  features: [
+    { type: 'Feature', properties: { id: 'dominga', nombre: 'Dominga', titular: 'Andes Iron SpA', tipo: 'Minería + Puerto', tipologia: 'EIA', fecha: '2013-09-13', estado: 'RCA 161/2021 (litigada)', inversion: 2500, url: 'https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2128565332', flag: 'critical' }, geometry: { type: 'Point', coordinates: [-71.295, -29.345] } },
+    { type: 'Feature', properties: { id: 'cruz-grande', nombre: 'Puerto Cruz Grande', titular: 'CMP / Minera Huasco', tipo: 'Infraestructura portuaria', tipologia: 'EIA', fecha: '2012-08-03', estado: 'Aprobado (RCA 2015)', inversion: 320, url: 'https://seia.sea.gob.cl/busqueda/buscarProyecto.php?regiones=4&comunas=4101' }, geometry: { type: 'Point', coordinates: [-71.315, -29.432] } },
+    { type: 'Feature', properties: { id: 'cardones-polpaico', nombre: 'LT 2x500 kV Cardones–Polpaico', titular: 'Interchile S.A. (ISA)', tipo: 'Transmisión eléctrica', tipologia: 'EIA', fecha: '2013-12', estado: 'RCA 1608/2015 · operativa', inversion: 1000, url: 'https://www.sea.gob.cl/revision-de-la-rca-del-proyecto-plan-de-expansion-chile-lt-2x500-kv-cardones-polpaico' }, geometry: { type: 'Point', coordinates: [-71.10, -29.40] } },
+    { type: 'Feature', properties: { id: 'lt-punta-colorada', nombre: 'LT 2x220 kV Punta Colorada – Pan de Azúcar', titular: 'Eletrans III (InterChile/ISA)', tipo: 'Transmisión eléctrica', tipologia: 'DIA', fecha: '2016', estado: 'Aprobado · operativa', inversion: null, url: 'https://seia.sea.gob.cl/busqueda/buscarProyecto.php?regiones=4&comunas=4101' }, geometry: { type: 'Point', coordinates: [-71.10, -29.34] } },
+    { type: 'Feature', properties: { id: 'eolico-punta-colorada', nombre: 'Parque Eólico Punta Colorada', titular: 'Barrick Chile Generación', tipo: 'Energía eólica (20 MW)', tipologia: 'DIA', fecha: '2010', estado: 'Operativo desde 2011', inversion: 70, url: 'https://seia.sea.gob.cl/busqueda/buscarProyecto.php?regiones=4&comunas=4101' }, geometry: { type: 'Point', coordinates: [-71.272, -29.354] } },
+    { type: 'Feature', properties: { id: 'termo-punta-colorada', nombre: 'Central Termo Punta Colorada', titular: 'Barrick Chile Generación', tipo: 'Termoeléctrica HFO (17 MW)', tipologia: 'DIA', fecha: '2009', estado: 'Aprobado · operativa', inversion: null, url: 'https://seia.sea.gob.cl/busqueda/buscarProyecto.php?regiones=4&comunas=4101' }, geometry: { type: 'Point', coordinates: [-71.270, -29.358] } },
+    { type: 'Feature', properties: { id: 'fv-la-huella', nombre: 'PFV La Huella (87 MWp)', titular: 'Austrian Solar Chile / Clean Capital', tipo: 'Solar fotovoltaico', tipologia: 'DIA', fecha: '2018', estado: 'Operativo desde nov-2021', inversion: 70, url: 'https://seia.sea.gob.cl/busqueda/buscarProyecto.php?regiones=4&comunas=4101' }, geometry: { type: 'Point', coordinates: [-71.15, -29.45] } },
+    { type: 'Feature', properties: { id: 'fv-punta-viento', nombre: 'PFV Punta del Viento (145 MW)', titular: 'FRV / Fotowatio', tipo: 'Solar fotovoltaico', tipologia: 'DIA', fecha: '2019', estado: 'Aprobado (RCA 2020)', inversion: 138, url: 'https://seia.sea.gob.cl/busqueda/buscarProyecto.php?regiones=4&comunas=4101' }, geometry: { type: 'Point', coordinates: [-71.20, -29.40] } },
+    { type: 'Feature', properties: { id: 'fv-rastrojos', nombre: 'PFV Los Rastrojos (141 MW)', titular: 'La Serena Ocho SpA', tipo: 'Solar fotovoltaico', tipologia: 'DIA', fecha: '2019', estado: 'Aprobado', inversion: 185, url: 'https://seia.sea.gob.cl/busqueda/buscarProyecto.php?regiones=4&comunas=4101' }, geometry: { type: 'Point', coordinates: [-71.20, -29.50] } },
+    { type: 'Feature', properties: { id: 'fv-la-higuera', nombre: 'PFV La Higuera (200 MW)', titular: 'Aprobado Comisión Evaluación Coquimbo', tipo: 'Solar fotovoltaico', tipologia: 'DIA', fecha: '2016', estado: 'Aprobado', inversion: 200, url: 'https://seia.sea.gob.cl/busqueda/buscarProyecto.php?regiones=4&comunas=4101' }, geometry: { type: 'Point', coordinates: [-71.15, -29.50] } },
+    { type: 'Feature', properties: { id: 'fv-alto-solar', nombre: 'PFV Alto Solar (210 MW + LT 67km)', titular: 'Alto Solar SpA', tipo: 'Solar fotovoltaico', tipologia: 'DIA', fecha: '2023', estado: 'En calificación', inversion: 161, url: 'https://seia.sea.gob.cl/busqueda/buscarProyecto.php?regiones=4&comunas=4101' }, geometry: { type: 'Point', coordinates: [-71.05, -29.45] } },
+    { type: 'Feature', properties: { id: 'pleito-fase3', nombre: 'Continuidad Operacional Distrito Pleito Fase 3', titular: 'CMP', tipo: 'Minería (hierro)', tipologia: 'DIA', fecha: 'N/D', estado: 'Aprobado', inversion: 35, url: 'https://seia.sea.gob.cl/busqueda/buscarProyecto.php?regiones=4&comunas=4101' }, geometry: { type: 'Point', coordinates: [-71.10, -29.55] } },
+    { type: 'Feature', properties: { id: 'lt-cruz-grande', nombre: 'LT Adecuación Cruz Grande', titular: 'CAP / CMP', tipo: 'Transmisión eléctrica', tipologia: 'DIA', fecha: '2013', estado: 'Aprobado', inversion: null, url: 'https://seia.sea.gob.cl/busqueda/buscarProyecto.php?regiones=4&comunas=4101' }, geometry: { type: 'Point', coordinates: [-71.30, -29.43] } },
+    { type: 'Feature', properties: { id: 'barrancones', nombre: 'Central Barrancones (DESISTIDO)', titular: 'Suez Energy / GDF', tipo: 'Termoeléctrica carbón (540 MW)', tipologia: 'EIA', fecha: '2007', estado: 'Desistido tras intervención Piñera (2010)', inversion: 1100, url: 'https://seia.sea.gob.cl/busqueda/buscarProyecto.php?regiones=4&comunas=4101', flag: 'historic' }, geometry: { type: 'Point', coordinates: [-71.34, -29.27] } },
+    { type: 'Feature', properties: { id: 'dominga-recurso', nombre: 'Recurso Reclamación Dominga', titular: 'Andes Iron SpA', tipo: 'Reclamación EIA', tipologia: 'EIA', fecha: '2017', estado: 'Activo · Comité de Ministros', inversion: null, url: 'http://seia.sea.gob.cl/expediente/expedientes.php?id_expediente=2132372562', flag: 'critical' }, geometry: { type: 'Point', coordinates: [-71.295, -29.348] } },
+    { type: 'Feature', properties: { id: 'andes-lng', nombre: 'ANDES LNG (Regasificación)', titular: 'Andes LNG SpA', tipo: 'Terminal GNL', tipologia: 'EIA', fecha: 'N/D', estado: 'En calificación', inversion: null, url: 'http://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2131608818' }, geometry: { type: 'Point', coordinates: [-71.33, -29.40] } },
+    { type: 'Feature', properties: { id: 'desala-dominga', nombre: 'Desaladora Dominga (parte EIA)', titular: 'Andes Iron SpA', tipo: 'Infraestructura hídrica', tipologia: 'EIA', fecha: '2013', estado: 'Incluida en RCA Dominga', inversion: null, url: 'https://seia.sea.gob.cl/expediente/ficha/fichaPrincipal.php?modo=ficha&id_expediente=2128565332' }, geometry: { type: 'Point', coordinates: [-71.32, -29.40] } }
+  ]
+};
+
+const pueblos = {
+  type: 'FeatureCollection',
+  features: [
+    { type: 'Feature', properties: { id: 'la-higuera', nombre: 'La Higuera', tipo: 'capital comunal' }, geometry: { type: 'Point', coordinates: [-71.275, -29.495] } },
+    { type: 'Feature', properties: { id: 'los-choros', nombre: 'Los Choros', tipo: 'localidad' }, geometry: { type: 'Point', coordinates: [-71.20, -29.27] } },
+    { type: 'Feature', properties: { id: 'punta-choros', nombre: 'Punta de Choros', tipo: 'caleta' }, geometry: { type: 'Point', coordinates: [-71.443, -29.255] } },
+    { type: 'Feature', properties: { id: 'chungungo', nombre: 'Chungungo', tipo: 'caleta' }, geometry: { type: 'Point', coordinates: [-71.32, -29.42] } },
+    { type: 'Feature', properties: { id: 'el-trapiche', nombre: 'El Trapiche', tipo: 'localidad' }, geometry: { type: 'Point', coordinates: [-71.10, -29.43] } },
+    { type: 'Feature', properties: { id: 'punta-colorada', nombre: 'Punta Colorada', tipo: 'localidad' }, geometry: { type: 'Point', coordinates: [-71.10, -29.36] } },
+    { type: 'Feature', properties: { id: 'los-hornos', nombre: 'Los Hornos', tipo: 'localidad' }, geometry: { type: 'Point', coordinates: [-71.21, -29.62] } },
+    { type: 'Feature', properties: { id: 'totoralillo-n', nombre: 'Totoralillo Norte', tipo: 'caleta' }, geometry: { type: 'Point', coordinates: [-71.32, -29.10] } },
+    { type: 'Feature', properties: { id: 'islote-chanaral', nombre: 'Isla Choros', tipo: 'reserva' }, geometry: { type: 'Point', coordinates: [-71.55, -29.22] } }
+  ]
+};
+
+const ruta5 = {
+  type: 'Feature',
+  geometry: { type: 'LineString', coordinates: [[-71.13,-29.65],[-71.12,-29.55],[-71.115,-29.45],[-71.10,-29.35],[-71.085,-29.25],[-71.06,-29.14]] }
+};
+const interchile = {
+  type: 'Feature',
+  geometry: { type: 'LineString', coordinates: [[-71.35,-29.62],[-71.30,-29.45],[-71.25,-29.30],[-71.20,-29.18],[-71.15,-29.04]] }
+};
+
+// Colores por sector
+const sectorColors = {
+  'Los Choros': '#C97B3A',
+  'Los Hornos': '#3B82F6',
+  'Chungungo': '#22C55E',
+  'Punta Colorada': '#EF4444',
+  'Punta de Choros': '#A855F7',
+  'Quebrada Los Choros': '#06B6D4',
+  'La Higuera': '#EAB308',
+  'El Trapiche': '#EC4899',
+  'Playa Los Choros': '#F97316',
+  'Sin sector': '#475569'
+};
+
+// ============ BASEMAPS ============
+const basemaps = {
+  satellite: {
+    tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+    attribution: '© Esri'
+  },
+  osm: {
+    tiles: ['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
+    attribution: '© OpenStreetMap'
+  },
+  topo: {
+    tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'],
+    attribution: '© Esri Topo'
+  }
+};
+
+// ============ MAP INIT ============
+const map = new maplibregl.Map({
+  container: 'map',
+  style: {
+    version: 8,
+    glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
+    sources: { 'base': { type: 'raster', tiles: basemaps.satellite.tiles, tileSize: 256 } },
+    layers: [{ id: 'base', type: 'raster', source: 'base' }]
+  },
+  center: [-71.05, -29.39],
+  zoom: 9.5,
+  maxZoom: 18,
+  minZoom: 7
+});
+
+let predios = null;
+let selectedRol = null;
+let currentColor = 'sector';
+
+// ============ CARGA DESDE SUPABASE REST API DIRECTA ============
+// Sin VPS intermedio. El anon_key es público (RLS protege las tablas privadas).
+const SUPABASE_URL = window.SUPABASE_URL || "https://curqkgujgtimlutinhgu.supabase.co";
+const SUPABASE_ANON = window.SUPABASE_ANON || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN1cnFrZ3VqZ3RpbWx1dGluaGd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxODE3NTYsImV4cCI6MjA5NTc1Nzc1Nn0.ALTsEQAMsFNjibIgNRsDxgq9j5S4RGuexV0vbTCx0QU";
+
+const HDRS = {
+  apikey: SUPABASE_ANON,
+  Authorization: `Bearer ${SUPABASE_ANON}`,
+  Accept: 'application/json'
+};
+
+async function sb(path) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, { headers: HDRS });
+  if (!res.ok) throw new Error(`HTTP ${res.status} en /rest/v1/${path}`);
+  return res.json();
+}
+
+async function loadPrediosFromAPI() {
+  try {
+    // PostgREST: 1000 filas por defecto; pedir explícito con Range header
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/predios_publicos?select=*`, {
+      headers: { ...HDRS, Range: '0-9999' }
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const rows = await res.json();
+    const features = rows.map(r => ({
+      type: 'Feature',
+      properties: {
+        rol: r.rol, sector: r.sector || 'Sin sector',
+        area_ha: r.area_ha, estado: r.estado_sii || 'V',
+        lat: r.lat, lon: r.lon, flags: r.flags || []
+      },
+      geometry: typeof r.geometry === 'string' ? JSON.parse(r.geometry) : r.geometry
+    }));
+    return { type: 'FeatureCollection', features };
+  } catch (err) {
+    console.error('Error Supabase predios:', err);
+    showApiError('predios_publicos', err.message);
+    return null;
+  }
+}
+
+async function loadSeiaFromAPI() {
+  try {
+    const rows = await sb('proyectos_seia_publicos?select=*');
+    return {
+      type: 'FeatureCollection',
+      features: rows.map(r => ({
+        type: 'Feature',
+        properties: {
+          id: r.id, nombre: r.nombre, titular: r.titular,
+          tipo: r.tipo, tipologia: r.tipologia, estado: r.estado,
+          fecha: r.fecha_ingreso, inversion: r.inversion_usd_m,
+          url: r.url_expediente, flag: r.flag
+        },
+        geometry: { type: 'Point', coordinates: [r.lon, r.lat] }
+      }))
+    };
+  } catch (err) {
+    console.error('Error Supabase SEIA:', err);
+    return null;
+  }
+}
+
+function showApiError(table, msg) {
+  document.getElementById('loader').innerHTML = `
+    <div class="loader-inner" style="max-width:520px;text-align:center;padding:20px">
+      <div style="color:var(--danger);font-weight:600;margin-bottom:8px;font-size:14px">No se pudo conectar con Supabase</div>
+      <div style="color:var(--text-dim);font-size:12px;line-height:1.5;margin-bottom:16px">
+        Endpoint: <code style="color:var(--accent)">${SUPABASE_URL}/rest/v1/${table}</code><br>
+        Error: ${msg}
+      </div>
+      <div style="color:var(--muted);font-size:11px;text-align:left;background:var(--surface);padding:12px;border-radius:6px">
+        Causas comunes:<br>
+        • El anon key no fue reemplazado (busca <code>PEGA_AQUI_TU_ANON_KEY</code> en el HTML)<br>
+        • RLS está activa pero falta policy de lectura pública<br>
+        • El proyecto Supabase está pausado (Free tier se duerme tras 7 días sin uso)
+      </div>
+    </div>`;
+}
+
+(async () => {
+  const [prediosData, seiaData] = await Promise.all([loadPrediosFromAPI(), loadSeiaFromAPI()]);
+  if (!prediosData) return; // ya mostró error
+  if (seiaData) seiaPoints.features = seiaData.features;
+  predios = prediosData;
+  setupSectorFilters(prediosData);
+  document.getElementById('loader').classList.add('hidden');
+  initPrediosOnMap(prediosData);
+})();
+
+function setupSectorFilters(data) {
+  const sectorCount = {};
+  data.features.forEach(f => {
+    const s = f.properties.sector || 'Sin sector';
+    sectorCount[s] = (sectorCount[s] || 0) + 1;
+  });
+  const sorted = Object.entries(sectorCount).sort((a,b) => b[1]-a[1]);
+  const container = document.getElementById('sectorFilters');
+  container.innerHTML = sorted.slice(0, 8).map(([sector, count]) => `
+    <div class="layer-item">
+      <input type="checkbox" checked class="sector-toggle" data-sector="${sector}" />
+      <span class="layer-swatch" style="background:${sectorColors[sector] || '#475569'}"></span>
+      <span class="layer-label">${sector}</span>
+      <span class="layer-count">${count.toLocaleString('es-CL')}</span>
+    </div>
+  `).join('');
+}
+
+function initPrediosOnMap(data) {
+  if (!map.loaded()) {
+    map.on('load', () => addPrediosLayer(data));
+  } else {
+    addPrediosLayer(data);
+  }
+}
+
+function getColorExpression(mode) {
+  if (mode === 'sector') {
+    const matches = ['match', ['get', 'sector']];
+    Object.entries(sectorColors).forEach(([k, v]) => { matches.push(k, v); });
+    matches.push('#475569');
+    return matches;
+  }
+  if (mode === 'area') {
+    return ['interpolate', ['linear'], ['get', 'area_ha'],
+      0, '#1E3A8A',
+      10, '#3B82F6',
+      100, '#22C55E',
+      500, '#EAB308',
+      2000, '#F97316',
+      10000, '#EF4444'];
+  }
+  if (mode === 'estado') {
+    return ['match', ['get', 'estado'], 'V', '#22C55E', '#94A3B8'];
+  }
+  return '#C97B3A';
+}
+
+function addPrediosLayer(data) {
+  // Predios source
+  map.addSource('predios', { type: 'geojson', data: data });
+
+  // Demo POIs
+  map.addSource('seia', { type: 'geojson', data: seiaPoints });
+  map.addSource('pueblos', { type: 'geojson', data: pueblos });
+  map.addSource('ruta5', { type: 'geojson', data: ruta5 });
+  map.addSource('interchile', { type: 'geojson', data: interchile });
+
+  // Predio FILL
+  map.addLayer({
+    id: 'predios-fill',
+    type: 'fill',
+    source: 'predios',
+    paint: {
+      'fill-color': getColorExpression('sector'),
+      'fill-opacity': ['case', ['boolean', ['feature-state', 'selected'], false], 0.9, 0.45]
+    }
+  });
+  map.addLayer({
+    id: 'predios-line',
+    type: 'line',
+    source: 'predios',
+    paint: {
+      'line-color': ['case', ['boolean', ['feature-state', 'selected'], false], '#FFFFFF', '#0B1220'],
+      'line-width': ['case', ['boolean', ['feature-state', 'selected'], false], 2.5, 0.4]
+    }
+  });
+
+  // Ruta 5
+  map.addLayer({
+    id: 'ruta5-line', type: 'line', source: 'ruta5',
+    paint: { 'line-color': '#EAB308', 'line-width': 3 }
+  });
+
+  // InterChile
+  map.addLayer({
+    id: 'interchile-line', type: 'line', source: 'interchile',
+    paint: { 'line-color': '#A855F7', 'line-width': 2, 'line-dasharray': [3, 2] }
+  });
+
+  // SEIA points — coloreados por tipo de proyecto
+  map.addLayer({
+    id: 'seia-points', type: 'circle', source: 'seia',
+    paint: {
+      'circle-radius': [
+        'interpolate', ['linear'], ['zoom'],
+        8, 5,
+        12, 9,
+        16, 14
+      ],
+      'circle-color': [
+        'case',
+        ['==', ['get', 'flag'], 'critical'], '#EF4444',
+        ['==', ['get', 'flag'], 'historic'], '#94A3B8',
+        ['match', ['get', 'tipo'],
+          ['Minería + Puerto', 'Minería (hierro)', 'Infraestructura portuaria', 'Reclamación EIA'], '#EF4444',
+          ['Solar fotovoltaico'], '#EAB308',
+          ['Energía eólica (20 MW)'], '#06B6D4',
+          ['Transmisión eléctrica'], '#A855F7',
+          ['Termoeléctrica HFO (17 MW)', 'Termoeléctrica carbón (540 MW)'], '#F97316',
+          ['Terminal GNL', 'Infraestructura hídrica'], '#3B82F6',
+          '#94A3B8'
+        ]
+      ],
+      'circle-stroke-color': '#FFF', 'circle-stroke-width': 1.5,
+      'circle-opacity': 0.92
+    }
+  });
+  // Labels para SEIA al hacer zoom
+  map.addLayer({
+    id: 'seia-labels', type: 'symbol', source: 'seia',
+    minzoom: 11,
+    layout: {
+      'text-field': ['get', 'nombre'],
+      'text-size': 10,
+      'text-offset': [0, 1.5],
+      'text-anchor': 'top',
+      'text-allow-overlap': false
+    },
+    paint: {
+      'text-color': '#FFF',
+      'text-halo-color': '#0A111F',
+      'text-halo-width': 1.5
+    }
+  });
+
+  // Pueblos
+  map.addLayer({
+    id: 'pueblos-points', type: 'circle', source: 'pueblos',
+    layout: { 'visibility': 'none' },
+    paint: { 'circle-radius': 5, 'circle-color': '#FFF', 'circle-stroke-color': '#0B1220', 'circle-stroke-width': 1.5 }
+  });
+
+  // ============ INTERACTIONS ============
+  map.on('click', 'predios-fill', (e) => {
+    if (!e.features.length) return;
+    const f = e.features[0];
+    selectPredio(f);
+  });
+  map.on('mouseenter', 'predios-fill', () => map.getCanvas().style.cursor = 'pointer');
+  map.on('mouseleave', 'predios-fill', () => map.getCanvas().style.cursor = '');
+
+  map.on('click', 'seia-points', (e) => {
+    if (!e.features.length) return;
+    showSeia(e.features[0].properties);
+  });
+  map.on('mouseenter', 'seia-points', () => map.getCanvas().style.cursor = 'pointer');
+  map.on('mouseleave', 'seia-points', () => map.getCanvas().style.cursor = '');
+}
+
+let selectedFeatureId = null;
+function selectPredio(feature) {
+  if (selectedFeatureId !== null) {
+    map.setFeatureState({ source: 'predios', id: selectedFeatureId }, { selected: false });
+  }
+  selectedFeatureId = feature.id;
+  map.setFeatureState({ source: 'predios', id: feature.id }, { selected: true });
+
+  const p = feature.properties;
+  // Check si es Hijuela 2 Cominetti (demo: si tiene mucha área en Quebrada Los Choros o sector específico, marcar)
+  const isHijuela2 = p.area_ha > 1500 && (p.sector === 'Sin sector' || p.sector === 'Los Choros');
+
+  document.getElementById('selectionBar').classList.add('visible');
+  document.getElementById('selectionCount').textContent = `Rol ${p.rol} · ${p.area_ha.toLocaleString('es-CL')} ha`;
+
+  document.getElementById('panel').innerHTML = renderPredioPanel(p, isHijuela2);
+}
+
+function renderPredioPanel(p, isHijuela2) {
+  const flags = [];
+  if (isHijuela2) flags.push('<span class="panel-flag warning">REVISAR</span>');
+  if (p.area_ha > 5000) flags.push('<span class="panel-flag info">GRAN PREDIO</span>');
+
+  return `
+    <div class="panel-header">
+      <div class="panel-type-row">
+        <span class="panel-type">Predio · Rol SII</span>
+        ${flags.join('')}
+      </div>
+      <div class="panel-title">Rol ${p.rol}</div>
+      <div class="panel-subtitle">${p.sector || 'Sin sector'} · La Higuera, Coquimbo</div>
+      <div class="panel-actions">
+        <button class="panel-action">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 19 21 12 17 5 21 12 2"/></svg>
+          Guardar
+        </button>
+        <button class="panel-action">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Exportar
+        </button>
+        <button class="panel-action">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Compartir
+        </button>
+      </div>
+    </div>
+    <div class="panel-tabs">
+      <button class="panel-tab active">Resumen</button>
+      <button class="panel-tab">Eventos</button>
+      <button class="panel-tab">Documentos</button>
+      <button class="panel-tab">Vecinos</button>
+    </div>
+    <div class="panel-body">
+      <div class="field-grid">
+        <div class="field"><div class="label">Rol SII</div><div class="value mono">${p.rol}</div></div>
+        <div class="field"><div class="label">Superficie</div><div class="value mono">${p.area_ha.toLocaleString('es-CL')} ha</div></div>
+        <div class="field"><div class="label">Manzana</div><div class="value mono">${p.manz || '—'}</div></div>
+        <div class="field"><div class="label">Predio</div><div class="value mono">${p.predio || '—'}</div></div>
+        <div class="field"><div class="label">Estado SII</div><div class="value">${p.estado === 'V' ? 'Vigente' : p.estado}</div></div>
+        <div class="field"><div class="label">Centroide</div><div class="value mono" style="font-size:10.5px">${p.lat.toFixed(4)}, ${p.lon.toFixed(4)}</div></div>
+        <div class="field full"><div class="label">Sector</div><div class="value">${p.sector || 'Sin sector asignado'}</div></div>
+      </div>
+
+      <div class="section">
+        <h4>Análisis territorial automático</h4>
+        ${p.area_ha > 1000 ? `
+        <div class="alert-item info">
+          <div class="alert-title">Predio de gran extensión (${p.area_ha.toLocaleString('es-CL')} ha)</div>
+          <div class="alert-meta"><span>Top 5% comuna</span><span>·</span><span>Potencial subdivisión</span></div>
+        </div>` : ''}
+        ${isHijuela2 ? `
+        <div class="alert-item critical">
+          <div class="alert-title">Zona de influencia Dominga</div>
+          <div class="alert-meta"><span>Distancia &lt; 10 km</span><span>·</span><span>RCA en litigio</span></div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-title">Servidumbre eléctrica InterChile próxima</div>
+          <div class="alert-meta"><span>Línea Maitencillo–Pan de Azúcar 2x500kV</span></div>
+        </div>` : ''}
+        <div class="alert-item success">
+          <div class="alert-title">Acceso vehicular confirmado</div>
+          <div class="alert-meta"><span>Conexión a red vial pública</span></div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h4>Datos públicos disponibles <span class="action">Ver fuentes →</span></h4>
+        <div class="doc-item">
+          <div class="doc-icon">SII</div>
+          <div class="doc-name">Certificado avalúo fiscal vigente<br><span class="doc-meta">sii.cl · rol ${p.rol}</span></div>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--muted)"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+        <div class="doc-item">
+          <div class="doc-icon">CBR</div>
+          <div class="doc-name">Inscripción de dominio<br><span class="doc-meta">CBR La Serena · consulta pagada</span></div>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--muted)"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+        <div class="doc-item">
+          <div class="doc-icon">SAG</div>
+          <div class="doc-name">Histórico subdivisiones rurales<br><span class="doc-meta">sag.gob.cl · transparencia</span></div>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--muted)"><polyline points="9 18 15 12 9 6"/></svg>
+        </div>
+      </div>
+
+      <div class="section">
+        <h4>Cronología pública</h4>
+        <div class="timeline">
+          <div class="timeline-item success">
+            <div class="timeline-date">2026-04-21</div>
+            <div class="timeline-title">Última actualización catastral SII</div>
+            <div class="timeline-source">sii.cl · capa pública</div>
+          </div>
+          ${isHijuela2 ? `
+          <div class="timeline-item warning">
+            <div class="timeline-date">2025-11-02</div>
+            <div class="timeline-title">Inscripción servidumbre eléctrica (sector)</div>
+            <div class="timeline-source">CBR La Serena</div>
+          </div>
+          <div class="timeline-item critical">
+            <div class="timeline-date">2025-01-17</div>
+            <div class="timeline-title">CS suspende RCA Dominga (8km)</div>
+            <div class="timeline-source">CS Rol 67.123-2024</div>
+          </div>` : ''}
+          <div class="timeline-item">
+            <div class="timeline-date">2023-08-18</div>
+            <div class="timeline-title">SEA aprueba RCA Dominga · zona</div>
+            <div class="timeline-source">Res. Exenta 178/2023</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function showSeia(p) {
+  document.getElementById('selectionBar').classList.add('visible');
+  document.getElementById('selectionCount').textContent = `SEIA · ${p.nombre}`;
+
+  const isCritical = p.flag === 'critical';
+  const isHistoric = p.flag === 'historic';
+  const inEval = (p.estado || '').toLowerCase().includes('calificación');
+  const desistido = (p.estado || '').toLowerCase().includes('desistido');
+
+  let flagBadge = '';
+  if (isCritical) flagBadge = '<span class="panel-flag danger">EN LITIGIO</span>';
+  else if (desistido) flagBadge = '<span class="panel-flag warning">DESISTIDO</span>';
+  else if (inEval) flagBadge = '<span class="panel-flag info">EN CALIFICACIÓN</span>';
+  else if (isHistoric) flagBadge = '<span class="panel-flag warning">HISTÓRICO</span>';
+
+  const dominga = p.id === 'dominga' || p.id === 'dominga-recurso' || p.id === 'desala-dominga';
+
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-header">
+      <div class="panel-type-row">
+        <span class="panel-type">Proyecto SEIA · ${p.tipologia}</span>
+        ${flagBadge}
+      </div>
+      <div class="panel-title">${p.nombre}</div>
+      <div class="panel-subtitle">${p.titular} · ${p.tipo}</div>
+      <div class="panel-actions">
+        <a class="panel-action" href="${p.url}" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Expediente SEIA
+        </a>
+        <button class="panel-action">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          Suscribir alertas
+        </button>
+        <button class="panel-action">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Compartir
+        </button>
+      </div>
+    </div>
+    <div class="panel-tabs">
+      <button class="panel-tab active">Resumen</button>
+      <button class="panel-tab">Cronología</button>
+      <button class="panel-tab">Expediente</button>
+      <button class="panel-tab">Impacto territorial</button>
+    </div>
+    <div class="panel-body">
+      <div class="field-grid">
+        <div class="field"><div class="label">Tipología</div><div class="value">${p.tipologia}</div></div>
+        <div class="field"><div class="label">Inversión</div><div class="value mono">${p.inversion ? 'USD ' + p.inversion.toLocaleString('es-CL') + 'M' : 'N/D'}</div></div>
+        <div class="field"><div class="label">Fecha ingreso</div><div class="value mono">${p.fecha}</div></div>
+        <div class="field"><div class="label">Estado actual</div><div class="value" style="font-size:11.5px">${p.estado}</div></div>
+        <div class="field full"><div class="label">Titular</div><div class="value">${p.titular}</div></div>
+      </div>
+
+      ${dominga ? `
+      <div class="section">
+        <h4>Cronología pública SEA / CS</h4>
+        <div class="timeline">
+          <div class="timeline-item warning">
+            <div class="timeline-date">2025-09</div>
+            <div class="timeline-title">CS declara inadmisible nuevos recursos</div>
+            <div class="timeline-source">Corte Suprema · confirma RCA 161/2021</div>
+          </div>
+          <div class="timeline-item critical">
+            <div class="timeline-date">2023-01</div>
+            <div class="timeline-title">Comité de Ministros rechaza Dominga</div>
+            <div class="timeline-source">Rechazo administrativo (revertido en sede judicial)</div>
+          </div>
+          <div class="timeline-item warning">
+            <div class="timeline-date">2021-08</div>
+            <div class="timeline-title">SEA Coquimbo aprueba RCA 161/2021</div>
+            <div class="timeline-source">Comisión de Evaluación Coquimbo</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2017-03</div>
+            <div class="timeline-title">Primer rechazo por Comité de Ministros</div>
+            <div class="timeline-source">Gobierno Bachelet II</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">2013-09-13</div>
+            <div class="timeline-title">Ingreso EIA original</div>
+            <div class="timeline-source">seia.sea.gob.cl · ID 2128565332</div>
+          </div>
+        </div>
+      </div>` : `
+      <div class="section">
+        <h4>Cronología</h4>
+        <div class="timeline">
+          <div class="timeline-item ${desistido ? 'warning' : 'success'}">
+            <div class="timeline-date">${p.fecha}</div>
+            <div class="timeline-title">${desistido ? 'Proyecto desistido' : 'Última actualización conocida'}</div>
+            <div class="timeline-source">${p.estado}</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-date">${p.fecha}</div>
+            <div class="timeline-title">Ingreso al SEIA</div>
+            <div class="timeline-source">seia.sea.gob.cl</div>
+          </div>
+        </div>
+      </div>`}
+
+      <div class="section">
+        <h4>Análisis cruzado <span class="action">Ver mapa →</span></h4>
+        ${dominga ? `
+        <div class="alert-item critical">
+          <div class="alert-title">12+ años de litigación</div>
+          <div class="alert-meta"><span>Expediente más controvertido del SEIA</span></div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-title">RCA 161/2021 confirmada por CS (sept 2025)</div>
+          <div class="alert-meta"><span>Reactivación judicial 2026 en curso</span></div>
+        </div>
+        <div class="alert-item info">
+          <div class="alert-title">Predios en zona de influencia: 142</div>
+          <div class="alert-meta"><span>Sector lineal del concentraducto</span></div>
+        </div>` : `
+        <div class="alert-item info">
+          <div class="alert-title">${p.tipo}</div>
+          <div class="alert-meta"><span>${p.inversion ? 'Inversión USD ' + p.inversion + 'M' : 'Sin dato de inversión'}</span></div>
+        </div>`}
+      </div>
+
+      <div class="section">
+        <h4>Acceso al expediente público</h4>
+        <a class="doc-item" href="${p.url}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+          <div class="doc-icon">SEIA</div>
+          <div class="doc-name">Ver ficha en seia.sea.gob.cl<br><span class="doc-meta">Fuente oficial · Servicio de Evaluación Ambiental</span></div>
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--muted)"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+  `;
+}
+
+// ============ UI WIRING ============
+
+// Basemap switcher
+document.querySelectorAll('[data-basemap]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-basemap]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const key = btn.dataset.basemap;
+    map.getSource('base').tiles = basemaps[key].tiles;
+    map.style.sourceCaches['base'].clearTiles();
+    map.style.sourceCaches['base'].update(map.transform);
+    map.triggerRepaint();
+  });
+});
+
+// Color mode switcher
+document.querySelectorAll('[data-color]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('[data-color]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentColor = btn.dataset.color;
+    if (map.getLayer('predios-fill')) {
+      map.setPaintProperty('predios-fill', 'fill-color', getColorExpression(currentColor));
+    }
+    updateLegend(currentColor);
+  });
+});
+
+function updateLegend(mode) {
+  const card = document.getElementById('dynamicLegend');
+  if (mode === 'sector') {
+    card.innerHTML = `
+      <div class="lc-title">Predios por sector</div>
+      <div class="lc-row"><span class="lc-bar" style="background:#C97B3A"></span>Los Choros · 351</div>
+      <div class="lc-row"><span class="lc-bar" style="background:#3B82F6"></span>Los Hornos · 244</div>
+      <div class="lc-row"><span class="lc-bar" style="background:#22C55E"></span>Chungungo · 163</div>
+      <div class="lc-row"><span class="lc-bar" style="background:#EF4444"></span>Punta Colorada · 147</div>
+      <div class="lc-row"><span class="lc-bar" style="background:#A855F7"></span>Punta de Choros · 142</div>
+      <div class="lc-row"><span class="lc-bar" style="background:#475569"></span>Sin sector · 6.570</div>`;
+  } else if (mode === 'area') {
+    card.innerHTML = `
+      <div class="lc-title">Superficie predial (ha)</div>
+      <div class="lc-row"><span class="lc-bar" style="background:#1E3A8A"></span>&lt; 10 ha</div>
+      <div class="lc-row"><span class="lc-bar" style="background:#3B82F6"></span>10 – 100</div>
+      <div class="lc-row"><span class="lc-bar" style="background:#22C55E"></span>100 – 500</div>
+      <div class="lc-row"><span class="lc-bar" style="background:#EAB308"></span>500 – 2.000</div>
+      <div class="lc-row"><span class="lc-bar" style="background:#F97316"></span>2.000 – 10.000</div>
+      <div class="lc-row"><span class="lc-bar" style="background:#EF4444"></span>&gt; 10.000 ha</div>`;
+  } else if (mode === 'estado') {
+    card.innerHTML = `
+      <div class="lc-title">Estado SII</div>
+      <div class="lc-row"><span class="lc-bar" style="background:#22C55E"></span>Vigente</div>
+      <div class="lc-row"><span class="lc-bar" style="background:#94A3B8"></span>Otro / sin estado</div>`;
+  }
+}
+
+// Layer toggles
+document.querySelectorAll('[data-layer]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const layerMap = {
+      predios: ['predios-fill', 'predios-line'],
+      ruta5: ['ruta5-line'],
+      interchile: ['interchile-line'],
+      seia: ['seia-points'],
+      pueblos: ['pueblos-points']
+    };
+    const ids = layerMap[cb.dataset.layer] || [];
+    ids.forEach(id => {
+      if (map.getLayer(id)) {
+        map.setLayoutProperty(id, 'visibility', cb.checked ? 'visible' : 'none');
+      }
+    });
+  });
+});
+
+// Zoom controls
+document.getElementById('zoomReset').addEventListener('click', () => {
+  map.flyTo({ center: [-71.05, -29.39], zoom: 9.5 });
+});
+
+document.getElementById('clearSelection').addEventListener('click', () => {
+  if (selectedFeatureId !== null) {
+    map.setFeatureState({ source: 'predios', id: selectedFeatureId }, { selected: false });
+    selectedFeatureId = null;
+  }
+  document.getElementById('selectionBar').classList.remove('visible');
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-empty">
+      <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg></div>
+      <div class="e-title">Selecciona un elemento del mapa</div>
+      <div>Click sobre un predio, proyecto SEIA o localidad<br>para ver su ficha de inteligencia territorial.</div>
+    </div>`;
+});
+
+// Tab switch (visual only)
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+    t.classList.add('active');
+  });
+});
+
+// Map state
+map.on('zoom', () => {
+  document.getElementById('mapScale').textContent = `— · zoom ${map.getZoom().toFixed(1)}`;
+});
+map.on('mousemove', (e) => {
+  document.getElementById('cursorCoords').textContent = `${e.lngLat.lat.toFixed(5)}, ${e.lngLat.lng.toFixed(5)}`;
+});
+
+// Search shortcut
+document.addEventListener('keydown', (e) => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+    e.preventDefault();
+    document.getElementById('searchInput').focus();
+  }
+});
+
+// Search filter
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  const q = e.target.value.trim().toLowerCase();
+  if (!predios || !map.getLayer('predios-fill')) return;
+  if (!q) {
+    map.setFilter('predios-fill', null);
+    map.setFilter('predios-line', null);
+    return;
+  }
+  const filter = ['any',
+    ['in', q, ['downcase', ['get', 'rol']]],
+    ['in', q, ['downcase', ['coalesce', ['get', 'sector'], '']]]
+  ];
+  map.setFilter('predios-fill', filter);
+  map.setFilter('predios-line', filter);
+});
+
+// Sector filter
+document.addEventListener('change', (e) => {
+  if (!e.target.classList.contains('sector-toggle')) return;
+  const active = Array.from(document.querySelectorAll('.sector-toggle:checked')).map(c => c.dataset.sector);
+  if (!map.getLayer('predios-fill')) return;
+  if (active.length === document.querySelectorAll('.sector-toggle').length) {
+    map.setFilter('predios-fill', null);
+    map.setFilter('predios-line', null);
+  } else {
+    const filter = ['in', ['coalesce', ['get', 'sector'], 'Sin sector'], ['literal', active]];
+    map.setFilter('predios-fill', filter);
+    map.setFilter('predios-line', filter);
+  }
+});
+
+// Need feature IDs for feature-state to work
+// Re-load predios with ids generated
+const origAddSource = map.addSource.bind(map);
+map.addSource = function(id, src) {
+  if (id === 'predios' && src.type === 'geojson') {
+    src.generateId = true;
+  }
+  return origAddSource(id, src);
+};
+</script>
+</body>
+</html>
