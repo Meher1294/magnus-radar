@@ -780,6 +780,10 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       Timeline <span class="pro-tag">PRO</span>
     </button>
+    <button class="tab" data-tab="comparar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18"/><rect x="14" y="3" width="7" height="18"/></svg>
+      Comparar
+    </button>
     <button class="tab" data-tab="analisis">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
       Análisis
@@ -880,6 +884,12 @@
           <span class="layer-swatch" style="background:linear-gradient(90deg,#3B82F6,#EF4444)"></span>
           <label for="l-heatmap" class="layer-label">Heatmap caudal DGA</label>
           <span class="layer-count">270 pts</span>
+        </div>
+        <div class="layer-item">
+          <input type="checkbox" id="l-concesiones" data-layer="concesiones"/>
+          <span class="layer-swatch" style="background:rgba(249,115,22,0.3);border-color:#F97316"></span>
+          <label for="l-concesiones" class="layer-label">Concesiones mineras</label>
+          <span class="layer-count">12</span>
         </div>
       </div>
 
@@ -1250,6 +1260,24 @@ async function loadPrediosFromAPI() {
   }
 }
 
+async function loadConcesionesFromAPI() {
+  try {
+    const rows = await sb('concesiones_mineras_publicas?select=*');
+    return {
+      type: 'FeatureCollection',
+      features: rows.map(r => ({
+        type: 'Feature',
+        properties: {
+          rol_minero: r.rol_minero, nombre: r.nombre, titular: r.titular,
+          tipo: r.tipo, estado: r.estado, superficie_ha: r.superficie_ha,
+          fuente_url: r.fuente_url, comuna_codigo: r.comuna_codigo
+        },
+        geometry: r.geometry
+      }))
+    };
+  } catch (err) { console.error('Error concesiones:', err); return null; }
+}
+
 async function loadDgaFromAPI() {
   try {
     const rows = await sb('derechos_agua_publicos?select=*');
@@ -1309,14 +1337,16 @@ function showApiError(table, msg) {
 }
 
 let dgaData = null;
+let concesionesData = null;
 
 (async () => {
-  const [prediosData, seiaData, dga] = await Promise.all([
-    loadPrediosFromAPI(), loadSeiaFromAPI(), loadDgaFromAPI()
+  const [prediosData, seiaData, dga, conc] = await Promise.all([
+    loadPrediosFromAPI(), loadSeiaFromAPI(), loadDgaFromAPI(), loadConcesionesFromAPI()
   ]);
   if (!prediosData) return;
   if (seiaData) seiaPoints.features = seiaData.features;
   dgaData = dga || { type:'FeatureCollection', features:[] };
+  concesionesData = conc || { type:'FeatureCollection', features:[] };
   predios = prediosData;
   setupSectorFilters(prediosData);
   document.getElementById('loader').classList.add('hidden');
@@ -1481,6 +1511,30 @@ function addPrediosLayer(data) {
 
   // Heatmap (oculto por default)
   addDgaHeatmap();
+
+  // Concesiones mineras
+  map.addSource('concesiones', { type: 'geojson', data: concesionesData });
+  map.addLayer({
+    id: 'concesiones-fill', type: 'fill', source: 'concesiones',
+    layout: { visibility: 'none' },
+    paint: {
+      'fill-color': [
+        'case', ['in', 'Exploración', ['get','tipo']], '#F59E0B', '#F97316'
+      ],
+      'fill-opacity': 0.25
+    }
+  });
+  map.addLayer({
+    id: 'concesiones-line', type: 'line', source: 'concesiones',
+    layout: { visibility: 'none' },
+    paint: { 'line-color': '#F97316', 'line-width': 1.5, 'line-dasharray': [2, 1] }
+  });
+  map.on('click', 'concesiones-fill', (e) => {
+    if (!e.features.length) return;
+    showConcesion(e.features[0].properties);
+  });
+  map.on('mouseenter', 'concesiones-fill', () => map.getCanvas().style.cursor = 'pointer');
+  map.on('mouseleave', 'concesiones-fill', () => map.getCanvas().style.cursor = '');
 
   // Caminos secundarios
   map.addSource('caminos-sec', { type: 'geojson', data: caminosSec });
@@ -1949,7 +2003,8 @@ document.querySelectorAll('[data-layer]').forEach(cb => {
       areas: ['areas-protegidas-fill', 'areas-protegidas-line', 'areas-protegidas-label'],
       caminos: ['caminos-sec-line'],
       'zona-dominga': ['zona-dominga-fill', 'zona-dominga-line'],
-      heatmap: ['dga-heatmap']
+      heatmap: ['dga-heatmap'],
+      concesiones: ['concesiones-fill', 'concesiones-line']
     };
     const ids = layerMap[cb.dataset.layer] || [];
     ids.forEach(id => {
@@ -2050,6 +2105,10 @@ function handleTabChange(tab) {
       showAguaPanel();
       break;
 
+    case 'comparar':
+      showCompararPanel();
+      break;
+
     case 'analisis':
       showAnalisisPanel();
       break;
@@ -2075,6 +2134,140 @@ function handleTabChange(tab) {
         </div>`;
       break;
   }
+}
+
+function showConcesion(p) {
+  document.getElementById('selectionBar').classList.add('visible');
+  document.getElementById('selectionCount').textContent = `Concesión · ${p.rol_minero}`;
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-header">
+      <div class="panel-type-row">
+        <span class="panel-type">Concesión minera · ${p.tipo}</span>
+        <span class="panel-flag info">${p.estado}</span>
+      </div>
+      <div class="panel-title">${p.nombre}</div>
+      <div class="panel-subtitle">${p.titular}</div>
+    </div>
+    <div class="panel-body">
+      <div class="field-grid">
+        <div class="field"><div class="label">Rol minero</div><div class="value mono">${p.rol_minero}</div></div>
+        <div class="field"><div class="label">Superficie</div><div class="value mono">${p.superficie_ha.toLocaleString('es-CL')} ha</div></div>
+        <div class="field"><div class="label">Tipo</div><div class="value">${p.tipo}</div></div>
+        <div class="field"><div class="label">Estado</div><div class="value">${p.estado}</div></div>
+      </div>
+      <div class="section">
+        <h4>Fuente oficial</h4>
+        <a class="doc-item" href="${p.fuente_url}" target="_blank" style="text-decoration:none;color:inherit">
+          <div class="doc-icon">SNGM</div>
+          <div class="doc-name">Catastro Minero Sernageomin<br><span class="doc-meta">catastro.sernageomin.cl</span></div>
+        </a>
+        <div style="font-size:10.5px;color:var(--warning);margin-top:8px;padding:8px;background:rgba(245,158,11,0.08);border-radius:4px">
+          ⚠ Polígono aproximado basado en información pública conocida. Para coordenadas exactas, consultar Catastro Minero Sernageomin.
+        </div>
+      </div>
+    </div>`;
+}
+
+function showCompararPanel() {
+  destroyCharts();
+  // Counts por comuna (la actualmente cargada vs la otra)
+  const lh = {
+    predios: 7686, predios_ha: 417751,
+    seia: 17, inversion: 5779,
+    dga: 270, caudal: 3733, subt_pct: 99.6,
+    concesiones: 6, conc_ha: 16700,
+    areas_protegidas: 3, dominga: true
+  };
+  const an = {
+    predios: 0, predios_ha: 0,  // pendiente catastro Andacollo
+    seia: 5, inversion: 1090,
+    dga: 199, caudal: 160, subt_pct: 100,
+    concesiones: 6, conc_ha: 14800,
+    areas_protegidas: 0, dominga: false
+  };
+
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-header">
+      <div class="panel-type-row">
+        <span class="panel-type">Comparativa · Región Coquimbo</span>
+      </div>
+      <div class="panel-title">La Higuera vs Andacollo</div>
+      <div class="panel-subtitle">Dos comunas mineras con perfiles muy distintos</div>
+    </div>
+    <div class="panel-body">
+
+      <div class="section">
+        <h4>Predios catastrados (SII)</h4>
+        ${cmpRow('La Higuera', '7.686 predios · 417.751 ha', 'lh', 1)}
+        ${cmpRow('Andacollo', '— pendiente carga', 'an', 0)}
+      </div>
+
+      <div class="section">
+        <h4>Proyectos SEIA</h4>
+        ${cmpRow('La Higuera', `${lh.seia} proyectos · USD ${lh.inversion.toLocaleString('es-CL')}M`, 'lh', lh.inversion / Math.max(lh.inversion, an.inversion))}
+        ${cmpRow('Andacollo', `${an.seia} proyectos · USD ${an.inversion.toLocaleString('es-CL')}M`, 'an', an.inversion / Math.max(lh.inversion, an.inversion))}
+      </div>
+
+      <div class="section">
+        <h4>Derechos DGA (caudal)</h4>
+        ${cmpRow('La Higuera', `${lh.dga} derechos · ${lh.caudal.toLocaleString('es-CL')} l/s`, 'lh', lh.caudal / Math.max(lh.caudal, an.caudal))}
+        ${cmpRow('Andacollo', `${an.dga} derechos · ${an.caudal.toLocaleString('es-CL')} l/s`, 'an', an.caudal / Math.max(lh.caudal, an.caudal))}
+        <div style="font-size:11px;color:var(--text-dim);margin-top:8px;line-height:1.5">
+          La Higuera tiene <b>23× más caudal</b> que Andacollo con casi el mismo n° de derechos.
+          Ambas son ~100% subterráneas.
+        </div>
+      </div>
+
+      <div class="section">
+        <h4>Concesiones mineras</h4>
+        ${cmpRow('La Higuera', `${lh.concesiones} concesiones · ${lh.conc_ha.toLocaleString('es-CL')} ha`, 'lh', lh.conc_ha / Math.max(lh.conc_ha, an.conc_ha))}
+        ${cmpRow('Andacollo', `${an.concesiones} concesiones · ${an.conc_ha.toLocaleString('es-CL')} ha`, 'an', an.conc_ha / Math.max(lh.conc_ha, an.conc_ha))}
+      </div>
+
+      <div class="section">
+        <h4>Áreas protegidas</h4>
+        ${cmpRow('La Higuera', `${lh.areas_protegidas} áreas (Reserva Pingüino Humboldt + 2)`, 'lh', 1)}
+        ${cmpRow('Andacollo', `${an.areas_protegidas} áreas`, 'an', 0)}
+      </div>
+
+      <div class="section">
+        <h4>Insights</h4>
+        <div class="alert-item critical">
+          <div class="alert-title">Costa vs Sierra</div>
+          <div class="alert-meta">La Higuera: minería costera (hierro, Dominga, Cruz Grande), conflicto con áreas marinas. Andacollo: minería de altura (oro/cobre Teck, Dayton), sin áreas protegidas marinas.</div>
+        </div>
+        <div class="alert-item info">
+          <div class="alert-title">Recursos hídricos</div>
+          <div class="alert-meta">La Higuera tiene cauces aprovechables (Río Los Choros). Andacollo opera 100% sobre acuíferos profundos en zona árida.</div>
+        </div>
+        <div class="alert-item success">
+          <div class="alert-title">Inversión SEIA mapeada</div>
+          <div class="alert-meta">USD ${(lh.inversion + an.inversion).toLocaleString('es-CL')}M combinados · ${lh.seia + an.seia} proyectos en 2 comunas</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h4>Cambiar comuna activa</h4>
+        <div style="display:flex;gap:6px">
+          <button class="btn ${currentComuna === 4102 ? 'btn-primary' : 'btn-ghost'}" style="flex:1;justify-content:center" onclick="switchComuna(4102)">La Higuera</button>
+          <button class="btn ${currentComuna === 4302 ? 'btn-primary' : 'btn-ghost'}" style="flex:1;justify-content:center" onclick="switchComuna(4302)">Andacollo</button>
+        </div>
+      </div>
+    </div>`;
+}
+
+function cmpRow(label, value, side, pct) {
+  const color = side === 'lh' ? '#C97B3A' : '#3B82F6';
+  return `
+    <div style="margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;font-size:11.5px;margin-bottom:4px">
+        <span style="color:var(--text);font-weight:500">${label}</span>
+        <span style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10.5px">${value}</span>
+      </div>
+      <div style="height:6px;background:var(--bg);border-radius:3px;overflow:hidden">
+        <div style="height:100%;width:${Math.max(2, pct * 100)}%;background:${color};transition:width 0.3s"></div>
+      </div>
+    </div>`;
 }
 
 // ============ DASHBOARD ANALÍTICO ============
