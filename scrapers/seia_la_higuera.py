@@ -85,6 +85,11 @@ def parse_fecha(s):
         except: pass
     return None
 
+try:
+    from notifier import notificar_evento
+except ImportError:
+    notificar_evento = None
+
 def upsert_proyecto(p):
     """Inserta o actualiza proyecto. Devuelve True si era nuevo."""
     if not p.get("seia_id") or not p.get("nombre"):
@@ -120,7 +125,7 @@ def upsert_proyecto(p):
             # Fallback con raw SQL si la geom da problemas
             sb.postgrest.rpc("exec_sql", {"sql": f"INSERT INTO proyectos_seia (comuna_codigo, seia_id, nombre, titular, tipo, tipologia, estado, fecha_ingreso, url_expediente, region, ultima_actualizacion, geom) VALUES ({COMUNA}, '{p['seia_id']}', '{p['nombre'][:200]}', NULL, NULL, NULL, NULL, NULL, NULL, 'Coquimbo', now(), ST_SetSRID(ST_GeomFromText('{geom_wkt}'), 4326))"})
         # Registrar evento
-        sb.table("eventos").insert({
+        ev_res = sb.table("eventos").insert({
             "comuna_codigo": COMUNA,
             "fecha": datetime.date.today().isoformat(),
             "tipo": "seia_ingreso",
@@ -130,6 +135,19 @@ def upsert_proyecto(p):
             "fuente_url": p.get("url_expediente"),
             "criticidad": "media",
         }).execute()
+        # Notificar a usuarios con alertas geográficas
+        if notificar_evento and ev_res.data:
+            try:
+                lon, lat = -71.10, -29.40  # default centro comuna; idealmente extraer del proyecto
+                notificar_evento(
+                    evento_id=ev_res.data[0]["id"], lon=lon, lat=lat,
+                    titulo=f"Nuevo proyecto SEIA: {p['nombre'][:120]}",
+                    descripcion=f"Titular: {p.get('titular') or 'N/D'} · Tipología: {p.get('tipologia') or 'N/D'} · Estado: {p.get('estado') or 'N/D'}",
+                    fuente_url=p.get("url_expediente") or "",
+                    criticidad="media"
+                )
+            except Exception as e:
+                print(f"  notif error: {e}")
     else:
         sb.table("proyectos_seia").update(payload).eq("seia_id", p["seia_id"]).execute()
     return is_new

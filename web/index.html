@@ -744,6 +744,10 @@
       <div class="search-results" id="searchResults"></div>
     </div>
     <div class="header-right">
+      <button class="btn-icon" id="btnBell" title="Notificaciones" style="position:relative;display:none">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span id="bellBadge" style="display:none;position:absolute;top:2px;right:2px;width:8px;height:8px;background:var(--danger);border-radius:50%;border:1.5px solid var(--surface)"></span>
+      </button>
       <button class="btn-icon" id="btnLang" title="Idioma · Language" style="font-size:9px;font-weight:600">ES</button>
       <button class="btn-icon" title="Compartir vista" id="btnShare">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
@@ -4114,12 +4118,66 @@ sb.auth.onAuthStateChange((event, session) => {
   if (event === 'SIGNED_IN') {
     closeAuthModal();
     window.__showToast?.(`✓ Bienvenido ${session.user.email}`);
-    // Si estamos en la tab Alertas, recargar
     const alertasTab = document.querySelector('.tab[data-tab="alertas"].active');
     if (alertasTab) alertasTab.click();
   }
   window.__sbUser = session?.user || null;
+  // Mostrar/ocultar bell
+  const bell = document.getElementById('btnBell');
+  if (bell) bell.style.display = session ? 'grid' : 'none';
+  if (session) checkNotifications();
 });
+
+// ============ NOTIFICACIONES (bell) ============
+async function checkNotifications() {
+  try {
+    const { data } = await sb.from('mis_notificaciones').select('*').limit(10);
+    const unread = (data || []).filter(n => !n.read_at && n.estado === 'enviada').length;
+    const badge = document.getElementById('bellBadge');
+    if (badge) badge.style.display = unread > 0 ? 'block' : 'none';
+    window.__notifs = data || [];
+  } catch (e) { /* silencioso */ }
+}
+
+document.getElementById('btnBell')?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const existing = document.getElementById('bellMenu');
+  if (existing) { existing.remove(); return; }
+  const menu = document.createElement('div');
+  menu.id = 'bellMenu'; menu.className = 'user-menu visible';
+  const r = e.currentTarget.getBoundingClientRect();
+  menu.style.cssText = `top:${r.bottom + 6}px;right:${window.innerWidth - r.right}px;left:auto;min-width:320px;max-width:380px;max-height:480px;overflow-y:auto`;
+  const notifs = window.__notifs || [];
+  if (notifs.length === 0) {
+    menu.innerHTML = `<div class="user-menu-item" style="color:var(--muted);cursor:default;padding:20px;text-align:center">Sin notificaciones aún</div>`;
+  } else {
+    menu.innerHTML = `
+      <div class="user-menu-item" style="color:var(--muted);cursor:default;font-size:9.5px;text-transform:uppercase;letter-spacing:0.06em">Notificaciones recientes</div>
+      ${notifs.map(n => `
+        <div class="user-menu-item" style="display:block;padding:10px 12px;border-bottom:1px solid var(--border-soft)">
+          <div style="font-size:11.5px;font-weight:500;color:var(--text);margin-bottom:2px">${n.evento_titulo || '(sin título)'}</div>
+          <div style="font-size:10.5px;color:var(--muted)">${n.alerta_nombre || '—'} · ${n.evento_fecha || ''} · ${n.estado}</div>
+        </div>
+      `).join('')}
+      <div class="user-menu-item" data-action="alertas" style="color:var(--accent);text-align:center;font-size:11px">Gestionar alertas →</div>
+    `;
+  }
+  document.body.appendChild(menu);
+  menu.addEventListener('click', (ev) => {
+    if (ev.target.closest('[data-action="alertas"]')) {
+      document.querySelector('[data-tab="alertas"]')?.click();
+      menu.remove();
+    }
+  });
+  document.addEventListener('click', function close(ev) {
+    if (!ev.target.closest('#bellMenu') && !ev.target.closest('#btnBell')) {
+      menu.remove(); document.removeEventListener('click', close);
+    }
+  });
+});
+
+// Refrescar notifs cada 60 segundos cuando logueado
+setInterval(() => { if (window.__sbUser) checkNotifications(); }, 60000);
 
 // Exponer cliente para otras partes del código
 window.__sb = sb;
