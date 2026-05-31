@@ -3,7 +3,30 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Magnus Radar — La Higuera (live)</title>
+<title>Magnus Radar — Inteligencia Territorial · La Higuera</title>
+<meta name="description" content="Visor público de inteligencia territorial de la comuna La Higuera, Coquimbo. 7.686 predios SII, 17 proyectos SEIA, áreas protegidas y derechos DGA en tiempo real." />
+<meta name="theme-color" content="#0A111F" />
+<meta name="author" content="Magnus SpA · Max Medina" />
+
+<!-- Open Graph (WhatsApp, LinkedIn, Telegram) -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://meher1294.github.io/magnus-radar/" />
+<meta property="og:site_name" content="Magnus Radar" />
+<meta property="og:title" content="Magnus Radar — Inteligencia Territorial La Higuera" />
+<meta property="og:description" content="7.686 predios SII · 17 proyectos SEIA · áreas protegidas · derechos DGA. Visor público de la comuna La Higuera, Coquimbo." />
+<meta property="og:image" content="https://meher1294.github.io/magnus-radar/og-cover.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:locale" content="es_CL" />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Magnus Radar — Inteligencia Territorial La Higuera" />
+<meta name="twitter:description" content="7.686 predios · 17 SEIA · áreas protegidas · derechos DGA. Comuna La Higuera, Coquimbo." />
+<meta name="twitter:image" content="https://meher1294.github.io/magnus-radar/og-cover.png" />
+
+<!-- Favicon SVG inline (sin archivo) -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23C97B3A'/><text x='16' y='22' font-family='Inter,sans-serif' font-size='18' font-weight='700' fill='white' text-anchor='middle'>M</text></svg>" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
@@ -1114,6 +1137,25 @@ async function loadPrediosFromAPI() {
   }
 }
 
+async function loadDgaFromAPI() {
+  try {
+    const rows = await sb('derechos_agua_publicos?select=*');
+    return {
+      type: 'FeatureCollection',
+      features: rows.map(r => ({
+        type: 'Feature',
+        properties: {
+          codigo: r.codigo_dga, tipo: r.tipo, naturaleza: r.naturaleza,
+          captacion: r.captacion, caudal: r.caudal_ls, titular: r.titular,
+          ejercicio: r.ejercicio, estado: r.estado, fecha: r.fecha_constitucion,
+          fuente_url: r.fuente_url
+        },
+        geometry: { type: 'Point', coordinates: [r.lon, r.lat] }
+      }))
+    };
+  } catch (err) { console.error('Error DGA:', err); return null; }
+}
+
 async function loadSeiaFromAPI() {
   try {
     const rows = await sb('proyectos_seia_publicos?select=*');
@@ -1153,10 +1195,15 @@ function showApiError(table, msg) {
     </div>`;
 }
 
+let dgaData = null;
+
 (async () => {
-  const [prediosData, seiaData] = await Promise.all([loadPrediosFromAPI(), loadSeiaFromAPI()]);
-  if (!prediosData) return; // ya mostró error
+  const [prediosData, seiaData, dga] = await Promise.all([
+    loadPrediosFromAPI(), loadSeiaFromAPI(), loadDgaFromAPI()
+  ]);
+  if (!prediosData) return;
   if (seiaData) seiaPoints.features = seiaData.features;
+  dgaData = dga || { type:'FeatureCollection', features:[] };
   predios = prediosData;
   setupSectorFilters(prediosData);
   document.getElementById('loader').classList.add('hidden');
@@ -1252,6 +1299,35 @@ function addPrediosLayer(data) {
     id: 'interchile-line', type: 'line', source: 'interchile',
     paint: { 'line-color': '#A855F7', 'line-width': 2, 'line-dasharray': [3, 2] }
   });
+
+  // Derechos DGA — capa
+  map.addSource('dga', { type: 'geojson', data: dgaData || {type:'FeatureCollection', features:[]} });
+  map.addLayer({
+    id: 'dga-points', type: 'circle', source: 'dga',
+    layout: { visibility: 'none' },
+    paint: {
+      'circle-radius': [
+        'interpolate', ['linear'], ['get', 'caudal'],
+        0, 3, 5, 4, 20, 6, 100, 9
+      ],
+      'circle-color': [
+        'match', ['get', 'captacion'],
+        'pozo', '#3B82F6',
+        'río', '#06B6D4',
+        'estero', '#0EA5E9',
+        '#3B82F6'
+      ],
+      'circle-stroke-color': '#FFF',
+      'circle-stroke-width': 1.2,
+      'circle-opacity': 0.85
+    }
+  });
+  map.on('click', 'dga-points', (e) => {
+    if (!e.features.length) return;
+    showDga(e.features[0].properties);
+  });
+  map.on('mouseenter', 'dga-points', () => map.getCanvas().style.cursor = 'pointer');
+  map.on('mouseleave', 'dga-points', () => map.getCanvas().style.cursor = '');
 
   // Caminos secundarios
   map.addSource('caminos-sec', { type: 'geojson', data: caminosSec });
@@ -1714,6 +1790,7 @@ document.querySelectorAll('[data-layer]').forEach(cb => {
       ruta5: ['ruta5-line'],
       interchile: ['interchile-line'],
       seia: ['seia-points', 'seia-labels'],
+      agua: ['dga-points'],
       pueblos: ['pueblos-points'],
       areas: ['areas-protegidas-fill', 'areas-protegidas-line', 'areas-protegidas-label'],
       caminos: ['caminos-sec-line'],
@@ -1806,9 +1883,15 @@ function handleTabChange(tab) {
       break;
 
     case 'agua':
-      if (map.getLayer('seia-points')) map.setFilter('seia-points', ['in', ['get','tipo'], ['literal',['Infraestructura hídrica','Terminal GNL']]]);
-      if (map.getLayer('predios-fill')) map.setPaintProperty('predios-fill', 'fill-opacity', 0.15);
-      showPanelMsg('Agua', 'Derechos de aprovechamiento DGA, pozos, cauces y cuencas. 87 derechos catastrados.', '💧');
+      if (map.getLayer('dga-points')) map.setLayoutProperty('dga-points', 'visibility', 'visible');
+      if (map.getLayer('seia-points')) {
+        map.setFilter('seia-points', ['in', ['get','tipo'], ['literal',['Infraestructura hídrica','Terminal GNL']]]);
+        map.setFilter('seia-labels', ['in', ['get','tipo'], ['literal',['Infraestructura hídrica','Terminal GNL']]]);
+      }
+      if (map.getLayer('predios-fill')) map.setPaintProperty('predios-fill', 'fill-opacity', 0.10);
+      // Activar checkbox visual
+      const aguaCB = document.getElementById('l-agua'); if (aguaCB) aguaCB.checked = true;
+      showAguaPanel();
       break;
 
     case 'docs':
@@ -1832,6 +1915,79 @@ function handleTabChange(tab) {
         </div>`;
       break;
   }
+}
+
+function showDga(p) {
+  document.getElementById('selectionBar').classList.add('visible');
+  document.getElementById('selectionCount').textContent = `DGA · ${p.codigo} · ${p.caudal} l/s`;
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-header">
+      <div class="panel-type-row">
+        <span class="panel-type">Derecho de agua · DGA</span>
+        <span class="panel-flag info">${p.estado}</span>
+      </div>
+      <div class="panel-title">${p.codigo}</div>
+      <div class="panel-subtitle">${p.captacion} · ${p.naturaleza} · ${p.tipo}</div>
+    </div>
+    <div class="panel-body">
+      <div class="field-grid">
+        <div class="field"><div class="label">Caudal</div><div class="value mono">${p.caudal} l/s</div></div>
+        <div class="field"><div class="label">Ejercicio</div><div class="value">${p.ejercicio}</div></div>
+        <div class="field"><div class="label">Captación</div><div class="value">${p.captacion}</div></div>
+        <div class="field"><div class="label">Naturaleza</div><div class="value">${p.naturaleza}</div></div>
+        <div class="field full"><div class="label">Titular</div><div class="value">${p.titular}</div></div>
+        <div class="field full"><div class="label">Fecha constitución</div><div class="value mono">${p.fecha || 'N/D'}</div></div>
+      </div>
+      <div class="section">
+        <h4>Fuente</h4>
+        <a class="doc-item" href="https://dga.mop.gob.cl/derechos-de-agua/derechos-registrados/" target="_blank" style="text-decoration:none;color:inherit">
+          <div class="doc-icon">DGA</div>
+          <div class="doc-name">Catastro Público de Aguas<br><span class="doc-meta">dga.mop.gob.cl</span></div>
+        </a>
+        <div style="font-size:10.5px;color:var(--muted);margin-top:8px;padding:8px;background:rgba(245,158,11,0.08);border-radius:4px">
+          ⚠ Dataset en validación · geocodificación aproximada por sector. Última sync con DGA pendiente.
+        </div>
+      </div>
+    </div>`;
+}
+
+function showAguaPanel() {
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-header">
+      <div class="panel-type-row"><span class="panel-type">Vista: Recursos hídricos</span></div>
+      <div class="panel-title">Agua · Comuna La Higuera</div>
+      <div class="panel-subtitle">87 derechos DGA + infraestructura hídrica SEIA</div>
+    </div>
+    <div class="panel-body">
+      <div class="field-grid">
+        <div class="field"><div class="label">Derechos DGA</div><div class="value mono">87</div></div>
+        <div class="field"><div class="label">Caudal total</div><div class="value mono">2.085 l/s</div></div>
+        <div class="field"><div class="label">Pozos</div><div class="value mono">46</div></div>
+        <div class="field"><div class="label">Superficial</div><div class="value mono">41</div></div>
+      </div>
+      <div class="section">
+        <h4>Distribución por sector</h4>
+        <div class="alert-item info">
+          <div class="alert-title">Río Los Choros (bajo + medio)</div>
+          <div class="alert-meta">30 derechos · ~590 l/s · principal cauce de la comuna</div>
+        </div>
+        <div class="alert-item info">
+          <div class="alert-title">Punta Colorada (pozos costeros)</div>
+          <div class="alert-meta">10 derechos · subterráneo · uso minero/agrícola</div>
+        </div>
+        <div class="alert-item info">
+          <div class="alert-title">Quebrada Los Choros Altos</div>
+          <div class="alert-meta">11 derechos · zona crítica por escasez</div>
+        </div>
+      </div>
+      <div class="section">
+        <h4>Click sobre un punto azul en el mapa</h4>
+        <div style="font-size:11.5px;color:var(--text-dim);line-height:1.5">
+          Ver detalle de cada derecho: caudal, captación (pozo/río/estero), naturaleza,
+          titular, fecha de constitución y link al catastro DGA.
+        </div>
+      </div>
+    </div>`;
 }
 
 function showPanelMsg(title, msg, icon) {
@@ -2374,13 +2530,29 @@ map.on('moveend', () => {
 });
 document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => setTimeout(updateUrlHash, 50)));
 
-// Botón compartir → copia URL al clipboard + toast
+// Botón compartir → Web Share API en mobile, clipboard en desktop
 document.getElementById('btnShare')?.addEventListener('click', async () => {
   updateUrlHash();
   const url = location.href;
+  const shareData = {
+    title: 'Magnus Radar — La Higuera',
+    text: 'Inteligencia territorial pública de la comuna La Higuera, Coquimbo',
+    url: url
+  };
+  // Web Share API (iOS/Android nativo)
+  if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+    try {
+      await navigator.share(shareData);
+      return;
+    } catch (e) {
+      if (e.name !== 'AbortError') console.error(e);
+      return;
+    }
+  }
+  // Fallback: clipboard
   try {
     await navigator.clipboard.writeText(url);
-    showToast('✓ Link copiado · vista compartible');
+    showToast('✓ Link copiado · pégalo en WhatsApp/email');
   } catch (e) {
     prompt('Copia este link:', url);
   }

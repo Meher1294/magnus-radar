@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0A111F"/>
+      <stop offset="100%" stop-color="#131C2E"/>
+    </linearGradient>
+    <linearGradient id="logo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#C97B3A"/>
+      <stop offset="100%" stop-color="#8C5024"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid sutil -->
+  <g stroke="#243049" stroke-width="0.5" opacity="0.3">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Logo -->
+  <rect x="80" y="80" width="80" height="80" rx="14" fill="url(#logo)"/>
+  <text x="120" y="138" font-family="Inter, sans-serif" font-size="44" font-weight="700" fill="white" text-anchor="middle">M</text>
+
+  <!-- Brand -->
+  <text x="180" y="125" font-family="Inter, sans-serif" font-size="32" font-weight="700" fill="#E8EEF8">Magnus Radar</text>
+  <text x="180" y="158" font-family="Inter, sans-serif" font-size="18" font-weight="500" fill="#8A98B3">Inteligencia Territorial · Comuna La Higuera</text>
+
+  <!-- Título grande -->
+  <text x="80" y="320" font-family="Inter, sans-serif" font-size="72" font-weight="700" fill="#E8EEF8">La Higuera</text>
+  <text x="80" y="380" font-family="Inter, sans-serif" font-size="32" font-weight="500" fill="#C97B3A">visor público de inteligencia territorial</text>
+
+  <!-- Stats -->
+  <g font-family="JetBrains Mono, monospace">
+    <g transform="translate(80, 460)">
+      <text font-size="42" font-weight="700" fill="#E8EEF8">7.686</text>
+      <text y="32" font-size="14" font-weight="500" fill="#8A98B3">PREDIOS SII</text>
+    </g>
+    <g transform="translate(320, 460)">
+      <text font-size="42" font-weight="700" fill="#E8EEF8">17</text>
+      <text y="32" font-size="14" font-weight="500" fill="#8A98B3">PROYECTOS SEIA</text>
+    </g>
+    <g transform="translate(500, 460)">
+      <text font-size="42" font-weight="700" fill="#E8EEF8">87</text>
+      <text y="32" font-size="14" font-weight="500" fill="#8A98B3">DERECHOS DGA</text>
+    </g>
+    <g transform="translate(680, 460)">
+      <text font-size="42" font-weight="700" fill="#E8EEF8">3</text>
+      <text y="32" font-size="14" font-weight="500" fill="#8A98B3">ÁREAS PROTEGIDAS</text>
+    </g>
+    <g transform="translate(940, 460)">
+      <text font-size="42" font-weight="700" fill="#10B981">LIVE</text>
+      <text y="32" font-size="14" font-weight="500" fill="#8A98B3">SUPABASE + POSTGIS</text>
+    </g>
+  </g>
+
+  <!-- URL footer -->
+  <line x1="80" y1="560" x2="1120" y2="560" stroke="#243049" stroke-width="1"/>
+  <text x="80" y="595" font-family="Inter, sans-serif" font-size="16" fill="#8A98B3">meher1294.github.io/magnus-radar</text>
+  <text x="1120" y="595" font-family="Inter, sans-serif" font-size="14" fill="#7E8CA8" text-anchor="end">datos públicos · SII · SEIA · CONAF · DGA</text>
+</svg>
