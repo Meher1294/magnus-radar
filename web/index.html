@@ -671,6 +671,24 @@
           <label for="l-pueblos" class="layer-label">Localidades</label>
           <span class="layer-count">9</span>
         </div>
+        <div class="layer-item">
+          <input type="checkbox" checked id="l-areas" data-layer="areas"/>
+          <span class="layer-swatch" style="background:rgba(16,185,129,0.4);border-color:#10B981"></span>
+          <label for="l-areas" class="layer-label">Áreas protegidas</label>
+          <span class="layer-count">3</span>
+        </div>
+        <div class="layer-item">
+          <input type="checkbox" id="l-caminos" data-layer="caminos"/>
+          <span class="layer-swatch" style="background:#FCD34D"></span>
+          <label for="l-caminos" class="layer-label">Caminos secundarios</label>
+          <span class="layer-count">3</span>
+        </div>
+        <div class="layer-item">
+          <input type="checkbox" id="l-zona-dominga" data-layer="zona-dominga"/>
+          <span class="layer-swatch" style="background:rgba(239,68,68,0.3);border-color:#EF4444"></span>
+          <label for="l-zona-dominga" class="layer-label">Zona influencia Dominga</label>
+          <span class="layer-count">10km</span>
+        </div>
       </div>
 
       <div class="sidebar-section">
@@ -815,6 +833,89 @@ const ruta5 = {
 const interchile = {
   type: 'Feature',
   geometry: { type: 'LineString', coordinates: [[-71.35,-29.62],[-71.30,-29.45],[-71.25,-29.30],[-71.20,-29.18],[-71.15,-29.04]] }
+};
+
+// Caminos secundarios — Ruta E-410 (Trapiche-Chungungo), ruta a Punta de Choros, etc.
+const caminosSec = {
+  type: 'FeatureCollection',
+  features: [
+    // Ruta E-410: La Higuera → Chungungo
+    { type: 'Feature', properties: { nombre: 'Ruta E-410 (Chungungo)' },
+      geometry: { type: 'LineString', coordinates: [[-71.275,-29.495],[-71.30,-29.45],[-71.32,-29.42]] }},
+    // Camino a Punta de Choros
+    { type: 'Feature', properties: { nombre: 'Camino Los Choros - Punta de Choros' },
+      geometry: { type: 'LineString', coordinates: [[-71.10,-29.265],[-71.20,-29.27],[-71.30,-29.265],[-71.40,-29.26],[-71.443,-29.255]] }},
+    // Camino Cruz Grande
+    { type: 'Feature', properties: { nombre: 'Acceso Puerto Cruz Grande' },
+      geometry: { type: 'LineString', coordinates: [[-71.12,-29.435],[-71.20,-29.435],[-71.27,-29.434],[-71.315,-29.432]] }}
+  ]
+};
+
+// ============ ÁREAS PROTEGIDAS ============
+// Reserva Nacional Pingüino de Humboldt + Reserva Marina + Reserva Marina Isla Choros y Damas
+// Coordenadas aproximadas — el polígono oficial está en SNASPE/CONAF
+const areasProtegidas = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      properties: {
+        id: 'rn-pinguino',
+        nombre: 'Reserva Nacional Pingüino de Humboldt',
+        tipo: 'Reserva Nacional',
+        organismo: 'CONAF',
+        superficie_ha: 859,
+        critico_dominga: true
+      },
+      geometry: { type: 'Polygon', coordinates: [[
+        [-71.555,-29.265], [-71.555,-29.220], [-71.485,-29.220], [-71.485,-29.265], [-71.555,-29.265]
+      ]]}
+    },
+    {
+      type: 'Feature',
+      properties: {
+        id: 'rm-choros-damas',
+        nombre: 'Reserva Marina Isla Choros e Isla Damas',
+        tipo: 'Reserva Marina',
+        organismo: 'Subpesca',
+        superficie_ha: 7300,
+        critico_dominga: true
+      },
+      geometry: { type: 'Polygon', coordinates: [[
+        [-71.580,-29.290], [-71.580,-29.180], [-71.430,-29.180], [-71.430,-29.290], [-71.580,-29.290]
+      ]]}
+    },
+    {
+      type: 'Feature',
+      properties: {
+        id: 'amcp-chanaral',
+        nombre: 'AMCP-MU Isla Chañaral',
+        tipo: 'Área Marina Costera Protegida',
+        organismo: 'MMA',
+        superficie_ha: 2696,
+        critico_dominga: true
+      },
+      geometry: { type: 'Polygon', coordinates: [[
+        [-71.620,-29.090], [-71.620,-29.000], [-71.510,-29.000], [-71.510,-29.090], [-71.620,-29.090]
+      ]]}
+    }
+  ]
+};
+
+// Buffer 10 km aprox alrededor de Dominga (zona de influencia)
+const zonaInfluenciaDominga = {
+  type: 'Feature',
+  properties: { nombre: 'Zona de influencia Dominga (10 km)' },
+  geometry: {
+    type: 'Polygon',
+    coordinates: [[
+      // Círculo aproximado de 10km radio centrado en -71.295, -29.345
+      [-71.395,-29.345],[-71.380,-29.275],[-71.355,-29.230],[-71.295,-29.245],
+      [-71.235,-29.230],[-71.210,-29.275],[-71.195,-29.345],[-71.210,-29.415],
+      [-71.235,-29.460],[-71.295,-29.445],[-71.355,-29.460],[-71.380,-29.415],
+      [-71.395,-29.345]
+    ]]
+  }
 };
 
 // Colores por sector
@@ -1079,6 +1180,64 @@ function addPrediosLayer(data) {
     id: 'interchile-line', type: 'line', source: 'interchile',
     paint: { 'line-color': '#A855F7', 'line-width': 2, 'line-dasharray': [3, 2] }
   });
+
+  // Caminos secundarios
+  map.addSource('caminos-sec', { type: 'geojson', data: caminosSec });
+  map.addLayer({
+    id: 'caminos-sec-line', type: 'line', source: 'caminos-sec',
+    layout: { visibility: 'none' },
+    paint: { 'line-color': '#FCD34D', 'line-width': 1.5, 'line-opacity': 0.7 }
+  });
+
+  // Áreas Protegidas — Reserva Pingüino Humboldt y otras
+  map.addSource('areas-protegidas', { type: 'geojson', data: areasProtegidas, generateId: true });
+  map.addLayer({
+    id: 'areas-protegidas-fill', type: 'fill', source: 'areas-protegidas',
+    paint: {
+      'fill-color': '#10B981',
+      'fill-opacity': ['case', ['boolean', ['feature-state', 'highlight'], false], 0.45, 0.18]
+    }
+  });
+  map.addLayer({
+    id: 'areas-protegidas-line', type: 'line', source: 'areas-protegidas',
+    paint: { 'line-color': '#10B981', 'line-width': 2, 'line-dasharray': [4, 2] }
+  });
+  map.addLayer({
+    id: 'areas-protegidas-label', type: 'symbol', source: 'areas-protegidas',
+    minzoom: 9,
+    layout: {
+      'text-field': ['get', 'nombre'],
+      'text-size': 10,
+      'text-anchor': 'center',
+      'text-max-width': 8
+    },
+    paint: {
+      'text-color': '#10B981',
+      'text-halo-color': '#0A111F',
+      'text-halo-width': 1.5
+    }
+  });
+
+  // Zona de influencia Dominga
+  map.addSource('zona-dominga', { type: 'geojson', data: zonaInfluenciaDominga });
+  map.addLayer({
+    id: 'zona-dominga-fill', type: 'fill', source: 'zona-dominga',
+    layout: { visibility: 'none' },
+    paint: { 'fill-color': '#EF4444', 'fill-opacity': 0.10 }
+  });
+  map.addLayer({
+    id: 'zona-dominga-line', type: 'line', source: 'zona-dominga',
+    layout: { visibility: 'none' },
+    paint: { 'line-color': '#EF4444', 'line-width': 1.5, 'line-dasharray': [2, 2] }
+  });
+
+  // Click en áreas protegidas → ficha
+  map.on('click', 'areas-protegidas-fill', (e) => {
+    if (!e.features.length) return;
+    showAreaProtegida(e.features[0].properties);
+  });
+  map.on('mouseenter', 'areas-protegidas-fill', () => map.getCanvas().style.cursor = 'pointer');
+  map.on('mouseleave', 'areas-protegidas-fill', () => map.getCanvas().style.cursor = '');
 
   // SEIA points — coloreados por tipo de proyecto
   map.addLayer({
@@ -1482,8 +1641,11 @@ document.querySelectorAll('[data-layer]').forEach(cb => {
       predios: ['predios-fill', 'predios-line'],
       ruta5: ['ruta5-line'],
       interchile: ['interchile-line'],
-      seia: ['seia-points'],
-      pueblos: ['pueblos-points']
+      seia: ['seia-points', 'seia-labels'],
+      pueblos: ['pueblos-points'],
+      areas: ['areas-protegidas-fill', 'areas-protegidas-line', 'areas-protegidas-label'],
+      caminos: ['caminos-sec-line'],
+      'zona-dominga': ['zona-dominga-fill', 'zona-dominga-line']
     };
     const ids = layerMap[cb.dataset.layer] || [];
     ids.forEach(id => {
@@ -1532,16 +1694,26 @@ function handleTabChange(tab) {
 
   switch(tab) {
     case 'dominga':
-      // Filtrar mapa: solo proyectos Dominga + servidumbres + zona de influencia
-      map.flyTo({ center: [-71.30, -29.30], zoom: 11.5 });
-      // Resaltar solo Dominga, Recurso Reclamación y Desaladora
+      // Vista contextual Dominga: solo Andes Iron + áreas protegidas + zona influencia
+      map.flyTo({ center: [-71.40, -29.27], zoom: 10.5 });
       if (map.getLayer('seia-points')) {
         map.setFilter('seia-points', ['in', ['get', 'id'], ['literal', ['dominga','dominga-recurso','desala-dominga']]]);
         map.setFilter('seia-labels', ['in', ['get', 'id'], ['literal', ['dominga','dominga-recurso','desala-dominga']]]);
       }
-      // Difuminar predios
       if (map.getLayer('predios-fill')) {
-        map.setPaintProperty('predios-fill', 'fill-opacity', 0.15);
+        map.setPaintProperty('predios-fill', 'fill-opacity', 0.12);
+      }
+      // Activar zona influencia + áreas protegidas
+      ['zona-dominga-fill','zona-dominga-line','areas-protegidas-fill','areas-protegidas-line','areas-protegidas-label'].forEach(id => {
+        if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', 'visible');
+      });
+      // Resaltar áreas protegidas críticas
+      if (map.isStyleLoaded()) {
+        areasProtegidas.features.forEach((f, i) => {
+          if (f.properties.critico_dominga) {
+            map.setFeatureState({ source: 'areas-protegidas', id: i }, { highlight: true });
+          }
+        });
       }
       showDomingaPanel();
       break;
@@ -1596,6 +1768,48 @@ function showPanelMsg(title, msg, icon) {
       <div style="font-size:32px;margin-bottom:12px">${icon}</div>
       <div class="e-title" style="font-size:15px;margin-bottom:8px">${title}</div>
       <div style="color:var(--muted);font-size:12.5px;line-height:1.6">${msg}</div>
+    </div>`;
+}
+
+function showAreaProtegida(p) {
+  document.getElementById('selectionBar').classList.add('visible');
+  document.getElementById('selectionCount').textContent = `${p.tipo} · ${p.nombre}`;
+  const flagBadge = p.critico_dominga
+    ? '<span class="panel-flag danger">EN CONFLICTO CON DOMINGA</span>'
+    : '';
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-header">
+      <div class="panel-type-row">
+        <span class="panel-type">Área protegida · ${p.tipo}</span>
+        ${flagBadge}
+      </div>
+      <div class="panel-title">${p.nombre}</div>
+      <div class="panel-subtitle">Organismo: ${p.organismo} · Superficie: ${p.superficie_ha.toLocaleString('es-CL')} ha</div>
+    </div>
+    <div class="panel-body">
+      <div class="field-grid">
+        <div class="field"><div class="label">Tipo</div><div class="value">${p.tipo}</div></div>
+        <div class="field"><div class="label">Organismo</div><div class="value">${p.organismo}</div></div>
+        <div class="field"><div class="label">Superficie</div><div class="value mono">${p.superficie_ha.toLocaleString('es-CL')} ha</div></div>
+        <div class="field"><div class="label">Comuna</div><div class="value">La Higuera</div></div>
+      </div>
+      ${p.critico_dominga ? `
+      <div class="section">
+        <h4>Conflicto con proyecto Dominga</h4>
+        <div class="alert-item critical">
+          <div class="alert-title">Cruce con zona de influencia de Andes Iron</div>
+          <div class="alert-meta"><span>El proyecto pasa por esta área protegida</span><span>·</span><span>Razón principal de litigación 2013–2025</span></div>
+        </div>
+      </div>` : ''}
+      <div class="section">
+        <h4>Contexto</h4>
+        <div style="font-size:11.5px;color:var(--text-dim);line-height:1.6">
+          Esta zona forma parte del archipiélago de Humboldt, ecosistema único reconocido internacionalmente
+          por su biodiversidad: pingüino de Humboldt, delfín nariz de botella, chungungo, lobo marino y avifauna costera.
+          Es el motivo principal por el cual diversos proyectos mineros y energéticos en la comuna La Higuera
+          han enfrentado oposición ambiental.
+        </div>
+      </div>
     </div>`;
 }
 
