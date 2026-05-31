@@ -7,6 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script type="importmap">
+{ "imports": { "@supabase/supabase-js": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/+esm" } }
+</script>
 <style>
   :root {
     --bg: #0A111F;
@@ -423,6 +426,62 @@
   @keyframes spin { to { transform: rotate(360deg); } }
   .loader.hidden { opacity: 0; pointer-events: none; }
 
+  /* ============ AUTH MODAL ============ */
+  .modal-backdrop {
+    display: none; position: fixed; inset: 0;
+    background: rgba(5,8,15,0.7);
+    z-index: 50; align-items: center; justify-content: center;
+    backdrop-filter: blur(4px);
+  }
+  .modal-backdrop.visible { display: flex; }
+  .modal {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 24px;
+    width: 90%; max-width: 380px;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.5);
+  }
+  .modal h3 { font-size: 16px; margin-bottom: 4px; }
+  .modal .sub { font-size: 12px; color: var(--muted); margin-bottom: 18px; line-height: 1.5; }
+  .modal-input {
+    width: 100%; background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text); padding: 10px 12px;
+    border-radius: 6px; font-size: 13px;
+    outline: none; transition: border 0.15s;
+  }
+  .modal-input:focus { border-color: var(--accent); }
+  .modal-actions { display: flex; gap: 8px; margin-top: 16px; }
+  .modal-actions .btn { flex: 1; padding: 10px; justify-content: center; font-size: 12.5px; }
+  .modal-msg { font-size: 11.5px; margin-top: 10px; padding: 8px 10px; border-radius: 4px; }
+  .modal-msg.ok { background: rgba(16,185,129,0.1); color: var(--success); border: 1px solid rgba(16,185,129,0.3); }
+  .modal-msg.err { background: rgba(239,68,68,0.1); color: var(--danger); border: 1px solid rgba(239,68,68,0.3); }
+
+  /* User chip cuando logueado */
+  .user-chip {
+    display: flex; align-items: center; gap: 8px;
+    padding: 4px 12px 4px 4px;
+    background: var(--surface-2); border-radius: 16px;
+    font-size: 11.5px; cursor: pointer;
+    border: 1px solid var(--border);
+    transition: all 0.15s;
+  }
+  .user-chip:hover { border-color: var(--accent); }
+  .user-menu {
+    display: none; position: absolute; top: 44px; right: 16px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 6px; padding: 4px; z-index: 30;
+    min-width: 180px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .user-menu.visible { display: block; }
+  .user-menu-item {
+    padding: 8px 10px; font-size: 12px;
+    border-radius: 4px; cursor: pointer;
+    color: var(--text-dim);
+  }
+  .user-menu-item:hover { background: var(--surface-2); color: var(--text); }
+  .user-menu-divider { height: 1px; background: var(--border); margin: 4px 0; }
+
   /* scrollbar */
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -539,6 +598,20 @@
   </div>
 </div>
 
+<!-- Auth Modal -->
+<div class="modal-backdrop" id="authModal">
+  <div class="modal">
+    <h3>Iniciar sesión</h3>
+    <div class="sub">Te enviaremos un magic link a tu correo. Sin contraseña.</div>
+    <input type="email" id="authEmail" class="modal-input" placeholder="tu@email.cl" autocomplete="email" />
+    <div id="authMsg"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" id="authCancel">Cancelar</button>
+      <button class="btn btn-primary" id="authSubmit">Enviar magic link</button>
+    </div>
+  </div>
+</div>
+
 <!-- Mobile: hamburguesa + sheet + backdrop -->
 <button class="fab-menu" id="fabMenu" title="Capas y filtros">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -571,9 +644,8 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
       </button>
       <button class="btn btn-ghost">Exportar</button>
-      <div class="user-chip">
-        <div class="user-avatar">MM</div>
-        Max
+      <div id="authSlot">
+        <button class="btn btn-ghost" id="btnLogin">Iniciar sesión</button>
       </div>
     </div>
   </div>
@@ -1966,59 +2038,152 @@ function showTimelinePanel() {
     </div>`;
 }
 
-function showAlertasPanel() {
+async function showAlertasPanel() {
+  const user = window.__sbUser;
+
+  // Si NO logueado: mostrar pitch + CTA login
+  if (!user) {
+    document.getElementById('panel').innerHTML = `
+      <div class="panel-header">
+        <div class="panel-type-row"><span class="panel-type">Alertas territoriales</span></div>
+        <div class="panel-title">Monitoreo automático</div>
+        <div class="panel-subtitle">Recibe notificaciones cuando algo ocurre en una zona de tu interés</div>
+      </div>
+      <div class="panel-body">
+        <div class="section">
+          <h4>Cómo funciona</h4>
+          <div class="alert-item info"><div class="alert-title">1 · Defines un área de vigilancia</div><div class="alert-meta">Polígono o radio en km</div></div>
+          <div class="alert-item info"><div class="alert-title">2 · Eliges qué eventos te interesan</div><div class="alert-meta">SEIA · DGA · SMA · CBR · prensa</div></div>
+          <div class="alert-item info"><div class="alert-title">3 · Recibes email cuando algo ocurre</div><div class="alert-meta">Tiempo real vía Supabase + email</div></div>
+        </div>
+        <div class="section">
+          <h4>Acceder</h4>
+          <button class="btn btn-primary" id="alertasLoginBtn" style="width:100%;padding:10px 14px">
+            Iniciar sesión para crear alertas
+          </button>
+        </div>
+      </div>`;
+    document.getElementById('alertasLoginBtn')?.addEventListener('click', () => {
+      document.getElementById('btnLogin')?.click();
+    });
+    return;
+  }
+
+  // Logueado: cargar alertas existentes y permitir crear
   document.getElementById('panel').innerHTML = `
     <div class="panel-header">
       <div class="panel-type-row">
         <span class="panel-type">Alertas territoriales</span>
-        <span class="panel-flag info">PRO</span>
+        <span class="panel-flag info">Logueado</span>
       </div>
-      <div class="panel-title">Monitoreo automático</div>
-      <div class="panel-subtitle">Recibe notificaciones cuando algo ocurre en una zona de tu interés</div>
+      <div class="panel-title">Tus alertas</div>
+      <div class="panel-subtitle">${user.email}</div>
     </div>
     <div class="panel-body">
       <div class="section">
-        <h4>Cómo funciona</h4>
-        <div class="alert-item info">
-          <div class="alert-title">1 · Dibujas un polígono sobre el mapa</div>
-          <div class="alert-meta">O defines un radio de N km alrededor de un punto</div>
+        <h4>Crear nueva alerta</h4>
+        <input type="text" id="newAlertName" class="modal-input" placeholder="Nombre de la alerta (ej: Hijuela 2 Cominetti)" />
+        <div style="display:flex;gap:6px;margin-top:8px">
+          <input type="number" id="newAlertLat" class="modal-input" placeholder="lat" step="0.0001" />
+          <input type="number" id="newAlertLon" class="modal-input" placeholder="lon" step="0.0001" />
+          <input type="number" id="newAlertRadius" class="modal-input" placeholder="radio km" value="5" min="1" max="50" />
         </div>
-        <div class="alert-item info">
-          <div class="alert-title">2 · Eliges qué eventos te interesan</div>
-          <div class="alert-meta">SEIA · DGA · SMA · CBR · prensa · lobby</div>
-        </div>
-        <div class="alert-item info">
-          <div class="alert-title">3 · Te llega un correo cuando algo ocurre</div>
-          <div class="alert-meta">Tiempo real vía Supabase Realtime + email</div>
-        </div>
-      </div>
-
-      <div class="section">
-        <h4>Ejemplos de uso</h4>
-        <div class="alert-item">
-          <div class="alert-title">Inmobiliaria</div>
-          <div class="alert-meta">Monitorea predios objetivo · detecta servidumbres nuevas</div>
-        </div>
-        <div class="alert-item critical">
-          <div class="alert-title">Energético / minero</div>
-          <div class="alert-meta">Trackea expedientes SEIA cerca de tus operaciones</div>
-        </div>
-        <div class="alert-item success">
-          <div class="alert-title">Abogado ambiental</div>
-          <div class="alert-meta">Sigue procedimientos SMA y fallos CS por comuna</div>
-        </div>
-      </div>
-
-      <div class="section">
-        <h4>Activar alerta</h4>
-        <button class="btn btn-primary" style="width:100%;padding:10px 14px" disabled>
-          Dibujar polígono de vigilancia
+        <button class="btn btn-primary" id="createAlertBtn" style="width:100%;padding:10px 14px;margin-top:8px">
+          Crear alerta
         </button>
-        <div style="font-size:11px;color:var(--muted);margin-top:8px;text-align:center">
-          Disponible en plan Pro · v0.2
+        <div style="font-size:10.5px;color:var(--muted);margin-top:6px">
+          Tip: click sobre el mapa para autorrellenar lat/lon.
         </div>
+      </div>
+      <div class="section">
+        <h4>Tus alertas activas</h4>
+        <div id="alertList"><div style="color:var(--muted);font-size:11.5px;padding:8px">Cargando…</div></div>
       </div>
     </div>`;
+
+  // Cargar alertas existentes
+  const { data: alerts, error } = await window.__sb
+    .from('alertas_poligonos')
+    .select('*')
+    .order('created_at', { ascending: false });
+
+  const listEl = document.getElementById('alertList');
+  if (error) {
+    listEl.innerHTML = `<div class="alert-item critical"><div class="alert-title">Error: ${error.message}</div></div>`;
+  } else if (!alerts || alerts.length === 0) {
+    listEl.innerHTML = `<div style="color:var(--muted);font-size:11.5px;padding:8px">No tienes alertas. Crea la primera arriba.</div>`;
+  } else {
+    listEl.innerHTML = alerts.map(a => `
+      <div class="alert-item">
+        <div class="alert-title">${a.nombre}</div>
+        <div class="alert-meta">
+          <span>radio ${a.radio_km || '—'} km</span>
+          <span>·</span>
+          <span>${a.activa ? 'activa' : 'pausada'}</span>
+          <span>·</span>
+          <span class="action" data-delete="${a.id}" style="color:var(--danger);cursor:pointer">eliminar</span>
+        </div>
+      </div>`).join('');
+    listEl.querySelectorAll('[data-delete]').forEach(el => {
+      el.addEventListener('click', async () => {
+        const id = parseInt(el.dataset.delete);
+        if (!confirm('¿Eliminar esta alerta?')) return;
+        await window.__sb.from('alertas_poligonos').delete().eq('id', id);
+        showAlertasPanel();
+      });
+    });
+  }
+
+  // Click en mapa autorrellena lat/lon mientras tab Alertas activa
+  const mapClickHandler = (e) => {
+    const latEl = document.getElementById('newAlertLat');
+    const lonEl = document.getElementById('newAlertLon');
+    if (latEl && lonEl) {
+      latEl.value = e.lngLat.lat.toFixed(5);
+      lonEl.value = e.lngLat.lng.toFixed(5);
+    }
+  };
+  map.once('click', mapClickHandler);
+
+  // Crear alerta
+  document.getElementById('createAlertBtn')?.addEventListener('click', async () => {
+    const nombre = document.getElementById('newAlertName').value.trim();
+    const lat = parseFloat(document.getElementById('newAlertLat').value);
+    const lon = parseFloat(document.getElementById('newAlertLon').value);
+    const radio = parseFloat(document.getElementById('newAlertRadius').value) || 5;
+    if (!nombre || isNaN(lat) || isNaN(lon)) {
+      window.__showToast?.('Faltan datos: nombre + lat + lon');
+      return;
+    }
+    // Polígono cuadrado simple alrededor del punto (placeholder hasta drawing real)
+    const d = radio / 111; // grados aprox por km
+    const poly = {
+      type: 'Polygon',
+      coordinates: [[
+        [lon-d, lat-d], [lon+d, lat-d], [lon+d, lat+d], [lon-d, lat+d], [lon-d, lat-d]
+      ]]
+    };
+    const { error } = await window.__sb.from('alertas_poligonos').insert({
+      usuario_id: window.__sbUser.id,
+      nombre,
+      geom: `SRID=4326;${polygonToWkt(poly)}`,
+      radio_km: radio,
+      centro: `POINT(${lon} ${lat})`,
+      activa: true,
+      notif_email: true
+    });
+    if (error) {
+      window.__showToast?.(`Error: ${error.message}`);
+    } else {
+      window.__showToast?.('✓ Alerta creada');
+      showAlertasPanel();
+    }
+  });
+}
+
+function polygonToWkt(geom) {
+  const ring = geom.coordinates[0].map(c => `${c[0]} ${c[1]}`).join(',');
+  return `POLYGON((${ring}))`;
 }
 
 function showDocsPanel() {
@@ -2242,6 +2407,127 @@ function showToast(msg) {
   el.style.opacity = '1';
   setTimeout(() => { el.style.opacity = '0'; }, 2500);
 }
+window.__showToast = showToast;
+</script>
+
+<!-- ============ AUTH SUPABASE (ES module) ============ -->
+<script type="module">
+import { createClient } from '@supabase/supabase-js';
+
+const SUPABASE_URL = "https://curqkgujgtimlutinhgu.supabase.co";
+const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN1cnFrZ3VqZ3RpbWx1dGluaGd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxODE3NTYsImV4cCI6MjA5NTc1Nzc1Nn0.ALTsEQAMsFNjibIgNRsDxgq9j5S4RGuexV0vbTCx0QU";
+
+const sb = createClient(SUPABASE_URL, SUPABASE_ANON, {
+  auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+});
+
+const $ = (s) => document.querySelector(s);
+const authSlot = $('#authSlot');
+const authModal = $('#authModal');
+const authEmail = $('#authEmail');
+const authMsg = $('#authMsg');
+const authSubmit = $('#authSubmit');
+const authCancel = $('#authCancel');
+
+function setAuthMsg(text, type) {
+  if (!text) { authMsg.innerHTML = ''; return; }
+  authMsg.innerHTML = `<div class="modal-msg ${type}">${text}</div>`;
+}
+
+function openAuthModal() {
+  authModal.classList.add('visible');
+  setTimeout(() => authEmail.focus(), 50);
+  setAuthMsg('');
+}
+function closeAuthModal() {
+  authModal.classList.remove('visible');
+  authEmail.value = '';
+}
+
+function renderAuthSlot(session) {
+  if (!session) {
+    authSlot.innerHTML = `<button class="btn btn-ghost" id="btnLogin">Iniciar sesión</button>`;
+    $('#btnLogin').addEventListener('click', openAuthModal);
+    return;
+  }
+  const email = session.user.email;
+  const initial = email.slice(0,2).toUpperCase();
+  authSlot.innerHTML = `
+    <div class="user-chip" id="userChip">
+      <div class="user-avatar">${initial}</div>
+      <span style="max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${email}</span>
+    </div>
+    <div class="user-menu" id="userMenu">
+      <div class="user-menu-item" style="color:var(--muted);cursor:default">${email}</div>
+      <div class="user-menu-divider"></div>
+      <div class="user-menu-item" data-action="alerts">Mis alertas</div>
+      <div class="user-menu-item" data-action="plan">Plan: Free</div>
+      <div class="user-menu-divider"></div>
+      <div class="user-menu-item" data-action="logout" style="color:var(--danger)">Cerrar sesión</div>
+    </div>`;
+  $('#userChip').addEventListener('click', (e) => {
+    e.stopPropagation();
+    $('#userMenu').classList.toggle('visible');
+  });
+  document.addEventListener('click', () => {
+    $('#userMenu')?.classList.remove('visible');
+  });
+  $('#userMenu').addEventListener('click', async (e) => {
+    const action = e.target.dataset.action;
+    if (action === 'logout') {
+      await sb.auth.signOut();
+      window.__showToast('Sesión cerrada');
+    } else if (action === 'alerts') {
+      const tab = document.querySelector('[data-tab="alertas"]');
+      if (tab) tab.click();
+    }
+  });
+}
+
+authCancel.addEventListener('click', closeAuthModal);
+authModal.addEventListener('click', (e) => { if (e.target === authModal) closeAuthModal(); });
+
+authSubmit.addEventListener('click', async () => {
+  const email = authEmail.value.trim();
+  if (!email || !email.includes('@')) {
+    setAuthMsg('Ingresa un email válido', 'err');
+    return;
+  }
+  authSubmit.disabled = true;
+  authSubmit.textContent = 'Enviando…';
+  const { error } = await sb.auth.signInWithOtp({
+    email,
+    options: { emailRedirectTo: window.location.href.split('#')[0] }
+  });
+  authSubmit.disabled = false;
+  authSubmit.textContent = 'Enviar magic link';
+  if (error) {
+    setAuthMsg(`Error: ${error.message}`, 'err');
+  } else {
+    setAuthMsg(`✓ Revisa <b>${email}</b>. El link expira en 60 min.`, 'ok');
+  }
+});
+
+authEmail.addEventListener('keydown', (e) => { if (e.key === 'Enter') authSubmit.click(); });
+
+// Inicializar
+const { data: { session } } = await sb.auth.getSession();
+renderAuthSlot(session);
+
+sb.auth.onAuthStateChange((event, session) => {
+  renderAuthSlot(session);
+  if (event === 'SIGNED_IN') {
+    closeAuthModal();
+    window.__showToast?.(`✓ Bienvenido ${session.user.email}`);
+    // Si estamos en la tab Alertas, recargar
+    const alertasTab = document.querySelector('.tab[data-tab="alertas"].active');
+    if (alertasTab) alertasTab.click();
+  }
+  window.__sbUser = session?.user || null;
+});
+
+// Exponer cliente para otras partes del código
+window.__sb = sb;
 </script>
 </body>
 </html>
