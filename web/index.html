@@ -450,6 +450,30 @@
   @keyframes spin { to { transform: rotate(360deg); } }
   .loader.hidden { opacity: 0; pointer-events: none; }
 
+  /* ============ ONBOARDING TOUR ============ */
+  .tour-backdrop {
+    display: none; position: fixed; inset: 0;
+    background: rgba(5,8,15,0.6);
+    z-index: 60; backdrop-filter: blur(2px);
+  }
+  .tour-backdrop.visible { display: block; }
+  .tour-tooltip {
+    position: fixed; z-index: 61;
+    background: var(--surface); border: 1px solid var(--accent);
+    border-radius: 8px; padding: 14px 16px;
+    max-width: 280px; width: 90vw;
+    box-shadow: 0 12px 32px rgba(201,123,58,0.3);
+    color: var(--text);
+  }
+  .tour-tooltip h4 {
+    font-size: 13px; font-weight: 600; margin-bottom: 6px;
+    color: var(--accent);
+  }
+  .tour-tooltip p { font-size: 12px; line-height: 1.5; color: var(--text-dim); margin-bottom: 12px; }
+  .tour-nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .tour-nav .step { font-size: 11px; color: var(--muted); font-family: 'JetBrains Mono', monospace; }
+  .tour-nav .btn { padding: 5px 10px; font-size: 11px; }
+
   /* ============ AUTH MODAL ============ */
   .modal-backdrop {
     display: none; position: fixed; inset: 0;
@@ -686,7 +710,7 @@
     </button>
     <button class="tab" data-tab="agua">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
-      Agua <span class="badge">87</span>
+      Agua <span class="badge">270</span>
     </button>
     <button class="tab" data-tab="dominga">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 19 21 12 17 5 21 12 2"/></svg>
@@ -763,7 +787,7 @@
           <input type="checkbox" id="l-agua" data-layer="agua"/>
           <span class="layer-swatch" style="background:#3B82F6"></span>
           <label for="l-agua" class="layer-label">Derechos agua DGA</label>
-          <span class="layer-count">87</span>
+          <span class="layer-count">270</span>
         </div>
         <div class="layer-item">
           <input type="checkbox" checked id="l-seia" data-layer="seia"/>
@@ -799,7 +823,7 @@
           <input type="checkbox" id="l-heatmap" data-layer="heatmap"/>
           <span class="layer-swatch" style="background:linear-gradient(90deg,#3B82F6,#EF4444)"></span>
           <label for="l-heatmap" class="layer-label">Heatmap caudal DGA</label>
-          <span class="layer-count">87 pts</span>
+          <span class="layer-count">270 pts</span>
         </div>
       </div>
 
@@ -2293,8 +2317,8 @@ function showDga(p) {
           <div class="doc-icon">DGA</div>
           <div class="doc-name">Catastro Público de Aguas<br><span class="doc-meta">dga.mop.gob.cl</span></div>
         </a>
-        <div style="font-size:10.5px;color:var(--muted);margin-top:8px;padding:8px;background:rgba(245,158,11,0.08);border-radius:4px">
-          ⚠ Dataset en validación · geocodificación aproximada por sector. Última sync con DGA pendiente.
+        <div style="font-size:10.5px;color:var(--success);margin-top:8px;padding:8px;background:rgba(16,185,129,0.08);border-radius:4px">
+          ✓ Dato oficial DGA · dataset 2025 · datos.gob.cl
         </div>
       </div>
     </div>`;
@@ -2305,28 +2329,28 @@ function showAguaPanel() {
     <div class="panel-header">
       <div class="panel-type-row"><span class="panel-type">Vista: Recursos hídricos</span></div>
       <div class="panel-title">Agua · Comuna La Higuera</div>
-      <div class="panel-subtitle">87 derechos DGA + infraestructura hídrica SEIA</div>
+      <div class="panel-subtitle">270 derechos DGA oficiales · fuente datos.gob.cl</div>
     </div>
     <div class="panel-body">
       <div class="field-grid">
-        <div class="field"><div class="label">Derechos DGA</div><div class="value mono">87</div></div>
-        <div class="field"><div class="label">Caudal total</div><div class="value mono">2.085 l/s</div></div>
-        <div class="field"><div class="label">Pozos</div><div class="value mono">46</div></div>
-        <div class="field"><div class="label">Superficial</div><div class="value mono">41</div></div>
+        <div class="field"><div class="label">Derechos DGA</div><div class="value mono">270</div></div>
+        <div class="field"><div class="label">Caudal total</div><div class="value mono">3.733 l/s</div></div>
+        <div class="field"><div class="label">Pozos (subterráneo)</div><div class="value mono">269</div></div>
+        <div class="field"><div class="label">Superficial</div><div class="value mono">1</div></div>
       </div>
       <div class="section">
-        <h4>Distribución por sector</h4>
-        <div class="alert-item info">
-          <div class="alert-title">Río Los Choros (bajo + medio)</div>
-          <div class="alert-meta">30 derechos · ~590 l/s · principal cauce de la comuna</div>
+        <h4>Insight crítico</h4>
+        <div class="alert-item critical">
+          <div class="alert-title">98.5% de los derechos son subterráneos</div>
+          <div class="alert-meta">La Higuera depende casi totalmente de acuíferos · alta vulnerabilidad a sobreexplotación</div>
         </div>
         <div class="alert-item info">
-          <div class="alert-title">Punta Colorada (pozos costeros)</div>
-          <div class="alert-meta">10 derechos · subterráneo · uso minero/agrícola</div>
+          <div class="alert-title">Casi sin agua superficial</div>
+          <div class="alert-meta">Solo 4 derechos en Río/Estero/Quebrada · clima árido sin cauces permanentes</div>
         </div>
-        <div class="alert-item info">
-          <div class="alert-title">Quebrada Los Choros Altos</div>
-          <div class="alert-meta">11 derechos · zona crítica por escasez</div>
+        <div class="alert-item">
+          <div class="alert-title">Dataset oficial cargado</div>
+          <div class="alert-meta">DGA 2025 · datos.gob.cl · 270 de 278 derechos geocodificados</div>
         </div>
       </div>
       <div class="section">
@@ -2812,9 +2836,9 @@ function showDocsPanel() {
           <div class="doc-icon">SEA</div>
           <div class="doc-name">Servicio Evaluación Ambiental<br><span class="doc-meta">17 expedientes · scraper diario 11 UTC</span></div>
         </a>
-        <a class="doc-item" href="https://dga.mop.gob.cl/" target="_blank" style="text-decoration:none;color:inherit">
+        <a class="doc-item" href="https://datos.gob.cl/dataset/derechos-de-aprovechamiento-de-aguas-registrados-en-dga" target="_blank" style="text-decoration:none;color:inherit">
           <div class="doc-icon">DGA</div>
-          <div class="doc-name">Dirección General de Aguas<br><span class="doc-meta">87 derechos · dataset en validación</span></div>
+          <div class="doc-name">Dirección General de Aguas (oficial 2025)<br><span class="doc-meta">270 derechos · datos.gob.cl · 98% subterráneo</span></div>
         </a>
         <a class="doc-item" href="https://www.coordinador.cl/" target="_blank" style="text-decoration:none;color:inherit">
           <div class="doc-icon">CEN</div>
@@ -3045,6 +3069,87 @@ function showToast(msg) {
   setTimeout(() => { el.style.opacity = '0'; }, 2500);
 }
 window.__showToast = showToast;
+
+// ============ ONBOARDING TOUR (primera visita) ============
+const TOUR_KEY = 'magnus_tour_v1';
+const TOUR_STEPS = [
+  {
+    target: '.brand',
+    title: 'Bienvenido a Magnus Radar',
+    body: 'Inteligencia territorial pública de la comuna La Higuera. 7.686 predios SII, 17 proyectos SEIA, 270 derechos DGA, áreas protegidas y líneas de transmisión — todo en vivo desde Supabase.'
+  },
+  {
+    target: '.tabs',
+    title: 'Tabs temáticas',
+    body: 'Catastro, Infraestructura, Agua, Dominga, Alertas, Timeline, Análisis, Documentación. Cada tab cambia la vista del mapa + el panel derecho.'
+  },
+  {
+    target: '.sidebar',
+    title: 'Capas y filtros',
+    body: 'Activa/desactiva capas (predios, transmisión, áreas protegidas, heatmap DGA). Filtra predios por sector. Cambia coloración por superficie/sector/estado.'
+  },
+  {
+    target: '#btn3D',
+    title: 'Vista 3D',
+    body: 'Click "3D" para activar el relieve real de la cordillera. Combina con tab Dominga para ver el contexto geográfico del proyecto.'
+  },
+  {
+    target: '#btnShare',
+    title: 'Compartir vista',
+    body: 'La URL se actualiza con tu zoom + tab. Click compartir para enviar el link por WhatsApp/email. El destinatario abre el visor en la MISMA vista que tú.'
+  }
+];
+let _tourStep = 0;
+function startTour() {
+  if (localStorage.getItem(TOUR_KEY)) return;
+  const backdrop = document.createElement('div');
+  backdrop.className = 'tour-backdrop visible';
+  backdrop.id = 'tourBackdrop';
+  document.body.appendChild(backdrop);
+  _tourStep = 0;
+  showTourStep();
+}
+function showTourStep() {
+  document.querySelectorAll('.tour-tooltip').forEach(el => el.remove());
+  if (_tourStep >= TOUR_STEPS.length) return endTour();
+  const step = TOUR_STEPS[_tourStep];
+  const target = document.querySelector(step.target);
+  const rect = target ? target.getBoundingClientRect() : { top: 100, left: 100, width: 0, height: 0 };
+  const tt = document.createElement('div');
+  tt.className = 'tour-tooltip';
+  tt.innerHTML = `
+    <h4>${step.title}</h4>
+    <p>${step.body}</p>
+    <div class="tour-nav">
+      <span class="step">${_tourStep + 1} / ${TOUR_STEPS.length}</span>
+      <div style="display:flex;gap:6px">
+        <button class="btn btn-ghost" id="tourSkip">Cerrar</button>
+        <button class="btn btn-primary" id="tourNext">${_tourStep === TOUR_STEPS.length - 1 ? 'Listo' : 'Siguiente'}</button>
+      </div>
+    </div>`;
+  document.body.appendChild(tt);
+  // Posicionamiento
+  const ttRect = tt.getBoundingClientRect();
+  let top = rect.bottom + 12;
+  let left = rect.left;
+  if (top + ttRect.height > window.innerHeight - 20) top = rect.top - ttRect.height - 12;
+  if (top < 20) top = 20;
+  if (left + ttRect.width > window.innerWidth - 20) left = window.innerWidth - ttRect.width - 20;
+  if (left < 12) left = 12;
+  tt.style.top = top + 'px';
+  tt.style.left = left + 'px';
+
+  document.getElementById('tourSkip').onclick = endTour;
+  document.getElementById('tourNext').onclick = () => { _tourStep++; showTourStep(); };
+}
+function endTour() {
+  document.querySelectorAll('.tour-tooltip').forEach(el => el.remove());
+  document.getElementById('tourBackdrop')?.remove();
+  localStorage.setItem(TOUR_KEY, '1');
+}
+// Lanzar tour cuando el mapa termina de cargar (1 vez por navegador)
+setTimeout(() => { if (!localStorage.getItem(TOUR_KEY)) startTour(); }, 2500);
+window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
 </script>
 
 <!-- ============ AUTH SUPABASE (ES module) ============ -->
