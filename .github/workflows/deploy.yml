@@ -1,8 +1,7 @@
 name: Deploy a VPS Hostinger
 
+# Solo manual hasta que el VPS tenga SSH keys configuradas
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 jobs:
