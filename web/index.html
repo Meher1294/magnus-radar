@@ -428,6 +428,106 @@
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+  /* ============ FAB hamburguesa (mobile) ============ */
+  .fab-menu, .fab-panel {
+    display: none;
+    position: fixed; z-index: 30;
+    width: 44px; height: 44px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    align-items: center; justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  }
+  .fab-menu { top: 62px; left: 12px; }
+  .fab-panel { bottom: 70px; right: 12px; background: var(--accent); color: white; border: none; }
+  .fab-menu svg, .fab-panel svg { width: 18px; height: 18px; }
+
+  /* Backdrop para drawer/sheet */
+  .backdrop {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 25;
+  }
+  .backdrop.visible { display: block; }
+
+  /* ============ MOBILE (<= 900px) ============ */
+  @media (max-width: 900px) {
+    .app { grid-template-rows: 50px 40px 1fr; }
+    .statusbar { display: none; }
+
+    .header {
+      grid-template-columns: 1fr auto;
+      padding: 0 10px;
+      gap: 6px;
+    }
+    .header-center { display: none; }
+    .brand-text .sub { display: none; }
+    .header-right .btn { display: none; }
+    .header-right .user-chip span { display: none; }
+
+    .tabs { padding: 0 8px; -webkit-overflow-scrolling: touch; }
+    .tab { padding: 9px 10px; font-size: 11.5px; }
+    .tab svg { display: none; }
+
+    .main { grid-template-columns: 1fr; position: relative; }
+
+    /* Sidebar como drawer izquierdo */
+    .sidebar {
+      position: fixed; top: 90px; bottom: 0; left: 0;
+      width: 280px; max-width: 85vw;
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
+      z-index: 28;
+      box-shadow: 4px 0 16px rgba(0,0,0,0.4);
+    }
+    .sidebar.open { transform: translateX(0); }
+
+    /* Panel derecho como bottom sheet */
+    .panel {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      height: 65vh; max-height: 80vh;
+      border-left: none;
+      border-top: 1px solid var(--border);
+      border-radius: 14px 14px 0 0;
+      transform: translateY(100%);
+      transition: transform 0.25s ease;
+      z-index: 27;
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.4);
+    }
+    .panel.open { transform: translateY(0); }
+    .panel::before {
+      content: ""; display: block;
+      width: 40px; height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      margin: 8px auto 0;
+    }
+
+    /* FABs visibles solo en mobile */
+    .fab-menu { display: flex; }
+    .fab-panel { display: none; }
+    .fab-panel.visible { display: flex; }
+
+    /* Mapa overlays más chicos */
+    .map-overlay { top: 8px; left: 8px; gap: 4px; }
+    .map-overlay .map-btn { padding: 5px 9px; font-size: 10px; }
+    .map-overlay-tr { top: 8px; right: 8px; }
+    .legend-card { min-width: 140px; padding: 8px 10px; }
+    .legend-card .lc-row { font-size: 10px; }
+    .map-scale { bottom: 8px; left: 8px; padding: 4px 8px; font-size: 9px; }
+
+    .selection-bar { bottom: 90px; padding: 7px 14px; font-size: 11px; }
+  }
+
+  @media (max-width: 480px) {
+    .brand-text h1 { font-size: 12.5px; }
+    .tab { padding: 9px 8px; font-size: 11px; }
+    .tab .badge, .tab .pro-tag { display: none; }
+    .panel { height: 75vh; }
+  }
 </style>
 </head>
 <body>
@@ -438,6 +538,15 @@
     <div style="color:var(--text-dim);font-size:12px">Conectando con Supabase · La Higuera…</div>
   </div>
 </div>
+
+<!-- Mobile: hamburguesa + sheet + backdrop -->
+<button class="fab-menu" id="fabMenu" title="Capas y filtros">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+<button class="fab-panel" id="fabPanel" title="Ver ficha">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+<div class="backdrop" id="backdrop"></div>
 
 <div class="app">
 
@@ -458,8 +567,8 @@
       </div>
     </div>
     <div class="header-right">
-      <button class="btn-icon" title="Notificaciones">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <button class="btn-icon" title="Compartir vista" id="btnShare">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
       </button>
       <button class="btn btn-ghost">Exportar</button>
       <div class="user-chip">
@@ -1796,6 +1905,129 @@ map.addSource = function(id, src) {
   }
   return origAddSource(id, src);
 };
+
+// ============ MOBILE: drawer + bottom sheet ============
+const fabMenu = document.getElementById('fabMenu');
+const fabPanel = document.getElementById('fabPanel');
+const backdrop = document.getElementById('backdrop');
+const sidebarEl = document.querySelector('.sidebar');
+const panelEl = document.getElementById('panel');
+
+function toggleSidebar(open) {
+  const isOpen = open !== undefined ? open : !sidebarEl.classList.contains('open');
+  sidebarEl.classList.toggle('open', isOpen);
+  panelEl.classList.remove('open');
+  backdrop.classList.toggle('visible', isOpen);
+  fabPanel.classList.remove('visible');
+}
+function togglePanel(open) {
+  const isOpen = open !== undefined ? open : !panelEl.classList.contains('open');
+  panelEl.classList.toggle('open', isOpen);
+  sidebarEl.classList.remove('open');
+  backdrop.classList.toggle('visible', isOpen);
+}
+fabMenu.addEventListener('click', () => toggleSidebar());
+fabPanel.addEventListener('click', () => togglePanel(true));
+backdrop.addEventListener('click', () => {
+  toggleSidebar(false);
+  togglePanel(false);
+});
+
+// Cuando se selecciona un predio/proyecto en mobile, auto-abrir panel
+const origSelectPredio = window.selectPredio;
+if (typeof selectPredio === 'function') {
+  const _origSelectPredio = selectPredio;
+  window.selectPredio = function(f) {
+    _origSelectPredio(f);
+    if (window.innerWidth <= 900) {
+      togglePanel(true);
+      sidebarEl.classList.remove('open');
+    }
+    fabPanel.classList.add('visible');
+  };
+}
+if (typeof showSeia === 'function') {
+  const _origShowSeia = showSeia;
+  window.showSeia = function(p) {
+    _origShowSeia(p);
+    if (window.innerWidth <= 900) {
+      togglePanel(true);
+      sidebarEl.classList.remove('open');
+    }
+    fabPanel.classList.add('visible');
+  };
+}
+
+// ============ URL STATE + COMPARTIR ============
+// Sincroniza estado en URL hash: #map=zoom/lat/lng&tab=catastro
+function updateUrlHash() {
+  const c = map.getCenter();
+  const z = map.getZoom().toFixed(1);
+  const tab = document.querySelector('.tab.active')?.dataset.tab || 'catastro';
+  const hash = `#map=${z}/${c.lat.toFixed(4)}/${c.lng.toFixed(4)}&tab=${tab}`;
+  history.replaceState(null, '', hash);
+}
+
+function applyUrlHash() {
+  const h = location.hash.slice(1);
+  if (!h) return;
+  const params = Object.fromEntries(h.split('&').map(p => p.split('=')));
+  if (params.map) {
+    const [z, lat, lng] = params.map.split('/').map(Number);
+    if (!isNaN(z) && !isNaN(lat) && !isNaN(lng)) {
+      map.jumpTo({ center: [lng, lat], zoom: z });
+    }
+  }
+  if (params.tab) {
+    const tabEl = document.querySelector(`.tab[data-tab="${params.tab}"]`);
+    if (tabEl) { tabEl.click(); }
+  }
+}
+
+// Aplicar hash al cargar (después de un tick para que el mapa esté listo)
+map.once('idle', () => applyUrlHash());
+
+// Sincronizar hash al moverse
+let hashTimer;
+map.on('moveend', () => {
+  clearTimeout(hashTimer);
+  hashTimer = setTimeout(updateUrlHash, 400);
+});
+document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => setTimeout(updateUrlHash, 50)));
+
+// Botón compartir → copia URL al clipboard + toast
+document.getElementById('btnShare')?.addEventListener('click', async () => {
+  updateUrlHash();
+  const url = location.href;
+  try {
+    await navigator.clipboard.writeText(url);
+    showToast('✓ Link copiado · vista compartible');
+  } catch (e) {
+    prompt('Copia este link:', url);
+  }
+});
+
+function showToast(msg) {
+  let el = document.getElementById('toast');
+  if (!el) {
+    el = document.createElement('div');
+    el.id = 'toast';
+    Object.assign(el.style, {
+      position: 'fixed', bottom: '24px', left: '50%',
+      transform: 'translateX(-50%)',
+      background: 'var(--accent)', color: 'white',
+      padding: '10px 18px', borderRadius: '999px',
+      fontSize: '12.5px', fontWeight: '500',
+      boxShadow: '0 4px 16px rgba(201,123,58,0.4)',
+      zIndex: '100', opacity: '0',
+      transition: 'opacity 0.2s'
+    });
+    document.body.appendChild(el);
+  }
+  el.textContent = msg;
+  el.style.opacity = '1';
+  setTimeout(() => { el.style.opacity = '0'; }, 2500);
+}
 </script>
 </body>
 </html>
