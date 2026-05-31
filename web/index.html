@@ -2037,8 +2037,8 @@ function renderPredioPanel(p, isHijuela2) {
       <div class="field-grid">
         <div class="field"><div class="label">Rol SII</div><div class="value mono">${p.rol}</div></div>
         <div class="field"><div class="label">Superficie</div><div class="value mono">${(p.area_ha||0).toLocaleString('es-CL')} ha</div></div>
-        <div class="field"><div class="label">Manzana</div><div class="value mono">${p.manzana || p.manz || '—'}</div></div>
-        <div class="field"><div class="label">Predio</div><div class="value mono">${p.predio || '—'}</div></div>
+        <div class="field"><div class="label">Manzana</div><div class="value mono">${p.manzana ? parseInt(p.manzana) : (p.manz ? parseInt(p.manz) : '—')}</div></div>
+        <div class="field"><div class="label">Predio</div><div class="value mono">${p.predio ? parseInt(p.predio) : '—'}</div></div>
         <div class="field"><div class="label">Estado SII</div><div class="value">${p.estado === 'V' ? 'Vigente' : p.estado}</div></div>
         <div class="field"><div class="label">Destino SII</div><div class="value">${p.destino || '—'}</div></div>
         <div class="field"><div class="label">Avalúo fiscal</div><div class="value mono">${p.avaluo_uf ? 'UF '+p.avaluo_uf.toLocaleString('es-CL') : (meta.avaluo_estimado_uf ? 'UF ~'+meta.avaluo_estimado_uf.toLocaleString('es-CL')+' est.' : '—')}</div></div>
