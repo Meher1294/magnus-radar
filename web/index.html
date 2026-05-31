@@ -31,6 +31,7 @@
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
 <script type="importmap">
 { "imports": { "@supabase/supabase-js": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/+esm" } }
 </script>
@@ -3077,11 +3078,13 @@ comunaPill?.addEventListener('click', (e) => {
   menu.style.left = rect.left + 'px';
   menu.innerHTML = `
     <div class="user-menu-item" style="color:var(--muted);cursor:default;font-size:9.5px;text-transform:uppercase;letter-spacing:0.06em">Región Coquimbo</div>
-    <div class="user-menu-item" style="background:var(--surface-2);color:var(--accent)">
-      <div style="display:flex;align-items:center;gap:8px"><span style="color:var(--success)">●</span> La Higuera <span style="margin-left:auto;color:var(--muted);font-size:10px">activa</span></div>
+    <div class="user-menu-item ${currentComuna === 4102 ? '' : ''}" data-comuna="4102" style="${currentComuna === 4102 ? 'background:var(--surface-2);color:var(--accent)' : ''}">
+      <div style="display:flex;align-items:center;gap:8px"><span style="color:var(--success)">●</span> La Higuera <span style="margin-left:auto;color:var(--muted);font-size:10px">7.686 predios · 270 DGA</span></div>
+    </div>
+    <div class="user-menu-item" data-comuna="4302" style="${currentComuna === 4302 ? 'background:var(--surface-2);color:var(--accent)' : ''}">
+      <div style="display:flex;align-items:center;gap:8px"><span style="color:var(--success)">●</span> Andacollo <span style="margin-left:auto;color:var(--muted);font-size:10px">199 DGA · 5 SEIA</span></div>
     </div>
     <div class="user-menu-divider"></div>
-    <div class="user-menu-item" style="color:var(--muted);cursor:default">○ Andacollo <span style="margin-left:auto;font-size:10px;color:var(--accent)">próximamente</span></div>
     <div class="user-menu-item" style="color:var(--muted);cursor:default">○ Vicuña <span style="margin-left:auto;font-size:10px;color:var(--accent)">próximamente</span></div>
     <div class="user-menu-item" style="color:var(--muted);cursor:default">○ Coquimbo cap. <span style="margin-left:auto;font-size:10px;color:var(--accent)">próximamente</span></div>
     <div class="user-menu-divider"></div>
@@ -3089,6 +3092,13 @@ comunaPill?.addEventListener('click', (e) => {
   `;
   document.body.appendChild(menu);
   menu.addEventListener('click', (ev) => {
+    const item = ev.target.closest('[data-comuna]');
+    if (item) {
+      const codigo = parseInt(item.dataset.comuna);
+      if (codigo !== currentComuna) switchComuna(codigo);
+      menu.remove();
+      return;
+    }
     if (ev.target.closest('[data-action="solicitar"]')) {
       window.open('mailto:max@xpu.cl?subject=Magnus Radar — Solicitar comuna&body=Hola, quiero que agreguen la comuna XXX a Magnus Radar.', '_blank');
       menu.remove();
@@ -3101,25 +3111,192 @@ comunaPill?.addEventListener('click', (e) => {
   });
 });
 
-// ============ EXPORTAR PNG DEL MAPA ============
-document.querySelector('.btn-ghost')?.addEventListener('click', (e) => {
-  if (e.target.textContent.trim() !== 'Exportar') return;
-  const canvas = map.getCanvas();
-  // MapLibre necesita preserveDrawingBuffer:true en algunos navegadores. Forzar render.
+// ============ MULTI-COMUNA SWITCH ============
+let currentComuna = 4102;
+const COMUNAS_META = {
+  4102: { nombre: 'La Higuera',  center: [-71.05, -29.39], zoom: 9.5, region: 'Coquimbo' },
+  4302: { nombre: 'Andacollo',   center: [-71.083, -30.22], zoom: 11.5, region: 'Coquimbo' }
+};
+
+async function switchComuna(codigo) {
+  if (!COMUNAS_META[codigo]) return;
+  currentComuna = codigo;
+  const meta = COMUNAS_META[codigo];
+  // Actualizar pill
+  const pill = document.getElementById('comunaPill');
+  if (pill) pill.innerHTML = `<span class="dot"></span>${meta.nombre}`;
+  // Loader
+  document.getElementById('loader').classList.remove('hidden');
+  document.querySelector('#loader .loader-inner div:last-child').textContent = `Cargando ${meta.nombre}…`;
+
+  // Re-fetch
+  const [pData, sData, dData] = await Promise.all([
+    fetchPrediosComuna(codigo), fetchSeiaComuna(codigo), fetchDgaComuna(codigo)
+  ]);
+  predios = pData || { type:'FeatureCollection', features: [] };
+  seiaPoints.features = sData ? sData.features : [];
+  dgaData = dData || { type:'FeatureCollection', features: [] };
+
+  // Update sources si ya existen
+  if (map.getSource('predios')) map.getSource('predios').setData(predios);
+  if (map.getSource('seia')) map.getSource('seia').setData(seiaPoints);
+  if (map.getSource('dga')) map.getSource('dga').setData(dgaData);
+
+  // Re-setup filtros + centrar mapa
+  setupSectorFilters(predios);
+  map.flyTo({ center: meta.center, zoom: meta.zoom, pitch: 0, bearing: 0, duration: 1200 });
+  document.getElementById('loader').classList.add('hidden');
+  window.__showToast?.(`✓ Comuna ${meta.nombre} cargada`);
+}
+
+async function fetchPrediosComuna(codigo) {
+  // Para Andacollo aún no hay catastro cargado; devolver vacío
+  if (codigo !== 4102) return { type:'FeatureCollection', features: [] };
+  return loadPrediosFromAPI();
+}
+async function fetchSeiaComuna(codigo) {
+  try {
+    const rows = await sb(`proyectos_seia_publicos?select=*`);
+    // PostgREST no expone comuna_codigo en la vista; filtrar manual mente conviene
+    return {
+      type: 'FeatureCollection',
+      features: rows.map(r => ({
+        type: 'Feature',
+        properties: {
+          id: r.id, nombre: r.nombre, titular: r.titular,
+          tipo: r.tipo, tipologia: r.tipologia, estado: r.estado,
+          fecha: r.fecha_ingreso, inversion: r.inversion_usd_m,
+          url: r.url_expediente, flag: r.flag
+        },
+        geometry: { type: 'Point', coordinates: [r.lon, r.lat] }
+      })).filter(f => {
+        const [lon, lat] = f.geometry.coordinates;
+        if (codigo === 4102) return lat >= -29.7 && lat <= -29.0;
+        if (codigo === 4302) return lat >= -30.6 && lat <= -29.9;
+        return true;
+      })
+    };
+  } catch (e) { return null; }
+}
+async function fetchDgaComuna(codigo) {
+  try {
+    const rows = await sb(`derechos_agua_publicos?select=*`);
+    return {
+      type: 'FeatureCollection',
+      features: rows.filter(r => {
+        if (codigo === 4102) return r.lat >= -29.7 && r.lat <= -29.0;
+        if (codigo === 4302) return r.lat >= -30.6 && r.lat <= -29.9;
+        return true;
+      }).map(r => ({
+        type: 'Feature',
+        properties: {
+          codigo: r.codigo_dga, tipo: r.tipo, naturaleza: r.naturaleza,
+          captacion: r.captacion, caudal: r.caudal_ls, titular: r.titular,
+          ejercicio: r.ejercicio, estado: r.estado, fecha: r.fecha_constitucion,
+          fuente_url: r.fuente_url
+        },
+        geometry: { type: 'Point', coordinates: [r.lon, r.lat] }
+      }))
+    };
+  } catch (e) { return null; }
+}
+
+// ============ EXPORTAR PNG / PDF DEL MAPA ============
+function exportPNG() {
   map.triggerRepaint();
   setTimeout(() => {
     try {
-      const link = document.createElement('a');
       const date = new Date().toISOString().slice(0,10);
-      link.download = `magnus-radar-la-higuera-${date}.png`;
-      link.href = canvas.toDataURL('image/png');
+      const meta = COMUNAS_META[currentComuna];
+      const link = document.createElement('a');
+      link.download = `magnus-radar-${meta.nombre.toLowerCase().replace(/ /g,'-')}-${date}.png`;
+      link.href = map.getCanvas().toDataURL('image/png');
       link.click();
       window.__showToast?.('✓ PNG descargado');
     } catch (err) {
-      window.__showToast?.('Error: el navegador bloqueó la exportación');
+      window.__showToast?.('Error exportando PNG');
       console.error(err);
     }
   }, 200);
+}
+
+async function exportPDF() {
+  if (!window.jspdf) { window.__showToast?.('jsPDF aún cargando, intenta otra vez'); return; }
+  map.triggerRepaint();
+  await new Promise(r => setTimeout(r, 300));
+  try {
+    const { jsPDF } = window.jspdf;
+    const meta = COMUNAS_META[currentComuna];
+    const date = new Date().toISOString().slice(0,16).replace('T', ' ');
+    const canvas = map.getCanvas();
+    const imgData = canvas.toDataURL('image/png');
+
+    const pdf = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+    const W = 297, H = 210;
+
+    // Header
+    pdf.setFillColor(10, 17, 31);
+    pdf.rect(0, 0, W, 18, 'F');
+    pdf.setTextColor(232, 238, 248);
+    pdf.setFont('helvetica', 'bold').setFontSize(14);
+    pdf.text('Magnus Radar', 10, 11);
+    pdf.setFont('helvetica', 'normal').setFontSize(9);
+    pdf.setTextColor(201, 123, 58);
+    pdf.text(`Inteligencia Territorial · Comuna ${meta.nombre}, ${meta.region}`, 10, 15);
+    pdf.setTextColor(138, 152, 179);
+    pdf.text(`Generado: ${date} UTC`, W - 10, 11, { align: 'right' });
+    pdf.text(`meher1294.github.io/magnus-radar`, W - 10, 15, { align: 'right' });
+
+    // Mapa
+    const mapH = H - 18 - 16;
+    pdf.addImage(imgData, 'PNG', 0, 18, W, mapH);
+
+    // Footer bbox + atribución
+    pdf.setFillColor(19, 28, 46);
+    pdf.rect(0, H - 16, W, 16, 'F');
+    const b = map.getBounds();
+    const c = map.getCenter();
+    pdf.setFontSize(7).setTextColor(180, 192, 214);
+    pdf.text(`Centro: ${c.lat.toFixed(4)}, ${c.lng.toFixed(4)} · Zoom: ${map.getZoom().toFixed(1)} · CRS: EPSG:4326`, 10, H - 10);
+    pdf.text(`BBox: [${b.getWest().toFixed(4)}, ${b.getSouth().toFixed(4)}, ${b.getEast().toFixed(4)}, ${b.getNorth().toFixed(4)}]`, 10, H - 6);
+    pdf.setTextColor(126, 140, 168);
+    pdf.text('Fuentes: SII · SEIA · DGA · CONAF · CEN · OpenStreetMap · Esri', W - 10, H - 10, { align: 'right' });
+    pdf.text('Datos públicos verificables · uso bajo licencia abierta · sin garantía', W - 10, H - 6, { align: 'right' });
+
+    pdf.save(`magnus-radar-${meta.nombre.toLowerCase().replace(/ /g,'-')}-${date.replace(/[: ]/g,'-')}.pdf`);
+    window.__showToast?.('✓ PDF descargado');
+  } catch (err) {
+    window.__showToast?.('Error generando PDF');
+    console.error(err);
+  }
+}
+
+// Botón Exportar — menu PNG/PDF
+document.querySelectorAll('.btn-ghost').forEach(btn => {
+  if (btn.textContent.trim() !== 'Exportar') return;
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const existing = document.getElementById('exportMenu');
+    if (existing) { existing.remove(); return; }
+    const menu = document.createElement('div');
+    menu.id = 'exportMenu'; menu.className = 'user-menu visible';
+    const r = btn.getBoundingClientRect();
+    menu.style.cssText = `top:${r.bottom+4}px;right:${window.innerWidth - r.right}px;left:auto;min-width:180px`;
+    menu.innerHTML = `
+      <div class="user-menu-item" data-fmt="png">📸 PNG (snapshot del mapa)</div>
+      <div class="user-menu-item" data-fmt="pdf">📄 PDF (con metadatos)</div>
+    `;
+    document.body.appendChild(menu);
+    menu.addEventListener('click', (ev) => {
+      const fmt = ev.target.closest('[data-fmt]')?.dataset.fmt;
+      if (fmt === 'png') exportPNG();
+      if (fmt === 'pdf') exportPDF();
+      menu.remove();
+    });
+    document.addEventListener('click', function close(ev) {
+      if (!ev.target.closest('#exportMenu')) { menu.remove(); document.removeEventListener('click', close); }
+    });
+  });
 });
 
 // Sector filter
