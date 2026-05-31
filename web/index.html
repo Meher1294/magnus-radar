@@ -908,8 +908,14 @@
         <div class="layer-item">
           <input type="checkbox" checked id="l-predios" data-layer="predios"/>
           <span class="layer-swatch" style="background:rgba(201,123,58,0.45);border-color:#C97B3A"></span>
-          <label for="l-predios" class="layer-label">Predios SII</label>
+          <label for="l-predios" class="layer-label">Levantamiento Xpert Urban</label>
           <span class="layer-count">7.686</span>
+        </div>
+        <div class="layer-item" title="Solo La Higuera · catastro fiscal SII oficial vía Data Inmobiliaria">
+          <input type="checkbox" id="l-sii" data-layer="sii"/>
+          <span class="layer-swatch" style="background:#3B82F6;border-radius:50%"></span>
+          <label for="l-sii" class="layer-label">Catastro SII oficial</label>
+          <span class="layer-count">3+</span>
         </div>
         <div class="layer-item">
           <input type="checkbox" checked id="l-ruta5" data-layer="ruta5"/>
@@ -1434,6 +1440,38 @@ async function loadTransaccionesFromAPI() {
   } catch (err) { console.error('Error tx:', err); return null; }
 }
 
+async function loadSiiOficialFromAPI() {
+  try {
+    const rows = await sb('predios_sii_publicos?select=*');
+    return {
+      type: 'FeatureCollection',
+      features: rows.filter(r => r.lat && r.lon).map(r => ({
+        type: 'Feature',
+        properties: {
+          rol: r.rol, cod_com: r.cod_com, cod_mz: r.cod_mz, cod_pr: r.cod_pr,
+          periodo: r.periodo, direccion: r.direccion_sii, destino: r.cod_destino,
+          tipo_inmueble: r.tipo_inmueble,
+          sup_terreno_m2: r.superficie_total_terreno,
+          sup_terreno_ha: r.superficie_total_terreno ? Math.round(r.superficie_total_terreno/100)/100 : null,
+          sup_construccion_m2: r.superficie_construccion,
+          avaluo_fiscal_clp: r.avaluo_fiscal_clp,
+          contribuciones_clp: r.contribuciones_clp,
+          source_label: r.source_label || 'SII Catastro Oficial',
+          evidence_status: r.evidence_status
+        },
+        geometry: { type: 'Point', coordinates: [r.lon, r.lat] }
+      }))
+    };
+  } catch (err) { console.error('Error SII:', err); return null; }
+}
+
+async function loadReconciliacionFromAPI() {
+  try {
+    const rows = await sb('reconciliacion_publica?select=*');
+    return rows;
+  } catch (err) { console.error('Error reconciliacion:', err); return []; }
+}
+
 async function loadConcesionesFromAPI() {
   try {
     const rows = await sb('concesiones_mineras_publicas?select=*');
@@ -1514,11 +1552,14 @@ let dgaData = null;
 let concesionesData = null;
 let ofertasData = null;
 let txData = null;
+let siiData = null;
+let reconciliacionMap = {};
 
 (async () => {
-  const [prediosData, seiaData, dga, conc, ofs, txs] = await Promise.all([
+  const [prediosData, seiaData, dga, conc, ofs, txs, sii, rec] = await Promise.all([
     loadPrediosFromAPI(), loadSeiaFromAPI(), loadDgaFromAPI(), loadConcesionesFromAPI(),
-    loadOfertasFromAPI(), loadTransaccionesFromAPI()
+    loadOfertasFromAPI(), loadTransaccionesFromAPI(),
+    loadSiiOficialFromAPI(), loadReconciliacionFromAPI()
   ]);
   if (!prediosData) return;
   if (seiaData) seiaPoints.features = seiaData.features;
@@ -1526,6 +1567,8 @@ let txData = null;
   concesionesData = conc || { type:'FeatureCollection', features:[] };
   ofertasData = ofs || { type:'FeatureCollection', features:[] };
   txData = txs || { type:'FeatureCollection', features:[] };
+  siiData = sii || { type:'FeatureCollection', features:[] };
+  (rec || []).forEach(r => { reconciliacionMap[r.rol] = r; });
   predios = prediosData;
   setupSectorFilters(prediosData);
   document.getElementById('loader').classList.add('hidden');
@@ -1714,6 +1757,37 @@ function addPrediosLayer(data) {
   });
   map.on('mouseenter', 'concesiones-fill', () => map.getCanvas().style.cursor = 'pointer');
   map.on('mouseleave', 'concesiones-fill', () => map.getCanvas().style.cursor = '');
+
+  // SII OFICIAL (puntos centroides)
+  map.addSource('sii', { type: 'geojson', data: siiData });
+  map.addLayer({
+    id: 'sii-points', type: 'circle', source: 'sii',
+    layout: { visibility: 'none' },  // off por default; usuario activa
+    paint: {
+      'circle-radius': 7,
+      'circle-color': '#3B82F6',
+      'circle-stroke-color': '#FFF',
+      'circle-stroke-width': 2,
+      'circle-opacity': 0.85
+    }
+  });
+  map.addLayer({
+    id: 'sii-labels', type: 'symbol', source: 'sii',
+    layout: {
+      visibility: 'none',
+      'text-field': ['get','rol'],
+      'text-size': 10,
+      'text-offset': [0, 1.3],
+      'text-anchor': 'top'
+    },
+    paint: { 'text-color': '#3B82F6', 'text-halo-color': '#0A111F', 'text-halo-width': 1.5 }
+  });
+  map.on('click', 'sii-points', e => {
+    if (!e.features.length) return;
+    showSiiPredio(e.features[0].properties);
+  });
+  map.on('mouseenter', 'sii-points', () => map.getCanvas().style.cursor = 'pointer');
+  map.on('mouseleave', 'sii-points', () => map.getCanvas().style.cursor = '');
 
   // OFERTAS INMOBILIARIAS
   map.addSource('ofertas', { type:'geojson', data: ofertasData });
@@ -1991,6 +2065,8 @@ function renderPredioPanel(p, isHijuela2) {
           ${meta.notas_internas ? `<div class="alert-meta" style="margin-top:6px">${meta.notas_internas}</div>` : ''}
         </div>
       </div>` : ''}
+
+      ${reconciliacionMap[p.rol] ? renderReconciliacionTabla(reconciliacionMap[p.rol], p.rol) : ''}
 
       <div class="section">
         <h4>Data Inmobiliaria <span class="action" style="color:var(--muted)">MCP</span></h4>
@@ -2290,7 +2366,8 @@ document.querySelectorAll('[data-layer]').forEach(cb => {
       heatmap: ['dga-heatmap'],
       concesiones: ['concesiones-fill', 'concesiones-line'],
       ofertas: ['ofertas-points'],
-      tx: ['tx-points']
+      tx: ['tx-points'],
+      sii: ['sii-points', 'sii-labels']
     };
     const ids = layerMap[cb.dataset.layer] || [];
     ids.forEach(id => {
@@ -2429,6 +2506,110 @@ function handleTabChange(tab) {
         </div>`;
       break;
   }
+}
+
+// ============ FICHA SII OFICIAL (Catastro fiscal) ============
+function showSiiPredio(p) {
+  document.getElementById('selectionBar').classList.add('visible');
+  document.getElementById('selectionCount').textContent = `SII · Rol ${p.rol}`;
+  const rec = reconciliacionMap[p.rol];
+  const ufAprox = p.avaluo_fiscal_clp ? Math.round(p.avaluo_fiscal_clp / 40000) : null;
+
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-header">
+      <div class="panel-type-row">
+        <span class="panel-type">Predio · SII Oficial</span>
+        <span class="panel-flag info">Fiscal pública</span>
+      </div>
+      <div class="panel-title">Rol ${p.rol}</div>
+      <div class="panel-subtitle">${p.direccion || ''} · Periodo ${p.periodo}</div>
+    </div>
+    <div class="panel-body">
+      <div class="field-grid">
+        <div class="field"><div class="label">Cod destino</div><div class="value">${p.destino || '—'} ${destinoLabel(p.destino)}</div></div>
+        <div class="field"><div class="label">Tipo inmueble</div><div class="value">${p.tipo_inmueble || '—'}</div></div>
+        <div class="field"><div class="label">Sup. terreno</div><div class="value mono">${p.sup_terreno_ha ? p.sup_terreno_ha + ' ha' : (p.sup_terreno_m2 ? p.sup_terreno_m2.toLocaleString('es-CL')+' m²' : '—')}</div></div>
+        <div class="field"><div class="label">Sup. construcción</div><div class="value mono">${p.sup_construccion_m2 ? p.sup_construccion_m2.toLocaleString('es-CL')+' m²' : '—'}</div></div>
+        <div class="field"><div class="label">Avalúo fiscal</div><div class="value mono">${p.avaluo_fiscal_clp ? '$'+p.avaluo_fiscal_clp.toLocaleString('es-CL') : '—'}</div></div>
+        <div class="field"><div class="label">UF aprox</div><div class="value mono">${ufAprox ? 'UF '+ufAprox.toLocaleString('es-CL') : '—'}</div></div>
+        <div class="field full"><div class="label">Contribuciones anuales</div><div class="value mono">${p.contribuciones_clp ? '$'+Math.round(p.contribuciones_clp).toLocaleString('es-CL') : '—'}</div></div>
+      </div>
+      ${rec ? renderReconciliacionTabla(rec, p.rol) : ''}
+      <div class="section">
+        <h4>Fuente</h4>
+        <div class="alert-item info">
+          <div class="alert-title">${p.source_label}</div>
+          <div class="alert-meta">Vía Data Inmobiliaria · ${p.evidence_status}</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function destinoLabel(d) {
+  return { H:'(Habitacional)', A:'(Agrícola)', B:'(Bodega)', C:'(Comercial)', O:'(Oficina)', W:'(Eriazo)' }[d] || '';
+}
+
+function renderReconciliacionTabla(rec, rolBase) {
+  const sii = rec.sii_superficie_ha;
+  const xu = rec.xu_superficie_ha;
+  const delta = rec.delta_pct;
+  return `
+    <div class="section">
+      <h4>Reconciliación catastral · ${rec.reconciliation_status}</h4>
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:6px;overflow:hidden">
+        <table style="width:100%;font-size:11.5px;border-collapse:collapse">
+          <thead style="background:var(--surface-2)">
+            <tr>
+              <th style="text-align:left;padding:8px 10px;color:var(--muted);font-weight:500">Atributo</th>
+              <th style="text-align:right;padding:8px 10px;color:#C97B3A;font-weight:600">Xpert Urban</th>
+              <th style="text-align:right;padding:8px 10px;color:#3B82F6;font-weight:600">SII oficial</th>
+              <th style="text-align:right;padding:8px 10px;color:var(--muted);font-weight:500">Δ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-top:1px solid var(--border-soft)">
+              <td style="padding:6px 10px;color:var(--muted)">Dominio</td>
+              <td style="padding:6px 10px;text-align:right">Operacional</td>
+              <td style="padding:6px 10px;text-align:right">Fiscal</td>
+              <td style="padding:6px 10px;text-align:right">—</td>
+            </tr>
+            <tr style="border-top:1px solid var(--border-soft)">
+              <td style="padding:6px 10px;color:var(--muted)">Autoridad</td>
+              <td style="padding:6px 10px;text-align:right;font-size:10.5px">privada</td>
+              <td style="padding:6px 10px;text-align:right;font-size:10.5px">pública</td>
+              <td style="padding:6px 10px;text-align:right">—</td>
+            </tr>
+            <tr style="border-top:1px solid var(--border-soft)">
+              <td style="padding:6px 10px;color:var(--muted)">Superficie</td>
+              <td style="padding:6px 10px;text-align:right;font-family:'JetBrains Mono',monospace">${xu ? xu.toFixed(1)+' ha' : '—'}</td>
+              <td style="padding:6px 10px;text-align:right;font-family:'JetBrains Mono',monospace">${sii ? sii.toFixed(2)+' ha' : '—'}</td>
+              <td style="padding:6px 10px;text-align:right;color:var(--warning);font-family:'JetBrains Mono',monospace">${delta != null ? '+'+Math.round(delta)+'%' : 'sin match'}</td>
+            </tr>
+            <tr style="border-top:1px solid var(--border-soft)">
+              <td style="padding:6px 10px;color:var(--muted)">Avalúo</td>
+              <td style="padding:6px 10px;text-align:right;font-family:'JetBrains Mono',monospace;color:var(--muted)">— (n/a)</td>
+              <td style="padding:6px 10px;text-align:right;font-family:'JetBrains Mono',monospace">UF ${rec.sii_avaluo_uf_oficial ? Math.round(rec.sii_avaluo_uf_oficial).toLocaleString('es-CL') : '—'}</td>
+              <td style="padding:6px 10px;text-align:right;color:var(--muted)">—</td>
+            </tr>
+            <tr style="border-top:1px solid var(--border-soft)">
+              <td style="padding:6px 10px;color:var(--muted)">N° unidades</td>
+              <td style="padding:6px 10px;text-align:right;font-size:10.5px">${rec.xu_roles_count} polígono/conjunto operacional</td>
+              <td style="padding:6px 10px;text-align:right;font-size:10.5px">${rec.sii_roles_count || 0} rol(es) SII</td>
+              <td style="padding:6px 10px;text-align:right">—</td>
+            </tr>
+            <tr style="border-top:1px solid var(--border-soft);background:rgba(245,158,11,0.06)">
+              <td style="padding:8px 10px;color:var(--warning);font-weight:500" colspan="4">
+                Estado: <b>${rec.reconciliation_status}</b> · confianza ${rec.confidence_level} · ${rec.requires_cbr_validation ? 'requiere validación CBR' : 'no requiere CBR'}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      ${rec.notas_conciliacion ? `<div style="font-size:11px;color:var(--text-dim);margin-top:8px;padding:8px 10px;background:var(--surface-2);border-radius:4px;line-height:1.5">${rec.notas_conciliacion}</div>` : ''}
+      <div style="font-size:10.5px;color:var(--warning);margin-top:8px;padding:6px 10px;border-left:3px solid var(--warning);background:rgba(245,158,11,0.06)">
+        ⚠ Delta territorial significativo — requiere conciliación CBR/SII/Xpert antes de cerrar dominio jurídico.
+      </div>
+    </div>`;
 }
 
 // ============ DATA INMOBILIARIA (via Supabase cache) ============
