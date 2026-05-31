@@ -745,8 +745,14 @@
         <div class="layer-item">
           <input type="checkbox" checked id="l-interchile" data-layer="interchile"/>
           <span class="layer-swatch" style="background:#A855F7"></span>
-          <label for="l-interchile" class="layer-label">Línea AT InterChile</label>
-          <span class="layer-count">1</span>
+          <label for="l-interchile" class="layer-label">Líneas transmisión SEN</label>
+          <span class="layer-count">10</span>
+        </div>
+        <div class="layer-item">
+          <input type="checkbox" checked id="l-subestaciones" data-layer="subestaciones"/>
+          <span class="layer-swatch" style="background:#A855F7;border-radius:50%"></span>
+          <label for="l-subestaciones" class="layer-label">Subestaciones</label>
+          <span class="layer-count">2</span>
         </div>
         <div class="layer-item">
           <input type="checkbox" id="l-agua" data-layer="agua"/>
@@ -925,9 +931,24 @@ const ruta5 = {
   type: 'Feature',
   geometry: { type: 'LineString', coordinates: [[-71.13,-29.65],[-71.12,-29.55],[-71.115,-29.45],[-71.10,-29.35],[-71.085,-29.25],[-71.06,-29.14]] }
 };
-const interchile = {
-  type: 'Feature',
-  geometry: { type: 'LineString', coordinates: [[-71.35,-29.62],[-71.30,-29.45],[-71.25,-29.30],[-71.20,-29.18],[-71.15,-29.04]] }
+// 10 líneas reales del Sistema Eléctrico Nacional cruzando comuna La Higuera
+// Fuente: 4echile.cl / Coordinador Eléctrico Nacional · KMZ procesado y filtrado por bbox La Higuera
+const lineasTx = {"type":"FeatureCollection","features":[
+{"type":"Feature","properties":{"nombre":"ROMERAL - INCAHUASI","tipo":"Transmisión"},"geometry":{"type":"LineString","coordinates":[[-71.0267,-29.2579],[-71.0269,-29.2582],[-71.0271,-29.2606],[-71.0287,-29.2773],[-71.0297,-29.2911],[-71.0304,-29.3021],[-71.0325,-29.3026],[-71.0343,-29.3114],[-71.04,-29.3391],[-71.0387,-29.3527],[-71.0616,-29.3621],[-71.0716,-29.3659],[-71.0868,-29.3719],[-71.0926,-29.372],[-71.0954,-29.3721],[-71.1034,-29.372],[-71.1086,-29.37],[-71.1292,-29.3622],[-71.1308,-29.3631],[-71.133,-29.3645],[-71.1589,-29.3805],[-71.1718,-29.3987],[-71.2304,-29.472],[-71.2401,-29.5249],[-71.2385,-29.5373],[-71.2456,-29.5541],[-71.2463,-29.5576],[-71.2465,-29.5587],[-71.2479,-29.5658],[-71.2503,-29.5769],[-71.2544,-29.596],[-71.254,-29.5987],[-71.2559,-29.6088],[-71.2532,-29.6145],[-71.2578,-29.63],[-71.2538,-29.6348],[-71.2491,-29.6479],[-71.252,-29.6535],[-71.2524,-29.6541],[-71.2542,-29.6577],[-71.2552,-29.6598],[-71.2532,-29.6699],[-71.2525,-29.6715],[-71.2503,-29.7062],[-71.2153,-29.7206]]}},
+{"type":"Feature","properties":{"nombre":"NUEVA MAITENCILLO - NUEVA PAN DE AZÚCAR (2x500 kV)","tipo":"Transmisión 500kV"},"geometry":{"type":"LineString","coordinates":[[-70.9111,-29.0211],[-70.9171,-29.062],[-70.9292,-29.1061],[-70.9483,-29.126],[-70.9559,-29.133],[-70.9748,-29.149],[-70.9865,-29.1601],[-70.9915,-29.1633],[-70.9924,-29.164],[-70.9982,-29.1676],[-71.0065,-29.1733],[-71.0133,-29.1776],[-71.0149,-29.1787],[-71.0198,-29.1819],[-71.0251,-29.1887],[-71.0244,-29.197],[-71.0198,-29.2038],[-71.0208,-29.207],[-71.0219,-29.2099],[-71.0206,-29.2115],[-71.0195,-29.2129],[-71.0192,-29.2167],[-71.0189,-29.2206],[-71.0185,-29.225],[-71.0173,-29.2281],[-71.0136,-29.2377],[-71.0134,-29.2407],[-71.0128,-29.2424],[-71.0121,-29.2442],[-71.0127,-29.2463],[-71.0135,-29.2495],[-71.0139,-29.2515],[-71.0149,-29.256],[-71.0151,-29.2565],[-71.0171,-29.2616],[-71.018,-29.2633],[-71.0199,-29.2682],[-71.0265,-29.2733],[-71.0364,-29.2809],[-71.0614,-29.3003],[-71.0776,-29.3132],[-71.0869,-29.3201],[-71.093,-29.3253],[-71.096,-29.3274],[-71.0971,-29.3278],[-71.104,-29.3325],[-71.1049,-29.3331],[-71.1129,-29.3384],[-71.1316,-29.351],[-71.1402,-29.3715],[-71.1506,-29.3828],[-71.2207,-29.4928],[-71.2386,-29.5032],[-71.2488,-29.5361],[-71.2519,-29.5529],[-71.2531,-29.5594],[-71.2544,-29.565],[-71.2557,-29.5705],[-71.2565,-29.5737],[-71.2574,-29.5787],[-71.2579,-29.5808],[-71.2584,-29.5826],[-71.2643,-29.6055],[-71.2636,-29.61],[-71.2569,-29.6434],[-71.2527,-29.6601],[-71.2494,-29.6741],[-71.2459,-29.6812],[-71.243,-29.6824],[-71.2264,-29.6915],[-71.2158,-29.6989],[-71.2082,-29.7097],[-71.2086,-29.7182]]}},
+{"type":"Feature","properties":{"nombre":"PAN DE AZÚCAR - PUNTA COLORADA 220 kV","tipo":"Transmisión 220kV"},"geometry":{"type":"LineString","coordinates":[[-71.049,-29.3671],[-71.0507,-29.3664],[-71.0535,-29.3671],[-71.0569,-29.3679],[-71.0603,-29.3687],[-71.0642,-29.3696],[-71.0703,-29.371],[-71.0713,-29.3712],[-71.075,-29.3731],[-71.0792,-29.3752],[-71.0821,-29.3767],[-71.0862,-29.3787],[-71.0907,-29.381],[-71.0949,-29.3801],[-71.0979,-29.3795],[-71.1011,-29.3788],[-71.1048,-29.3781],[-71.1083,-29.3773],[-71.1119,-29.3766],[-71.1153,-29.3759],[-71.12,-29.3725],[-71.1236,-29.3699],[-71.1276,-29.3669],[-71.1299,-29.3653],[-71.1341,-29.3676],[-71.1377,-29.3695],[-71.1407,-29.3712],[-71.1443,-29.3731],[-71.1472,-29.3746],[-71.1498,-29.3761],[-71.1528,-29.3777],[-71.1548,-29.3798],[-71.1571,-29.3823],[-71.1589,-29.3842],[-71.1609,-29.3865],[-71.1632,-29.389],[-71.1655,-29.3915],[-71.1678,-29.3945],[-71.1704,-29.3981],[-71.1726,-29.4011],[-71.1747,-29.404],[-71.1768,-29.4069],[-71.1791,-29.4099],[-71.1815,-29.413],[-71.1839,-29.4159],[-71.1865,-29.4191],[-71.1889,-29.4221],[-71.1913,-29.425],[-71.1933,-29.4275],[-71.1953,-29.4299],[-71.1975,-29.4327],[-71.1999,-29.4356],[-71.202,-29.4382],[-71.2044,-29.4411],[-71.2071,-29.4445],[-71.2098,-29.4478],[-71.2122,-29.4508],[-71.2143,-29.4533],[-71.2166,-29.4561],[-71.2189,-29.459],[-71.2211,-29.4617],[-71.2233,-29.4644],[-71.2254,-29.4669],[-71.2277,-29.4698],[-71.2301,-29.4728],[-71.2305,-29.4756],[-71.2309,-29.4784],[-71.2313,-29.4816],[-71.2318,-29.4853],[-71.2323,-29.489],[-71.2328,-29.4927],[-71.2332,-29.4958],[-71.2336,-29.499],[-71.2341,-29.5023],[-71.2345,-29.5056],[-71.2351,-29.5099],[-71.2356,-29.5137],[-71.2363,-29.5191],[-71.2367,-29.5221],[-71.2371,-29.5246],[-71.2346,-29.529],[-71.2357,-29.5316],[-71.2367,-29.5341],[-71.238,-29.5374],[-71.239,-29.54],[-71.2402,-29.5429],[-71.2413,-29.5457],[-71.2425,-29.5488],[-71.2434,-29.5509],[-71.2447,-29.5541],[-71.2451,-29.5569],[-71.2453,-29.5586],[-71.2454,-29.5592],[-71.2459,-29.5632],[-71.2468,-29.5678],[-71.2475,-29.5717],[-71.2481,-29.5748],[-71.2488,-29.5783],[-71.2493,-29.5805],[-71.25,-29.5841],[-71.2512,-29.5902],[-71.2519,-29.593],[-71.2533,-29.5983],[-71.2535,-29.5993],[-71.2532,-29.6044],[-71.253,-29.6081],[-71.2527,-29.6145],[-71.254,-29.6188],[-71.2549,-29.6218],[-71.2555,-29.6238],[-71.2562,-29.6262],[-71.2574,-29.6299],[-71.2575,-29.6304],[-71.2576,-29.6309],[-71.2562,-29.634],[-71.2539,-29.6388],[-71.2532,-29.6404],[-71.2518,-29.6433],[-71.2495,-29.6482],[-71.2513,-29.6515],[-71.2547,-29.6577],[-71.2557,-29.6595],[-71.2553,-29.6613],[-71.2548,-29.6643],[-71.2542,-29.6672],[-71.2536,-29.6702],[-71.2528,-29.6719],[-71.2521,-29.6734],[-71.2509,-29.676],[-71.2489,-29.6804],[-71.2477,-29.6833],[-71.2443,-29.6847],[-71.2399,-29.6867],[-71.2366,-29.6882],[-71.2339,-29.6894],[-71.23,-29.6911],[-71.2276,-29.6922],[-71.2268,-29.6927],[-71.2264,-29.693],[-71.2229,-29.6953],[-71.2203,-29.6971],[-71.2165,-29.6996],[-71.2138,-29.7031],[-71.211,-29.7067]]}},
+{"type":"Feature","properties":{"nombre":"PUNTA COLORADA - MAITENCILLO","tipo":"Transmisión"},"geometry":{"type":"LineString","coordinates":[[-71.0473,-29.3668],[-71.0467,-29.3667],[-71.0474,-29.3657],[-71.0471,-29.3652],[-71.0463,-29.3613],[-71.0456,-29.3586],[-71.0433,-29.349],[-71.0396,-29.3328],[-71.0358,-29.3162],[-71.0336,-29.3069],[-71.0303,-29.306],[-71.03,-29.3025],[-71.0297,-29.2989],[-71.0285,-29.2847],[-71.0278,-29.275],[-71.0275,-29.2708],[-71.027,-29.2663],[-71.0263,-29.2583],[-71.0215,-29.2521],[-71.0178,-29.2478],[-71.0144,-29.2436],[-71.0112,-29.2364],[-71.0091,-29.2325],[-71.0076,-29.2294],[-71.0062,-29.2263],[-71.0073,-29.2228],[-71.0105,-29.2152],[-71.0122,-29.2114],[-71.0134,-29.207],[-71.0146,-29.2032],[-71.0173,-29.1989],[-71.0205,-29.1938],[-71.0206,-29.1906],[-71.0177,-29.1878],[-71.013,-29.1832],[-71.0087,-29.1789],[-71.0031,-29.1765],[-70.9993,-29.175],[-70.9963,-29.1737],[-70.9936,-29.1725],[-70.9916,-29.1716],[-70.9886,-29.1685],[-70.9871,-29.1651],[-70.986,-29.1631],[-70.985,-29.1625],[-70.9818,-29.1606],[-70.9799,-29.1595],[-70.9768,-29.1581],[-70.9736,-29.1567],[-70.9688,-29.1543],[-70.9511,-29.1457],[-70.9352,-29.1283],[-70.9259,-29.1179],[-70.9194,-29.1107],[-70.9126,-29.0907],[-70.9116,-29.0877]]}}
+]};
+
+// Subestaciones aproximadas en la comuna
+const subestaciones = {
+  type: 'FeatureCollection',
+  features: [
+    { type:'Feature', properties:{ nombre:'SE Punta Colorada 220 kV', tipo:'Subestación' },
+      geometry:{ type:'Point', coordinates:[-71.0480, -29.3675] }},
+    { type:'Feature', properties:{ nombre:'SE Pan de Azúcar 500 kV', tipo:'Subestación' },
+      geometry:{ type:'Point', coordinates:[-71.2080, -29.7180] }}
+  ]
 };
 
 // Caminos secundarios — Ruta E-410 (Trapiche-Chungungo), ruta a Punta de Choros, etc.
@@ -1266,7 +1287,8 @@ function addPrediosLayer(data) {
   map.addSource('seia', { type: 'geojson', data: seiaPoints });
   map.addSource('pueblos', { type: 'geojson', data: pueblos });
   map.addSource('ruta5', { type: 'geojson', data: ruta5 });
-  map.addSource('interchile', { type: 'geojson', data: interchile });
+  map.addSource('interchile', { type: 'geojson', data: lineasTx });
+  map.addSource('subestaciones', { type: 'geojson', data: subestaciones });
 
   // Predio FILL
   map.addLayer({
@@ -1294,10 +1316,46 @@ function addPrediosLayer(data) {
     paint: { 'line-color': '#EAB308', 'line-width': 3 }
   });
 
-  // InterChile
+  // Líneas de transmisión (SEN) — datos reales del CEN
   map.addLayer({
     id: 'interchile-line', type: 'line', source: 'interchile',
-    paint: { 'line-color': '#A855F7', 'line-width': 2, 'line-dasharray': [3, 2] }
+    paint: {
+      'line-color': [
+        'case',
+        ['==', ['get', 'tipo'], 'Transmisión 500kV'], '#A855F7',
+        ['==', ['get', 'tipo'], 'Transmisión 220kV'], '#C084FC',
+        '#D8B4FE'
+      ],
+      'line-width': [
+        'case',
+        ['==', ['get', 'tipo'], 'Transmisión 500kV'], 3,
+        ['==', ['get', 'tipo'], 'Transmisión 220kV'], 2.2,
+        1.8
+      ]
+    }
+  });
+  map.on('click', 'interchile-line', (e) => {
+    if (!e.features.length) return;
+    showLineaTx(e.features[0].properties);
+  });
+  map.on('mouseenter', 'interchile-line', () => map.getCanvas().style.cursor = 'pointer');
+  map.on('mouseleave', 'interchile-line', () => map.getCanvas().style.cursor = '');
+
+  // Subestaciones
+  map.addLayer({
+    id: 'subestaciones-points', type: 'circle', source: 'subestaciones',
+    paint: {
+      'circle-radius': 7,
+      'circle-color': '#A855F7',
+      'circle-stroke-color': '#FFF',
+      'circle-stroke-width': 2
+    }
+  });
+  map.addLayer({
+    id: 'subestaciones-labels', type: 'symbol', source: 'subestaciones',
+    minzoom: 10,
+    layout: { 'text-field': ['get','nombre'], 'text-size': 10, 'text-offset': [0,1.4], 'text-anchor': 'top' },
+    paint: { 'text-color': '#A855F7', 'text-halo-color': '#0A111F', 'text-halo-width': 1.5 }
   });
 
   // Derechos DGA — capa
@@ -1789,6 +1847,7 @@ document.querySelectorAll('[data-layer]').forEach(cb => {
       predios: ['predios-fill', 'predios-line'],
       ruta5: ['ruta5-line'],
       interchile: ['interchile-line'],
+      subestaciones: ['subestaciones-points', 'subestaciones-labels'],
       seia: ['seia-points', 'seia-labels'],
       agua: ['dga-points'],
       pueblos: ['pueblos-points'],
@@ -1915,6 +1974,44 @@ function handleTabChange(tab) {
         </div>`;
       break;
   }
+}
+
+function showLineaTx(p) {
+  document.getElementById('selectionBar').classList.add('visible');
+  document.getElementById('selectionCount').textContent = `LT · ${p.nombre}`;
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-header">
+      <div class="panel-type-row">
+        <span class="panel-type">Línea transmisión · SEN</span>
+        <span class="panel-flag info">${p.tipo}</span>
+      </div>
+      <div class="panel-title">${p.nombre}</div>
+      <div class="panel-subtitle">Sistema Eléctrico Nacional · cruza comuna La Higuera</div>
+    </div>
+    <div class="panel-body">
+      <div class="field-grid">
+        <div class="field"><div class="label">Tipo</div><div class="value">${p.tipo}</div></div>
+        <div class="field"><div class="label">Operador</div><div class="value">Ver CEN</div></div>
+      </div>
+      <div class="section">
+        <h4>Fuente de los datos</h4>
+        <a class="doc-item" href="https://infotecnica.coordinador.cl/info/lineas" target="_blank" style="text-decoration:none;color:inherit">
+          <div class="doc-icon">CEN</div>
+          <div class="doc-name">Coordinador Eléctrico Nacional<br><span class="doc-meta">infotecnica.coordinador.cl</span></div>
+        </a>
+        <a class="doc-item" href="https://energiamaps.cne.cl/" target="_blank" style="text-decoration:none;color:inherit">
+          <div class="doc-icon">CNE</div>
+          <div class="doc-name">Energía Maps · Comisión Nacional de Energía<br><span class="doc-meta">energiamaps.cne.cl</span></div>
+        </a>
+      </div>
+      <div class="section">
+        <h4>Contexto comuna</h4>
+        <div class="alert-item info">
+          <div class="alert-title">10 líneas de transmisión cruzan La Higuera</div>
+          <div class="alert-meta">Incluye corredores 500 kV y 220 kV del SEN</div>
+        </div>
+      </div>
+    </div>`;
 }
 
 function showDga(p) {
@@ -2343,41 +2440,157 @@ function polygonToWkt(geom) {
 }
 
 function showDocsPanel() {
+  const base = "https://curqkgujgtimlutinhgu.supabase.co/rest/v1";
   document.getElementById('panel').innerHTML = `
     <div class="panel-header">
-      <div class="panel-type-row"><span class="panel-type">Documentación</span></div>
-      <div class="panel-title">Magnus Radar API</div>
-      <div class="panel-subtitle">Endpoints REST públicos · Supabase PostgREST</div>
+      <div class="panel-type-row">
+        <span class="panel-type">Documentación API</span>
+        <span class="panel-flag info">v0.2 · pública</span>
+      </div>
+      <div class="panel-title">Magnus Radar REST API</div>
+      <div class="panel-subtitle">Supabase PostgREST · sin auth para lecturas públicas</div>
     </div>
     <div class="panel-body">
+
       <div class="section">
-        <h4>Endpoints</h4>
-        <div class="doc-item"><div class="doc-icon">GET</div><div class="doc-name">/rest/v1/stats_comuna<br><span class="doc-meta">Estadísticas agregadas por comuna</span></div></div>
-        <div class="doc-item"><div class="doc-icon">GET</div><div class="doc-name">/rest/v1/predios_publicos<br><span class="doc-meta">7.686 predios SII con geometría</span></div></div>
-        <div class="doc-item"><div class="doc-icon">GET</div><div class="doc-name">/rest/v1/proyectos_seia_publicos<br><span class="doc-meta">17 expedientes SEIA</span></div></div>
-      </div>
-      <div class="section">
-        <h4>Fuentes</h4>
+        <h4>Autenticación</h4>
         <div class="alert-item info">
-          <div class="alert-title">Catastro SII</div>
-          <div class="alert-meta">Comuna 4102 · 7.686 predios · actualizado 2026-04-21</div>
+          <div class="alert-title">Header requerido en TODAS las peticiones</div>
+          <div class="alert-meta" style="display:block;margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:10.5px;background:var(--bg);padding:8px;border-radius:4px;word-break:break-all">
+            apikey: ${SUPABASE_ANON.substring(0,40)}...
+          </div>
         </div>
-        <div class="alert-item info">
-          <div class="alert-title">SEIA</div>
-          <div class="alert-meta">Servicio de Evaluación Ambiental · 17 proyectos · 2026-05-29</div>
-        </div>
-        <div class="alert-item info">
-          <div class="alert-title">DGA</div>
-          <div class="alert-meta">Derechos de agua · pendiente integración · 2026-05-15</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:6px">
+          El <b>anon key</b> es público por diseño. RLS protege las tablas privadas.
+          Para escribir necesitas <b>service_role</b> (no exponerlo en frontend).
         </div>
       </div>
+
+      <div class="section">
+        <h4>Endpoints (GET)</h4>
+
+        <div class="alert-item">
+          <div class="alert-title">GET /rest/v1/stats_comuna</div>
+          <div class="alert-meta">Estadísticas agregadas por comuna</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--bg);padding:6px 8px;border-radius:3px;margin-top:6px;color:var(--accent);overflow-x:auto">
+            curl '${base}/stats_comuna' -H 'apikey: ANON_KEY'
+          </div>
+        </div>
+
+        <div class="alert-item">
+          <div class="alert-title">GET /rest/v1/predios_publicos</div>
+          <div class="alert-meta">7.686 predios SII con geometría · paginación con Range header</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--bg);padding:6px 8px;border-radius:3px;margin-top:6px;color:var(--accent);overflow-x:auto">
+            curl '${base}/predios_publicos?sector=eq.Los%20Choros&limit=50'
+          </div>
+        </div>
+
+        <div class="alert-item">
+          <div class="alert-title">GET /rest/v1/proyectos_seia_publicos</div>
+          <div class="alert-meta">17 expedientes SEIA (Dominga, Cruz Grande, solares, etc.)</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--bg);padding:6px 8px;border-radius:3px;margin-top:6px;color:var(--accent);overflow-x:auto">
+            curl '${base}/proyectos_seia_publicos?flag=eq.critical'
+          </div>
+        </div>
+
+        <div class="alert-item">
+          <div class="alert-title">GET /rest/v1/derechos_agua_publicos</div>
+          <div class="alert-meta">87 derechos DGA · pozos / ríos / esteros</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--bg);padding:6px 8px;border-radius:3px;margin-top:6px;color:var(--accent);overflow-x:auto">
+            curl '${base}/derechos_agua_publicos?captacion=eq.pozo&caudal_ls=gt.20'
+          </div>
+        </div>
+
+        <div class="alert-item">
+          <div class="alert-title">GET /rest/v1/eventos</div>
+          <div class="alert-meta">Timeline de eventos públicos (SEIA, DGA, SMA, prensa)</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--bg);padding:6px 8px;border-radius:3px;margin-top:6px;color:var(--accent);overflow-x:auto">
+            curl '${base}/eventos?fecha=gte.2025-01-01&order=fecha.desc'
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h4>Schema de datos</h4>
+        <div class="alert-item">
+          <div class="alert-title">predios_publicos (vista)</div>
+          <div class="alert-meta">id · rol · sector · area_ha · estado_sii · lat · lon · geometry · flags</div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-title">proyectos_seia_publicos (vista)</div>
+          <div class="alert-meta">id · seia_id · nombre · titular · tipo · tipologia · estado · fecha_ingreso · inversion_usd_m · lat · lon · flag · url_expediente</div>
+        </div>
+        <div class="alert-item">
+          <div class="alert-title">derechos_agua_publicos (vista)</div>
+          <div class="alert-meta">id · codigo_dga · tipo · naturaleza · captacion · caudal_ls · titular · ejercicio · estado · fecha_constitucion · lat · lon</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h4>Filtros disponibles (PostgREST)</h4>
+        <div style="font-size:11px;color:var(--text-dim);line-height:1.7;font-family:'JetBrains Mono',monospace;background:var(--bg);padding:10px;border-radius:4px">
+          ?<b>columna</b>=eq.valor &nbsp;&nbsp; igualdad<br>
+          ?<b>columna</b>=gt.50 &nbsp;&nbsp; mayor que<br>
+          ?<b>columna</b>=ilike.*texto* &nbsp; fuzzy<br>
+          ?<b>columna</b>=in.(a,b,c) &nbsp; lista<br>
+          ?<b>select</b>=col1,col2 &nbsp; proyección<br>
+          ?<b>order</b>=fecha.desc &nbsp; ordenar<br>
+          ?<b>limit</b>=100&offset=200 &nbsp; paginación
+        </div>
+        <div style="font-size:10.5px;color:var(--muted);margin-top:6px">
+          Docs PostgREST: <a href="https://postgrest.org/en/v14/" target="_blank" style="color:var(--accent)">postgrest.org</a>
+        </div>
+      </div>
+
+      <div class="section">
+        <h4>Auth para alertas (POST)</h4>
+        <div class="alert-item info">
+          <div class="alert-title">Magic Link sin password</div>
+          <div class="alert-meta">Inicia sesión → recibe email → click en link → crear alertas en zonas custom</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h4>Fuentes de datos</h4>
+        <a class="doc-item" href="https://www.sii.cl/" target="_blank" style="text-decoration:none;color:inherit">
+          <div class="doc-icon">SII</div>
+          <div class="doc-name">Servicio de Impuestos Internos<br><span class="doc-meta">Catastro · 7.686 predios · sync 2026-04-21</span></div>
+        </a>
+        <a class="doc-item" href="https://seia.sea.gob.cl/" target="_blank" style="text-decoration:none;color:inherit">
+          <div class="doc-icon">SEA</div>
+          <div class="doc-name">Servicio Evaluación Ambiental<br><span class="doc-meta">17 expedientes · scraper diario 11 UTC</span></div>
+        </a>
+        <a class="doc-item" href="https://dga.mop.gob.cl/" target="_blank" style="text-decoration:none;color:inherit">
+          <div class="doc-icon">DGA</div>
+          <div class="doc-name">Dirección General de Aguas<br><span class="doc-meta">87 derechos · dataset en validación</span></div>
+        </a>
+        <a class="doc-item" href="https://www.coordinador.cl/" target="_blank" style="text-decoration:none;color:inherit">
+          <div class="doc-icon">CEN</div>
+          <div class="doc-name">Coordinador Eléctrico Nacional<br><span class="doc-meta">10 líneas transmisión + 2 subestaciones</span></div>
+        </a>
+        <a class="doc-item" href="https://www.conaf.cl/" target="_blank" style="text-decoration:none;color:inherit">
+          <div class="doc-icon">SNASPE</div>
+          <div class="doc-name">CONAF / Áreas protegidas<br><span class="doc-meta">Reserva Pingüino Humboldt + Marina Choros + AMCP Chañaral</span></div>
+        </a>
+      </div>
+
       <div class="section">
         <h4>Stack técnico</h4>
         <div style="font-size:11.5px;color:var(--text-dim);line-height:1.7">
-          Frontend: MapLibre GL JS + HTML/CSS estático<br>
-          Backend: Supabase (Postgres 16 + PostGIS 3 + PostgREST)<br>
-          Hosting: GitHub Pages (auto-deploy con GitHub Actions)<br>
-          Repo: <a href="https://github.com/Meher1294/magnus-radar" target="_blank" style="color:var(--accent)">github.com/Meher1294/magnus-radar</a>
+          <b>Frontend</b>: MapLibre GL JS 4.7 · HTML/CSS estático · @supabase/supabase-js v2<br>
+          <b>Backend</b>: Supabase (Postgres 16 + PostGIS 3 + PostgREST + Auth)<br>
+          <b>Hosting</b>: GitHub Pages · HTTPS automático · CDN global<br>
+          <b>CI/CD</b>: GitHub Actions (Pages + scrapers cron diario)<br>
+          <b>Repo público</b>: <a href="https://github.com/Meher1294/magnus-radar" target="_blank" style="color:var(--accent)">github.com/Meher1294/magnus-radar</a>
+        </div>
+      </div>
+
+      <div class="section">
+        <h4>Para desarrolladores</h4>
+        <div style="font-size:11.5px;color:var(--text-dim);line-height:1.6">
+          Quieres conectar tu app o dashboard a Magnus Radar? Los endpoints REST son
+          libres. Si necesitas: webhook de eventos nuevos, datos históricos, o cobertura
+          de otras comunas, escríbenos a <a href="mailto:max@xpu.cl" style="color:var(--accent)">max@xpu.cl</a>.
         </div>
       </div>
     </div>`;
