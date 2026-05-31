@@ -1993,6 +1993,25 @@ function renderPredioPanel(p, isHijuela2) {
       </div>` : ''}
 
       <div class="section">
+        <h4>Data Inmobiliaria <span class="action" style="color:var(--muted)">MCP</span></h4>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <button class="btn btn-primary" onclick="solicitarTasacion('${p.rol}')" style="justify-content:center;padding:10px;font-size:12px">
+            ⚡ Tasación automática
+          </button>
+          <button class="btn btn-ghost" onclick="solicitarContribuciones('${p.rol}')" style="justify-content:center;padding:8px;font-size:11.5px">
+            📋 Contribuciones SII
+          </button>
+          <button class="btn btn-ghost" onclick="solicitarImagenSat('${p.rol}', ${p.lat}, ${p.lon})" style="justify-content:center;padding:8px;font-size:11.5px">
+            🛰 Imagen satelital
+          </button>
+          <button class="btn btn-ghost" onclick="solicitarContexto('${p.rol}', ${p.lat}, ${p.lon})" style="justify-content:center;padding:8px;font-size:11.5px">
+            🗺 Contexto de tasación
+          </button>
+        </div>
+        <div id="tasacion-result-${p.rol}" style="margin-top:10px"></div>
+      </div>
+
+      <div class="section">
         <h4>Análisis territorial automático</h4>
         ${p.area_ha > 1000 ? `
         <div class="alert-item info">
@@ -2410,6 +2429,113 @@ function handleTabChange(tab) {
         </div>`;
       break;
   }
+}
+
+// ============ DATA INMOBILIARIA (via Supabase cache) ============
+async function solicitarTasacion(rol) {
+  const target = document.getElementById(`tasacion-result-${rol}`);
+  if (!target) return;
+  target.innerHTML = `<div style="font-size:11px;color:var(--muted)">Buscando tasación cacheada…</div>`;
+  // 1. Buscar en cache Supabase
+  try {
+    const rows = await sb(`tasaciones_auto?predio_rol=eq.${encodeURIComponent(rol)}&order=fecha_tasacion.desc&limit=1`);
+    if (rows.length) {
+      const t = rows[0];
+      target.innerHTML = renderTasacion(t);
+      return;
+    }
+  } catch (e) {}
+  // 2. Si no hay cache → pedir al usuario que invoque desde chat Claude
+  target.innerHTML = `
+    <div class="alert-item info" style="margin-top:4px">
+      <div class="alert-title">Sin tasación cacheada para ${rol}</div>
+      <div class="alert-meta" style="margin-top:6px">
+        Para tasar: en este chat pídeme <code style="background:var(--surface-2);padding:1px 5px;border-radius:3px;color:var(--accent)">"tasar predio ${rol}"</code><br>
+        Yo llamo a Data Inmobiliaria MCP y guardo el resultado en Supabase. La próxima vez aparece automático.
+      </div>
+    </div>`;
+}
+
+async function solicitarContribuciones(rol) {
+  const target = document.getElementById(`tasacion-result-${rol}`);
+  if (!target) return;
+  target.innerHTML = `<div style="font-size:11px;color:var(--muted)">Buscando contribuciones cacheadas…</div>`;
+  try {
+    const rows = await sb(`contribuciones_sii?predio_rol=eq.${encodeURIComponent(rol)}&order=ano.desc,cuota.desc`);
+    if (rows.length) {
+      const total = rows.reduce((s, r) => s + (r.monto_clp || 0), 0);
+      const pagadas = rows.filter(r => r.pagada).length;
+      target.innerHTML = `
+        <div class="alert-item ${pagadas === rows.length ? 'success' : 'critical'}" style="margin-top:4px">
+          <div class="alert-title">Contribuciones SII (${rows.length} cuotas)</div>
+          <div class="alert-meta">Total CLP ${total.toLocaleString('es-CL')} · ${pagadas}/${rows.length} pagadas</div>
+          <table style="width:100%;margin-top:8px;font-size:10.5px">
+            ${rows.slice(0,8).map(r => `
+              <tr style="border-bottom:1px solid var(--border-soft)">
+                <td>${r.ano}/${r.cuota}</td>
+                <td style="text-align:right">${r.monto_clp ? '$'+r.monto_clp.toLocaleString('es-CL') : '—'}</td>
+                <td style="text-align:right;color:${r.pagada ? 'var(--success)' : 'var(--danger)'}">${r.pagada ? '✓' : '✗'}</td>
+              </tr>
+            `).join('')}
+          </table>
+        </div>`;
+      return;
+    }
+  } catch (e) {}
+  target.innerHTML = `
+    <div class="alert-item info" style="margin-top:4px">
+      <div class="alert-title">Sin contribuciones cacheadas para ${rol}</div>
+      <div class="alert-meta" style="margin-top:6px">En chat: <code style="background:var(--surface-2);padding:1px 5px;border-radius:3px;color:var(--accent)">"contribuciones predio ${rol}"</code></div>
+    </div>`;
+}
+
+async function solicitarImagenSat(rol, lat, lon) {
+  const target = document.getElementById(`tasacion-result-${rol}`);
+  if (!target) return;
+  try {
+    const rows = await sb(`imagenes_satelitales?predio_rol=eq.${encodeURIComponent(rol)}&order=created_at.desc&limit=1`);
+    if (rows.length && rows[0].url) {
+      target.innerHTML = `
+        <div class="alert-item" style="margin-top:4px;padding:0;overflow:hidden">
+          <img src="${rows[0].url}" style="width:100%;display:block" alt="Imagen satelital ${rol}"/>
+          <div style="padding:6px 10px;font-size:10.5px;color:var(--muted)">Imagen: ${rows[0].fecha_imagen || 'fecha N/D'} · ${rows[0].proveedor}</div>
+        </div>`;
+      return;
+    }
+  } catch (e) {}
+  target.innerHTML = `
+    <div class="alert-item info" style="margin-top:4px">
+      <div class="alert-title">Sin imagen cacheada</div>
+      <div class="alert-meta" style="margin-top:6px">En chat: <code style="background:var(--surface-2);padding:1px 5px;border-radius:3px;color:var(--accent)">"imagen satelital ${rol}"</code></div>
+    </div>`;
+}
+
+async function solicitarContexto(rol, lat, lon) {
+  const target = document.getElementById(`tasacion-result-${rol}`);
+  if (!target) return;
+  target.innerHTML = `
+    <div class="alert-item info" style="margin-top:4px">
+      <div class="alert-title">Contexto de tasación</div>
+      <div class="alert-meta" style="margin-top:6px">En chat: <code style="background:var(--surface-2);padding:1px 5px;border-radius:3px;color:var(--accent)">"contexto tasación ${rol} (${lat.toFixed(4)},${lon.toFixed(4)})"</code></div>
+    </div>`;
+}
+
+function renderTasacion(t) {
+  const meta = t.contexto || {};
+  return `
+    <div class="alert-item success" style="margin-top:4px">
+      <div class="alert-title">Tasación · ${t.proveedor}</div>
+      <div style="font-size:18px;color:var(--accent);font-weight:700;margin:6px 0">
+        UF ${(t.valor_total_uf || 0).toLocaleString('es-CL')}
+        ${t.rango_min_uf && t.rango_max_uf ? `<span style="font-size:11px;color:var(--muted);font-weight:400"> · rango UF ${t.rango_min_uf.toLocaleString('es-CL')}–${t.rango_max_uf.toLocaleString('es-CL')}</span>` : ''}
+      </div>
+      <div class="alert-meta" style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:6px">
+        <span>UF/m²: ${t.uf_m2 || '—'}</span>
+        <span>Método: ${t.metodo || '—'}</span>
+        <span>Confianza: ${t.confianza || '—'}</span>
+        <span>Fecha: ${(t.fecha_tasacion || '').slice(0,10)}</span>
+      </div>
+    </div>`;
 }
 
 function showOferta(p) {
