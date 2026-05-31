@@ -451,6 +451,78 @@
   @keyframes spin { to { transform: rotate(360deg); } }
   .loader.hidden { opacity: 0; pointer-events: none; }
 
+  /* ============ MODO PRESENTACIÓN ============ */
+  body.presentation .header,
+  body.presentation .tabs,
+  body.presentation .sidebar,
+  body.presentation .panel,
+  body.presentation .statusbar { display: none !important; }
+  body.presentation .app { grid-template-rows: 1fr !important; grid-template-columns: 1fr !important; }
+  body.presentation .main { grid-template-columns: 1fr !important; }
+  body.presentation .map-container { grid-column: 1 / -1; }
+  body.presentation .pres-mark {
+    position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%);
+    z-index: 100; background: rgba(10,17,31,0.85);
+    color: var(--text); padding: 8px 16px; border-radius: 999px;
+    font-size: 11px; backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .pres-mark .pm-logo {
+    width: 18px; height: 18px; border-radius: 4px;
+    background: linear-gradient(135deg, var(--accent), #8C5024);
+    display: grid; place-items: center; color: white; font-size: 10px; font-weight: 700;
+  }
+  body:not(.presentation) .pres-mark { display: none; }
+
+  /* ============ MINI-MAPA PIP ============ */
+  .minimap {
+    position: absolute; bottom: 50px; left: 12px;
+    width: 200px; height: 160px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden;
+    z-index: 6; box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .minimap:hover { border-color: var(--accent); transform: scale(1.03); }
+  .minimap-label {
+    position: absolute; top: 6px; left: 6px;
+    background: rgba(10,17,31,0.85);
+    color: var(--text); font-size: 10px;
+    padding: 2px 8px; border-radius: 3px;
+    z-index: 2; backdrop-filter: blur(4px);
+  }
+  .minimap-close {
+    position: absolute; top: 6px; right: 6px; z-index: 3;
+    width: 18px; height: 18px; border-radius: 50%;
+    background: rgba(10,17,31,0.85); color: var(--muted);
+    border: none; cursor: pointer; font-size: 11px;
+    display: grid; place-items: center;
+  }
+  .minimap-close:hover { color: var(--text); }
+  #minimap-canvas { width: 100%; height: 100%; }
+
+  /* ============ SHORTCUTS MODAL ============ */
+  .shortcuts-modal {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 8px; padding: 18px 20px;
+    width: 90%; max-width: 380px;
+    color: var(--text);
+  }
+  .shortcuts-modal h3 { font-size: 14px; margin-bottom: 12px; }
+  .shortcuts-modal .sc-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 6px 0; font-size: 12px; border-bottom: 1px solid var(--border-soft);
+  }
+  .shortcuts-modal .sc-row:last-child { border-bottom: none; }
+  .shortcuts-modal .sc-key {
+    background: var(--bg); border: 1px solid var(--border);
+    padding: 2px 8px; border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace; font-size: 10.5px;
+    color: var(--accent);
+  }
+
   /* ============ SEARCH DROPDOWN ============ */
   .search-results {
     position: absolute; top: 100%; left: 0; right: 0;
@@ -719,6 +791,11 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg>
 </button>
 <div class="backdrop" id="backdrop"></div>
+<div class="pres-mark">
+  <div class="pm-logo">M</div>
+  <span>Magnus Radar · La Higuera</span>
+  <span style="color:var(--muted)">ESC para salir</span>
+</div>
 
 <div class="app">
 
@@ -950,6 +1027,12 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12l10-9 10 9-10 9z"/><path d="M2 12l10 5 10-5"/></svg>
           3D
         </button>
+        <button class="map-btn" id="btnPres" title="Modo presentación (F)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"/></svg>
+        </button>
+        <button class="map-btn" id="btnHelp" title="Atajos (?)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </button>
         <button class="map-btn" id="drawBtn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 19 21 12 17 5 21 12 2"/></svg>
           Dibujar polígono
@@ -967,6 +1050,11 @@
         </div>
       </div>
       <div class="map-scale" id="mapScale">— · zoom 10.0</div>
+      <div class="minimap" id="minimap" style="display:none">
+        <div class="minimap-label" id="minimapLabel">Andacollo</div>
+        <button class="minimap-close" id="minimapClose">×</button>
+        <div id="minimap-canvas"></div>
+      </div>
       <div class="selection-bar" id="selectionBar">
         <span id="selectionCount">1 predio seleccionado</span>
         <span class="sb-action" id="clearSelection">Limpiar</span>
@@ -3319,6 +3407,98 @@ comunaPill?.addEventListener('click', (e) => {
       menu.remove(); document.removeEventListener('click', close);
     }
   });
+});
+
+// ============ MODO PRESENTACIÓN ============
+function togglePresentation() {
+  document.body.classList.toggle('presentation');
+  // Forzar resize del mapa
+  setTimeout(() => map.resize(), 50);
+  const isOn = document.body.classList.contains('presentation');
+  window.__showToast?.(isOn ? '✓ Modo presentación · ESC para salir' : 'Modo normal');
+}
+document.getElementById('btnPres')?.addEventListener('click', togglePresentation);
+
+// ============ MINI-MAPA PIP ============
+let minimap = null;
+function updateMinimapLabel() {
+  const otra = currentComuna === 4102 ? 'Andacollo' : 'La Higuera';
+  document.getElementById('minimapLabel').textContent = otra;
+}
+function initMinimap() {
+  const el = document.getElementById('minimap');
+  el.style.display = 'block';
+  updateMinimapLabel();
+  if (!minimap) {
+    minimap = new maplibregl.Map({
+      container: 'minimap-canvas',
+      style: {
+        version: 8,
+        sources: { base: { type: 'raster', tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'], tileSize: 256 }},
+        layers: [{ id: 'base', type: 'raster', source: 'base' }]
+      },
+      center: COMUNAS_META[currentComuna === 4102 ? 4302 : 4102].center,
+      zoom: 9,
+      interactive: false,
+      attributionControl: false
+    });
+  }
+  // Click mini-mapa → switch
+  el.onclick = (e) => {
+    if (e.target.closest('#minimapClose')) return;
+    switchComuna(currentComuna === 4102 ? 4302 : 4102);
+    setTimeout(() => {
+      minimap?.jumpTo({ center: COMUNAS_META[currentComuna === 4102 ? 4302 : 4102].center, zoom: 9 });
+      updateMinimapLabel();
+    }, 1200);
+  };
+  document.getElementById('minimapClose').onclick = (e) => {
+    e.stopPropagation();
+    document.getElementById('minimap').style.display = 'none';
+  };
+}
+
+// ============ SHORTCUTS MODAL ============
+function showShortcuts() {
+  const m = document.createElement('div');
+  m.className = 'modal-backdrop visible';
+  m.id = 'shortcutsModal';
+  m.innerHTML = `
+    <div class="shortcuts-modal">
+      <h3>Atajos de teclado</h3>
+      <div class="sc-row"><span>Modo presentación</span><span class="sc-key">F</span></div>
+      <div class="sc-row"><span>Vista 3D</span><span class="sc-key">3</span></div>
+      <div class="sc-row"><span>Buscar</span><span class="sc-key">⌘ K</span></div>
+      <div class="sc-row"><span>Mini-mapa comuna alterna</span><span class="sc-key">M</span></div>
+      <div class="sc-row"><span>Cerrar / cancelar</span><span class="sc-key">ESC</span></div>
+      <div class="sc-row"><span>Cerrar polígono dibujo</span><span class="sc-key">Enter</span></div>
+      <div class="sc-row"><span>Ver atajos</span><span class="sc-key">?</span></div>
+      <div class="sc-row"><span>Cambiar idioma ES/EN</span><span class="sc-key">L</span></div>
+      <div class="sc-row"><span>Tour de bienvenida</span><span class="sc-key">T</span></div>
+      <div style="text-align:right;margin-top:12px">
+        <button class="btn btn-primary" onclick="document.getElementById('shortcutsModal').remove()">Entendido</button>
+      </div>
+    </div>`;
+  document.body.appendChild(m);
+  m.onclick = (e) => { if (e.target === m) m.remove(); };
+}
+document.getElementById('btnHelp')?.addEventListener('click', showShortcuts);
+
+// Atajos globales
+document.addEventListener('keydown', (e) => {
+  // Solo si no estamos en input
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'f' || e.key === 'F') togglePresentation();
+  else if (e.key === '3') toggle3D();
+  else if (e.key === '/') { e.preventDefault(); document.getElementById('searchInput')?.focus(); }
+  else if (e.key === 'm' || e.key === 'M') initMinimap();
+  else if (e.key === '?' || (e.shiftKey && e.key === '/')) showShortcuts();
+  else if (e.key === 'l' || e.key === 'L') document.getElementById('btnLang')?.click();
+  else if (e.key === 't' || e.key === 'T') { localStorage.removeItem('magnus_tour_v1'); window.__resetTour?.(); }
+  else if (e.key === 'Escape') {
+    if (document.body.classList.contains('presentation')) togglePresentation();
+    document.getElementById('shortcutsModal')?.remove();
+  }
 });
 
 // ============ EDITOR DE POLÍGONO (click-to-draw nativo) ============
