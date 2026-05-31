@@ -450,6 +450,56 @@
   @keyframes spin { to { transform: rotate(360deg); } }
   .loader.hidden { opacity: 0; pointer-events: none; }
 
+  /* ============ SEARCH DROPDOWN ============ */
+  .search-results {
+    position: absolute; top: 100%; left: 0; right: 0;
+    margin-top: 4px;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 6px; padding: 4px;
+    max-height: 400px; overflow-y: auto;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    z-index: 30;
+    display: none;
+  }
+  .search-results.visible { display: block; }
+  .search-group { padding: 4px 0; }
+  .search-group-title {
+    padding: 6px 10px 4px;
+    font-size: 9.5px; font-weight: 600;
+    color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .search-item {
+    display: flex; align-items: center; gap: 9px;
+    padding: 7px 10px; border-radius: 4px;
+    cursor: pointer; transition: background 0.12s;
+  }
+  .search-item:hover, .search-item.active { background: var(--surface-2); }
+  .search-item .si-icon {
+    width: 24px; height: 24px; border-radius: 4px;
+    background: var(--accent-soft); color: var(--accent);
+    display: grid; place-items: center;
+    font-size: 9px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .search-item .si-body { flex: 1; min-width: 0; }
+  .search-item .si-title { font-size: 12px; color: var(--text); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .search-item .si-sub { font-size: 10.5px; color: var(--muted); }
+  .search-empty { padding: 20px 12px; text-align: center; color: var(--muted); font-size: 11.5px; }
+
+  /* Search container relative para dropdown */
+  .header-center { position: relative; }
+
+  /* Selector comuna */
+  .comuna-pill {
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 3px 9px; background: var(--surface-2);
+    border: 1px solid var(--border); border-radius: 999px;
+    font-size: 10.5px; cursor: pointer;
+    transition: all 0.15s; color: var(--text-dim);
+  }
+  .comuna-pill:hover { border-color: var(--accent); color: var(--text); }
+  .comuna-pill .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--success); }
+
   /* ============ ONBOARDING TOUR ============ */
   .tour-backdrop {
     display: none; position: fixed; inset: 0;
@@ -677,15 +727,20 @@
       <div class="brand-logo">M</div>
       <div class="brand-text">
         <h1>Magnus Radar</h1>
-        <div class="sub">Inteligencia Territorial · Comuna La Higuera · <span style="color:var(--success)">● LIVE</span></div>
+        <div class="sub" style="display:flex;align-items:center;gap:6px">
+          <span>Inteligencia Territorial</span>
+          <span style="color:var(--border)">·</span>
+          <span class="comuna-pill" id="comunaPill"><span class="dot"></span>La Higuera</span>
+        </div>
       </div>
     </div>
     <div class="header-center">
       <div class="search-box">
         <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" id="searchInput" placeholder="Buscar rol SII, sector, proyecto SEIA…" />
+        <input type="text" id="searchInput" placeholder="Buscar rol SII, proyecto, derecho DGA, área protegida…" autocomplete="off" />
         <span class="kbd">⌘K</span>
       </div>
+      <div class="search-results" id="searchResults"></div>
     </div>
     <div class="header-right">
       <button class="btn-icon" title="Compartir vista" id="btnShare">
@@ -1111,7 +1166,8 @@ const map = new maplibregl.Map({
   center: [-71.05, -29.39],
   zoom: 9.5,
   maxZoom: 18,
-  minZoom: 7
+  minZoom: 7,
+  preserveDrawingBuffer: true  // permite exportar PNG (toDataURL)
 });
 
 let predios = null;
@@ -2888,21 +2944,182 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-// Search filter
-document.getElementById('searchInput').addEventListener('input', (e) => {
-  const q = e.target.value.trim().toLowerCase();
-  if (!predios || !map.getLayer('predios-fill')) return;
-  if (!q) {
-    map.setFilter('predios-fill', null);
-    map.setFilter('predios-line', null);
+// ============ BÚSQUEDA GLOBAL CON DROPDOWN ============
+const searchInput = document.getElementById('searchInput');
+const searchResults = document.getElementById('searchResults');
+let searchTimer;
+
+function doGlobalSearch(q) {
+  q = q.trim().toLowerCase();
+  if (!q || q.length < 2) {
+    searchResults.classList.remove('visible');
     return;
   }
-  const filter = ['any',
-    ['in', q, ['downcase', ['get', 'rol']]],
-    ['in', q, ['downcase', ['coalesce', ['get', 'sector'], '']]]
-  ];
-  map.setFilter('predios-fill', filter);
-  map.setFilter('predios-line', filter);
+  const groups = [];
+
+  // Predios (top 5 por rol/sector match)
+  if (predios) {
+    const matches = predios.features.filter(f => {
+      const p = f.properties;
+      return p.rol.toLowerCase().includes(q) || (p.sector||'').toLowerCase().includes(q);
+    }).slice(0, 5);
+    if (matches.length) groups.push({ title: `Predios (${matches.length}${matches.length===5?'+':''})`, items: matches.map(f => ({
+      type: 'predio', icon: 'P', title: `Rol ${f.properties.rol}`,
+      sub: `${f.properties.sector || 'Sin sector'} · ${(f.properties.area_ha||0).toLocaleString('es-CL')} ha`,
+      lat: f.properties.lat, lon: f.properties.lon, feature: f
+    }))});
+  }
+
+  // SEIA
+  const seiaM = seiaPoints.features.filter(f => {
+    const p = f.properties;
+    return p.nombre.toLowerCase().includes(q) || (p.titular||'').toLowerCase().includes(q) || (p.tipo||'').toLowerCase().includes(q);
+  }).slice(0, 5);
+  if (seiaM.length) groups.push({ title: `Proyectos SEIA (${seiaM.length})`, items: seiaM.map(f => ({
+    type: 'seia', icon: 'S', title: f.properties.nombre,
+    sub: `${f.properties.titular} · ${f.properties.tipo}`,
+    lat: f.geometry.coordinates[1], lon: f.geometry.coordinates[0],
+    onClick: () => showSeia(f.properties)
+  }))});
+
+  // DGA
+  if (dgaData) {
+    const dgaM = dgaData.features.filter(f => {
+      const p = f.properties;
+      return (p.titular||'').toLowerCase().includes(q) || (p.codigo||'').toLowerCase().includes(q);
+    }).slice(0, 5);
+    if (dgaM.length) groups.push({ title: `Derechos DGA (${dgaM.length})`, items: dgaM.map(f => ({
+      type: 'dga', icon: 'D', title: f.properties.codigo,
+      sub: `${f.properties.titular} · ${f.properties.caudal} l/s`,
+      lat: f.geometry.coordinates[1], lon: f.geometry.coordinates[0],
+      onClick: () => showDga(f.properties)
+    }))});
+  }
+
+  // Áreas protegidas
+  const areasM = areasProtegidas.features.filter(f =>
+    f.properties.nombre.toLowerCase().includes(q) || f.properties.tipo.toLowerCase().includes(q)
+  );
+  if (areasM.length) groups.push({ title: `Áreas protegidas (${areasM.length})`, items: areasM.map(f => ({
+    type: 'area', icon: 'A', title: f.properties.nombre, sub: f.properties.tipo,
+    lat: -29.25, lon: -71.5,
+    onClick: () => showAreaProtegida(f.properties)
+  }))});
+
+  // Localidades
+  const pueblosM = pueblos.features.filter(f =>
+    f.properties.nombre.toLowerCase().includes(q)
+  );
+  if (pueblosM.length) groups.push({ title: `Localidades (${pueblosM.length})`, items: pueblosM.map(f => ({
+    type: 'pueblo', icon: 'L', title: f.properties.nombre, sub: f.properties.tipo,
+    lat: f.geometry.coordinates[1], lon: f.geometry.coordinates[0]
+  }))});
+
+  // Render dropdown
+  if (!groups.length) {
+    searchResults.innerHTML = `<div class="search-empty">Sin resultados para "${q}"</div>`;
+  } else {
+    searchResults.innerHTML = groups.map(g => `
+      <div class="search-group">
+        <div class="search-group-title">${g.title}</div>
+        ${g.items.map((it, i) => `
+          <div class="search-item" data-type="${it.type}" data-lat="${it.lat}" data-lon="${it.lon}" data-idx="${i}">
+            <div class="si-icon">${it.icon}</div>
+            <div class="si-body">
+              <div class="si-title">${it.title}</div>
+              <div class="si-sub">${it.sub}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `).join('');
+    // Bind clicks
+    let allItems = [];
+    groups.forEach(g => allItems = allItems.concat(g.items));
+    searchResults.querySelectorAll('.search-item').forEach((el, idx) => {
+      el.addEventListener('click', () => {
+        const it = allItems[idx];
+        if (!it) return;
+        map.flyTo({ center: [it.lon, it.lat], zoom: 13.5, duration: 1000 });
+        if (it.onClick) setTimeout(it.onClick, 300);
+        else if (it.feature) setTimeout(() => selectPredio(it.feature), 300);
+        searchResults.classList.remove('visible');
+        searchInput.value = '';
+      });
+    });
+  }
+  searchResults.classList.add('visible');
+}
+
+searchInput.addEventListener('input', (e) => {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => doGlobalSearch(e.target.value), 120);
+});
+searchInput.addEventListener('focus', (e) => { if (e.target.value) doGlobalSearch(e.target.value); });
+searchInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') { searchResults.classList.remove('visible'); searchInput.blur(); }
+});
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.header-center')) searchResults.classList.remove('visible');
+});
+
+// ============ SELECTOR DE COMUNA ============
+const comunaPill = document.getElementById('comunaPill');
+comunaPill?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const existing = document.getElementById('comunaMenu');
+  if (existing) { existing.remove(); return; }
+  const menu = document.createElement('div');
+  menu.id = 'comunaMenu';
+  menu.className = 'user-menu visible';
+  menu.style.cssText = 'top:48px;left:auto;right:auto;min-width:220px';
+  const rect = comunaPill.getBoundingClientRect();
+  menu.style.left = rect.left + 'px';
+  menu.innerHTML = `
+    <div class="user-menu-item" style="color:var(--muted);cursor:default;font-size:9.5px;text-transform:uppercase;letter-spacing:0.06em">Región Coquimbo</div>
+    <div class="user-menu-item" style="background:var(--surface-2);color:var(--accent)">
+      <div style="display:flex;align-items:center;gap:8px"><span style="color:var(--success)">●</span> La Higuera <span style="margin-left:auto;color:var(--muted);font-size:10px">activa</span></div>
+    </div>
+    <div class="user-menu-divider"></div>
+    <div class="user-menu-item" style="color:var(--muted);cursor:default">○ Andacollo <span style="margin-left:auto;font-size:10px;color:var(--accent)">próximamente</span></div>
+    <div class="user-menu-item" style="color:var(--muted);cursor:default">○ Vicuña <span style="margin-left:auto;font-size:10px;color:var(--accent)">próximamente</span></div>
+    <div class="user-menu-item" style="color:var(--muted);cursor:default">○ Coquimbo cap. <span style="margin-left:auto;font-size:10px;color:var(--accent)">próximamente</span></div>
+    <div class="user-menu-divider"></div>
+    <div class="user-menu-item" data-action="solicitar" style="color:var(--accent);text-align:center">+ Solicitar comuna</div>
+  `;
+  document.body.appendChild(menu);
+  menu.addEventListener('click', (ev) => {
+    if (ev.target.closest('[data-action="solicitar"]')) {
+      window.open('mailto:max@xpu.cl?subject=Magnus Radar — Solicitar comuna&body=Hola, quiero que agreguen la comuna XXX a Magnus Radar.', '_blank');
+      menu.remove();
+    }
+  });
+  document.addEventListener('click', function close(ev) {
+    if (!ev.target.closest('#comunaMenu') && !ev.target.closest('#comunaPill')) {
+      menu.remove(); document.removeEventListener('click', close);
+    }
+  });
+});
+
+// ============ EXPORTAR PNG DEL MAPA ============
+document.querySelector('.btn-ghost')?.addEventListener('click', (e) => {
+  if (e.target.textContent.trim() !== 'Exportar') return;
+  const canvas = map.getCanvas();
+  // MapLibre necesita preserveDrawingBuffer:true en algunos navegadores. Forzar render.
+  map.triggerRepaint();
+  setTimeout(() => {
+    try {
+      const link = document.createElement('a');
+      const date = new Date().toISOString().slice(0,10);
+      link.download = `magnus-radar-la-higuera-${date}.png`;
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+      window.__showToast?.('✓ PNG descargado');
+    } catch (err) {
+      window.__showToast?.('Error: el navegador bloqueó la exportación');
+      console.error(err);
+    }
+  }, 200);
 });
 
 // Sector filter
