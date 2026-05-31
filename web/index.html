@@ -862,6 +862,10 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       Timeline <span class="pro-tag">PRO</span>
     </button>
+    <button class="tab" data-tab="inmobiliaria">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-5h-2v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+      Inmobiliaria <span class="badge">22</span>
+    </button>
     <button class="tab" data-tab="comparar">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="18"/><rect x="14" y="3" width="7" height="18"/></svg>
       Comparar
@@ -972,6 +976,18 @@
           <span class="layer-swatch" style="background:rgba(249,115,22,0.3);border-color:#F97316"></span>
           <label for="l-concesiones" class="layer-label">Concesiones mineras</label>
           <span class="layer-count">12</span>
+        </div>
+        <div class="layer-item">
+          <input type="checkbox" checked id="l-ofertas" data-layer="ofertas"/>
+          <span class="layer-swatch" style="background:#10B981;border-radius:50%"></span>
+          <label for="l-ofertas" class="layer-label">Ofertas inmobiliarias</label>
+          <span class="layer-count">22</span>
+        </div>
+        <div class="layer-item">
+          <input type="checkbox" id="l-tx" data-layer="tx"/>
+          <span class="layer-swatch" style="background:#A855F7;border-radius:50%"></span>
+          <label for="l-tx" class="layer-label">Transacciones CBR</label>
+          <span class="layer-count">6</span>
         </div>
       </div>
 
@@ -1351,9 +1367,13 @@ async function loadPrediosFromAPI() {
     const features = allRows.map(r => ({
       type: 'Feature',
       properties: {
-        rol: r.rol, sector: r.sector || 'Sin sector',
+        id: r.id, rol: r.rol, sector: r.sector || 'Sin sector',
         area_ha: r.area_ha, estado: r.estado_sii || 'V',
-        lat: r.lat, lon: r.lon, flags: r.flags || []
+        lat: r.lat, lon: r.lon, flags: r.flags || [],
+        propietario: r.propietario_nombre, rut: r.propietario_rut,
+        destino: r.destino_sii, avaluo_uf: r.avaluo_fiscal_uf,
+        manzana: r.manzana, predio: r.predio,
+        metadata: r.metadata || {}
       },
       geometry: typeof r.geometry === 'string' ? JSON.parse(r.geometry) : r.geometry
     }));
@@ -1363,6 +1383,55 @@ async function loadPrediosFromAPI() {
     showApiError('predios_publicos', err.message);
     return null;
   }
+}
+
+async function loadOfertasFromAPI() {
+  try {
+    const rows = await sb('ofertas_publicas?select=*');
+    return {
+      type: 'FeatureCollection',
+      features: rows.map(r => ({
+        type: 'Feature',
+        properties: {
+          id: r.id, titulo: r.titulo, descripcion: r.descripcion,
+          tipo: r.tipo, uso: r.uso,
+          precio_uf: r.precio_uf, precio_clp: r.precio_clp,
+          arriendo_uf: r.precio_arriendo_mensual_uf,
+          sup_m2: r.superficie_m2, sup_ha: r.superficie_total_ha,
+          uf_m2: r.uf_m2,
+          dorm: r.dormitorios, banos: r.banos,
+          sector: r.sector, direccion: r.direccion,
+          vendedor: r.vendedor_nombre, tel: r.vendedor_telefono,
+          email: r.vendedor_email, corredor: r.vendedor_corredor,
+          fuente: r.fuente, url: r.fuente_url,
+          publicada: r.publicada, flags: r.flags || [],
+          notas: r.notas_internas, comuna_codigo: r.comuna_codigo
+        },
+        geometry: { type: 'Point', coordinates: [r.lon, r.lat] }
+      }))
+    };
+  } catch (err) { console.error('Error ofertas:', err); return null; }
+}
+
+async function loadTransaccionesFromAPI() {
+  try {
+    const rows = await sb('transacciones_publicas?select=*');
+    return {
+      type: 'FeatureCollection',
+      features: rows.filter(r => r.lat && r.lon).map(r => ({
+        type: 'Feature',
+        properties: {
+          id: r.id, rol: r.predio_rol, fojas: r.fojas, numero: r.numero,
+          ano: r.ano, fecha: r.fecha, tipo: r.tipo,
+          precio_uf: r.precio_uf, sup_m2: r.superficie_m2, uf_m2: r.uf_m2,
+          vendedor: r.vendedor_nombre, vendedor_rut: r.vendedor_rut,
+          comprador: r.comprador_nombre, comprador_rut: r.comprador_rut,
+          notaria: r.notaria, notas: r.notas
+        },
+        geometry: { type: 'Point', coordinates: [r.lon, r.lat] }
+      }))
+    };
+  } catch (err) { console.error('Error tx:', err); return null; }
 }
 
 async function loadConcesionesFromAPI() {
@@ -1443,15 +1512,20 @@ function showApiError(table, msg) {
 
 let dgaData = null;
 let concesionesData = null;
+let ofertasData = null;
+let txData = null;
 
 (async () => {
-  const [prediosData, seiaData, dga, conc] = await Promise.all([
-    loadPrediosFromAPI(), loadSeiaFromAPI(), loadDgaFromAPI(), loadConcesionesFromAPI()
+  const [prediosData, seiaData, dga, conc, ofs, txs] = await Promise.all([
+    loadPrediosFromAPI(), loadSeiaFromAPI(), loadDgaFromAPI(), loadConcesionesFromAPI(),
+    loadOfertasFromAPI(), loadTransaccionesFromAPI()
   ]);
   if (!prediosData) return;
   if (seiaData) seiaPoints.features = seiaData.features;
   dgaData = dga || { type:'FeatureCollection', features:[] };
   concesionesData = conc || { type:'FeatureCollection', features:[] };
+  ofertasData = ofs || { type:'FeatureCollection', features:[] };
+  txData = txs || { type:'FeatureCollection', features:[] };
   predios = prediosData;
   setupSectorFilters(prediosData);
   document.getElementById('loader').classList.add('hidden');
@@ -1641,6 +1715,66 @@ function addPrediosLayer(data) {
   map.on('mouseenter', 'concesiones-fill', () => map.getCanvas().style.cursor = 'pointer');
   map.on('mouseleave', 'concesiones-fill', () => map.getCanvas().style.cursor = '');
 
+  // OFERTAS INMOBILIARIAS
+  map.addSource('ofertas', { type:'geojson', data: ofertasData });
+  map.addLayer({
+    id: 'ofertas-points', type: 'circle', source: 'ofertas',
+    paint: {
+      'circle-radius': [
+        'case',
+        ['in', 'mandato_propio', ['get', 'flags']], 14,
+        ['in', 'interesante', ['get', 'flags']], 11,
+        8
+      ],
+      'circle-color': [
+        'match', ['get','tipo'],
+        'venta', '#10B981',
+        'arriendo', '#3B82F6',
+        'arriendo_temporal', '#06B6D4',
+        'remate', '#EF4444',
+        '#94A3B8'
+      ],
+      'circle-stroke-color': [
+        'case',
+        ['in', 'mandato_propio', ['get','flags']], '#C97B3A',
+        '#FFFFFF'
+      ],
+      'circle-stroke-width': [
+        'case',
+        ['in', 'mandato_propio', ['get','flags']], 3,
+        ['in', 'interesante', ['get','flags']], 2,
+        1.5
+      ],
+      'circle-opacity': 0.92
+    }
+  });
+  map.on('click', 'ofertas-points', e => {
+    if (!e.features.length) return;
+    showOferta(e.features[0].properties);
+  });
+  map.on('mouseenter', 'ofertas-points', () => map.getCanvas().style.cursor = 'pointer');
+  map.on('mouseleave', 'ofertas-points', () => map.getCanvas().style.cursor = '');
+
+  // TRANSACCIONES CBR
+  map.addSource('tx', { type:'geojson', data: txData });
+  map.addLayer({
+    id: 'tx-points', type: 'circle', source: 'tx',
+    layout: { visibility: 'none' },
+    paint: {
+      'circle-radius': 8,
+      'circle-color': '#A855F7',
+      'circle-stroke-color': '#FFF',
+      'circle-stroke-width': 1.5,
+      'circle-opacity': 0.85
+    }
+  });
+  map.on('click', 'tx-points', e => {
+    if (!e.features.length) return;
+    showTransaccion(e.features[0].properties);
+  });
+  map.on('mouseenter', 'tx-points', () => map.getCanvas().style.cursor = 'pointer');
+  map.on('mouseleave', 'tx-points', () => map.getCanvas().style.cursor = '');
+
   // Caminos secundarios
   map.addSource('caminos-sec', { type: 'geojson', data: caminosSec });
   map.addLayer({
@@ -1789,8 +1923,12 @@ function selectPredio(feature) {
 
 function renderPredioPanel(p, isHijuela2) {
   const flags = [];
-  if (isHijuela2) flags.push('<span class="panel-flag warning">REVISAR</span>');
+  const flagArr = p.flags || [];
+  if (flagArr.includes('mandato') || flagArr.includes('magnus_exclusivo')) flags.push('<span class="panel-flag warning">MANDATO MAGNUS</span>');
+  if (flagArr.includes('andes-iron')) flags.push('<span class="panel-flag danger">ANDES IRON</span>');
+  if (isHijuela2 && flags.length === 0) flags.push('<span class="panel-flag warning">REVISAR</span>');
   if (p.area_ha > 5000) flags.push('<span class="panel-flag info">GRAN PREDIO</span>');
+  const meta = p.metadata || {};
 
   return `
     <div class="panel-header">
@@ -1824,13 +1962,35 @@ function renderPredioPanel(p, isHijuela2) {
     <div class="panel-body">
       <div class="field-grid">
         <div class="field"><div class="label">Rol SII</div><div class="value mono">${p.rol}</div></div>
-        <div class="field"><div class="label">Superficie</div><div class="value mono">${p.area_ha.toLocaleString('es-CL')} ha</div></div>
-        <div class="field"><div class="label">Manzana</div><div class="value mono">${p.manz || '—'}</div></div>
+        <div class="field"><div class="label">Superficie</div><div class="value mono">${(p.area_ha||0).toLocaleString('es-CL')} ha</div></div>
+        <div class="field"><div class="label">Manzana</div><div class="value mono">${p.manzana || p.manz || '—'}</div></div>
         <div class="field"><div class="label">Predio</div><div class="value mono">${p.predio || '—'}</div></div>
         <div class="field"><div class="label">Estado SII</div><div class="value">${p.estado === 'V' ? 'Vigente' : p.estado}</div></div>
+        <div class="field"><div class="label">Destino SII</div><div class="value">${p.destino || '—'}</div></div>
+        <div class="field"><div class="label">Avalúo fiscal</div><div class="value mono">${p.avaluo_uf ? 'UF '+p.avaluo_uf.toLocaleString('es-CL') : (meta.avaluo_estimado_uf ? 'UF ~'+meta.avaluo_estimado_uf.toLocaleString('es-CL')+' est.' : '—')}</div></div>
         <div class="field"><div class="label">Centroide</div><div class="value mono" style="font-size:10.5px">${p.lat.toFixed(4)}, ${p.lon.toFixed(4)}</div></div>
         <div class="field full"><div class="label">Sector</div><div class="value">${p.sector || 'Sin sector asignado'}</div></div>
       </div>
+
+      ${(p.propietario || p.rut) ? `
+      <div class="section">
+        <h4>Propietario (uso interno)</h4>
+        <div class="field full"><div class="label">Nombre</div><div class="value">${p.propietario || 'N/D'}</div></div>
+        ${p.rut ? `<div class="field" style="margin-top:6px"><div class="label">RUT</div><div class="value mono">${p.rut}</div></div>` : ''}
+        <div style="display:flex;gap:6px;margin-top:8px">
+          <a class="btn btn-ghost" href="https://www4.sii.cl/mapasui/internet/" target="_blank" style="flex:1;justify-content:center;padding:8px;font-size:11px">SII Mapas</a>
+          <a class="btn btn-ghost" href="https://www4.sii.cl/sc/contribuyentes/consultaSituacionTributaria.html?contribuyente=${(p.rut||'').replace(/\\./g,'').replace('-','')}" target="_blank" style="flex:1;justify-content:center;padding:8px;font-size:11px">SII Contribuyente</a>
+        </div>
+      </div>` : ''}
+
+      ${meta.mandato ? `
+      <div class="section">
+        <h4>Mandato vigente</h4>
+        <div class="alert-item critical">
+          <div class="alert-title">${meta.mandato}</div>
+          ${meta.notas_internas ? `<div class="alert-meta" style="margin-top:6px">${meta.notas_internas}</div>` : ''}
+        </div>
+      </div>` : ''}
 
       <div class="section">
         <h4>Análisis territorial automático</h4>
@@ -2109,7 +2269,9 @@ document.querySelectorAll('[data-layer]').forEach(cb => {
       caminos: ['caminos-sec-line'],
       'zona-dominga': ['zona-dominga-fill', 'zona-dominga-line'],
       heatmap: ['dga-heatmap'],
-      concesiones: ['concesiones-fill', 'concesiones-line']
+      concesiones: ['concesiones-fill', 'concesiones-line'],
+      ofertas: ['ofertas-points'],
+      tx: ['tx-points']
     };
     const ids = layerMap[cb.dataset.layer] || [];
     ids.forEach(id => {
@@ -2210,6 +2372,15 @@ function handleTabChange(tab) {
       showAguaPanel();
       break;
 
+    case 'inmobiliaria':
+      // Mostrar capa ofertas + tx, filtrar otras
+      ['ofertas-points','tx-points'].forEach(id => {
+        if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', 'visible');
+      });
+      if (map.getLayer('predios-fill')) map.setPaintProperty('predios-fill','fill-opacity', 0.12);
+      showInmobiliariaPanel();
+      break;
+
     case 'comparar':
       showCompararPanel();
       break;
@@ -2239,6 +2410,160 @@ function handleTabChange(tab) {
         </div>`;
       break;
   }
+}
+
+function showOferta(p) {
+  document.getElementById('selectionBar').classList.add('visible');
+  document.getElementById('selectionCount').textContent = `${p.tipo.toUpperCase()} · ${p.titulo.slice(0,60)}`;
+  const flags = [];
+  if ((p.flags||[]).includes('mandato_propio')) flags.push('<span class="panel-flag warning">MANDATO MAGNUS</span>');
+  if ((p.flags||[]).includes('interesante')) flags.push('<span class="panel-flag info">INTERESANTE</span>');
+  if ((p.flags||[]).includes('en_negociacion')) flags.push('<span class="panel-flag danger">EN NEGOCIACIÓN</span>');
+
+  const precioTxt = p.tipo === 'venta' || p.tipo === 'remate'
+    ? `<div class="value mono" style="font-size:18px;color:var(--accent)">UF ${(p.precio_uf||0).toLocaleString('es-CL')}</div>`
+    : `<div class="value mono" style="font-size:16px;color:var(--info)">UF ${(p.arriendo_uf||0).toLocaleString('es-CL')} / mes</div>`;
+
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-header">
+      <div class="panel-type-row">
+        <span class="panel-type">Oferta · ${p.tipo}${p.corredor?' · corredor':' · particular'}</span>
+        ${flags.join('')}
+      </div>
+      <div class="panel-title">${p.titulo}</div>
+      <div class="panel-subtitle">${p.sector || ''} · ${p.direccion || ''}</div>
+    </div>
+    <div class="panel-body">
+      <div style="background:var(--bg);border:1px solid var(--border);padding:14px;border-radius:6px;margin-bottom:14px">
+        ${precioTxt}
+        <div style="font-size:11px;color:var(--muted);margin-top:4px">
+          ${p.sup_m2 ? p.sup_m2.toLocaleString('es-CL') + ' m²' : ''}
+          ${p.sup_ha ? ' · ' + p.sup_ha + ' ha' : ''}
+          ${p.uf_m2 ? ' · <b style="color:var(--accent)">UF ' + p.uf_m2 + '/m²</b>' : ''}
+          ${p.dorm ? ' · ' + p.dorm + ' dorm' : ''}
+          ${p.banos ? ' · ' + p.banos + ' baños' : ''}
+        </div>
+      </div>
+
+      <div class="field-grid">
+        <div class="field full"><div class="label">Vendedor</div><div class="value">${p.vendedor || 'N/D'}</div></div>
+        <div class="field"><div class="label">Teléfono</div><div class="value mono">${p.tel || '—'}</div></div>
+        <div class="field"><div class="label">Email</div><div class="value mono" style="font-size:10.5px">${p.email || '—'}</div></div>
+        <div class="field"><div class="label">Uso</div><div class="value">${p.uso || '—'}</div></div>
+        <div class="field"><div class="label">Publicada</div><div class="value mono">${p.publicada || '—'}</div></div>
+      </div>
+
+      ${p.notas ? `
+      <div class="section">
+        <h4>Notas internas</h4>
+        <div style="font-size:12px;color:var(--text-dim);background:rgba(201,123,58,0.08);padding:10px;border-left:3px solid var(--accent);border-radius:4px;line-height:1.5">${p.notas}</div>
+      </div>` : ''}
+
+      <div class="section">
+        <h4>Acciones</h4>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          ${p.tel ? `<a class="btn btn-primary" href="tel:${p.tel.replace(/\\s/g,'')}" style="justify-content:center;padding:9px 12px">📞 Llamar al vendedor</a>` : ''}
+          ${p.tel ? `<a class="btn btn-ghost" href="https://wa.me/${p.tel.replace(/[^0-9]/g,'')}" target="_blank" style="justify-content:center;padding:9px 12px">💬 WhatsApp</a>` : ''}
+          ${p.email ? `<a class="btn btn-ghost" href="mailto:${p.email}" style="justify-content:center;padding:9px 12px">✉ Email</a>` : ''}
+          ${p.url ? `<a class="btn btn-ghost" href="${p.url}" target="_blank" style="justify-content:center;padding:9px 12px">🔗 Ver en ${p.fuente}</a>` : ''}
+        </div>
+      </div>
+
+      <div class="section">
+        <h4>Fuente</h4>
+        <div style="font-size:11px;color:var(--muted)">${p.fuente} · ID ${p.id}</div>
+      </div>
+    </div>`;
+}
+
+function showTransaccion(p) {
+  document.getElementById('selectionBar').classList.add('visible');
+  document.getElementById('selectionCount').textContent = `Tx CBR · ${p.tipo} · ${p.fecha}`;
+  const ufm2 = p.uf_m2 ? `UF ${p.uf_m2}/m²` : '';
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-header">
+      <div class="panel-type-row">
+        <span class="panel-type">Transacción CBR · ${p.tipo}</span>
+        <span class="panel-flag info">${p.fecha}</span>
+      </div>
+      <div class="panel-title">${p.tipo === 'mandato_corretaje' ? 'Mandato Magnus' : 'Inscripción CBR'} · Fojas ${p.fojas}</div>
+      <div class="panel-subtitle">Rol ${p.rol || '—'} · ${p.notaria}</div>
+    </div>
+    <div class="panel-body">
+      <div class="field-grid">
+        <div class="field"><div class="label">Precio</div><div class="value mono">${p.precio_uf ? 'UF ' + p.precio_uf.toLocaleString('es-CL') : '—'}</div></div>
+        <div class="field"><div class="label">Superficie</div><div class="value mono">${p.sup_m2 ? (p.sup_m2/10000).toLocaleString('es-CL') + ' ha' : '—'}</div></div>
+        <div class="field"><div class="label">UF/m²</div><div class="value mono">${ufm2 || '—'}</div></div>
+        <div class="field"><div class="label">Fojas / N°</div><div class="value mono">${p.fojas} / ${p.numero}</div></div>
+        <div class="field full"><div class="label">Vendedor</div><div class="value">${p.vendedor}</div></div>
+        <div class="field"><div class="label">RUT vendedor</div><div class="value mono">${p.vendedor_rut || '—'}</div></div>
+        <div class="field"><div class="label">RUT comprador</div><div class="value mono">${p.comprador_rut || '—'}</div></div>
+        <div class="field full"><div class="label">Comprador</div><div class="value">${p.comprador}</div></div>
+      </div>
+      ${p.notas ? `<div class="section"><h4>Notas</h4><div style="font-size:12px;color:var(--text-dim);line-height:1.5">${p.notas}</div></div>` : ''}
+    </div>`;
+}
+
+function showInmobiliariaPanel() {
+  const ofs = ofertasData?.features || [];
+  const txs = txData?.features || [];
+
+  // Stats por tipo
+  const ventas = ofs.filter(f => f.properties.tipo === 'venta');
+  const arriendos = ofs.filter(f => f.properties.tipo.includes('arriendo'));
+  const totalUfVenta = ventas.reduce((s,f) => s + (f.properties.precio_uf || 0), 0);
+  const avgUFm2 = ventas.filter(f=>f.properties.uf_m2).reduce((s,f)=>s+f.properties.uf_m2, 0) / Math.max(1, ventas.filter(f=>f.properties.uf_m2).length);
+
+  // Top 5 por flag/precio
+  const interesantes = ofs.filter(f => (f.properties.flags||[]).some(x => ['mandato_propio','interesante'].includes(x)));
+
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-header">
+      <div class="panel-type-row">
+        <span class="panel-type">Mercado inmobiliario</span>
+        <span class="panel-flag warning">USO INTERNO</span>
+      </div>
+      <div class="panel-title">Ofertas y transacciones · ${COMUNAS_META[currentComuna].nombre}</div>
+      <div class="panel-subtitle">${ofs.length} ofertas activas · ${txs.length} transacciones CBR</div>
+    </div>
+    <div class="panel-body">
+
+      <div class="field-grid">
+        <div class="field"><div class="label">Ventas activas</div><div class="value mono">${ventas.length}</div></div>
+        <div class="field"><div class="label">Arriendos</div><div class="value mono">${arriendos.length}</div></div>
+        <div class="field"><div class="label">UF/m² promedio</div><div class="value mono">${avgUFm2.toFixed(2)}</div></div>
+        <div class="field"><div class="label">Stock total</div><div class="value mono">UF ${totalUfVenta.toLocaleString('es-CL')}</div></div>
+      </div>
+
+      <div class="section">
+        <h4>Activos prioritarios</h4>
+        ${interesantes.slice(0, 8).map(f => {
+          const p = f.properties;
+          const flag = (p.flags||[]).includes('mandato_propio') ? '<span style="color:var(--accent);font-size:9px;font-weight:700;background:rgba(201,123,58,0.15);padding:2px 6px;border-radius:3px;margin-right:6px">MANDATO</span>' : '';
+          return `<div class="doc-item" style="cursor:pointer" onclick='showOferta(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
+            <div class="doc-icon" style="background:${p.tipo==='venta'?'#10B981':'#3B82F6'};color:white">${p.tipo === 'venta' ? '$' : 'A'}</div>
+            <div class="doc-name">${flag}${p.titulo.slice(0,60)}<br><span class="doc-meta">${p.sector} · UF ${(p.precio_uf||p.arriendo_uf||0).toLocaleString('es-CL')} ${p.uf_m2 ? '· '+p.uf_m2+'/m²' : ''}</span></div>
+          </div>`;
+        }).join('')}
+      </div>
+
+      <div class="section">
+        <h4>Transacciones CBR recientes</h4>
+        ${txs.slice(0, 6).map(f => {
+          const p = f.properties;
+          return `<div class="doc-item" style="cursor:pointer" onclick='showTransaccion(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
+            <div class="doc-icon" style="background:#A855F7;color:white">CBR</div>
+            <div class="doc-name">${p.tipo} · ${p.vendedor.slice(0,30)}<br><span class="doc-meta">${p.fecha} · ${p.precio_uf ? 'UF '+p.precio_uf.toLocaleString('es-CL') : 'sin precio'} · Fojas ${p.fojas}</span></div>
+          </div>`;
+        }).join('')}
+      </div>
+
+      <div class="section">
+        <h4>Capas activas</h4>
+        <div class="alert-item success"><div class="alert-title">● Ofertas (verde venta · azul arriendo · rojo remate)</div></div>
+        <div class="alert-item info"><div class="alert-title">● Tx CBR púrpura — activable desde sidebar</div></div>
+      </div>
+    </div>`;
 }
 
 function showConcesion(p) {

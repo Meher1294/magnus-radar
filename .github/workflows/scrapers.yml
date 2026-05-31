@@ -35,3 +35,10 @@ jobs:
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
         run: python scrapers/sma_la_higuera.py
         continue-on-error: true
+
+      - name: Run portales inmobiliarios scraper (stub)
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: python scrapers/portal_inmobiliario.py
+        continue-on-error: true
