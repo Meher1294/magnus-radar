@@ -30,6 +30,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script type="importmap">
 { "imports": { "@supabase/supabase-js": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/+esm" } }
 </script>
@@ -699,6 +700,10 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
       Timeline <span class="pro-tag">PRO</span>
     </button>
+    <button class="tab" data-tab="analisis">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      Análisis
+    </button>
     <button class="tab" data-tab="docs">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
       Documentación
@@ -790,6 +795,12 @@
           <label for="l-zona-dominga" class="layer-label">Zona influencia Dominga</label>
           <span class="layer-count">10km</span>
         </div>
+        <div class="layer-item">
+          <input type="checkbox" id="l-heatmap" data-layer="heatmap"/>
+          <span class="layer-swatch" style="background:linear-gradient(90deg,#3B82F6,#EF4444)"></span>
+          <label for="l-heatmap" class="layer-label">Heatmap caudal DGA</label>
+          <span class="layer-count">87 pts</span>
+        </div>
       </div>
 
       <div class="sidebar-section">
@@ -828,13 +839,13 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 4v5h5"/></svg>
           Vista comuna
         </button>
+        <button class="map-btn" id="btn3D">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12l10-9 10 9-10 9z"/><path d="M2 12l10 5 10-5"/></svg>
+          3D
+        </button>
         <button class="map-btn" id="drawBtn">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 19 21 12 17 5 21 12 2"/></svg>
           Dibujar polígono
-        </button>
-        <button class="map-btn" id="measureBtn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.3 8.7L15.3 2.7a1 1 0 0 0-1.4 0L2.7 13.9a1 1 0 0 0 0 1.4l6 6a1 1 0 0 0 1.4 0l11.2-11.2a1 1 0 0 0 0-1.4z"/><line x1="7" y1="17" x2="9" y2="15"/><line x1="11" y1="13" x2="13" y2="11"/><line x1="15" y1="9" x2="17" y2="7"/></svg>
-          Medir
         </button>
       </div>
       <div class="map-overlay-tr">
@@ -1387,6 +1398,9 @@ function addPrediosLayer(data) {
   map.on('mouseenter', 'dga-points', () => map.getCanvas().style.cursor = 'pointer');
   map.on('mouseleave', 'dga-points', () => map.getCanvas().style.cursor = '');
 
+  // Heatmap (oculto por default)
+  addDgaHeatmap();
+
   // Caminos secundarios
   map.addSource('caminos-sec', { type: 'geojson', data: caminosSec });
   map.addLayer({
@@ -1853,7 +1867,8 @@ document.querySelectorAll('[data-layer]').forEach(cb => {
       pueblos: ['pueblos-points'],
       areas: ['areas-protegidas-fill', 'areas-protegidas-line', 'areas-protegidas-label'],
       caminos: ['caminos-sec-line'],
-      'zona-dominga': ['zona-dominga-fill', 'zona-dominga-line']
+      'zona-dominga': ['zona-dominga-fill', 'zona-dominga-line'],
+      heatmap: ['dga-heatmap']
     };
     const ids = layerMap[cb.dataset.layer] || [];
     ids.forEach(id => {
@@ -1866,8 +1881,9 @@ document.querySelectorAll('[data-layer]').forEach(cb => {
 
 // Zoom controls
 document.getElementById('zoomReset').addEventListener('click', () => {
-  map.flyTo({ center: [-71.05, -29.39], zoom: 9.5 });
+  map.flyTo({ center: [-71.05, -29.39], zoom: 9.5, pitch: 0, bearing: 0 });
 });
+document.getElementById('btn3D').addEventListener('click', toggle3D);
 
 document.getElementById('clearSelection').addEventListener('click', () => {
   if (selectedFeatureId !== null) {
@@ -1953,6 +1969,10 @@ function handleTabChange(tab) {
       showAguaPanel();
       break;
 
+    case 'analisis':
+      showAnalisisPanel();
+      break;
+
     case 'docs':
       showDocsPanel();
       break;
@@ -1974,6 +1994,238 @@ function handleTabChange(tab) {
         </div>`;
       break;
   }
+}
+
+// ============ DASHBOARD ANALÍTICO ============
+let __charts = [];
+function destroyCharts() {
+  __charts.forEach(c => c.destroy());
+  __charts = [];
+}
+
+function showAnalisisPanel() {
+  destroyCharts();
+  document.getElementById('panel').innerHTML = `
+    <div class="panel-header">
+      <div class="panel-type-row">
+        <span class="panel-type">Dashboard analítico</span>
+        <span class="panel-flag info">v0.2</span>
+      </div>
+      <div class="panel-title">Análisis · Comuna La Higuera</div>
+      <div class="panel-subtitle">7.686 predios · 17 SEIA · 87 DGA · 3 áreas protegidas</div>
+    </div>
+    <div class="panel-body">
+      <div class="section">
+        <h4>Predios por sector (top 8)</h4>
+        <div style="position:relative;height:220px"><canvas id="chSectores"></canvas></div>
+      </div>
+      <div class="section">
+        <h4>Inversión SEIA por tipo (USD M)</h4>
+        <div style="position:relative;height:220px"><canvas id="chInversion"></canvas></div>
+      </div>
+      <div class="section">
+        <h4>SEIA por estado</h4>
+        <div style="position:relative;height:180px"><canvas id="chEstado"></canvas></div>
+      </div>
+      <div class="section">
+        <h4>DGA · caudal por captación (l/s)</h4>
+        <div style="position:relative;height:180px"><canvas id="chDga"></canvas></div>
+      </div>
+      <div class="section">
+        <h4>Cronología SEIA (ingresos por año)</h4>
+        <div style="position:relative;height:180px"><canvas id="chTimeline"></canvas></div>
+      </div>
+    </div>
+  `;
+
+  // Esperar al next tick para que los canvas existan
+  setTimeout(buildCharts, 50);
+}
+
+function buildCharts() {
+  if (!window.Chart || !predios) return;
+
+  // Tema dark
+  const dark = {
+    color: '#E8EEF8', grid: '#243049', muted: '#8A98B3', accent: '#C97B3A'
+  };
+  Chart.defaults.color = dark.muted;
+  Chart.defaults.font.family = "Inter, system-ui";
+  Chart.defaults.font.size = 11;
+  Chart.defaults.borderColor = dark.grid;
+
+  // 1. Predios por sector
+  const sectorCount = {};
+  predios.features.forEach(f => {
+    const s = f.properties.sector || 'Sin sector';
+    sectorCount[s] = (sectorCount[s] || 0) + 1;
+  });
+  const top = Object.entries(sectorCount).sort((a,b)=>b[1]-a[1]).slice(0,8);
+  __charts.push(new Chart(document.getElementById('chSectores'), {
+    type: 'bar',
+    data: { labels: top.map(t=>t[0]), datasets: [{
+      data: top.map(t=>t[1]),
+      backgroundColor: '#C97B3A',
+      borderRadius: 4
+    }]},
+    options: {
+      indexAxis: 'y',
+      plugins: { legend: { display: false }},
+      scales: { x: { grid: { color: dark.grid }}, y: { grid: { display: false }}}
+    }
+  }));
+
+  // 2. Inversión SEIA por tipo
+  const invByTipo = {};
+  seiaPoints.features.forEach(f => {
+    const t = (f.properties.tipo || 'Otros').split(' ')[0];
+    invByTipo[t] = (invByTipo[t] || 0) + (f.properties.inversion || 0);
+  });
+  const tipos = Object.entries(invByTipo).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1]);
+  __charts.push(new Chart(document.getElementById('chInversion'), {
+    type: 'doughnut',
+    data: { labels: tipos.map(t=>t[0]), datasets: [{
+      data: tipos.map(t=>t[1]),
+      backgroundColor: ['#EF4444','#A855F7','#EAB308','#F97316','#3B82F6','#10B981','#06B6D4'],
+      borderColor: '#131C2E',
+      borderWidth: 2
+    }]},
+    options: {
+      plugins: {
+        legend: { position: 'right', labels: { boxWidth: 10, font: { size: 10 }}},
+        tooltip: { callbacks: { label: (c) => `${c.label}: USD ${c.raw.toLocaleString('es-CL')}M` }}
+      }
+    }
+  }));
+
+  // 3. SEIA por estado
+  const estadoMap = { aprobado: 0, calificacion: 0, litigado: 0, desistido: 0 };
+  seiaPoints.features.forEach(f => {
+    const e = (f.properties.estado || '').toLowerCase();
+    if (e.includes('desist')) estadoMap.desistido++;
+    else if (e.includes('calific')) estadoMap.calificacion++;
+    else if (e.includes('litig')) estadoMap.litigado++;
+    else estadoMap.aprobado++;
+  });
+  __charts.push(new Chart(document.getElementById('chEstado'), {
+    type: 'bar',
+    data: {
+      labels: ['Aprobado','En calificación','En litigio','Desistido'],
+      datasets: [{
+        data: [estadoMap.aprobado, estadoMap.calificacion, estadoMap.litigado, estadoMap.desistido],
+        backgroundColor: ['#10B981','#3B82F6','#EF4444','#94A3B8'],
+        borderRadius: 4
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false }},
+      scales: { y: { grid: { color: dark.grid }, beginAtZero: true, ticks: { stepSize: 1 }}, x: { grid: { display: false }}}
+    }
+  }));
+
+  // 4. DGA caudal por captación
+  if (dgaData && dgaData.features.length) {
+    const dgaByCapt = { pozo: 0, río: 0, estero: 0 };
+    dgaData.features.forEach(f => {
+      const c = f.properties.captacion;
+      if (dgaByCapt[c] !== undefined) dgaByCapt[c] += f.properties.caudal || 0;
+    });
+    __charts.push(new Chart(document.getElementById('chDga'), {
+      type: 'bar',
+      data: {
+        labels: ['Pozos (subterráneo)','Ríos (superficial)','Esteros'],
+        datasets: [{
+          data: [Math.round(dgaByCapt.pozo), Math.round(dgaByCapt['río']), Math.round(dgaByCapt.estero)],
+          backgroundColor: ['#3B82F6','#06B6D4','#0EA5E9'],
+          borderRadius: 4
+        }]
+      },
+      options: {
+        plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `${c.raw.toLocaleString('es-CL')} l/s` }}},
+        scales: { y: { grid: { color: dark.grid }}, x: { grid: { display: false }}}
+      }
+    }));
+  }
+
+  // 5. Timeline SEIA por año
+  const byYear = {};
+  seiaPoints.features.forEach(f => {
+    if (!f.properties.fecha) return;
+    const y = f.properties.fecha.slice(0,4);
+    byYear[y] = (byYear[y] || 0) + 1;
+  });
+  const years = Object.keys(byYear).sort();
+  __charts.push(new Chart(document.getElementById('chTimeline'), {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [{
+        label: 'Proyectos ingresados',
+        data: years.map(y => byYear[y]),
+        borderColor: '#C97B3A',
+        backgroundColor: 'rgba(201,123,58,0.15)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 4,
+        pointBackgroundColor: '#C97B3A'
+      }]
+    },
+    options: {
+      plugins: { legend: { display: false }},
+      scales: { y: { grid: { color: dark.grid }, beginAtZero: true, ticks: { stepSize: 1 }}, x: { grid: { display: false }}}
+    }
+  }));
+}
+
+// ============ VISTA 3D ============
+let _3dOn = false;
+function toggle3D() {
+  _3dOn = !_3dOn;
+  const btn = document.getElementById('btn3D');
+  if (_3dOn) {
+    if (!map.getSource('dem-aws')) {
+      map.addSource('dem-aws', {
+        type: 'raster-dem',
+        tiles: ['https://elevation-tiles-prod.s3.amazonaws.com/terrarium/{z}/{x}/{y}.png'],
+        tileSize: 256,
+        encoding: 'terrarium',
+        maxzoom: 14,
+        attribution: '© AWS Open Data — Mapzen Terrarium'
+      });
+    }
+    map.setTerrain({ source: 'dem-aws', exaggeration: 1.6 });
+    map.easeTo({ pitch: 60, bearing: -15, duration: 1200 });
+    btn?.classList.add('active');
+  } else {
+    map.setTerrain(null);
+    map.easeTo({ pitch: 0, bearing: 0, duration: 800 });
+    btn?.classList.remove('active');
+  }
+}
+
+// ============ HEATMAP DGA ============
+function addDgaHeatmap() {
+  if (map.getLayer('dga-heatmap') || !dgaData) return;
+  map.addLayer({
+    id: 'dga-heatmap',
+    type: 'heatmap',
+    source: 'dga',
+    layout: { visibility: 'none' },
+    paint: {
+      'heatmap-weight': ['interpolate', ['linear'], ['get', 'caudal'], 0, 0.2, 100, 1],
+      'heatmap-intensity': ['interpolate', ['linear'], ['zoom'], 8, 1, 14, 3],
+      'heatmap-color': [
+        'interpolate', ['linear'], ['heatmap-density'],
+        0, 'rgba(0,0,0,0)',
+        0.2, 'rgba(59,130,246,0.4)',
+        0.5, 'rgba(6,182,212,0.6)',
+        0.8, 'rgba(234,179,8,0.8)',
+        1.0, 'rgba(239,68,68,0.9)'
+      ],
+      'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 8, 10, 14, 40],
+      'heatmap-opacity': 0.7
+    }
+  }, 'dga-points');
 }
 
 function showLineaTx(p) {
