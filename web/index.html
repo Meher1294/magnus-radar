@@ -744,6 +744,7 @@
       <div class="search-results" id="searchResults"></div>
     </div>
     <div class="header-right">
+      <button class="btn-icon" id="btnLang" title="Idioma · Language" style="font-size:9px;font-weight:600">ES</button>
       <button class="btn-icon" title="Compartir vista" id="btnShare">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
       </button>
@@ -896,6 +897,18 @@
       <div class="sidebar-section">
         <h3>Filtrar por sector</h3>
         <div id="sectorFilters" style="display:flex;flex-direction:column;gap:2px"></div>
+      </div>
+
+      <div class="sidebar-section">
+        <h3>Filtrar SEIA por tipo</h3>
+        <div id="seiaTypeFilters" style="display:flex;flex-direction:column;gap:2px">
+          <div class="layer-item"><input type="checkbox" checked class="seia-tf" data-tipo="mineria"/><span class="layer-swatch" style="background:#EF4444"></span><span class="layer-label">Minería + Puerto</span></div>
+          <div class="layer-item"><input type="checkbox" checked class="seia-tf" data-tipo="solar"/><span class="layer-swatch" style="background:#EAB308"></span><span class="layer-label">Solar fotovoltaico</span></div>
+          <div class="layer-item"><input type="checkbox" checked class="seia-tf" data-tipo="eolico"/><span class="layer-swatch" style="background:#06B6D4"></span><span class="layer-label">Eólica</span></div>
+          <div class="layer-item"><input type="checkbox" checked class="seia-tf" data-tipo="transmision"/><span class="layer-swatch" style="background:#A855F7"></span><span class="layer-label">Transmisión</span></div>
+          <div class="layer-item"><input type="checkbox" checked class="seia-tf" data-tipo="termo"/><span class="layer-swatch" style="background:#F97316"></span><span class="layer-label">Termoeléctrica</span></div>
+          <div class="layer-item"><input type="checkbox" checked class="seia-tf" data-tipo="hidrico"/><span class="layer-swatch" style="background:#3B82F6"></span><span class="layer-label">Hídrico / GNL</span></div>
+        </div>
       </div>
 
       <div class="sidebar-section">
@@ -3304,6 +3317,135 @@ comunaPill?.addEventListener('click', (e) => {
   });
 });
 
+// ============ EDITOR DE POLÍGONO (click-to-draw nativo) ============
+let drawing = false;
+let drawPoints = [];
+
+function initDrawSources() {
+  if (map.getSource('draw')) return;
+  map.addSource('draw', { type: 'geojson', data: { type:'FeatureCollection', features: [] }});
+  map.addLayer({ id: 'draw-fill', type: 'fill', source: 'draw',
+    paint: { 'fill-color': '#C97B3A', 'fill-opacity': 0.25 }});
+  map.addLayer({ id: 'draw-line', type: 'line', source: 'draw',
+    paint: { 'line-color': '#C97B3A', 'line-width': 2, 'line-dasharray': [2,2] }});
+  map.addLayer({ id: 'draw-points', type: 'circle', source: 'draw',
+    filter: ['==', '$type', 'Point'],
+    paint: { 'circle-radius': 5, 'circle-color': '#C97B3A', 'circle-stroke-color': '#FFF', 'circle-stroke-width': 2 }});
+}
+
+function updateDrawSource() {
+  const features = drawPoints.map((p, i) => ({
+    type: 'Feature', properties: { idx: i },
+    geometry: { type: 'Point', coordinates: p }
+  }));
+  if (drawPoints.length >= 2) {
+    features.push({
+      type: 'Feature', properties: {},
+      geometry: { type: 'LineString', coordinates: drawPoints }
+    });
+  }
+  if (drawPoints.length >= 3) {
+    const ring = [...drawPoints, drawPoints[0]];
+    features.push({
+      type: 'Feature', properties: {},
+      geometry: { type: 'Polygon', coordinates: [ring] }
+    });
+  }
+  map.getSource('draw')?.setData({ type:'FeatureCollection', features });
+}
+
+function startDrawing() {
+  initDrawSources();
+  drawing = true;
+  drawPoints = [];
+  updateDrawSource();
+  map.getCanvas().style.cursor = 'crosshair';
+  document.getElementById('drawBtn')?.classList.add('active');
+  window.__showToast?.('Modo dibujo: click para agregar puntos · doble-click para cerrar · ESC para cancelar');
+}
+
+function cancelDrawing() {
+  drawing = false;
+  drawPoints = [];
+  updateDrawSource();
+  map.getCanvas().style.cursor = '';
+  document.getElementById('drawBtn')?.classList.remove('active');
+}
+
+function finishDrawing() {
+  if (drawPoints.length < 3) {
+    window.__showToast?.('Necesitas al menos 3 puntos para cerrar el polígono');
+    return;
+  }
+  const ring = [...drawPoints, drawPoints[0]];
+  const polygon = { type: 'Polygon', coordinates: [ring] };
+  // Calc centro
+  const lons = drawPoints.map(p=>p[0]);
+  const lats = drawPoints.map(p=>p[1]);
+  const cx = lons.reduce((a,b)=>a+b)/lons.length;
+  const cy = lats.reduce((a,b)=>a+b)/lats.length;
+
+  drawing = false;
+  map.getCanvas().style.cursor = '';
+  document.getElementById('drawBtn')?.classList.remove('active');
+
+  // Si está logueado → crear alerta directo. Si no → login.
+  if (!window.__sbUser) {
+    window.__showToast?.('Inicia sesión para guardar esta alerta');
+    setTimeout(() => document.getElementById('btnLogin')?.click(), 600);
+    setTimeout(cancelDrawing, 4000);
+    return;
+  }
+
+  const nombre = prompt('Nombre de la alerta:', `Polígono custom ${new Date().toLocaleDateString('es-CL')}`);
+  if (!nombre) { cancelDrawing(); return; }
+
+  (async () => {
+    const wkt = `POLYGON((${ring.map(p => `${p[0]} ${p[1]}`).join(',')}))`;
+    const { error } = await window.__sb.from('alertas_poligonos').insert({
+      usuario_id: window.__sbUser.id,
+      nombre, geom: wkt,
+      centro: `POINT(${cx} ${cy})`,
+      activa: true, notif_email: true
+    });
+    if (error) window.__showToast?.(`Error: ${error.message}`);
+    else {
+      window.__showToast?.(`✓ Alerta "${nombre}" creada`);
+      cancelDrawing();
+      // Si está en tab Alertas, recargar lista
+      const tab = document.querySelector('[data-tab="alertas"].active');
+      if (tab) showAlertasPanel();
+    }
+  })();
+}
+
+document.getElementById('drawBtn')?.addEventListener('click', () => {
+  if (drawing) cancelDrawing();
+  else startDrawing();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && drawing) cancelDrawing();
+  if (e.key === 'Enter' && drawing) finishDrawing();
+});
+
+map.on('click', (e) => {
+  if (!drawing) return;
+  // Ignorar clicks que fueron interceptados por otros layers
+  const features = map.queryRenderedFeatures(e.point, { layers: ['predios-fill', 'seia-points', 'dga-points', 'areas-protegidas-fill', 'concesiones-fill'] });
+  if (features.length && drawPoints.length === 0) {
+    // primer click sobre feature, igual aceptar
+  }
+  drawPoints.push([e.lngLat.lng, e.lngLat.lat]);
+  updateDrawSource();
+});
+
+map.on('dblclick', (e) => {
+  if (!drawing) return;
+  e.preventDefault();
+  finishDrawing();
+});
+
 // ============ MULTI-COMUNA SWITCH ============
 let currentComuna = 4102;
 const COMUNAS_META = {
@@ -3507,6 +3649,34 @@ document.addEventListener('change', (e) => {
   }
 });
 
+// SEIA type filter
+const SEIA_TYPE_MAP = {
+  mineria: ['Minería + Puerto','Minería (hierro)','Infraestructura portuaria','Reclamación EIA','Minería (oro-cobre)','Minería - ampliación','Minería (oro)','Minería - relaves'],
+  solar: ['Solar fotovoltaico'],
+  eolico: ['Energía eólica'],
+  transmision: ['Transmisión eléctrica'],
+  termo: ['Termoeléctrica','Termoeléctrica HFO (17 MW)','Termoeléctrica carbón'],
+  hidrico: ['Infraestructura hídrica','Terminal GNL']
+};
+document.addEventListener('change', (e) => {
+  if (!e.target.classList.contains('seia-tf')) return;
+  const enabled = Array.from(document.querySelectorAll('.seia-tf:checked')).map(c => c.dataset.tipo);
+  let allowed = [];
+  enabled.forEach(t => { allowed = allowed.concat(SEIA_TYPE_MAP[t] || []); });
+  if (!map.getLayer('seia-points')) return;
+  if (enabled.length === Object.keys(SEIA_TYPE_MAP).length) {
+    map.setFilter('seia-points', null);
+    map.setFilter('seia-labels', null);
+  } else if (enabled.length === 0) {
+    map.setFilter('seia-points', ['==', ['get','tipo'], '__none__']);
+    map.setFilter('seia-labels', ['==', ['get','tipo'], '__none__']);
+  } else {
+    const filt = ['in', ['get','tipo'], ['literal', allowed]];
+    map.setFilter('seia-points', filt);
+    map.setFilter('seia-labels', filt);
+  }
+});
+
 // Need feature IDs for feature-state to work
 // Re-load predios with ids generated
 const origAddSource = map.addSource.bind(map);
@@ -3656,6 +3826,102 @@ function showToast(msg) {
   setTimeout(() => { el.style.opacity = '0'; }, 2500);
 }
 window.__showToast = showToast;
+
+// ============ I18N (es/en) ============
+const I18N = {
+  es: {
+    'header.subtitle': 'Inteligencia Territorial',
+    'tabs.catastro': 'Catastro', 'tabs.infra': 'Infraestructura',
+    'tabs.agua': 'Agua', 'tabs.dominga': 'Dominga',
+    'tabs.alertas': 'Alertas', 'tabs.timeline': 'Timeline',
+    'tabs.comparar': 'Comparar', 'tabs.analisis': 'Análisis', 'tabs.docs': 'Documentación',
+    'btn.export': 'Exportar', 'btn.login': 'Iniciar sesión',
+    'btn.viewcomuna': 'Vista comuna', 'btn.3d': '3D', 'btn.draw': 'Dibujar polígono',
+    'sidebar.basemap': 'Mapa base', 'sidebar.color': 'Coloración predios',
+    'sidebar.layers': 'Capas activas', 'sidebar.allon': 'Todas',
+    'sidebar.sector': 'Filtrar por sector', 'sidebar.seiatype': 'Filtrar SEIA por tipo',
+    'basemap.sat': 'Satélite', 'basemap.osm': 'Calles', 'basemap.topo': 'Topo',
+    'color.sector': 'Sector', 'color.area': 'Superficie', 'color.estado': 'Estado',
+    'search.placeholder': 'Buscar rol SII, proyecto, derecho DGA, área protegida…',
+    'panel.empty.title': 'Selecciona un elemento del mapa',
+    'panel.empty.sub': 'Click sobre un predio, proyecto SEIA o localidad para ver su ficha de inteligencia territorial.'
+  },
+  en: {
+    'header.subtitle': 'Territorial Intelligence',
+    'tabs.catastro': 'Cadastre', 'tabs.infra': 'Infrastructure',
+    'tabs.agua': 'Water', 'tabs.dominga': 'Dominga',
+    'tabs.alertas': 'Alerts', 'tabs.timeline': 'Timeline',
+    'tabs.comparar': 'Compare', 'tabs.analisis': 'Analysis', 'tabs.docs': 'Docs',
+    'btn.export': 'Export', 'btn.login': 'Sign in',
+    'btn.viewcomuna': 'Full view', 'btn.3d': '3D', 'btn.draw': 'Draw polygon',
+    'sidebar.basemap': 'Basemap', 'sidebar.color': 'Plot coloring',
+    'sidebar.layers': 'Active layers', 'sidebar.allon': 'All',
+    'sidebar.sector': 'Filter by sector', 'sidebar.seiatype': 'Filter SEIA by type',
+    'basemap.sat': 'Satellite', 'basemap.osm': 'Streets', 'basemap.topo': 'Topo',
+    'color.sector': 'Sector', 'color.area': 'Area', 'color.estado': 'Status',
+    'search.placeholder': 'Search SII plot, project, water right, protected area…',
+    'panel.empty.title': 'Select a map element',
+    'panel.empty.sub': 'Click on a plot, SEIA project or locality to see its territorial intelligence file.'
+  }
+};
+let __lang = localStorage.getItem('magnus_lang') || 'es';
+
+function t(key) { return I18N[__lang][key] || I18N.es[key] || key; }
+
+function applyI18n() {
+  // Tabs
+  const tabMap = { catastro: 'tabs.catastro', infra: 'tabs.infra', agua: 'tabs.agua',
+    dominga: 'tabs.dominga', alertas: 'tabs.alertas', timeline: 'tabs.timeline',
+    comparar: 'tabs.comparar', analisis: 'tabs.analisis', docs: 'tabs.docs' };
+  document.querySelectorAll('.tab').forEach(el => {
+    const tabId = el.dataset.tab;
+    if (!tabMap[tabId]) return;
+    const badge = el.querySelector('.badge')?.outerHTML || '';
+    const protag = el.querySelector('.pro-tag')?.outerHTML || '';
+    const svg = el.querySelector('svg')?.outerHTML || '';
+    el.innerHTML = `${svg} ${t(tabMap[tabId])} ${badge} ${protag}`;
+  });
+  // Search placeholder
+  const s = document.getElementById('searchInput');
+  if (s) s.placeholder = t('search.placeholder');
+  // Botones del header
+  document.querySelectorAll('.btn-ghost').forEach(b => {
+    if (b.textContent.trim().match(/^(Exportar|Export)$/)) b.textContent = t('btn.export');
+  });
+  const bl = document.getElementById('btnLogin');
+  if (bl) bl.textContent = t('btn.login');
+  // Mapa botones
+  const zb = document.getElementById('zoomReset');
+  if (zb) { const svg = zb.querySelector('svg').outerHTML; zb.innerHTML = `${svg} ${t('btn.viewcomuna')}`; }
+  const db = document.getElementById('drawBtn');
+  if (db) { const svg = db.querySelector('svg').outerHTML; db.innerHTML = `${svg} ${t('btn.draw')}`; }
+  // Sidebar sections — actualizamos los <h3>
+  document.querySelectorAll('.sidebar-section > h3').forEach((el, i) => {
+    const map = ['sidebar.basemap','sidebar.color','sidebar.layers','sidebar.sector','sidebar.seiatype'];
+    if (i < map.length) {
+      const action = el.querySelector('.h-action')?.outerHTML || '';
+      el.innerHTML = `${t(map[i])} ${action}`;
+    }
+  });
+  // Botón idioma
+  const blang = document.getElementById('btnLang');
+  if (blang) blang.textContent = __lang.toUpperCase();
+  // Subtitle del brand
+  document.querySelectorAll('.brand-text .sub > span').forEach(el => {
+    if (el.textContent === 'Inteligencia Territorial' || el.textContent === 'Territorial Intelligence')
+      el.textContent = t('header.subtitle');
+  });
+}
+
+document.getElementById('btnLang')?.addEventListener('click', () => {
+  __lang = (__lang === 'es') ? 'en' : 'es';
+  localStorage.setItem('magnus_lang', __lang);
+  applyI18n();
+  window.__showToast?.(__lang === 'es' ? '✓ Idioma: Español' : '✓ Language: English');
+});
+
+// Aplicar al cargar
+setTimeout(applyI18n, 100);
 
 // ============ ONBOARDING TOUR (primera visita) ============
 const TOUR_KEY = 'magnus_tour_v1';
