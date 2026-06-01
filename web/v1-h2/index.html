@@ -1822,6 +1822,45 @@
     border-top: 1px dashed rgba(255,255,255,0.08);
     font-size: 10px; color: var(--text-dim); font-style: italic;
   }
+
+  /* v1.1.2 · disclosure progresivo · CTAs que agrupan secciones */
+  .sidebar-cta {
+    display: flex; align-items: center; justify-content: space-between;
+    width: 100%; padding: 10px 14px; margin: 6px 0;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--border-soft);
+    border-radius: 6px;
+    font-size: 11.5px; font-weight: 500; color: var(--text-bright);
+    letter-spacing: 0.02em;
+    cursor: pointer; transition: all 0.15s;
+    text-align: left;
+  }
+  .sidebar-cta:hover {
+    background: rgba(201,123,58,0.08);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .sidebar-cta-icon {
+    font-size: 14px; font-weight: 600;
+    transition: transform 0.2s;
+    margin-right: 8px;
+    color: var(--accent);
+  }
+  .sidebar-cta.expanded .sidebar-cta-icon {
+    transform: rotate(45deg);
+  }
+  .sidebar-cta-label { flex: 1; }
+  .sidebar-cta-count {
+    font-size: 10px; color: var(--text-dim);
+    background: var(--surface-3);
+    padding: 2px 8px; border-radius: 10px;
+  }
+  .sidebar-section[data-cta-group] {
+    display: none;
+  }
+  .sidebar-section[data-cta-group].cta-revealed {
+    display: block;
+  }
   .epis-caveat {
     margin-top: 10px; padding: 9px 12px;
     background: rgba(245,158,11,0.07); border-left: 3px solid var(--epis-hipotesis);
@@ -2058,7 +2097,7 @@
 
     <!-- SIDEBAR -->
     <div class="sidebar">
-      <div class="sidebar-section">
+      <div class="sidebar-section" data-cta-group="mapa">
         <h3>Mapa base</h3>
         <div class="seg-control">
           <button class="active" data-basemap="osm">Calles</button>
@@ -2067,7 +2106,7 @@
         </div>
       </div>
 
-      <div class="sidebar-section">
+      <div class="sidebar-section" data-cta-group="mapa">
         <h3>Coloración predios</h3>
         <div class="seg-control">
           <button class="active" data-color="sector">Sector</button>
@@ -2076,10 +2115,10 @@
         </div>
       </div>
 
-      <div class="sidebar-section">
+      <div class="sidebar-section" data-cta-group="capas">
         <h3>Capas activas <span class="h-action">Todas</span></h3>
         <div class="layer-item">
-          <input type="checkbox" checked id="l-predios" data-layer="predios"/>
+          <input type="checkbox" id="l-predios" data-layer="predios"/>
           <span class="layer-swatch" style="background:rgba(201,123,58,0.45);border-color:#C97B3A"></span>
           <label for="l-predios" class="layer-label">Levantamiento Xpert Urban</label>
           <span class="layer-count">7.686</span>
@@ -2091,19 +2130,19 @@
           <span class="layer-count">3+</span>
         </div>
         <div class="layer-item">
-          <input type="checkbox" checked id="l-ruta5" data-layer="ruta5"/>
+          <input type="checkbox" id="l-ruta5" data-layer="ruta5"/>
           <span class="layer-swatch" style="background:#EAB308"></span>
           <label for="l-ruta5" class="layer-label">Ruta 5</label>
           <span class="layer-count">1</span>
         </div>
         <div class="layer-item">
-          <input type="checkbox" checked id="l-interchile" data-layer="interchile"/>
+          <input type="checkbox" id="l-interchile" data-layer="interchile"/>
           <span class="layer-swatch" style="background:#A855F7"></span>
           <label for="l-interchile" class="layer-label">Líneas transmisión SEN</label>
           <span class="layer-count">10</span>
         </div>
         <div class="layer-item">
-          <input type="checkbox" checked id="l-subestaciones" data-layer="subestaciones"/>
+          <input type="checkbox" id="l-subestaciones" data-layer="subestaciones"/>
           <span class="layer-swatch" style="background:#A855F7;border-radius:50%"></span>
           <label for="l-subestaciones" class="layer-label">Subestaciones</label>
           <span class="layer-count">2</span>
@@ -2115,7 +2154,7 @@
           <span class="layer-count">270</span>
         </div>
         <div class="layer-item">
-          <input type="checkbox" checked id="l-seia" data-layer="seia"/>
+          <input type="checkbox" id="l-seia" data-layer="seia"/>
           <span class="layer-swatch" style="background:#EF4444"></span>
           <label for="l-seia" class="layer-label">Proyectos SEIA</label>
           <span class="layer-count">17</span>
@@ -2127,7 +2166,7 @@
           <span class="layer-count">9</span>
         </div>
         <div class="layer-item">
-          <input type="checkbox" checked id="l-areas" data-layer="areas"/>
+          <input type="checkbox" id="l-areas" data-layer="areas"/>
           <span class="layer-swatch" style="background:rgba(16,185,129,0.4);border-color:#10B981"></span>
           <label for="l-areas" class="layer-label">Áreas protegidas</label>
           <span class="layer-count">3</span>
@@ -2157,7 +2196,7 @@
           <span class="layer-count">12</span>
         </div>
         <div class="layer-item">
-          <input type="checkbox" checked id="l-ofertas" data-layer="ofertas"/>
+          <input type="checkbox" id="l-ofertas" data-layer="ofertas"/>
           <span class="layer-swatch" style="background:#10B981;border-radius:50%"></span>
           <label for="l-ofertas" class="layer-label">Ofertas inmobiliarias</label>
           <span class="layer-count">22</span>
@@ -2170,12 +2209,12 @@
         </div>
       </div>
 
-      <div class="sidebar-section">
+      <div class="sidebar-section" data-cta-group="filtros">
         <h3>Filtrar por sector</h3>
         <div id="sectorFilters" style="display:flex;flex-direction:column;gap:2px"></div>
       </div>
 
-      <div class="sidebar-section">
+      <div class="sidebar-section" data-cta-group="filtros">
         <h3>Filtrar SEIA por tipo</h3>
         <div id="seiaTypeFilters" style="display:flex;flex-direction:column;gap:2px">
           <div class="layer-item"><input type="checkbox" checked class="seia-tf" data-tipo="mineria"/><span class="layer-swatch" style="background:#EF4444"></span><span class="layer-label">Minería + Puerto</span></div>
@@ -2187,7 +2226,7 @@
         </div>
       </div>
 
-      <div class="sidebar-section">
+      <div class="sidebar-section" data-cta-group="metricas">
         <h3>Comuna La Higuera</h3>
         <div class="stat-block">
           <div class="stat-row"><span class="k">Superficie</span><span class="v">4.158 km²</span></div>
@@ -2198,7 +2237,7 @@
         </div>
       </div>
 
-      <div class="sidebar-section">
+      <div class="sidebar-section" data-cta-group="metricas">
         <h3>Inversión SEIA mapeada</h3>
         <div class="stat-block">
           <div class="stat-row"><span class="k">Total comprometida</span><span class="v">USD 5.879M</span></div>
@@ -6047,9 +6086,9 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     { id:'h2_h1_ctx',      file:'geojson/capa_h1_garcia_huidobro_contextual.geojson',  nombre:'H1 García Huidobro · contextual', color:'#6B7280', tipo:'fill',  default:false, meta:'NO operacional' },
     { id:'h2_matriz',      file:'geojson/capa_2_estancia_matriz.geojson',              nombre:'Estancia matriz IV-1-1777-S.R.',  color:'#A855F7', tipo:'mixto', default:false, meta:'6.918 ha · georef pendiente' },
     { id:'h2_rtk',         file:'geojson/capa_3_daniel_rtk.geojson',                   nombre:'Daniel RTK',                      color:'#10B981', tipo:'point', default:false, meta:'capa física pendiente' },
-    { id:'h2_ocupaciones', file:'geojson/capa_4_ocupaciones.geojson',                  nombre:'Ocupaciones H2 (ortofoto)',       color:'#F59E0B', tipo:'point', default:true,  meta:'19 features' },
-    { id:'h2_servidumbres',file:'geojson/capa_5_servidumbres.geojson',                 nombre:'Servidumbres H2',                 color:'#3B82F6', tipo:'line',  default:true,  meta:'924-644 · InterChile · MOP · Andes Iron' },
-    { id:'h2_conflictos',  file:'geojson/capa_6_conflictos.geojson',                   nombre:'Conflictos canonizados',          color:'#EF4444', tipo:'point', default:true,  meta:'C11 · C13 · rol 24-5' },
+    { id:'h2_ocupaciones', file:'geojson/capa_4_ocupaciones.geojson',                  nombre:'Ocupaciones H2 (ortofoto)',       color:'#F59E0B', tipo:'point', default:false, meta:'19 features' },
+    { id:'h2_servidumbres',file:'geojson/capa_5_servidumbres.geojson',                 nombre:'Servidumbres H2',                 color:'#3B82F6', tipo:'line',  default:false, meta:'924-644 · InterChile · MOP · Andes Iron' },
+    { id:'h2_conflictos',  file:'geojson/capa_6_conflictos.geojson',                   nombre:'Conflictos canonizados',          color:'#EF4444', tipo:'point', default:false, meta:'C11 · C13 · rol 24-5' },
     { id:'h2_predios_1ha', file:'geojson/predios_mayores_1ha_v1.geojson',              nombre:'Predios mayores 1 ha (885)',      color:'#94A3B8', tipo:'fill',  default:false, meta:'Inventario v1 · 99,4% territorio · Tier 1: 8 · Tier 2: 49' },
   ];
 
@@ -6197,6 +6236,61 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
       '6. reframing-urbano-planificado-vs-rural-informal\n   cat5 H2 urbano-planificado · NO rural-informal\n\n' +
       '7. canon-maplibre-motor-cartografico-v1\n   Motor único · prohibido Mapbox/Leaflet/Cesium/OpenLayers'
     ));
+
+    // v1.1.2 · Disclosure progresivo · 4 CTAs después del FOCO H2
+    (function setupSidebarCTAs(){
+      const sidebar = document.querySelector('.sidebar');
+      if (!sidebar) return;
+      if (document.getElementById('sidebar-cta-container')) return;
+
+      const CTA_GROUPS = [
+        { id:'capas',    label:'Capas adicionales',         count:15 },
+        { id:'filtros',  label:'Filtros y sectores',        count:14 },
+        { id:'mapa',     label:'Controles de mapa',         count:6 },
+        { id:'metricas', label:'Métricas y verdad calculada', count:10 }
+      ];
+
+      const ctaContainer = document.createElement('div');
+      ctaContainer.id = 'sidebar-cta-container';
+      ctaContainer.style.cssText = 'margin: 14px 0 6px;';
+      ctaContainer.innerHTML = CTA_GROUPS.map(g =>
+        `<button class="sidebar-cta" data-cta-id="${g.id}">
+          <span class="sidebar-cta-icon">+</span>
+          <span class="sidebar-cta-label">${g.label}</span>
+          <span class="sidebar-cta-count">${g.count}</span>
+        </button>`
+      ).join('');
+
+      // Insertar después del h2-sidebar-host (que ya está al top)
+      const h2Host = document.getElementById('h2-sidebar-host');
+      if (h2Host && h2Host.nextSibling) {
+        sidebar.insertBefore(ctaContainer, h2Host.nextSibling);
+      } else {
+        sidebar.appendChild(ctaContainer);
+      }
+
+      // Restaurar estado expandido desde localStorage
+      const stored = (function(){
+        try { return JSON.parse(localStorage.getItem('magnus_sidebar_cta')||'{}'); }
+        catch(e) { return {}; }
+      })();
+
+      CTA_GROUPS.forEach(g => {
+        const btn = ctaContainer.querySelector(`[data-cta-id="${g.id}"]`);
+        const sections = sidebar.querySelectorAll(`.sidebar-section[data-cta-group="${g.id}"]`);
+        const wasExpanded = !!stored[g.id];
+        if (wasExpanded) {
+          btn.classList.add('expanded');
+          sections.forEach(s => s.classList.add('cta-revealed'));
+        }
+        btn.addEventListener('click', () => {
+          const expanded = btn.classList.toggle('expanded');
+          sections.forEach(s => s.classList.toggle('cta-revealed', expanded));
+          stored[g.id] = expanded;
+          try { localStorage.setItem('magnus_sidebar_cta', JSON.stringify(stored)); } catch(e) {}
+        });
+      });
+    })();
   }
 
   // === Cargar GeoJSON H2 ===

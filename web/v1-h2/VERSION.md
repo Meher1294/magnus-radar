@@ -1,7 +1,7 @@
 # MAGNUS_RADAR_WEB_V1_H2_LA_HIGUERA
 
-**Versión:** 1.1.1
-**Build:** 2026-06-01 (visor 100% español · toggle EN deshabilitado)
+**Versión:** 1.1.2
+**Build:** 2026-06-01 (disclosure progresivo · español forzado · capas OFF por default)
 **Estado:** MVP operativo · no canon final
 
 ---
