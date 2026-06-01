@@ -1,7 +1,7 @@
 # MAGNUS_RADAR_WEB_V1_H2_LA_HIGUERA
 
-**Versión:** 1.0.9.1
-**Build:** 2026-06-01 (hotfix PII residual P0-SEC)
+**Versión:** 1.0.9.2
+**Build:** 2026-06-01 (hotfix-2 P0-SEC · VERSION.md saneado)
 **Estado:** MVP operativo · no canon final
 
 ---
@@ -230,7 +230,7 @@ de_GeoJSON_a_PMTiles:
 - **v1.0.8** · 2026-05-31 · GeometryFix nativo (sin turf.js): centroide real ponderado por área para Polygon/MultiPolygon · haversine para distancias reales · auto-parche properties.lat/lon (rol 24-123 multi-polígono desfases 863m/2059m/6936m del centroide real) + ficha predio muestra Δ vs lat/lon + n_parcelas + búsqueda multi-polígono con tag "parcela X/N" ordenado por superficie + drawBtn deshabilitado con label "Dibujar · próximamente" (era placeholder roto) · expone window.__MAGNUS_GEO con utilidades
 - **v1.0.7** · 2026-05-31 · Canon privacidad uso interno (PII/comisión aceptable transitoriamente · futuro auth max@xpu.cl) + 5 fixes accesibilidad/SEO: (1) versión única visible v1.0.7 (eliminadas v0.2 conviviendo) · (2) link rel=canonical agregado · (3) text-shadow WCAG AA en botones naranjas (.btn-primary, .h2-focus-btn) · (4) basemap/color-mode pills activos con texto oscuro #0A111F · (5) console.log gated detrás de window.__MAGNUS_DEBUG flag
 - **v1.0.6** · 2026-05-31 · RECONCILIACIÓN VERDAD: TruthReconciler runtime (deriva SEIA/DGA/predios desde sources reales · etiqueta universos · cifras hardcoded reemplazadas) + H2 Click Priority (ficha H2 gana sobre predios SII vía interceptor global) + estados normalizados (estado_canonico → estado · raw preservado en estado_raw_legacy · 39/39 features con 4 estados canónicos · 0 estados libres)
-- **v1.0.5** · 2026-05-31 · HOTFIX .gitignore (publicar GeoJSON H2 + andamiaje P1) · normalizar estados a 4 canónicos HECHO/INFERENCIA/HIPOTESIS/BLOQUEADO (37 features distribuidos) · BLOQUEADO en Daniel RTK + titular asignado · comisión 10% + vigencia mandato Rep 24.327 visible en ficha H2 · caveats array · flag no_comercial H1 · gate pre-push canon (git ls-files check)
+- **v1.0.5** · 2026-05-31 · HOTFIX .gitignore (publicar GeoJSON H2 + andamiaje P1) · normalizar estados a 4 canónicos HECHO/INFERENCIA/HIPOTESIS/BLOQUEADO (37 features distribuidos) · BLOQUEADO en Daniel RTK + titular asignado · datos económicos del mandato visibles en ficha H2 (saneados después en v1.0.9.1) · caveats array · flag no_comercial H1 · gate pre-push canon (git ls-files check)
 - **v1.0.4** · 2026-05-31 · 7 fixes post-deploy: smartFetchGeoJSON (4 paths fallback) · build_failed overlay si 0 features HTTP · tasación mailto (no chat) · filtros SEIA handler · label Sector Lineal Andes Iron · basemap claro default · h2_rtk OFF · banner H1 no comercial
 - **v1.0.3** · 2026-05-31 · sidebar colapsable + buscador + contadores por sección
 - **v1.0.2** · 2026-05-31 · OPCIÓN B · clonar v0 + inyectar capas H2 + sistema epistemológico
@@ -239,4 +239,4 @@ de_GeoJSON_a_PMTiles:
 
 ## Autor
 
-Magnus SpA · Max Medina Hernández · Inversiones Magnus SpA RUT 77.613.806-1
+Magnus SpA · Inversiones Magnus SpA
