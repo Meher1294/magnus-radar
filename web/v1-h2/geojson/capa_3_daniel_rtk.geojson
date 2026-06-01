@@ -1,0 +1,30 @@
+{
+ "type": "FeatureCollection",
+ "name": "Daniel_RTK_capa_fisica",
+ "metadata": {
+  "capa": "3 · Daniel RTK",
+  "tipo": "capa_fisica_operacional",
+  "autoridad": "referente_físico",
+  "estado_dataset": "METADATA · sin geometría puntos aún (RTK no procesado en repo)",
+  "pendiente": "5 prioridades RTK definidas: H2 + H1 candidato + El Molle + Totoralillo Norte + frontera cat5"
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.2,
+     -29.51
+    ]
+   },
+   "properties": {
+    "tipo": "flag_RTK_pendiente",
+    "descripcion": "Validación RTK del perímetro H2 + sublotes · pendiente agenda Daniel",
+    "autoridad": "Daniel Martínez Zurita (C.I. 14.387.985-2)",
+    "precision_objetivo": "10 m",
+    "output_esperado": "poligono_RTK_H2_canonico.geojson"
+   }
+  }
+ ]
+}

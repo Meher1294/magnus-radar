@@ -36,6 +36,12 @@ Thumbs.db
 *.shx
 *.geojson
 !web/data/sample.geojson
+# Excepciones · GeoJSON canónicos del visor v1-h2 (deben publicarse)
+!web/v1-h2/geojson/
+!web/v1-h2/geojson/*.geojson
+# Excepciones · GeoJSON canon del andamiaje P1 georreferenciación
+!docs/ingesta_plano_intervenido/p1_georreferenciacion/
+!docs/ingesta_plano_intervenido/p1_georreferenciacion/*.geojson
 
 # Deploy artifacts
 *.tar.gz

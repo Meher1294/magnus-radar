@@ -1,0 +1,194 @@
+{
+  "type": "FeatureCollection",
+  "name": "PUNTOS_CONTROL_p1",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::4326"
+    }
+  },
+  "metadata": {
+    "fecha": "2026-05-31",
+    "objeto_a_georeferenciar": "ITS-CARTO-PLANO-0001 (plano historico intervenido)",
+    "crs_destino": "EPSG:32719 (UTM 19S WGS84)",
+    "metodo_recomendado": "transformacion polinomial 2do orden (requiere minimo 6 puntos)",
+    "puntos_alta_confiabilidad": [
+      "PC-01",
+      "PC-02",
+      "PC-03"
+    ],
+    "puntos_media_confiabilidad": [
+      "PC-04",
+      "PC-05",
+      "PC-06",
+      "PC-07"
+    ],
+    "rms_aceptable_para_promocion_a_canon": "<= 50 m (resolucion del plano original 1:50.000)",
+    "rms_aceptable_para_visor_operacional": "<= 100 m"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.20193,
+          -29.50872
+        ]
+      },
+      "properties": {
+        "id": "PC-01",
+        "nombre": "Pueblo de La Higuera (centroide aprox)",
+        "descripcion": "Centro del pueblo cabecera · cerca del rótulo \"Pueblo de La Higuera\" en el plano",
+        "utm_e": 286614,
+        "utm_n": 6733472,
+        "lon": -71.20193,
+        "lat": -29.50872,
+        "fuente_coordenada": "centroide del polígono límite urbano PRC Decreto 676/2020",
+        "confiabilidad": "alta",
+        "rol_en_georeferenciacion": "punto de control principal",
+        "instruccion_localizacion_en_plano": "Buscar etiqueta \"Pueblo de La Higuera\" en sector centro · usar como referencia el cruce de calles principales o iglesia"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.198,
+          -29.4894
+        ]
+      },
+      "properties": {
+        "id": "PC-02",
+        "nombre": "Vertice HR.1 plano IV-1-1777-S.R.",
+        "descripcion": "Vertice geodesico saneamiento DL 2.695 Jarpa 1990",
+        "utm_e": 287008.86,
+        "utm_n": 6735557.19,
+        "lon": -71.198,
+        "lat": -29.4894,
+        "fuente_coordenada": "FICHA_DOCUMENTO Plano MBN IV-1-1777-SR (data room)",
+        "datum_origen": "PSAD56 (Provisional South American Datum 1956) · transformar a WGS84 segun NTGEO",
+        "confiabilidad": "muy alta",
+        "rol_en_georeferenciacion": "vertice geodesico oficial",
+        "instruccion_localizacion_en_plano": "Etiqueta \"HR.1\" o \"H.R.1\" en sector NE del plano"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.1972,
+          -29.5097
+        ]
+      },
+      "properties": {
+        "id": "PC-03",
+        "nombre": "Vertice HR.121 plano IV-1-1777-S.R.",
+        "descripcion": "Vertice geodesico Jarpa 1990 · sector central",
+        "utm_e": 287111.42,
+        "utm_n": 6733304.63,
+        "lon": -71.1972,
+        "lat": -29.5097,
+        "fuente_coordenada": "FICHA_DOCUMENTO Plano MBN IV-1-1777-SR",
+        "datum_origen": "PSAD56 · transformar",
+        "confiabilidad": "muy alta",
+        "rol_en_georeferenciacion": "vertice geodesico oficial · segundo HR",
+        "instruccion_localizacion_en_plano": "Etiqueta \"HR.121\" cerca del centro-S"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.169,
+          -29.501
+        ]
+      },
+      "properties": {
+        "id": "PC-04",
+        "nombre": "Estancia Maray (referencia toponimica)",
+        "descripcion": "Margen E del plano · zona delimitada como Estancia Maray",
+        "utm_e": 289500,
+        "utm_n": 6734000,
+        "lon": -71.169,
+        "lat": -29.501,
+        "fuente_coordenada": "aproximada · referencia toponimica costera",
+        "confiabilidad": "media",
+        "rol_en_georeferenciacion": "punto periferico de borde E",
+        "instruccion_localizacion_en_plano": "Etiqueta \"Estancia Maray\" en margen E"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.203,
+          -29.535
+        ]
+      },
+      "properties": {
+        "id": "PC-05",
+        "nombre": "Comunidad Quebrada Honda (borde S)",
+        "descripcion": "Sector S del plano donde aparece \"Comunidad Quebrada Honda\"",
+        "utm_e": 286500,
+        "utm_n": 6730500,
+        "lon": -71.203,
+        "lat": -29.535,
+        "fuente_coordenada": "aproximada · centroide comunidad indigena",
+        "confiabilidad": "media",
+        "rol_en_georeferenciacion": "punto periferico de borde S",
+        "instruccion_localizacion_en_plano": "Etiqueta \"Comunidad Quebrada Honda\" en margen S"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.213,
+          -29.546
+        ]
+      },
+      "properties": {
+        "id": "PC-06",
+        "nombre": "Portezuelo (esquina SO)",
+        "descripcion": "Esquina inferior izquierda del plano · referencia \"Portezuelo\"",
+        "utm_e": 285500,
+        "utm_n": 6729200,
+        "lon": -71.213,
+        "lat": -29.546,
+        "fuente_coordenada": "aproximada · referencia toponimica SO",
+        "confiabilidad": "media",
+        "rol_en_georeferenciacion": "punto periferico de borde SO",
+        "instruccion_localizacion_en_plano": "Etiqueta \"Portezuelo\" en esquina inferior izquierda"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.162,
+          -29.517
+        ]
+      },
+      "properties": {
+        "id": "PC-07",
+        "nombre": "Cerro El Carbón (1470)",
+        "descripcion": "Cerro identificado con cota 1470 m · margen E",
+        "utm_e": 290200,
+        "utm_n": 6732600,
+        "lon": -71.162,
+        "lat": -29.517,
+        "fuente_coordenada": "aproximada · referencia topografica",
+        "confiabilidad": "media",
+        "rol_en_georeferenciacion": "punto altimetrico",
+        "instruccion_localizacion_en_plano": "Etiqueta \"Cerro El Carbón · 1470\" en margen E"
+      }
+    }
+  ]
+}

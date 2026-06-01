@@ -1,0 +1,91 @@
+{
+ "type": "FeatureCollection",
+ "name": "Estancia_La_Higuera_matriz",
+ "metadata": {
+  "capa": "2 · Estancia La Higuera matriz",
+  "estado": "PENDIENTE_GEORREFERENCIACION_FINAL",
+  "fuente": "Plano MBN IV-1-1777-S.R.",
+  "superficie_canon": "6.918 ha (1988)",
+  "saneamiento": "DL 2.695 · Res SEREMI BBNN 87-102 · 10-ene-1990",
+  "requirente": "Empresa Heraclio Velásquez",
+  "caveat_geometria": "Bounding box APROXIMADO · usar solo como contexto visual hasta ejecutar P1 georreferenciacion plano histórico"
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -71.15,
+       -29.55
+      ],
+      [
+       -71.15,
+       -29.48
+      ],
+      [
+       -71.27,
+       -29.48
+      ],
+      [
+       -71.27,
+       -29.55
+      ],
+      [
+       -71.15,
+       -29.55
+      ]
+     ]
+    ]
+   },
+   "properties": {
+    "nombre": "Estancia La Higuera (matriz Jarpa 1990)",
+    "hijuelas_originales": [
+     "H1 Pablo Jarpa · 2.139 ha",
+     "H2 Luis Emilio Jarpa · 2.642 ha (= H2 Cominetti)",
+     "H3 Patricio Joaquín Jarpa · 2.137 ha"
+    ],
+    "estado_polígono": "APROXIMADO",
+    "requiere": "georreferenciación P1 del plano histórico ITS-CARTO-PLANO-0001"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.19696254539507,
+     -29.4914125076097
+    ]
+   },
+   "properties": {
+    "tipo": "vertice_geodesico_saneamiento_DL_2695",
+    "id": "HR.1",
+    "fuente": "Plano MBN IV-1-1777-S.R. · ficha documento",
+    "datum_original": "PSAD56",
+    "datum_visualizacion": "WGS84",
+    "caveat": "Coordenada aproximada · delta PSAD56→WGS84 sin correccion NTGEO"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.19634386084698,
+     -29.511744992216254
+    ]
+   },
+   "properties": {
+    "tipo": "vertice_geodesico_saneamiento_DL_2695",
+    "id": "HR.121",
+    "fuente": "Plano MBN IV-1-1777-S.R. · ficha documento",
+    "datum_original": "PSAD56",
+    "datum_visualizacion": "WGS84",
+    "caveat": "Coordenada aproximada · delta PSAD56→WGS84 sin correccion NTGEO"
+   }
+  }
+ ]
+}

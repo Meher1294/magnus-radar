@@ -1,0 +1,676 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.2039557221389,
+     -29.506316683350732
+    ]
+   },
+   "properties": {
+    "id": "OCU-Q00-A",
+    "tipo_observado": "cultivo_agricola_organizado",
+    "categoria_ocupacional": 0,
+    "confianza": 0.95,
+    "estado_epistemico": "HECHO_OBSERVADO",
+    "requiere_validacion": false,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q00",
+    "bbox_cuadrante": [
+     -71.2056624238989,
+     -29.50800518793851,
+     -71.2022490203789,
+     -29.50462817876295
+    ],
+    "extent_m_cuadrante": [
+     330.6971964004787,
+     375.9286614235675
+    ],
+    "observacion": "Plantacion en filas regulares verde oscuro · ~0.5-1.0 ha · patron compatible con vinedo/frutal de riego",
+    "estado": "observado",
+    "rol_sii": null,
+    "propietario": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.2039557221389,
+     -29.506316683350732
+    ]
+   },
+   "properties": {
+    "id": "OCU-Q00-B",
+    "tipo_observado": "agrupacion_habitacional",
+    "categoria_ocupacional": 4,
+    "confianza": 0.8,
+    "estado_epistemico": "HECHO_OBSERVADO",
+    "requiere_validacion": true,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q00",
+    "bbox_cuadrante": [
+     -71.2056624238989,
+     -29.50800518793851,
+     -71.2022490203789,
+     -29.50462817876295
+    ],
+    "extent_m_cuadrante": [
+     330.6971964004787,
+     375.9286614235675
+    ],
+    "observacion": "~10-15 estructuras con techumbre clara distinguible · trama irregular · accesos visibles · contexto habitacional probable",
+    "estado": "observado",
+    "rol_sii": null,
+    "propietario": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.2005423186189,
+     -29.50969369252629
+    ]
+   },
+   "properties": {
+    "id": "OCU-Q11-A",
+    "tipo_observado": "asentamiento_consolidado",
+    "categoria_ocupacional": 5,
+    "confianza": 0.92,
+    "estado_epistemico": "HECHO_OBSERVADO",
+    "requiere_validacion": false,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q11",
+    "bbox_cuadrante": [
+     -71.2022490203789,
+     -29.511382197114074,
+     -71.1988356168589,
+     -29.50800518793851
+    ],
+    "extent_m_cuadrante": [
+     330.6861653596377,
+     375.9286614235675
+    ],
+    "observacion": "Densidad alta de techumbres (~40-60 viviendas en cuadrante) · trama de calles definida · cancha de futbol rectangular verde · vehiculos visibles · contexto habitacional consolidado",
+    "estado": "observado",
+    "rol_sii": null,
+    "propietario": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.2005423186189,
+     -29.50969369252629
+    ]
+   },
+   "properties": {
+    "id": "INFRA-Q11-CANCHA",
+    "tipo_observado": "infraestructura_comunitaria_cancha",
+    "categoria_ocupacional": 0,
+    "confianza": 0.95,
+    "estado_epistemico": "HECHO_OBSERVADO",
+    "requiere_validacion": false,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q11",
+    "bbox_cuadrante": [
+     -71.2022490203789,
+     -29.511382197114074,
+     -71.1988356168589,
+     -29.50800518793851
+    ],
+    "extent_m_cuadrante": [
+     330.6861653596377,
+     375.9286614235675
+    ],
+    "observacion": "Rectangulo verde uniforme con proporciones de cancha de futbol · indicador fuerte de asentamiento con vida comunitaria",
+    "estado": "observado",
+    "rol_sii": null,
+    "propietario": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.19712891509892,
+     -29.513070701701853
+    ]
+   },
+   "properties": {
+    "id": "OCU-Q22-A",
+    "tipo_observado": "estructuras_dispersas",
+    "categoria_ocupacional": 2,
+    "confianza": 0.7,
+    "estado_epistemico": "HECHO_OBSERVADO",
+    "requiere_validacion": true,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q22",
+    "bbox_cuadrante": [
+     -71.1988356168589,
+     -29.514759206289632,
+     -71.19542221333892,
+     -29.511382197114074
+    ],
+    "extent_m_cuadrante": [
+     330.67513316864427,
+     375.92866142317206
+    ],
+    "observacion": "Conjunto disperso de estructuras en mitad superior · transicion entre nucleo y zona arida · techumbres visibles pero menor densidad",
+    "estado": "observado",
+    "rol_sii": null,
+    "propietario": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.19712891509892,
+     -29.513070701701853
+    ]
+   },
+   "properties": {
+    "id": "GEO-Q22-CAUCE",
+    "tipo_observado": "cauce_quebrada_seco",
+    "categoria_ocupacional": 0,
+    "confianza": 0.9,
+    "estado_epistemico": "INFERENCIA",
+    "requiere_validacion": true,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q22",
+    "bbox_cuadrante": [
+     -71.1988356168589,
+     -29.514759206289632,
+     -71.19542221333892,
+     -29.511382197114074
+    ],
+    "extent_m_cuadrante": [
+     330.67513316864427,
+     375.92866142317206
+    ],
+    "observacion": "Linea sinuosa con tonos cambiantes (claro/oscuro) compatible con cauce seco · cruza el cuadrante · zona de potencial riesgo aluvional",
+    "estado": "observado",
+    "rol_sii": null,
+    "propietario": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.19371551157892,
+     -29.516447710877415
+    ]
+   },
+   "properties": {
+    "id": "VACIO-Q33-A",
+    "tipo_observado": "terreno_arido_sin_ocupacion",
+    "categoria_ocupacional": 0,
+    "confianza": 0.95,
+    "estado_epistemico": "HECHO_OBSERVADO",
+    "requiere_validacion": false,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q33",
+    "bbox_cuadrante": [
+     -71.19542221333892,
+     -29.518136215465194,
+     -71.19200880981892,
+     -29.514759206289632
+    ],
+    "extent_m_cuadrante": [
+     330.6640998316668,
+     375.9286614235675
+    ],
+    "observacion": "Sin estructuras visibles en zona cubierta · vegetacion arbustiva dispersa · parte mayoritaria del cuadrante sin datos (fuera del vuelo)",
+    "estado": "observado",
+    "rol_sii": null,
+    "propietario": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.2005423186189,
+     -29.506316683350732
+    ]
+   },
+   "properties": {
+    "id": "OCU-Q01-A",
+    "tipo_observado": "agrupacion_habitacional",
+    "categoria_ocupacional": 4,
+    "confianza": 0.7,
+    "estado_epistemico": "INFERENCIA",
+    "requiere_validacion": true,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q01",
+    "bbox_cuadrante": [
+     -71.2022490203789,
+     -29.50800518793851,
+     -71.1988356168589,
+     -29.50462817876295
+    ],
+    "extent_m_cuadrante": [
+     330.6971964004787,
+     375.9286614235675
+    ],
+    "observacion": "Continuacion sur del asentamiento Q00/Q11 · densidad alta de estructuras en mitad inferior del cuadrante segun mosaico panoramico · NO leido individualmente",
+    "estado": "revisar_en_terreno",
+    "rol_sii": null,
+    "propietario": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.19712891509892,
+     -29.506316683350732
+    ]
+   },
+   "properties": {
+    "id": "VACIO-Q02-A",
+    "tipo_observado": "terreno_arido_sin_ocupacion_aparente",
+    "categoria_ocupacional": 0,
+    "confianza": 0.7,
+    "estado_epistemico": "INFERENCIA",
+    "requiere_validacion": true,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q02",
+    "bbox_cuadrante": [
+     -71.1988356168589,
+     -29.50800518793851,
+     -71.19542221333892,
+     -29.50462817876295
+    ],
+    "extent_m_cuadrante": [
+     330.6971963991019,
+     375.9286614235675
+    ],
+    "observacion": "Zona arida sin estructuras visibles en panorama · NO leido individualmente · posibles estructuras pequenas no detectables a esta escala",
+    "estado": "revisar_en_terreno",
+    "rol_sii": null,
+    "propietario": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.19371551157892,
+     -29.506316683350732
+    ]
+   },
+   "properties": {
+    "id": "VACIO-Q03-A",
+    "tipo_observado": "terreno_arido_sin_ocupacion_aparente",
+    "categoria_ocupacional": 0,
+    "confianza": 0.75,
+    "estado_epistemico": "INFERENCIA",
+    "requiere_validacion": true,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q03",
+    "bbox_cuadrante": [
+     -71.19542221333892,
+     -29.50800518793851,
+     -71.19200880981892,
+     -29.50462817876295
+    ],
+    "extent_m_cuadrante": [
+     330.6971964004787,
+     375.9286614235675
+    ],
+    "observacion": "Zona arida · sin ocupacion visible en panorama · cuadrante con datos parciales (bordes del vuelo)",
+    "estado": "revisar_en_terreno",
+    "rol_sii": null,
+    "propietario": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.2039557221389,
+     -29.50969369252629
+    ]
+   },
+   "properties": {
+    "id": "OCU-Q10-A",
+    "tipo_observado": "asentamiento_consolidado",
+    "categoria_ocupacional": 5,
+    "confianza": 0.8,
+    "estado_epistemico": "INFERENCIA",
+    "requiere_validacion": true,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q10",
+    "bbox_cuadrante": [
+     -71.2056624238989,
+     -29.511382197114074,
+     -71.2022490203789,
+     -29.50800518793851
+    ],
+    "extent_m_cuadrante": [
+     330.6861653596377,
+     375.9286614235675
+    ],
+    "observacion": "Densidad muy alta de techumbres en panorama · extension del nucleo Q11 hacia oeste · NO leido individualmente",
+    "estado": "revisar_en_terreno",
+    "rol_sii": null,
+    "propietario": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.19712891509892,
+     -29.50969369252629
+    ]
+   },
+   "properties": {
+    "id": "OCU-Q12-A",
+    "tipo_observado": "agrupacion_habitacional",
+    "categoria_ocupacional": 4,
+    "confianza": 0.7,
+    "estado_epistemico": "INFERENCIA",
+    "requiere_validacion": true,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q12",
+    "bbox_cuadrante": [
+     -71.1988356168589,
+     -29.511382197114074,
+     -71.19542221333892,
+     -29.50800518793851
+    ],
+    "extent_m_cuadrante": [
+     330.68616535826095,
+     375.9286614235675
+    ],
+    "observacion": "Densidad media de techumbres en panorama · trama urbana visible · transicion entre nucleo y periferia este",
+    "estado": "revisar_en_terreno",
+    "rol_sii": null,
+    "propietario": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.19371551157892,
+     -29.50969369252629
+    ]
+   },
+   "properties": {
+    "id": "OCU-Q13-A",
+    "tipo_observado": "estructuras_dispersas",
+    "categoria_ocupacional": 1,
+    "confianza": 0.6,
+    "estado_epistemico": "INFERENCIA",
+    "requiere_validacion": true,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q13",
+    "bbox_cuadrante": [
+     -71.19542221333892,
+     -29.511382197114074,
+     -71.19200880981892,
+     -29.50800518793851
+    ],
+    "extent_m_cuadrante": [
+     330.6861653596377,
+     375.9286614235675
+    ],
+    "observacion": "Algunas estructuras dispersas visibles en panorama · mayoritariamente zona arida",
+    "estado": "revisar_en_terreno",
+    "rol_sii": null,
+    "propietario": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.2039557221389,
+     -29.513070701701853
+    ]
+   },
+   "properties": {
+    "id": "OCU-Q20-A",
+    "tipo_observado": "asentamiento_consolidado",
+    "categoria_ocupacional": 5,
+    "confianza": 0.8,
+    "estado_epistemico": "INFERENCIA",
+    "requiere_validacion": true,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q20",
+    "bbox_cuadrante": [
+     -71.2056624238989,
+     -29.514759206289632,
+     -71.2022490203789,
+     -29.511382197114074
+    ],
+    "extent_m_cuadrante": [
+     330.67513317002096,
+     375.92866142317206
+    ],
+    "observacion": "Densidad alta de techumbres en panorama · extension sur del nucleo · NO leido individualmente",
+    "estado": "revisar_en_terreno",
+    "rol_sii": null,
+    "propietario": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.2005423186189,
+     -29.513070701701853
+    ]
+   },
+   "properties": {
+    "id": "OCU-Q21-A",
+    "tipo_observado": "asentamiento_consolidado",
+    "categoria_ocupacional": 5,
+    "confianza": 0.8,
+    "estado_epistemico": "INFERENCIA",
+    "requiere_validacion": true,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q21",
+    "bbox_cuadrante": [
+     -71.2022490203789,
+     -29.514759206289632,
+     -71.1988356168589,
+     -29.511382197114074
+    ],
+    "extent_m_cuadrante": [
+     330.67513317002096,
+     375.92866142317206
+    ],
+    "observacion": "Densidad alta de techumbres en panorama · continuidad de la trama urbana sur · NO leido individualmente",
+    "estado": "revisar_en_terreno",
+    "rol_sii": null,
+    "propietario": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.19371551157892,
+     -29.513070701701853
+    ]
+   },
+   "properties": {
+    "id": "GEO-Q23-CAUCE",
+    "tipo_observado": "cauce_quebrada_seco",
+    "categoria_ocupacional": 0,
+    "confianza": 0.7,
+    "estado_epistemico": "INFERENCIA",
+    "requiere_validacion": true,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q23",
+    "bbox_cuadrante": [
+     -71.19542221333892,
+     -29.514759206289632,
+     -71.19200880981892,
+     -29.511382197114074
+    ],
+    "extent_m_cuadrante": [
+     330.67513317002096,
+     375.92866142317206
+    ],
+    "observacion": "Continuidad del cauce de Q22 · zona arida con cauce serpenteante visible en panorama",
+    "estado": "revisar_en_terreno",
+    "rol_sii": null,
+    "propietario": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.2039557221389,
+     -29.516447710877415
+    ]
+   },
+   "properties": {
+    "id": "OCU-Q30-A",
+    "tipo_observado": "agrupacion_habitacional",
+    "categoria_ocupacional": 4,
+    "confianza": 0.7,
+    "estado_epistemico": "INFERENCIA",
+    "requiere_validacion": true,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q30",
+    "bbox_cuadrante": [
+     -71.2056624238989,
+     -29.518136215465194,
+     -71.2022490203789,
+     -29.514759206289632
+    ],
+    "extent_m_cuadrante": [
+     330.6640998316668,
+     375.9286614235675
+    ],
+    "observacion": "Densidad media de techumbres en panorama · extension SW del asentamiento · cuadrante con datos parciales",
+    "estado": "revisar_en_terreno",
+    "rol_sii": null,
+    "propietario": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.2005423186189,
+     -29.516447710877415
+    ]
+   },
+   "properties": {
+    "id": "OCU-Q31-A",
+    "tipo_observado": "estructuras_dispersas",
+    "categoria_ocupacional": 2,
+    "confianza": 0.5,
+    "estado_epistemico": "INFERENCIA",
+    "requiere_validacion": true,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q31",
+    "bbox_cuadrante": [
+     -71.2022490203789,
+     -29.518136215465194,
+     -71.1988356168589,
+     -29.514759206289632
+    ],
+    "extent_m_cuadrante": [
+     330.6640998316668,
+     375.9286614235675
+    ],
+    "observacion": "Estructuras dispersas + camino + terreno mayoritariamente sin ocupacion en panorama",
+    "estado": "revisar_en_terreno",
+    "rol_sii": null,
+    "propietario": null
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.19712891509892,
+     -29.516447710877415
+    ]
+   },
+   "properties": {
+    "id": "VACIO-Q32-A",
+    "tipo_observado": "terreno_arido_sin_ocupacion_aparente",
+    "categoria_ocupacional": 0,
+    "confianza": 0.65,
+    "estado_epistemico": "INFERENCIA",
+    "requiere_validacion": true,
+    "fuente": "ORTOFOTO_KMZ_SUPEROVERLAY",
+    "kmz_origen": "kmz higuera-{0-2}-{0-1}.kmz (6 archivos)",
+    "cuadrante": "Q32",
+    "bbox_cuadrante": [
+     -71.1988356168589,
+     -29.518136215465194,
+     -71.19542221333892,
+     -29.514759206289632
+    ],
+    "extent_m_cuadrante": [
+     330.6640998302902,
+     375.9286614235675
+    ],
+    "observacion": "Sin ocupacion visible en panorama · cuadrante con datos parciales",
+    "estado": "revisar_en_terreno",
+    "rol_sii": null,
+    "propietario": null
+   }
+  }
+ ],
+ "metadata": {
+  "capa": "4 · Ocupaciones",
+  "estado": "OBSERVACION_ORTOFOTO",
+  "caveat_critico": "NO se afirma titularidad de ocupantes · solo presencia visual de estructuras en ortofoto KMZ super-overlay",
+  "baseline": "EVT-H2-OCCUPATION-BASELINE-20260531"
+ }
+}

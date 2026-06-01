@@ -1,0 +1,72 @@
+{
+ "type": "FeatureCollection",
+ "name": "Conflictos_canonizados",
+ "metadata": {
+  "capa": "6 · Conflictos",
+  "estado": "mixto_RESUELTOS_y_ABIERTOS",
+  "doctrinas_canonizadas_aplicables": [
+   "rol-sii-no-es-identidad-territorial",
+   "homonimia-territorial",
+   "no-derivar-estrategia-sin-capa-ocupacion",
+   "correccion-doctrinal-unidad-territorial-historica",
+   "29-9-pct-zona-de-verificacion-fina"
+  ]
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.2,
+     -29.515
+    ]
+   },
+   "properties": {
+    "conflicto_id": "C11",
+    "estado": "RESUELTO_2026-05-31",
+    "tipo": "mutacion_catastral_SII",
+    "enunciado": "¿Los roles 24-48 y 24-4 (escritura Cofanti 2014-2016) son la misma identidad territorial que 24-123 y 24-160 (catastro SII actual)?",
+    "resolucion": "SI · mutación catastral documentada (24-48→24-123 · 24-4→24-160)",
+    "evidencia": "Escritura 16.pdf · Rep 25.963 · 19-dic-2016 · Notario Pedro Reveco",
+    "doctrina_canonizada": "rol-sii-no-es-identidad-territorial"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.3,
+     -29.46
+    ]
+   },
+   "properties": {
+    "conflicto_id": "C13",
+    "estado": "RESUELTO_2026-05-31",
+    "tipo": "identidad_territorial",
+    "enunciado": "¿El predio fiscal fs.4856 N°4411/2007 (Totoralillo Norte) coincide con rol 24-5 Estancia La Higuera (Andes Iron)?",
+    "resolucion": "NO · son vecinos · ESC-GT-000011 p.7 declara deslinde explícito",
+    "doctrina_canonizada": "homonimia-territorial"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.13,
+     -29.49
+    ]
+   },
+   "properties": {
+    "conflicto_id": "rol_24-5_Andes_Iron",
+    "estado": "GEOMETRIA_PENDIENTE",
+    "tipo": "rol_no_en_KMZ",
+    "enunciado": "Rol canon 24-5 Andes Iron NO aparece en KMZ-06 catastro SII",
+    "estado_actual": "documental ALTA · geométrica PENDIENTE Daniel RTK",
+    "caveat": "NUNCA promover superficie 60.000 ha como HECHO"
+   }
+  }
+ ]
+}

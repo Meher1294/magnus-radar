@@ -1,0 +1,154 @@
+{
+ "type": "FeatureCollection",
+ "name": "Servidumbres_corredor_H2",
+ "metadata": {
+  "capa": "5 · Servidumbres",
+  "estado": "TRAZADOS_APROXIMADOS",
+  "fuentes": [
+   "CADENA_REGISTRAL_HIJUELA_2",
+   "MEMO_EIA_Dominga_Sector_Lineal",
+   "XPU_Analisis_EIA_Dominga_Sector_Lineal"
+  ],
+  "caveat_global": "Las geometrías son aproximadas · estado=HIPÓTESIS hasta recuperar capas QGIS originales o vectorizar planos oficiales"
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.06,
+      -29.42
+     ],
+     [
+      -71.1,
+      -29.45
+     ],
+     [
+      -71.15,
+      -29.5
+     ],
+     [
+      -71.2,
+      -29.52
+     ],
+     [
+      -71.25,
+      -29.55
+     ],
+     [
+      -71.3,
+      -29.58
+     ]
+    ]
+   },
+   "properties": {
+    "nombre": "Sector Lineal Andes Iron (Dominga→Totoralillo)",
+    "tipo": "servidumbre_proyectada",
+    "año": 2025,
+    "capas": [
+     "acueducto_subterráneo",
+     "concentraducto_subterráneo",
+     "línea_66kV",
+     "camino_servicio"
+    ],
+    "longitud_km": 26,
+    "superficie_ha": 160,
+    "ancho_m": 50,
+    "vida_util_años": 26.5,
+    "estado": "vinculante_dic_2025 · firma_pendiente",
+    "titular_dominante": "Andes Iron SpA",
+    "choke_point": "PAS Art 96 Reglamento SEIA · cambio uso suelo rural",
+    "artefacto_perdido": "andes_iron.geojson (referenciado en 4 .qgz · ausente)",
+    "estado_geometria": "TRAZADO_APROXIMADO · pendiente recuperar andes_iron.geojson o vectorizar A-104 Layout EIA"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.2,
+      -29.51
+     ],
+     [
+      -71.2,
+      -29.49
+     ]
+    ]
+   },
+   "properties": {
+    "nombre": "Servidumbre InterChile Maitencillo-Pan de Azúcar 2x500 kV",
+    "año": 2014,
+    "planos": [
+     "PES_020 Lote C",
+     "PES_021 Resto H2"
+    ],
+    "torres": "T280 a T288 (9 torres)",
+    "contacto": "Rodrigo Sánchez",
+    "estado": "vigente · canon pagado",
+    "estado_geometria": "TRAZADO_APROXIMADO"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.25,
+      -29.53
+     ],
+     [
+      -71.27,
+      -29.5
+     ]
+    ]
+   },
+   "properties": {
+    "nombre": "Servidumbre histórica 924-644",
+    "año": 1994,
+    "titular_sirviente": "PENDIENTE",
+    "titular_dominante": "PENDIENTE",
+    "fuente": "nota marginal inscripción matriz H2 1990",
+    "estado": "vigente",
+    "caveat": "titular dominante y geometria pendientes de cruce CBR"
+   }
+  },
+  {
+   "type": "Feature",
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.16,
+      -29.49
+     ],
+     [
+      -71.16,
+      -29.55
+     ]
+    ]
+   },
+   "properties": {
+    "nombre": "Faja Ruta 5 Norte (expropiaciones MOP 2011-2017)",
+    "año_resoluciones": 2011,
+    "firmante": "Min. Laurence Golborne Riveros (MOP 1.972 + 2.051)",
+    "lotes_expropiados": [
+     "319",
+     "320",
+     "331-1",
+     "331-3",
+     "333",
+     "334",
+     "335",
+     "338-1"
+    ],
+    "estado": "consumada · dominio Fisco",
+    "superficie_ha": "componente principal de brecha 503 ha H2"
+   }
+  }
+ ]
+}
