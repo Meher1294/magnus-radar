@@ -5897,7 +5897,9 @@ const I18N = {
     'panel.empty.sub': 'Click on a plot, SEIA project or locality to see its territorial intelligence file.'
   }
 };
-let __lang = localStorage.getItem('magnus_lang') || 'es';
+// v1.1.1 · forzar español SIEMPRE · ignorar localStorage previo
+let __lang = 'es';
+try { localStorage.setItem('magnus_lang', 'es'); } catch(e) {}
 
 function t(key) { return I18N[__lang][key] || I18N.es[key] || key; }
 
@@ -5946,14 +5948,11 @@ function applyI18n() {
   });
 }
 
-document.getElementById('btnLang')?.addEventListener('click', () => {
-  __lang = (__lang === 'es') ? 'en' : 'es';
-  localStorage.setItem('magnus_lang', __lang);
-  applyI18n();
-  window.__showToast?.(__lang === 'es' ? '✓ Idioma: Español' : '✓ Language: English');
-});
+// v1.1.1 · botón idioma ocultado · visor 100% español
+const __btnLang = document.getElementById('btnLang');
+if (__btnLang) { __btnLang.style.display = 'none'; }
 
-// Aplicar al cargar
+// Aplicar al cargar (siempre español)
 setTimeout(applyI18n, 100);
 
 // ============ ONBOARDING TOUR (primera visita) ============
