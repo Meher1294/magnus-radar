@@ -227,8 +227,11 @@ de_GeoJSON_a_PMTiles:
 
 ## Changelog
 
-- **v1.0.1** · 2026-05-31 · DATA STATUS badge + contador por capa + warning file:// + reestructura geojson/tiles/styles
-- **v1.0.0** · 2026-05-31 · MVP inicial · 6 capas mínimas + H1 contextual
+- **v1.0.4** · 2026-05-31 · 7 fixes post-deploy: smartFetchGeoJSON (4 paths fallback) · build_failed overlay si 0 features HTTP · tasación mailto (no chat) · filtros SEIA handler · label Sector Lineal Andes Iron · basemap claro default · h2_rtk OFF · banner H1 no comercial
+- **v1.0.3** · 2026-05-31 · sidebar colapsable + buscador + contadores por sección
+- **v1.0.2** · 2026-05-31 · OPCIÓN B · clonar v0 + inyectar capas H2 + sistema epistemológico
+- **v1.0.1** · 2026-05-31 · DATA STATUS badge + contador por capa + warning file:// + reestructura geojson/tiles/styles · DESCARTADO con pelado
+- **v1.0.0** · 2026-05-31 · MVP pelado · 6 capas mínimas · DESCARTADO (no era el estándar)
 
 ## Autor
 

@@ -2004,8 +2004,8 @@
       <div class="sidebar-section">
         <h3>Mapa base</h3>
         <div class="seg-control">
-          <button class="active" data-basemap="satellite">Satélite</button>
-          <button data-basemap="osm">Calles</button>
+          <button class="active" data-basemap="osm">Calles</button>
+          <button data-basemap="satellite">Satélite</button>
           <button data-basemap="topo">Topo</button>
         </div>
       </div>
@@ -2414,7 +2414,7 @@ const map = new maplibregl.Map({
   style: {
     version: 8,
     glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
-    sources: { 'base': { type: 'raster', tiles: basemaps.satellite.tiles, tileSize: 256 } },
+    sources: { 'base': { type: 'raster', tiles: basemaps.osm.tiles, tileSize: 256 } },
     layers: [{ id: 'base', type: 'raster', source: 'base' }]
   },
   center: [-71.05, -29.39],
@@ -3742,13 +3742,27 @@ async function solicitarTasacion(rol) {
       return;
     }
   } catch (e) {}
-  // 2. Si no hay cache → pedir al usuario que invoque desde chat Claude
+  // v1.0.4 · Sin tasación cacheada → botón mailto · NO promete chat
+  const subj = encodeURIComponent(`Solicitud de tasación Magnus Radar · rol ${rol}`);
+  const body = encodeURIComponent(
+    `Hola Max,\n\nSolicito tasación del siguiente predio:\n\n` +
+    `Rol SII: ${rol}\nComuna: La Higuera (4102)\n\n` +
+    `Origen: Magnus Radar v1.0.4 · ${window.location.href}\n\n` +
+    `Gracias.`
+  );
   target.innerHTML = `
     <div class="alert-item info" style="margin-top:4px">
-      <div class="alert-title">Sin tasación cacheada para ${rol}</div>
+      <div class="alert-title">Tasación bajo solicitud</div>
       <div class="alert-meta" style="margin-top:6px">
-        Para tasar: en este chat pídeme <code style="background:var(--surface-2);padding:1px 5px;border-radius:3px;color:var(--accent)">"tasar predio ${rol}"</code><br>
-        Yo llamo a Data Inmobiliaria MCP y guardo el resultado en Supabase. La próxima vez aparece automático.
+        Magnus Radar muestra inteligencia territorial · no ejecuta tasación automática.<br>
+        El equipo Magnus responde por correo.
+      </div>
+      <div style="margin-top:10px">
+        <a href="mailto:max@xpu.cl?subject=${subj}&body=${body}"
+           style="display:inline-block;padding:7px 14px;background:var(--accent);color:white;
+                  border-radius:5px;font-size:11.5px;font-weight:600;text-decoration:none">
+          ✉ Solicitar tasación
+        </a>
       </div>
     </div>`;
 }
@@ -5946,7 +5960,7 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     { id:'h2_cominetti',   file:'geojson/capa_1_h2_cominetti.geojson',                 nombre:'H2 Cominetti (canon)',          color:'#C97B3A', tipo:'fill',  default:true,  meta:'24-123 + 24-160' },
     { id:'h2_h1_ctx',      file:'geojson/capa_h1_garcia_huidobro_contextual.geojson',  nombre:'H1 García Huidobro · contextual', color:'#6B7280', tipo:'fill',  default:false, meta:'NO operacional' },
     { id:'h2_matriz',      file:'geojson/capa_2_estancia_matriz.geojson',              nombre:'Estancia matriz IV-1-1777-S.R.',  color:'#A855F7', tipo:'mixto', default:false, meta:'6.918 ha · georef pendiente' },
-    { id:'h2_rtk',         file:'geojson/capa_3_daniel_rtk.geojson',                   nombre:'Daniel RTK',                      color:'#10B981', tipo:'point', default:true,  meta:'capa física pendiente' },
+    { id:'h2_rtk',         file:'geojson/capa_3_daniel_rtk.geojson',                   nombre:'Daniel RTK',                      color:'#10B981', tipo:'point', default:false, meta:'capa física pendiente' },
     { id:'h2_ocupaciones', file:'geojson/capa_4_ocupaciones.geojson',                  nombre:'Ocupaciones H2 (ortofoto)',       color:'#F59E0B', tipo:'point', default:true,  meta:'19 features' },
     { id:'h2_servidumbres',file:'geojson/capa_5_servidumbres.geojson',                 nombre:'Servidumbres H2',                 color:'#3B82F6', tipo:'line',  default:true,  meta:'924-644 · InterChile · MOP · Andes Iron' },
     { id:'h2_conflictos',  file:'geojson/capa_6_conflictos.geojson',                   nombre:'Conflictos canonizados',          color:'#EF4444', tipo:'point', default:true,  meta:'C11 · C13 · rol 24-5' },
@@ -6090,6 +6104,27 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
       map.addLayer({ id:`h2-${L.id}-line`, source:srcId, type:'line',
         paint:{ 'line-color':L.color, 'line-width':3, 'line-dasharray':[2,1], 'line-opacity':0.9 },
         layout:{ visibility: H2_STATE[L.id] ? 'visible' : 'none' }});
+      // v1.0.4 · label persistente para features con estado_geometria APROXIMADO
+      map.addLayer({ id:`h2-${L.id}-label`, source:srcId, type:'symbol',
+        filter:['any',
+          ['in', 'APROXIMAD', ['coalesce', ['get','estado_geometria'], '']],
+          ['in', 'aproximad', ['coalesce', ['get','estado_geometria'], '']]
+        ],
+        layout:{
+          visibility: H2_STATE[L.id] ? 'visible' : 'none',
+          'symbol-placement':'line-center',
+          'text-field': 'TRAZADO APROXIMADO · pendiente vectorizar EIA A-104',
+          'text-size': 10,
+          'text-font': ['Open Sans Regular','Arial Unicode MS Regular'],
+          'text-letter-spacing': 0.05,
+          'text-max-width': 16
+        },
+        paint:{
+          'text-color': L.color,
+          'text-halo-color': '#0A111F',
+          'text-halo-width': 2
+        }
+      });
     }
     if (L.tipo === 'point' || L.tipo === 'mixto') {
       map.addLayer({ id:`h2-${L.id}-pt`, source:srcId, type:'circle',
@@ -6098,21 +6133,23 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
         layout:{ visibility: H2_STATE[L.id] ? 'visible' : 'none' }});
     }
 
-    ['fill','line','pt'].forEach(suf => {
+    ['fill','line','pt','label'].forEach(suf => {
       const lid = `h2-${L.id}-${suf}`;
       if (!map.getLayer(lid)) return;
-      map.on('click', lid, e => {
-        if (!e.features || !e.features.length) return;
-        renderH2Detail(L, e.features[0], data.metadata);
-      });
-      map.on('mouseenter', lid, () => map.getCanvas().style.cursor = 'pointer');
-      map.on('mouseleave', lid, () => map.getCanvas().style.cursor = '');
+      if (suf !== 'label') {
+        map.on('click', lid, e => {
+          if (!e.features || !e.features.length) return;
+          renderH2Detail(L, e.features[0], data.metadata);
+        });
+        map.on('mouseenter', lid, () => map.getCanvas().style.cursor = 'pointer');
+        map.on('mouseleave', lid, () => map.getCanvas().style.cursor = '');
+      }
     });
   }
 
   function toggleH2Layer(id) {
     if (typeof map === 'undefined') return;
-    ['fill','line','pt'].forEach(suf => {
+    ['fill','line','pt','label'].forEach(suf => {
       const lid = `h2-${id}-${suf}`;
       if (map.getLayer(lid)) map.setLayoutProperty(lid, 'visibility', H2_STATE[id] ? 'visible' : 'none');
     });
@@ -6136,11 +6173,22 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     const fuentes = p.fuentes || (p.fuente ? [p.fuente] : []);
     const doctrinas = p.doctrinas_aplicables || p.doctrina_canonizada;
 
+    // v1.0.4 · banner especial H1 contextual (no comercial)
+    const isH1 = L.id === 'h2_h1_ctx';
+    const h1Banner = isH1 ? `
+      <div style="padding:10px 12px;margin-bottom:14px;background:rgba(107,114,128,0.12);border-left:3px solid #9CA3AF;border-radius:4px;font-size:10.5px;color:var(--text-dim);line-height:1.5">
+        <strong style="color:#D1D5DB">H1 informativa · sin oferta comercial activa</strong><br>
+        Magnus Radar muestra H1 García Huidobro como contexto territorial del corredor Estancia La Higuera.
+        Magnus SpA está restringido por la cláusula 5ª del mandato Cominetti (Rep 24.327) de representar a propietarios colindantes.
+        Esta capa NO implica negociación, oferta ni intermediación sobre H1.
+      </div>` : '';
+
     let html = `<div style="padding:18px">
       <div style="padding-bottom:14px;border-bottom:1px solid var(--border-soft);margin-bottom:16px">
         <div style="display:inline-block;padding:3px 8px;font-size:9.5px;font-family:'JetBrains Mono',monospace;background:${L.color}22;color:${L.color};border-radius:4px;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px">${esc(L.nombre)}</div>
         <div style="font-size:15px;font-weight:600;line-height:1.3;color:var(--text)">${esc(p.nombre || p.titular || p.descripcion || p.conflicto_id || p.id || 'Sin nombre')}</div>
       </div>
+      ${h1Banner}
       <div class="epis-section">
         <div class="epis-section-title">Estado epistemológico</div>
         <span class="epis-badge ${cls}">${esc(estado)}</span>
@@ -6211,6 +6259,37 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     sb.appendChild(item);
   }
 
+  // v1.0.4 · overlay full-screen si 0 features en HTTP (build rejection)
+  function showBuildFailedOverlay() {
+    if (document.getElementById('h2-build-failed')) return;
+    const o = document.createElement('div');
+    o.id = 'h2-build-failed';
+    o.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(10,17,31,0.97);display:flex;align-items:center;justify-content:center;padding:40px;font-family:Inter,sans-serif';
+    const details = Object.entries(H2_STATS)
+      .filter(([_,s]) => s.error)
+      .map(([id,s]) => `<div style="font-family:monospace;font-size:11px;color:#FCA5A5;padding:3px 0">· ${id}: ${s.error.slice(0,180)}</div>`)
+      .join('');
+    o.innerHTML = `
+      <div style="max-width:680px;background:#1F1424;border:2px solid #EF4444;border-radius:12px;padding:32px;color:#FEE2E2">
+        <div style="font-size:30px;margin-bottom:18px">⚠</div>
+        <div style="font-size:18px;font-weight:700;color:#FFF;margin-bottom:10px">VISOR INVÁLIDO · build rechazado</div>
+        <div style="font-size:13px;line-height:1.6;color:#FEE2E2;margin-bottom:18px">
+          Las 7 capas H2 fallaron al cargar sobre protocolo <code style="background:#3B0C0C;padding:1px 6px;border-radius:3px;color:#F87171">${window.location.protocol}</code>.<br>
+          Magnus Radar v1.0.4 exige <strong>≥ 1 feature</strong> por capa H2 para considerarse publicable.
+        </div>
+        <div style="background:#0F0610;border-left:3px solid #EF4444;padding:12px 14px;border-radius:4px;margin-bottom:18px">
+          <div style="font-size:11px;color:#FCA5A5;margin-bottom:6px;font-weight:600">Errores capturados:</div>
+          ${details || '<div style="font-family:monospace;font-size:11px;color:#FCA5A5">(sin detalle)</div>'}
+        </div>
+        <div style="font-size:11px;color:#D6BCFA;line-height:1.6">
+          Posibles causas: GeoJSON no publicados en /v1-h2/geojson/ · 404 GitHub Pages · CORS · paths rotos.<br>
+          Reportar a <code style="background:#1A0C20;padding:1px 5px;border-radius:3px">max@xpu.cl</code> con captura DevTools → Network.
+        </div>
+        <button onclick="document.getElementById('h2-build-failed').remove()" style="margin-top:18px;padding:8px 18px;background:transparent;border:1px solid #6B7280;color:#D1D5DB;border-radius:5px;font-size:11px;cursor:pointer">Cerrar y continuar de todas formas</button>
+      </div>`;
+    document.body.appendChild(o);
+  }
+
   // === Bootstrap ===
   function bootstrapH2() {
     injectProtocolStatus();
@@ -6222,10 +6301,31 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
       return;
     }
 
+    // v1.0.4 · smartFetch con fallback de paths (resuelve issues GH Pages subdir)
+    async function smartFetchGeoJSON(rel) {
+      const pn = window.location.pathname.replace(/\/[^/]*$/, '');
+      const candidates = [
+        new URL(rel, window.location.href).href,   // relativo robusto al document base
+        `${pn}/${rel}`,                            // pathname + rel
+        `/magnus-radar/v1-h2/${rel}`,              // absoluto GH Pages
+        rel,                                       // fallback puro relativo
+      ];
+      const tried = [];
+      for (const url of candidates) {
+        try {
+          const r = await fetch(url, { cache: 'no-store' });
+          if (r.ok) return await r.json();
+          tried.push(`${url.slice(-60)} → ${r.status}`);
+        } catch (e) {
+          tried.push(`${url.slice(-60)} → ${e.message}`);
+        }
+      }
+      throw new Error(`Todos los paths fallaron · intentos: [${tried.join(' | ')}]`);
+    }
+
     const doLoad = async () => {
       const promises = H2_LAYERS.map(L =>
-        fetch(L.file)
-          .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+        smartFetchGeoJSON(L.file)
           .then(d => ({ L, d }))
           .catch(err => {
             h2LayersErr++;
@@ -6238,7 +6338,12 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
       const results = await Promise.all(promises);
       results.forEach(r => { if (r.err) return; addH2GeojsonLayer(r.L, r.d); });
       updateBadge();
-      if (h2TotalFeatures === 0) console.warn('⚠ Magnus Radar H2: 0 features H2 cargadas');
+
+      // v1.0.4 · BUILD REJECTION si 0 features en HTTP (no aplica para file:// que ya tiene warning específico)
+      if (h2TotalFeatures === 0 && !IS_FILE_PROTOCOL) {
+        showBuildFailedOverlay();
+        console.warn('⚠ Magnus Radar H2: 0 features H2 cargadas · BUILD REJECTED');
+      }
     };
 
     if (map.loaded()) doLoad();
@@ -6249,6 +6354,58 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     setTimeout(bootstrapH2, 300);
   } else {
     document.addEventListener('DOMContentLoaded', () => setTimeout(bootstrapH2, 300));
+  }
+})();
+
+// ============================================================
+// v1.0.4 · FIX FILTROS SEIA · handler que faltaba en v0
+// ============================================================
+(function SeiaFiltersFix() {
+  // Mapeo de data-tipo del HTML hacia los valores reales de feature.properties.tipo en el dataset SEIA del v0
+  const TIPO_MAP = {
+    'mineria':    ['Minería + Puerto', 'Minería', 'Infraestructura portuaria'],
+    'solar':      ['Solar fotovoltaico'],
+    'eolico':     ['Eólico', 'Eólica'],
+    'transmision':['Transmisión eléctrica', 'Transmisión'],
+    'termo':      ['Termoeléctrica'],
+    'hidrico':    ['Infraestructura hídrica', 'Terminal GNL', 'Hídrico', 'GNL'],
+  };
+
+  function applyFilter() {
+    if (typeof map === 'undefined' || !map.getLayer || !map.getLayer('seia-points')) return;
+    const active = [];
+    document.querySelectorAll('.seia-tf').forEach(cb => {
+      if (cb.checked && TIPO_MAP[cb.dataset.tipo]) active.push(...TIPO_MAP[cb.dataset.tipo]);
+    });
+    let filter;
+    if (active.length === 0) {
+      filter = ['==', ['get','tipo'], '__NONE_SELECTED__'];
+    } else {
+      filter = ['in', ['get','tipo'], ['literal', active]];
+    }
+    try {
+      map.setFilter('seia-points', filter);
+      if (map.getLayer('seia-labels')) map.setFilter('seia-labels', filter);
+    } catch(e) { console.warn('SEIA filter apply error:', e); }
+  }
+
+  function setup() {
+    const cbs = document.querySelectorAll('.seia-tf');
+    if (!cbs.length || typeof map === 'undefined') { setTimeout(setup, 500); return; }
+    cbs.forEach(cb => {
+      if (cb.dataset.h2Hooked) return;
+      cb.dataset.h2Hooked = '1';
+      cb.addEventListener('change', applyFilter);
+    });
+    // Aplicar estado inicial · respeta los checks default del HTML
+    if (map.loaded()) applyFilter();
+    else map.on('load', applyFilter);
+  }
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(setup, 800);
+  } else {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(setup, 800));
   }
 })();
 
