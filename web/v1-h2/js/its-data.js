@@ -17,7 +17,7 @@ export const FIXTURE = {
       rol_sii_matriz: '24-5',
       superficie_aprox_ha: 60000,
       titular_matriz: 'Andes Iron SpA',
-      rut_matriz: '76.097.759-4',
+      rut_matriz: 'RESERVADO_INSTITUCIONAL',
       fecha_adquisicion: '2021-08-16',
       precio_uf: 273292.2657,
       unidades: ['hijuela_2_cominetti']
@@ -37,7 +37,7 @@ export const FIXTURE = {
         repertorio: 'Rep. N°24.327',
         fecha: '2026-04-14',
         plazo_meses: 24,
-        comision_pct: 10
+        comision_pct: null /* reservado */
       },
       ultima_actualizacion: '2026-05-31',
       // [HARDENING H-A1 · 2026-05-31] Removido `conflictos_abiertos_count`.
@@ -59,7 +59,7 @@ export const FIXTURE = {
         { dominio: 'Superficie fiscal SII', autoridad: 'SII directo (pendiente)', estado: 'conflicto_documentado', capa: 7 },
         { dominio: 'Cabida jurídica', autoridad: 'Estudio de títulos consolidado', estado: 'verificado', capa: 3 },
         { dominio: 'Geom. jurídica vigente', autoridad: 'Plano N°377-2006 + cadena', estado: 'localizado_pendiente_extraccion', capa: 4 },
-        { dominio: 'Geom. operacional', autoridad: 'RTK Daniel Martínez 2026', estado: 'verificado', capa: 5 },
+        { dominio: 'Geom. operacional', autoridad: 'RTK Referente físico 2026', estado: 'verificado', capa: 5 },
         { dominio: 'Geom. histórica', autoridad: 'Plano MBN IV-1-1777-S.R.', estado: 'identificado', capa: 1 },
         { dominio: 'Infraestructura', autoridad: 'KMZ DataRoom 2026-04 (aux)', estado: 'verificado', capa: 4 },
         { dominio: 'Contexto envolvente', autoridad: 'Andes Iron · Rol 24-5 60K ha', estado: 'verificado', capa: 6 },
@@ -92,16 +92,16 @@ export const FIXTURE = {
         { año: 2000, capa: 3, tipo: 'cesion_derechos', label: 'Cesión Virginia → Bruno', estado: 'verificado', importancia: 'med', inscripcion: 'fs.838 N°754/2000', desc: 'Virginia Castillo cede 15% a Bruno · CLP 13M' },
         { año: 2006, capa: 3, tipo: 'plano_registrado', label: 'Planos 377-397', estado: 'localizado_pendiente_extraccion', importancia: 'big', inscripcion: '21 láminas coordinadas', desc: 'Paquete coordinado de planos · motor geométrico probable · pendiente extracción' },
         { año: 2014, capa: 4, tipo: 'compraventa', label: 'Cofanti compra', estado: 'verificado', importancia: 'med', inscripcion: 'Rep FS 209 N°7.711', desc: 'Bruno → Inversiones Cofanti Ltda. · CLP 25M' },
-        { año: 2017, capa: 4, tipo: 'adjudicacion_particion', label: 'Adjudic. 4 herman. C.I.', estado: 'verificado', importancia: 'big', inscripcion: 'Rep FS 694 N°26.309', desc: 'Disolución Cofanti + adjudicación a 4 hermanos Cominetti Infanti' },
+        { año: 2017, capa: 4, tipo: 'adjudicacion_particion', label: 'Adjudic. 4 herman. C.I.', estado: 'verificado', importancia: 'big', inscripcion: 'Rep FS 694 N°26.309', desc: 'Disolución Cofanti + adjudicación a titulares (reservado)' },
         { año: 2023, capa: 4, tipo: 'dacion_pago', label: 'Dación pago → Cantera', estado: 'verificado', importancia: 'med', inscripcion: '23-ene-2023', desc: 'Bruno Guillermo → Agrícola Cantera Ltda. · 25%' },
-        { año: 2026, capa: 6, tipo: 'mandato', label: 'Mandato Magnus', estado: 'verificado', importancia: 'big', inscripcion: 'Rep. N°24.327', desc: 'Mandato exclusivo 24 meses · comisión 10% · 1.800 ha declaradas' }
+        { año: 2026, capa: 6, tipo: 'mandato', label: 'Mandato Magnus', estado: 'verificado', importancia: 'big', inscripcion: 'Rep. N°24.327', desc: 'Mandato exclusivo · términos económicos reservados' }
       ],
 
       titulares: [
-        { nombre: 'Silvia María Cominetti Infanti', rut: '7.011.575-1', pct: 18.75, tipo: 'persona_natural' },
-        { nombre: 'Claudia Cecilia Cominetti Infanti', rut: '7.011.576-K', pct: 18.75, tipo: 'persona_natural' },
-        { nombre: 'Lidia Rosa V. Cominetti Infanti', rut: '6.349.740-1', pct: 18.75, tipo: 'persona_natural' },
-        { nombre: 'Sucesión Bruno G. Cominetti Infanti', rut: null, pct: 18.75, tipo: 'sucesion' },
+        { nombre: 'Reservado · titular registrado', rut: null, pct: 18.75, tipo: 'persona_natural' },
+        { nombre: 'Reservado · titular registrado', rut: null, pct: 18.75, tipo: 'persona_natural' },
+        { nombre: 'Reservado · titular registrado', rut: null, pct: 18.75, tipo: 'persona_natural' },
+        { nombre: 'Reservado · sucesión', rut: null, pct: 18.75, tipo: 'sucesion' },
         { nombre: 'Agrícola Cantera Limitada', rut: null, pct: 25.00, tipo: 'persona_juridica' }
       ],
 

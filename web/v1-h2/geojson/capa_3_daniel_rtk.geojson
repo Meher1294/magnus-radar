@@ -25,7 +25,7 @@
     "precision_objetivo": "10 m",
     "output_esperado": "poligono_RTK_H2_canonico.geojson",
     "estado_canonico": "BLOQUEADO",
-    "titular": "Daniel Martínez Zurita (C.I. 14.387.985-2)",
+    "titular": "Referente físico operacional · identidad reservada",
     "rol_capa": "capa_fisica_referente",
     "caveats": [
      "Pendiente levantamiento campo · 5 prioridades: H2 · H1 · El Molle · Totoralillo Norte · frontera cat5"
