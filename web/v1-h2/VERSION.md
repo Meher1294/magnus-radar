@@ -1,7 +1,7 @@
 # MAGNUS_RADAR_WEB_V1_H2_LA_HIGUERA
 
-**Versión:** 1.1.5
-**Build:** 2026-06-01 (Verdad calculada bajo CTA · Predios por sector minimizable · DATA STATUS solo si error)
+**Versión:** 1.1.6
+**Build:** 2026-06-01 (campo Propietario Registrado debajo de Sector en ficha predio)
 **Estado:** MVP operativo · no canon final
 
 ---

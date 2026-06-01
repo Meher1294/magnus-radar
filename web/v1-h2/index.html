@@ -3340,6 +3340,7 @@ function renderPredioPanel(p, isHijuela2) {
         <div class="field"><div class="label">Avalúo fiscal</div><div class="value mono">${p.avaluo_uf ? 'UF '+p.avaluo_uf.toLocaleString('es-CL') : (meta.avaluo_estimado_uf ? 'UF ~'+meta.avaluo_estimado_uf.toLocaleString('es-CL')+' est.' : '—')}</div></div>
         <div class="field"><div class="label">Centroide</div><div class="value mono" style="font-size:10.5px">${(p._centroide_calc_lat ?? p.lat).toFixed(4)}, ${(p._centroide_calc_lon ?? p.lon).toFixed(4)}${p._n_parcelas && p._n_parcelas > 1 ? ` <span style="color:var(--hipotesis);font-size:9.5px">· ${p._n_parcelas} parcelas</span>` : ''}${p._desfase_significativo ? ` <span title="lat/lon original difiere ${p._desfase_lat_lon_m}m del centroide real" style="color:var(--hipotesis);font-size:9.5px">· Δ ${p._desfase_lat_lon_m}m vs lat/lon</span>` : ''}</div></div>
         <div class="field full"><div class="label">Sector</div><div class="value">${p.sector || 'Sin sector asignado'}</div></div>
+        <div class="field full"><div class="label">Propietario Registrado</div><div class="value">${(p.propietario || p.rut) ? 'Reservado · acceso requiere autenticación' : '—'}</div></div>
       </div>
 
       ${(p.propietario || p.rut) ? `
