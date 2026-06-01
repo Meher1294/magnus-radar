@@ -1699,6 +1699,8 @@
     --epis-inferencia: #3B82F6;
     --epis-hipotesis: #F59E0B;
     --epis-bloqueado: #EF4444;
+    --epis-conflicto: #8B5CF6;
+    --epis-pendiente: #64748B;
   }
 
   /* DATA STATUS badge · esquina superior izquierda del mapa */
@@ -1783,6 +1785,43 @@
   .epis-badge.inferencia { background: rgba(59,130,246,0.13); color: var(--epis-inferencia); }
   .epis-badge.hipotesis  { background: rgba(245,158,11,0.13); color: var(--epis-hipotesis); }
   .epis-badge.bloqueado  { background: rgba(239,68,68,0.13); color: var(--epis-bloqueado); }
+  .epis-badge.conflicto  { background: rgba(139,92,246,0.13); color: var(--epis-conflicto); }
+  .epis-badge.pendiente  { background: rgba(100,116,139,0.13); color: var(--epis-pendiente); }
+
+  /* v1.1 · ITS Evidence Panel (Mesa Andes Iron · estado del conocimiento) */
+  .its-evidence-panel {
+    margin: 14px 0 4px;
+    padding: 14px 14px 10px;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--border-soft);
+    border-radius: 6px;
+  }
+  .its-evidence-panel h5 {
+    margin: 0 0 4px;
+    font-size: 11.5px; font-weight: 600;
+    color: var(--text-bright); letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+  .its-evidence-panel .its-evidence-sub {
+    margin: 0 0 11px;
+    font-size: 10px; color: var(--text-dim);
+    letter-spacing: 0.02em;
+  }
+  .its-evidence-row {
+    display: flex; align-items: flex-start; gap: 8px;
+    padding: 7px 0; border-top: 1px solid rgba(255,255,255,0.04);
+    font-size: 11.5px; line-height: 1.45;
+  }
+  .its-evidence-row:first-of-type { border-top: none; }
+  .its-evidence-row .epis-badge {
+    flex-shrink: 0; margin-top: 1px; min-width: 76px; text-align: center;
+  }
+  .its-evidence-row .its-evidence-text { color: var(--text-bright); }
+  .its-evidence-foot {
+    margin-top: 10px; padding-top: 9px;
+    border-top: 1px dashed rgba(255,255,255,0.08);
+    font-size: 10px; color: var(--text-dim); font-style: italic;
+  }
   .epis-caveat {
     margin-top: 10px; padding: 9px 12px;
     background: rgba(245,158,11,0.07); border-left: 3px solid var(--epis-hipotesis);
@@ -6101,6 +6140,40 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
         <div class="epis-legend-item"><span class="epis-legend-dot" style="background:var(--epis-inferencia)"></span>INFERENCIA</div>
         <div class="epis-legend-item"><span class="epis-legend-dot" style="background:var(--epis-hipotesis)"></span>HIPÓTESIS</div>
         <div class="epis-legend-item"><span class="epis-legend-dot" style="background:var(--epis-bloqueado)"></span>BLOQUEADO</div>
+        <div class="epis-legend-item"><span class="epis-legend-dot" style="background:var(--epis-conflicto)"></span>CONFLICTO</div>
+        <div class="epis-legend-item"><span class="epis-legend-dot" style="background:var(--epis-pendiente)"></span>PENDIENTE</div>
+      </div>
+
+      <div class="its-evidence-panel" id="its-evidence-h2">
+        <h5>◆ Mesa Andes Iron · estado del conocimiento</h5>
+        <div class="its-evidence-sub">Lo que sabemos · lo que NO sabemos · al ${new Date().toISOString().slice(0,10)}</div>
+        <div class="its-evidence-row">
+          <span class="epis-badge hecho">HECHO</span>
+          <span class="its-evidence-text">El corredor del Proyecto Dominga intersecta H2 (~3.900 m · 4 capas de servidumbres documentadas en EIA)</span>
+        </div>
+        <div class="its-evidence-row">
+          <span class="epis-badge hecho">HECHO</span>
+          <span class="its-evidence-text">Existieron acercamientos históricos AI a la propiedad H2 documentados con anterioridad al mandato vigente</span>
+        </div>
+        <div class="its-evidence-row">
+          <span class="epis-badge conflicto">CONFLICTO</span>
+          <span class="its-evidence-text">Monto de oferta histórica AI en discrepancia documental entre fuentes internas · sin fuente primaria que dirima</span>
+        </div>
+        <div class="its-evidence-row">
+          <span class="epis-badge hipotesis">HIPÓTESIS</span>
+          <span class="its-evidence-text">Relevancia relativa de H2 para AI parece haber aumentado tras hitos procesales recientes · no demostrada como prioridad alta</span>
+        </div>
+        <div class="its-evidence-row">
+          <span class="epis-badge pendiente">PENDIENTE</span>
+          <span class="its-evidence-text">No existe evidencia incorporada de presupuesto activo · instrumento preferente comunicado · ni cadena decisional observable AI para H2</span>
+        </div>
+        <div class="its-evidence-row">
+          <span class="epis-badge pendiente">PENDIENTE</span>
+          <span class="its-evidence-text">Estado de envío/recepción/respuesta de propuesta formal Magnus pendiente de incorporar al data room</span>
+        </div>
+        <div class="its-evidence-foot">
+          Doctrina aplicada: ausencia de observación ≠ ausencia de hecho · publica estado del conocimiento · no conclusiones sustantivas.
+        </div>
       </div>
     `;
     host.querySelectorAll('input[data-h2-id]').forEach(inp => {
