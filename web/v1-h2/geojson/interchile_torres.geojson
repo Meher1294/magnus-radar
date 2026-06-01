@@ -1,0 +1,236 @@
+{
+ "type": "FeatureCollection",
+ "name": "interchile_torres",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "torre_id": "T280",
+    "tipo": "A",
+    "cuerpos": 7,
+    "ancho_servidumbre_m": 51.0,
+    "plano_pes": "020",
+    "afecta_predio": false,
+    "nota": "Solo referencia, no afecta predio Lote C",
+    "source_truth": "interchile_2014",
+    "datum": "WGS84 UTM 19S",
+    "estado_canonico": "HECHO",
+    "categoria_evt": "infraestructura",
+    "evt_id": "EVT-H2-INTERCHILE-2014"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.24376525327054,
+     -29.500157970205795
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "torre_id": "T281",
+    "tipo": "A",
+    "cuerpos": 4,
+    "ancho_servidumbre_m": 46.0,
+    "plano_pes": "020",
+    "afecta_predio": true,
+    "nota": "",
+    "source_truth": "interchile_2014",
+    "datum": "WGS84 UTM 19S",
+    "estado_canonico": "HECHO",
+    "categoria_evt": "infraestructura",
+    "evt_id": "EVT-H2-INTERCHILE-2014"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.24641419691689,
+     -29.50186605922899
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "torre_id": "T282 (V53)",
+    "tipo": "D",
+    "cuerpos": 1,
+    "ancho_servidumbre_m": 55.0,
+    "plano_pes": "020",
+    "afecta_predio": true,
+    "nota": "",
+    "source_truth": "interchile_2014",
+    "datum": "WGS84 UTM 19S",
+    "estado_canonico": "HECHO",
+    "categoria_evt": "infraestructura",
+    "evt_id": "EVT-H2-INTERCHILE-2014"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.24884597937404,
+     -29.502825357383763
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "torre_id": "T283",
+    "tipo": "A",
+    "cuerpos": 4,
+    "ancho_servidumbre_m": 68.0,
+    "plano_pes": "020",
+    "afecta_predio": true,
+    "nota": "",
+    "source_truth": "interchile_2014",
+    "datum": "WGS84 UTM 19S",
+    "estado_canonico": "HECHO",
+    "categoria_evt": "infraestructura",
+    "evt_id": "EVT-H2-INTERCHILE-2014"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.2395870699995,
+     -29.506687250158503
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "torre_id": "T284",
+    "tipo": "A",
+    "cuerpos": 7,
+    "ancho_servidumbre_m": 76.0,
+    "plano_pes": "020/021",
+    "afecta_predio": true,
+    "nota": "Compartida — afecta Lote C en PES-020, referencia en PES-021",
+    "source_truth": "interchile_2014",
+    "datum": "WGS84 UTM 19S",
+    "estado_canonico": "HECHO",
+    "categoria_evt": "infraestructura",
+    "evt_id": "EVT-H2-INTERCHILE-2014"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.24080221339808,
+     -29.510698660064726
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "torre_id": "T285",
+    "tipo": "A",
+    "cuerpos": 7,
+    "ancho_servidumbre_m": 69.0,
+    "plano_pes": "021",
+    "afecta_predio": true,
+    "nota": "",
+    "source_truth": "interchile_2014",
+    "datum": "WGS84 UTM 19S",
+    "estado_canonico": "HECHO",
+    "categoria_evt": "infraestructura",
+    "evt_id": "EVT-H2-INTERCHILE-2014"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.24227995773451,
+     -29.515556278228182
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "torre_id": "T286",
+    "tipo": "A",
+    "cuerpos": 3,
+    "ancho_servidumbre_m": 39.0,
+    "plano_pes": "021",
+    "afecta_predio": true,
+    "nota": "",
+    "source_truth": "interchile_2014",
+    "datum": "WGS84 UTM 19S",
+    "estado_canonico": "HECHO",
+    "categoria_evt": "infraestructura",
+    "evt_id": "EVT-H2-INTERCHILE-2014"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.24353898409102,
+     -29.51969456721459
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "torre_id": "T287",
+    "tipo": "A",
+    "cuerpos": 4,
+    "ancho_servidumbre_m": 64.0,
+    "plano_pes": "021",
+    "afecta_predio": true,
+    "nota": "",
+    "source_truth": "interchile_2014",
+    "datum": "WGS84 UTM 19S",
+    "estado_canonico": "HECHO",
+    "categoria_evt": "infraestructura",
+    "evt_id": "EVT-H2-INTERCHILE-2014"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.24457322707303,
+     -29.52309379108539
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "torre_id": "T288",
+    "tipo": "A",
+    "cuerpos": 2,
+    "ancho_servidumbre_m": 62.0,
+    "plano_pes": "021",
+    "afecta_predio": true,
+    "nota": "",
+    "source_truth": "interchile_2014",
+    "datum": "WGS84 UTM 19S",
+    "estado_canonico": "HECHO",
+    "categoria_evt": "infraestructura",
+    "evt_id": "EVT-H2-INTERCHILE-2014"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -71.24574513494488,
+     -29.526944826844147
+    ]
+   }
+  }
+ ],
+ "metadata": {
+  "capa": "InterChile 2014 · servidumbre eléctrica voluntaria · torres",
+  "estado": "CANON_alta_confianza",
+  "categoria": "infraestructura",
+  "evt_origen": "EVT-H2-INTERCHILE-2014",
+  "titular_servidumbre": "InterChile (concesionaria pública)",
+  "linea": "Maitencillo-Pan de Azúcar 2x500 kV"
+ }
+}

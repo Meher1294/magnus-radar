@@ -1,0 +1,66 @@
+{
+ "type": "FeatureCollection",
+ "name": "estancia_la_higuera_matriz_2021",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "fid": 1,
+    "rol_sii": "24-5",
+    "titular_actual": "Andes Iron SpA",
+    "rut": "reservado",
+    "instrumento_actual": "Rep FS 313 N°14.461 / 16-ago-2021 — CBR La Serena",
+    "fecha_adquisicion": "2021-08-16",
+    "precio": "UF 273.292,2657 al contado",
+    "cadena_previa": "Agrícola Agua Grande → Agrícola El Tofo (2007) → Barrick Chile Generación → Compañía Minera Nevada SpA (2016, USD 9.968.943) → Andes Iron SpA (2021, UF 273.292)",
+    "exclusiones": "Hijuelas Jarpa 1-2-3 (segregadas 1990), 877,33 ha CMP desde 1982 (faja 5.700×10m + 841,63 ha polígono mina San Juan-El Tofo), lotes Fisco MOP 319/320/325/327/328/331/333/334/335/338-1",
+    "estado_canonico": "HECHO",
+    "categoria_evt": "contexto_historico",
+    "evt_id": "EVT-MATRIZ-AI-COMPRA-202108_NO_CANONIZADO"
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        -71.83120491110559,
+        -29.714282646434796
+       ],
+       [
+        -70.5993926721406,
+        -29.734905804021313
+       ],
+       [
+        -70.59269134346027,
+        -29.308019120980617
+       ],
+       [
+        -71.81935545001156,
+        -29.287749423072686
+       ],
+       [
+        -71.83120491110559,
+        -29.714282646434796
+       ]
+      ]
+     ]
+    ]
+   }
+  }
+ ],
+ "metadata": {
+  "capa": "Matriz Andes Iron 2021 · envoltorio Estancia La Higuera",
+  "estado": "CANON_alta_confianza",
+  "categoria": "contexto_historico",
+  "evt_origen": "EVT-MATRIZ-AI-COMPRA-202108_PENDIENTE_CANONIZACION",
+  "fuente": "Rep FS 313 N°14.461 / 16-ago-2021",
+  "observacion": "Categoria contexto_historico · pendiente justificación canonización segun doctrina taxonomia 5-entidades"
+ }
+}

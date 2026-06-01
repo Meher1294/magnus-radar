@@ -1,0 +1,145 @@
+{
+ "type": "FeatureCollection",
+ "name": "interchile_pes021_resto_h2",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "source_truth": "interchile_2014",
+    "naturaleza_geo": "fisico_legal_aproximado",
+    "jerarquia_fuente": "secundaria",
+    "nivel_confianza_operacional": "media",
+    "precision_metros": null,
+    "tiene_desfase_declarado": true,
+    "observacion_obligatoria": "Plano de servidumbre eléctrica ISA/InterChile. Documento reconoce separación predial funcional entre Lote C y Resto Hijuela 2 al año 2014. El propio plano declara trazado aproximado no validado por criterios eléctricos/mecánicos.",
+    "datum": "WGS84",
+    "proyeccion": "UTM Huso 19S (EPSG:32719)",
+    "concesionaria": "InterChile S.A. (RUT RUT_RESERVADO)",
+    "proyecto": "Línea Maitencillo - Pan de Azúcar 2x500kV",
+    "fecha_plano": "Julio 2014",
+    "fecha_carga_sistema": "2026-05-17",
+    "fuente_archivo": "ISA_002___PES_020_21.10.2015.pdf / ISA_002___PES_021_21.10.2015.pdf",
+    "id_canonico_propuesto": "GEO-INTERCHILE-PES021-RESTO-HIJUELA2-2014",
+    "nombre": "INTERCHILE_PES021_RESTO_HIJUELA2_SERVIDUMBRE_2014",
+    "plano": "PES-021",
+    "predio": "RESTO DE HIJUELA N°2 ESTANCIA LA HIGUERA",
+    "rol_sii_2014": "24-48",
+    "rol_sii_actual_inferido": "24-123 (Resto Hijuela 2)",
+    "propietario_2014": "COMINETTI PALINI BRUNO LUIGI",
+    "inscripcion_cbr_2014": "Fs.1994 N°1611 año 1996 + Fs.628 N°754 año 2000, CBR La Serena",
+    "area_servidumbre_m2": 107808.17,
+    "longitud_atravieso_m": 1611.04,
+    "cantidad_estructuras": 4,
+    "identificador_plano": "21",
+    "estado_canonico": "HECHO",
+    "categoria_evt": "infraestructura",
+    "evt_id": "EVT-H2-INTERCHILE-2014"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -71.24191007054138,
+       -29.512954978529674
+      ],
+      [
+       -71.24265374505215,
+       -29.514564531737296
+      ],
+      [
+       -71.2426038327897,
+       -29.514574305470283
+      ],
+      [
+       -71.24388286686089,
+       -29.519614422189782
+      ],
+      [
+       -71.24383299211433,
+       -29.51962600016673
+      ],
+      [
+       -71.24486724392027,
+       -29.523025221296855
+      ],
+      [
+       -71.24492311716092,
+       -29.523018954539886
+      ],
+      [
+       -71.24606410175905,
+       -29.526870509558986
+      ],
+      [
+       -71.24605414719277,
+       -29.526872843040355
+      ],
+      [
+       -71.24610053177186,
+       -29.527025246787183
+      ],
+      [
+       -71.24548016711655,
+       -29.527161404633944
+      ],
+      [
+       -71.24543611822739,
+       -29.527016629585198
+      ],
+      [
+       -71.24542616362933,
+       -29.527018963020957
+      ],
+      [
+       -71.24425436972163,
+       -29.523167922150996
+      ],
+      [
+       -71.24427930692693,
+       -29.523162087952258
+      ],
+      [
+       -71.24324496965858,
+       -29.51976286308213
+      ],
+      [
+       -71.24319519985174,
+       -29.519774529269604
+      ],
+      [
+       -71.23987188777366,
+       -29.515670954733572
+      ],
+      [
+       -71.24188631296035,
+       -29.515647813543318
+      ],
+      [
+       -71.241125244419,
+       -29.513146032951113
+      ],
+      [
+       -71.24191007054138,
+       -29.512954978529674
+      ]
+     ]
+    ]
+   }
+  }
+ ],
+ "metadata": {
+  "capa": "InterChile 2014 · servidumbre eléctrica voluntaria · pes021_resto_h2",
+  "estado": "CANON_alta_confianza",
+  "categoria": "infraestructura",
+  "evt_origen": "EVT-H2-INTERCHILE-2014",
+  "titular_servidumbre": "InterChile (concesionaria pública)",
+  "linea": "Maitencillo-Pan de Azúcar 2x500 kV"
+ }
+}

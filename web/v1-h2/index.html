@@ -6164,13 +6164,16 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
   const H2_LAYERS = [
     { id:'h2_cominetti',   file:'geojson/capa_1_h2_cominetti.geojson',                 nombre:'H2 Cominetti (canon)',          color:'#C97B3A', tipo:'fill',  default:true,  meta:'24-123 + 24-160' },
     { id:'h2_h1_ctx',      file:'geojson/capa_h1_garcia_huidobro_contextual.geojson',  nombre:'H1 García Huidobro · contextual', color:'#6B7280', tipo:'fill',  default:false, meta:'NO operacional' },
-    { id:'h2_matriz',      file:'geojson/capa_2_estancia_matriz.geojson',              nombre:'Estancia matriz IV-1-1777-S.R.',  color:'#A855F7', tipo:'mixto', default:false, meta:'6.918 ha · georef pendiente' },
-    { id:'h2_rtk',         file:'geojson/capa_3_daniel_rtk.geojson',                   nombre:'Daniel RTK',                      color:'#10B981', tipo:'point', default:false, meta:'capa física pendiente' },
+    { id:'h2_matriz',      file:'geojson/estancia_la_higuera_matriz_2021.geojson',     nombre:'Matriz AI 2021 · envoltorio',     color:'#A855F7', tipo:'fill',  default:false, meta:'Andes Iron · Rep FS 313 N°14.461 · contexto histórico' },
+    { id:'h2_rtk',         file:'geojson/perimetro_rtk_daniel.geojson',                nombre:'Perímetro RTK · capa física',     color:'#10B981', tipo:'fill',  default:false, meta:'RTK 10m · 2.164,97 ha medidas · identidad física canon' },
     { id:'h2_ocupaciones', file:'geojson/capa_4_ocupaciones.geojson',                  nombre:'Ocupaciones H2 (ortofoto)',       color:'#F59E0B', tipo:'point', default:false, meta:'19 features' },
     { id:'h2_servidumbres',file:'geojson/capa_5_servidumbres.geojson',                 nombre:'Servidumbres H2',                 color:'#3B82F6', tipo:'line',  default:false, meta:'924-644 · InterChile · MOP · Andes Iron' },
     { id:'h2_conflictos',  file:'geojson/capa_6_conflictos.geojson',                   nombre:'Conflictos canonizados',          color:'#EF4444', tipo:'point', default:false, meta:'C11 · C13 · rol 24-5' },
     { id:'h2_predios_1ha', file:'geojson/predios_mayores_1ha_v1.geojson',              nombre:'Predios mayores 1 ha (885)',      color:'#94A3B8', tipo:'fill',  default:false, meta:'Inventario v1 · 99,4% territorio · Tier 1: 8 · Tier 2: 49' },
     { id:'h2_sector_lineal_ai', file:'geojson/servidumbre_andes_iron.geojson',         nombre:'Sector Lineal AI · Dic-2025',     color:'#EC4899', tipo:'fill',  default:false, meta:'Servidumbre vinculante · H2 124,1 ha + H1 57,5 ha = 181,6 ha total' },
+    { id:'h2_titularidad_2023', file:'geojson/titularidad_cominetti_2023.geojson',     nombre:'Titularidad interna · 8 sub-lotes', color:'#F97316', tipo:'fill',  default:false, meta:'Estructura decisional Cominetti · adjudicaciones 2017 · 4 titulares + Cantera' },
+    { id:'h2_interchile_corredor', file:'geojson/interchile_servidumbre_2014.geojson', nombre:'InterChile · servidumbre 2014',   color:'#7C3AED', tipo:'fill',  default:false, meta:'Servidumbre eléctrica voluntaria · línea Maitencillo-Pan de Azúcar 2x500 kV' },
+    { id:'h2_interchile_torres',   file:'geojson/interchile_torres.geojson',           nombre:'InterChile · 9 torres físicas',   color:'#7C3AED', tipo:'point', default:false, meta:'Torres T280-T288 · infraestructura física consolidada 2014' },
   ];
 
   const H2_STATE = {};

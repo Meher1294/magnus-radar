@@ -1,0 +1,137 @@
+{
+ "type": "FeatureCollection",
+ "name": "interchile_pes020_lote_c",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "source_truth": "interchile_2014",
+    "naturaleza_geo": "fisico_legal_aproximado",
+    "jerarquia_fuente": "secundaria",
+    "nivel_confianza_operacional": "media",
+    "precision_metros": null,
+    "tiene_desfase_declarado": true,
+    "observacion_obligatoria": "Plano de servidumbre eléctrica ISA/InterChile. Documento reconoce separación predial funcional entre Lote C y Resto Hijuela 2 al año 2014. El propio plano declara trazado aproximado no validado por criterios eléctricos/mecánicos.",
+    "datum": "WGS84",
+    "proyeccion": "UTM Huso 19S (EPSG:32719)",
+    "concesionaria": "InterChile S.A. (RUT RUT_RESERVADO)",
+    "proyecto": "Línea Maitencillo - Pan de Azúcar 2x500kV",
+    "fecha_plano": "Julio 2014",
+    "fecha_carga_sistema": "2026-05-17",
+    "fuente_archivo": "ISA_002___PES_020_21.10.2015.pdf / ISA_002___PES_021_21.10.2015.pdf",
+    "id_canonico_propuesto": "GEO-INTERCHILE-PES020-LOTE-C-2014",
+    "nombre": "INTERCHILE_PES020_LOTE_C_SERVIDUMBRE_2014",
+    "plano": "PES-020",
+    "predio": "LOTE C DE LA HIJUELA N°2 DEL LOTE A DE LA ESTANCIA LA HIGUERA",
+    "rol_sii_2014": "24-4",
+    "rol_sii_actual_inferido": "24-160 (Lote C)",
+    "propietario_2014": "COMINETTI PALINI BRUNO LUIGI",
+    "inscripcion_cbr_2014": "Fs.1655 N°1340 año 1996 + Fs.628 N°344 año 2000, CBR La Serena",
+    "area_servidumbre_m2": 100005.47,
+    "longitud_atravieso_m": 1674.93,
+    "cantidad_estructuras": 4,
+    "identificador_plano": "20",
+    "estado_canonico": "HECHO",
+    "categoria_evt": "infraestructura",
+    "evt_id": "EVT-H2-INTERCHILE-2014"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -71.24858779723394,
+       -29.503191945583488
+      ],
+      [
+       -71.24627945449357,
+       -29.50185895358754
+      ],
+      [
+       -71.24626522164247,
+       -29.501877598346393
+      ],
+      [
+       -71.24376441273886,
+       -29.500433146357032
+      ],
+      [
+       -71.24442450513351,
+       -29.500263131272128
+      ],
+      [
+       -71.24655499748792,
+       -29.501493700150696
+      ],
+      [
+       -71.24654076871909,
+       -29.501512525301195
+      ],
+      [
+       -71.2388064713388,
+       -29.50315594915804
+      ],
+      [
+       -71.23986359785586,
+       -29.506641361413294
+      ],
+      [
+       -71.23993694927782,
+       -29.506628306897024
+      ],
+      [
+       -71.24113108760221,
+       -29.510622023949043
+      ],
+      [
+       -71.24119583653082,
+       -29.51060694849388
+      ],
+      [
+       -71.24191007054138,
+       -29.512954978529674
+      ],
+      [
+       -71.241125244419,
+       -29.513146032951113
+      ],
+      [
+       -71.24040858550627,
+       -29.510790190138334
+      ],
+      [
+       -71.24047333467178,
+       -29.510775115024412
+      ],
+      [
+       -71.23925899714966,
+       -29.50679977497776
+      ],
+      [
+       -71.23931369573934,
+       -29.506778013325764
+      ],
+      [
+       -71.24858779723394,
+       -29.503191945583488
+      ]
+     ]
+    ]
+   }
+  }
+ ],
+ "metadata": {
+  "capa": "InterChile 2014 · servidumbre eléctrica voluntaria · pes020_lote_c",
+  "estado": "CANON_alta_confianza",
+  "categoria": "infraestructura",
+  "evt_origen": "EVT-H2-INTERCHILE-2014",
+  "titular_servidumbre": "InterChile (concesionaria pública)",
+  "linea": "Maitencillo-Pan de Azúcar 2x500 kV"
+ }
+}
