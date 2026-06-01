@@ -266,9 +266,15 @@
     backdrop-filter: blur(8px);
     min-width: 180px;
   }
-  .legend-card .lc-title { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .legend-card .lc-title { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; cursor: pointer; user-select: none; display: flex; align-items: center; justify-content: space-between; gap: 6px; }
+  .legend-card .lc-title::after { content: '▸'; font-size: 9px; opacity: 0.7; transition: transform 0.15s; transform: rotate(0deg); }
+  .legend-card:not(.collapsed) .lc-title::after { transform: rotate(90deg); }
   .legend-card .lc-row { display: flex; align-items: center; gap: 8px; font-size: 11px; padding: 2px 0; }
   .legend-card .lc-bar { width: 16px; height: 10px; border-radius: 2px; }
+  /* v1.1.5 · legend-card minimizable · estado inicial colapsado */
+  .legend-card.collapsed .lc-row { display: none; }
+  .legend-card.collapsed .lc-title { margin-bottom: 0; }
+  .legend-card.collapsed { padding: 8px 12px; }
 
   .map-scale {
     position: absolute; bottom: 12px; left: 12px;
@@ -1703,15 +1709,16 @@
     --epis-pendiente: #64748B;
   }
 
-  /* DATA STATUS badge · esquina superior izquierda del mapa */
+  /* DATA STATUS badge · v1.1.5 oculto por default · solo visible si .err */
   .h2-data-status {
-    position: absolute; top: 12px; left: 12px; z-index: 5;
+    position: absolute; bottom: 36px; left: 12px; z-index: 5;
     background: rgba(17,27,48,0.97); backdrop-filter: blur(8px);
     padding: 9px 13px; border-radius: 7px; border: 1px solid var(--border);
     font-size: 11px; color: var(--text-dim);
-    display: flex; flex-direction: column; gap: 5px; max-width: 360px;
+    display: none; flex-direction: column; gap: 5px; max-width: 360px;
     font-family: 'JetBrains Mono', monospace; transition: all .2s;
   }
+  .h2-data-status.err { display: flex; }
   .h2-data-status.ok   { border-color: rgba(16,185,129,0.4); }
   .h2-data-status.err  { border-color: rgba(239,68,68,0.6); background: rgba(43,18,28,0.96); }
   .h2-data-status.warn { border-color: rgba(245,158,11,0.5); }
@@ -2345,7 +2352,7 @@
         </button>
       </div>
       <div class="map-overlay-tr">
-        <div class="legend-card" id="dynamicLegend">
+        <div class="legend-card collapsed" id="dynamicLegend">
           <div class="lc-title">Predios por sector</div>
           <div class="lc-row"><span class="lc-bar" style="background:#C97B3A"></span>Los Choros · 351</div>
           <div class="lc-row"><span class="lc-bar" style="background:#3B82F6"></span>Los Hornos · 244</div>
@@ -6269,6 +6276,24 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
       '7. canon-maplibre-motor-cartografico-v1\n   Motor único · prohibido Mapbox/Leaflet/Cesium/OpenLayers'
     ));
 
+    // v1.1.5 · legend-card "Predios por sector" minimizable
+    (function setupLegendToggle(){
+      const card = document.getElementById('dynamicLegend');
+      if (!card) return;
+      const title = card.querySelector('.lc-title');
+      if (!title || title.dataset.toggleBound) return;
+      title.dataset.toggleBound = '1';
+      try {
+        const stored = localStorage.getItem('magnus_legend_collapsed');
+        if (stored === '0') card.classList.remove('collapsed');
+        else card.classList.add('collapsed'); // default colapsado
+      } catch(e) { card.classList.add('collapsed'); }
+      title.addEventListener('click', () => {
+        const collapsed = card.classList.toggle('collapsed');
+        try { localStorage.setItem('magnus_legend_collapsed', collapsed ? '1' : '0'); } catch(e) {}
+      });
+    })();
+
     // v1.1.3 · Botón Mesa AI · abre modal con estado del conocimiento
     const mesaAiBtn = host.querySelector('#h2-mesa-ai-btn');
     if (mesaAiBtn) mesaAiBtn.addEventListener('click', () => {
@@ -6373,15 +6398,16 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
 
       CTA_GROUPS.forEach(g => {
         const btn = ctaContainer.querySelector(`[data-cta-id="${g.id}"]`);
-        const sections = sidebar.querySelectorAll(`.sidebar-section[data-cta-group="${g.id}"]`);
+        const queryCurrent = () => sidebar.querySelectorAll(`.sidebar-section[data-cta-group="${g.id}"], [data-cta-group="${g.id}"]`);
         const wasExpanded = !!stored[g.id];
         if (wasExpanded) {
           btn.classList.add('expanded');
-          sections.forEach(s => s.classList.add('cta-revealed'));
+          queryCurrent().forEach(s => s.classList.add('cta-revealed'));
         }
         btn.addEventListener('click', () => {
           const expanded = btn.classList.toggle('expanded');
-          sections.forEach(s => s.classList.toggle('cta-revealed', expanded));
+          // v1.1.5 · query dinámica para capturar elementos inyectados después del setup (h2-truth-panel)
+          queryCurrent().forEach(s => s.classList.toggle('cta-revealed', expanded));
           stored[g.id] = expanded;
           try { localStorage.setItem('magnus_sidebar_cta', JSON.stringify(stored)); } catch(e) {}
         });
@@ -6912,15 +6938,28 @@ window.__MAGNUS_GEO = (function GeometryFix() {
       truths.predios = { total: feats.length };
     } catch (e) {}
 
-    // Inyectar pill informativo en sidebar arriba de Capas activas
+    // v1.1.5 · Inyectar pill como sidebar-section bajo CTA "metricas" (no top)
     let info = document.getElementById('h2-truth-panel');
     if (!info) {
       const sidebar = document.querySelector('.sidebar');
       if (!sidebar) return;
       info = document.createElement('div');
       info.id = 'h2-truth-panel';
-      info.style.cssText = 'padding:10px 12px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.25);border-radius:7px;margin-bottom:12px;font-size:10.5px;font-family:JetBrains Mono,monospace;color:var(--text-dim);line-height:1.6';
-      sidebar.insertBefore(info, sidebar.firstChild);
+      info.className = 'sidebar-section';
+      info.setAttribute('data-cta-group', 'metricas');
+      info.style.cssText = 'padding:10px 12px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.25);border-radius:7px;font-size:10.5px;font-family:JetBrains Mono,monospace;color:var(--text-dim);line-height:1.6';
+      // Insertar antes de las stats Comuna La Higuera (primera sección del grupo metricas)
+      const firstMetricSection = sidebar.querySelector('.sidebar-section[data-cta-group="metricas"]');
+      if (firstMetricSection) {
+        sidebar.insertBefore(info, firstMetricSection);
+      } else {
+        sidebar.appendChild(info);
+      }
+      // Si el grupo "metricas" ya está revelado por CTA persistido, también revelar este panel
+      try {
+        const cta = JSON.parse(localStorage.getItem('magnus_sidebar_cta') || '{}');
+        if (cta.metricas) info.classList.add('cta-revealed');
+      } catch(e) {}
     }
     const t = truths;
     info.innerHTML = `
