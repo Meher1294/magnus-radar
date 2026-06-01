@@ -61,7 +61,12 @@
     "titular_dominante": "Andes Iron SpA",
     "choke_point": "PAS Art 96 Reglamento SEIA · cambio uso suelo rural",
     "artefacto_perdido": "andes_iron.geojson (referenciado en 4 .qgz · ausente)",
-    "estado_geometria": "TRAZADO_APROXIMADO · pendiente recuperar andes_iron.geojson o vectorizar A-104 Layout EIA"
+    "estado_geometria": "TRAZADO_APROXIMADO · pendiente recuperar andes_iron.geojson o vectorizar A-104 Layout EIA",
+    "estado_canonico": "HIPOTESIS",
+    "fuentes": [],
+    "caveats": [
+     "TRAZADO_APROXIMADO · pendiente recuperar andes_iron.geojson o vectorizar A-104 Layout EIA"
+    ]
    }
   },
   {
@@ -89,7 +94,12 @@
     "torres": "T280 a T288 (9 torres)",
     "contacto": "Rodrigo Sánchez",
     "estado": "vigente · canon pagado",
-    "estado_geometria": "TRAZADO_APROXIMADO"
+    "estado_geometria": "TRAZADO_APROXIMADO",
+    "estado_canonico": "HECHO",
+    "fuentes": [],
+    "caveats": [
+     "TRAZADO_APROXIMADO"
+    ]
    }
   },
   {
@@ -114,7 +124,14 @@
     "titular_dominante": "PENDIENTE",
     "fuente": "nota marginal inscripción matriz H2 1990",
     "estado": "vigente",
-    "caveat": "titular dominante y geometria pendientes de cruce CBR"
+    "caveat": "titular dominante y geometria pendientes de cruce CBR",
+    "estado_canonico": "HECHO",
+    "fuentes": [
+     "nota marginal inscripción matriz H2 1990"
+    ],
+    "caveats": [
+     "titular dominante y geometria pendientes de cruce CBR"
+    ]
    }
   },
   {
@@ -147,7 +164,10 @@
      "338-1"
     ],
     "estado": "consumada · dominio Fisco",
-    "superficie_ha": "componente principal de brecha 503 ha H2"
+    "superficie_ha": "componente principal de brecha 503 ha H2",
+    "estado_canonico": "HECHO",
+    "fuentes": [],
+    "caveats": []
    }
   }
  ]

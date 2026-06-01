@@ -227,6 +227,7 @@ de_GeoJSON_a_PMTiles:
 
 ## Changelog
 
+- **v1.0.5** · 2026-05-31 · HOTFIX .gitignore (publicar GeoJSON H2 + andamiaje P1) · normalizar estados a 4 canónicos HECHO/INFERENCIA/HIPOTESIS/BLOQUEADO (37 features distribuidos) · BLOQUEADO en Daniel RTK + titular asignado · comisión 10% + vigencia mandato Rep 24.327 visible en ficha H2 · caveats array · flag no_comercial H1 · gate pre-push canon (git ls-files check)
 - **v1.0.4** · 2026-05-31 · 7 fixes post-deploy: smartFetchGeoJSON (4 paths fallback) · build_failed overlay si 0 features HTTP · tasación mailto (no chat) · filtros SEIA handler · label Sector Lineal Andes Iron · basemap claro default · h2_rtk OFF · banner H1 no comercial
 - **v1.0.3** · 2026-05-31 · sidebar colapsable + buscador + contadores por sección
 - **v1.0.2** · 2026-05-31 · OPCIÓN B · clonar v0 + inyectar capas H2 + sistema epistemológico

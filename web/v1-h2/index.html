@@ -6158,18 +6158,32 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
   // === Renderizar ficha epistemológica en panel derecho ===
   function renderH2Detail(L, feat, capaMeta) {
     const p = feat.properties || {};
-    const estado = (p.estado || p.estado_titularidad || p.estado_correspondencia || 'NO_DECLARADO').toUpperCase();
-    const cls = estado.includes('HECHO')||estado.includes('RESUELTO')||estado.includes('CANON') ? 'hecho'
-              : estado.includes('INFERENCIA') ? 'inferencia'
-              : estado.includes('HIPOTESIS')||estado.includes('HIPÓTESIS')||estado.includes('PENDIENTE') ? 'hipotesis'
-              : estado.includes('BLOQUEADO') ? 'bloqueado'
+    // v1.0.5 · prioridad: estado_canonico (4 canónicos) → estado legacy
+    const estadoCanon = (p.estado_canonico || '').toUpperCase();
+    const estadoRaw = (p.estado || p.estado_titularidad || p.estado_correspondencia || 'NO_DECLARADO').toUpperCase();
+    const estado = estadoCanon || estadoRaw;
+    const cls = estado === 'HECHO' ? 'hecho'
+              : estado === 'INFERENCIA' ? 'inferencia'
+              : estado === 'HIPOTESIS' || estado === 'HIPÓTESIS' ? 'hipotesis'
+              : estado === 'BLOQUEADO' ? 'bloqueado'
+              : (estadoRaw.includes('HECHO')||estadoRaw.includes('RESUELTO')||estadoRaw.includes('CANON')) ? 'hecho'
+              : (estadoRaw.includes('INFERENCIA')) ? 'inferencia'
+              : (estadoRaw.includes('PENDIENTE')||estadoRaw.includes('APROXIM')) ? 'hipotesis'
+              : (estadoRaw.includes('BLOQUEADO')||estadoRaw.includes('NO_DECL')) ? 'bloqueado'
               : 'inferencia';
 
     const esc = s => s == null ? '' : String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     const sii = p.rol_sii_actual || p.rol_sii;
     const aliases = p.alias_historicos || [];
     const cbr = p.inscripcion_CBR;
-    const caveats = [p.caveat, p.caveat_critico, p.caveat_geometria, p.estado_geometria].filter(Boolean);
+    // v1.0.5 · caveats array (preferido) o legacy strings
+    let caveats;
+    if (Array.isArray(p.caveats) && p.caveats.length) {
+      caveats = p.caveats;
+    } else {
+      caveats = [p.caveat, p.caveat_critico, p.caveat_geometria, p.estado_geometria].filter(Boolean);
+    }
+    if (p.no_comercial) caveats.unshift(p.no_comercial);
     const fuentes = p.fuentes || (p.fuente ? [p.fuente] : []);
     const doctrinas = p.doctrinas_aplicables || p.doctrina_canonizada;
 
@@ -6209,6 +6223,11 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     if (p.area_ha_catastral) atts.push(['superficie', p.area_ha_catastral + ' ha (SII)']);
     if (p.tier) atts.push(['tier', 'Tier ' + p.tier]);
     if (p.año) atts.push(['año', p.año]);
+    // v1.0.5 · datos del mandato Rep 24.327 (solo H2 Cominetti)
+    if (p.comision_bruta) atts.push(['comisión', p.comision_bruta]);
+    if (p.vigencia_mandato) atts.push(['vigencia mandato', p.vigencia_mandato]);
+    if (p.rol_capa) atts.push(['rol capa', p.rol_capa]);
+    if (p.autoridad) atts.push(['autoridad', p.autoridad]);
     if (p.titular_dominante) atts.push(['dominante', p.titular_dominante]);
     if (p.titular_sirviente) atts.push(['sirviente', p.titular_sirviente]);
     if (p.longitud_km) atts.push(['longitud', p.longitud_km + ' km']);

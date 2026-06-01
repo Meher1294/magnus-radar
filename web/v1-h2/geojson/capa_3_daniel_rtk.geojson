@@ -21,9 +21,16 @@
    "properties": {
     "tipo": "flag_RTK_pendiente",
     "descripcion": "Validación RTK del perímetro H2 + sublotes · pendiente agenda Daniel",
-    "autoridad": "Daniel Martínez Zurita (C.I. 14.387.985-2)",
+    "autoridad": "levantamiento RTK precision 10m",
     "precision_objetivo": "10 m",
-    "output_esperado": "poligono_RTK_H2_canonico.geojson"
+    "output_esperado": "poligono_RTK_H2_canonico.geojson",
+    "estado_canonico": "BLOQUEADO",
+    "titular": "Daniel Martínez Zurita (C.I. 14.387.985-2)",
+    "rol_capa": "capa_fisica_referente",
+    "caveats": [
+     "Pendiente levantamiento campo · 5 prioridades: H2 · H1 · El Molle · Totoralillo Norte · frontera cat5"
+    ],
+    "fuentes": []
    }
   }
  ]

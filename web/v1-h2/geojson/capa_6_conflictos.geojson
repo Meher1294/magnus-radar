@@ -29,7 +29,14 @@
     "enunciado": "¿Los roles 24-48 y 24-4 (escritura Cofanti 2014-2016) son la misma identidad territorial que 24-123 y 24-160 (catastro SII actual)?",
     "resolucion": "SI · mutación catastral documentada (24-48→24-123 · 24-4→24-160)",
     "evidencia": "Escritura 16.pdf · Rep 25.963 · 19-dic-2016 · Notario Pedro Reveco",
-    "doctrina_canonizada": "rol-sii-no-es-identidad-territorial"
+    "doctrina_canonizada": "rol-sii-no-es-identidad-territorial",
+    "estado_canonico": "HECHO",
+    "fuentes": [
+     "Escritura 16.pdf · Rep 25.963 · 19-dic-2016 · Notario Pedro Reveco"
+    ],
+    "caveats": [
+     "Doctrina rol_sii_no_es_identidad: el rol SII es atributo temporal"
+    ]
    }
   },
   {
@@ -47,7 +54,12 @@
     "tipo": "identidad_territorial",
     "enunciado": "¿El predio fiscal fs.4856 N°4411/2007 (Totoralillo Norte) coincide con rol 24-5 Estancia La Higuera (Andes Iron)?",
     "resolucion": "NO · son vecinos · ESC-GT-000011 p.7 declara deslinde explícito",
-    "doctrina_canonizada": "homonimia-territorial"
+    "doctrina_canonizada": "homonimia-territorial",
+    "estado_canonico": "HECHO",
+    "fuentes": [],
+    "caveats": [
+     "Doctrina homonimia: similitud toponímica NO implica identidad"
+    ]
    }
   },
   {
@@ -65,7 +77,14 @@
     "tipo": "rol_no_en_KMZ",
     "enunciado": "Rol canon 24-5 Andes Iron NO aparece en KMZ-06 catastro SII",
     "estado_actual": "documental ALTA · geométrica PENDIENTE Daniel RTK",
-    "caveat": "NUNCA promover superficie 60.000 ha como HECHO"
+    "caveat": "NUNCA promover superficie 60.000 ha como HECHO",
+    "estado_canonico": "BLOQUEADO",
+    "fuentes": [],
+    "caveats": [
+     "NUNCA promover superficie 60.000 ha como HECHO",
+     "Identidad documental ALTA · geometría PENDIENTE Daniel RTK",
+     "NUNCA promover superficie 60.000 ha como HECHO"
+    ]
    }
   }
  ]

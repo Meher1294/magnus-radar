@@ -120,7 +120,11 @@
     ],
     "rol_sii_actual": "24-160",
     "area_ha_catastral": 299.18,
-    "capa_origen": "SII (KMZ-06 catastro)"
+    "capa_origen": "SII (KMZ-06 catastro)",
+    "estado_canonico": "HECHO",
+    "comision_bruta": "10% (cláusula 6ª mandato Rep 24.327)",
+    "vigencia_mandato": "24 meses (hasta 14-abr-2028)",
+    "caveats": []
    }
   },
   {
@@ -1040,7 +1044,11 @@
     ],
     "rol_sii_actual": "24-123",
     "area_ha_catastral": 1399.93,
-    "capa_origen": "SII (KMZ-06 catastro)"
+    "capa_origen": "SII (KMZ-06 catastro)",
+    "estado_canonico": "HECHO",
+    "comision_bruta": "10% (cláusula 6ª mandato Rep 24.327)",
+    "vigencia_mandato": "24 meses (hasta 14-abr-2028)",
+    "caveats": []
    }
   },
   {
@@ -1088,7 +1096,11 @@
     ],
     "rol_sii_actual": "24-123",
     "area_ha_catastral": 0.15,
-    "capa_origen": "SII (KMZ-06 catastro)"
+    "capa_origen": "SII (KMZ-06 catastro)",
+    "estado_canonico": "HECHO",
+    "comision_bruta": "10% (cláusula 6ª mandato Rep 24.327)",
+    "vigencia_mandato": "24 meses (hasta 14-abr-2028)",
+    "caveats": []
    }
   },
   {
@@ -1332,7 +1344,11 @@
     ],
     "rol_sii_actual": "24-123",
     "area_ha_catastral": 901.71,
-    "capa_origen": "SII (KMZ-06 catastro)"
+    "capa_origen": "SII (KMZ-06 catastro)",
+    "estado_canonico": "HECHO",
+    "comision_bruta": "10% (cláusula 6ª mandato Rep 24.327)",
+    "vigencia_mandato": "24 meses (hasta 14-abr-2028)",
+    "caveats": []
    }
   }
  ]

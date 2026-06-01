@@ -33,7 +33,14 @@
     "observacion": "Plantacion en filas regulares verde oscuro · ~0.5-1.0 ha · patron compatible con vinedo/frutal de riego",
     "estado": "observado",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "Plantacion en filas regulares verde oscuro · ~0.5-1.0 ha · patron compatible con vinedo/frutal de riego"
+    ]
    }
   },
   {
@@ -68,7 +75,14 @@
     "observacion": "~10-15 estructuras con techumbre clara distinguible · trama irregular · accesos visibles · contexto habitacional probable",
     "estado": "observado",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "~10-15 estructuras con techumbre clara distinguible · trama irregular · accesos visibles · contexto habitacional probable"
+    ]
    }
   },
   {
@@ -103,7 +117,14 @@
     "observacion": "Densidad alta de techumbres (~40-60 viviendas en cuadrante) · trama de calles definida · cancha de futbol rectangular verde · vehiculos visibles · contexto habitacional consolidado",
     "estado": "observado",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "Densidad alta de techumbres (~40-60 viviendas en cuadrante) · trama de calles definida · cancha de futbol rectangular verde · vehiculos visibles · contexto habitacional consolidado"
+    ]
    }
   },
   {
@@ -138,7 +159,14 @@
     "observacion": "Rectangulo verde uniforme con proporciones de cancha de futbol · indicador fuerte de asentamiento con vida comunitaria",
     "estado": "observado",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "Rectangulo verde uniforme con proporciones de cancha de futbol · indicador fuerte de asentamiento con vida comunitaria"
+    ]
    }
   },
   {
@@ -173,7 +201,14 @@
     "observacion": "Conjunto disperso de estructuras en mitad superior · transicion entre nucleo y zona arida · techumbres visibles pero menor densidad",
     "estado": "observado",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "Conjunto disperso de estructuras en mitad superior · transicion entre nucleo y zona arida · techumbres visibles pero menor densidad"
+    ]
    }
   },
   {
@@ -208,7 +243,14 @@
     "observacion": "Linea sinuosa con tonos cambiantes (claro/oscuro) compatible con cauce seco · cruza el cuadrante · zona de potencial riesgo aluvional",
     "estado": "observado",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "Linea sinuosa con tonos cambiantes (claro/oscuro) compatible con cauce seco · cruza el cuadrante · zona de potencial riesgo aluvional"
+    ]
    }
   },
   {
@@ -243,7 +285,14 @@
     "observacion": "Sin estructuras visibles en zona cubierta · vegetacion arbustiva dispersa · parte mayoritaria del cuadrante sin datos (fuera del vuelo)",
     "estado": "observado",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "Sin estructuras visibles en zona cubierta · vegetacion arbustiva dispersa · parte mayoritaria del cuadrante sin datos (fuera del vuelo)"
+    ]
    }
   },
   {
@@ -278,7 +327,14 @@
     "observacion": "Continuacion sur del asentamiento Q00/Q11 · densidad alta de estructuras en mitad inferior del cuadrante segun mosaico panoramico · NO leido individualmente",
     "estado": "revisar_en_terreno",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "Continuacion sur del asentamiento Q00/Q11 · densidad alta de estructuras en mitad inferior del cuadrante segun mosaico panoramico · NO leido individualmente"
+    ]
    }
   },
   {
@@ -313,7 +369,14 @@
     "observacion": "Zona arida sin estructuras visibles en panorama · NO leido individualmente · posibles estructuras pequenas no detectables a esta escala",
     "estado": "revisar_en_terreno",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "Zona arida sin estructuras visibles en panorama · NO leido individualmente · posibles estructuras pequenas no detectables a esta escala"
+    ]
    }
   },
   {
@@ -348,7 +411,14 @@
     "observacion": "Zona arida · sin ocupacion visible en panorama · cuadrante con datos parciales (bordes del vuelo)",
     "estado": "revisar_en_terreno",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "Zona arida · sin ocupacion visible en panorama · cuadrante con datos parciales (bordes del vuelo)"
+    ]
    }
   },
   {
@@ -383,7 +453,14 @@
     "observacion": "Densidad muy alta de techumbres en panorama · extension del nucleo Q11 hacia oeste · NO leido individualmente",
     "estado": "revisar_en_terreno",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "Densidad muy alta de techumbres en panorama · extension del nucleo Q11 hacia oeste · NO leido individualmente"
+    ]
    }
   },
   {
@@ -418,7 +495,14 @@
     "observacion": "Densidad media de techumbres en panorama · trama urbana visible · transicion entre nucleo y periferia este",
     "estado": "revisar_en_terreno",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "Densidad media de techumbres en panorama · trama urbana visible · transicion entre nucleo y periferia este"
+    ]
    }
   },
   {
@@ -453,7 +537,14 @@
     "observacion": "Algunas estructuras dispersas visibles en panorama · mayoritariamente zona arida",
     "estado": "revisar_en_terreno",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "Algunas estructuras dispersas visibles en panorama · mayoritariamente zona arida"
+    ]
    }
   },
   {
@@ -488,7 +579,14 @@
     "observacion": "Densidad alta de techumbres en panorama · extension sur del nucleo · NO leido individualmente",
     "estado": "revisar_en_terreno",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "Densidad alta de techumbres en panorama · extension sur del nucleo · NO leido individualmente"
+    ]
    }
   },
   {
@@ -523,7 +621,14 @@
     "observacion": "Densidad alta de techumbres en panorama · continuidad de la trama urbana sur · NO leido individualmente",
     "estado": "revisar_en_terreno",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "Densidad alta de techumbres en panorama · continuidad de la trama urbana sur · NO leido individualmente"
+    ]
    }
   },
   {
@@ -558,7 +663,14 @@
     "observacion": "Continuidad del cauce de Q22 · zona arida con cauce serpenteante visible en panorama",
     "estado": "revisar_en_terreno",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "Continuidad del cauce de Q22 · zona arida con cauce serpenteante visible en panorama"
+    ]
    }
   },
   {
@@ -593,7 +705,14 @@
     "observacion": "Densidad media de techumbres en panorama · extension SW del asentamiento · cuadrante con datos parciales",
     "estado": "revisar_en_terreno",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "Densidad media de techumbres en panorama · extension SW del asentamiento · cuadrante con datos parciales"
+    ]
    }
   },
   {
@@ -628,7 +747,14 @@
     "observacion": "Estructuras dispersas + camino + terreno mayoritariamente sin ocupacion en panorama",
     "estado": "revisar_en_terreno",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "Estructuras dispersas + camino + terreno mayoritariamente sin ocupacion en panorama"
+    ]
    }
   },
   {
@@ -663,7 +789,14 @@
     "observacion": "Sin ocupacion visible en panorama · cuadrante con datos parciales",
     "estado": "revisar_en_terreno",
     "rol_sii": null,
-    "propietario": null
+    "propietario": null,
+    "estado_canonico": "INFERENCIA",
+    "fuentes": [
+     "ORTOFOTO_KMZ_SUPEROVERLAY"
+    ],
+    "caveats": [
+     "Sin ocupacion visible en panorama · cuadrante con datos parciales"
+    ]
    }
   }
  ],

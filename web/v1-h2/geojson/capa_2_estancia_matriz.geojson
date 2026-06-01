@@ -48,7 +48,12 @@
      "H3 Patricio Joaquín Jarpa · 2.137 ha"
     ],
     "estado_polígono": "APROXIMADO",
-    "requiere": "georreferenciación P1 del plano histórico ITS-CARTO-PLANO-0001"
+    "requiere": "georreferenciación P1 del plano histórico ITS-CARTO-PLANO-0001",
+    "estado_canonico": "HIPOTESIS",
+    "fuentes": [],
+    "caveats": [
+     "APROXIMADO"
+    ]
    }
   },
   {
@@ -66,7 +71,12 @@
     "fuente": "Plano MBN IV-1-1777-S.R. · ficha documento",
     "datum_original": "PSAD56",
     "datum_visualizacion": "WGS84",
-    "caveat": "Coordenada aproximada · delta PSAD56→WGS84 sin correccion NTGEO"
+    "caveat": "Coordenada aproximada · delta PSAD56→WGS84 sin correccion NTGEO",
+    "estado_canonico": "HIPOTESIS",
+    "fuentes": [
+     "Plano MBN IV-1-1777-S.R. · ficha documento"
+    ],
+    "caveats": []
    }
   },
   {
@@ -84,7 +94,12 @@
     "fuente": "Plano MBN IV-1-1777-S.R. · ficha documento",
     "datum_original": "PSAD56",
     "datum_visualizacion": "WGS84",
-    "caveat": "Coordenada aproximada · delta PSAD56→WGS84 sin correccion NTGEO"
+    "caveat": "Coordenada aproximada · delta PSAD56→WGS84 sin correccion NTGEO",
+    "estado_canonico": "HIPOTESIS",
+    "fuentes": [
+     "Plano MBN IV-1-1777-S.R. · ficha documento"
+    ],
+    "caveats": []
    }
   }
  ]

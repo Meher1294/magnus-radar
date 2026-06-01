@@ -97,7 +97,12 @@
     "caveat": "idem 24-42",
     "rol_sii_actual": "24-43",
     "area_ha_catastral": 0.58,
-    "capa_origen": "SII (KMZ-06 catastro)"
+    "capa_origen": "SII (KMZ-06 catastro)",
+    "estado_canonico": "INFERENCIA",
+    "caveats": [
+     "idem 24-42"
+    ],
+    "no_comercial": "Magnus restringido por cláusula 5ª mandato Cominetti · NO representa colindantes"
    }
   },
   {
@@ -1101,7 +1106,12 @@
     "caveat": "idem 24-42",
     "rol_sii_actual": "24-43",
     "area_ha_catastral": 1241.76,
-    "capa_origen": "SII (KMZ-06 catastro)"
+    "capa_origen": "SII (KMZ-06 catastro)",
+    "estado_canonico": "INFERENCIA",
+    "caveats": [
+     "idem 24-42"
+    ],
+    "no_comercial": "Magnus restringido por cláusula 5ª mandato Cominetti · NO representa colindantes"
    }
   },
   {
@@ -1169,7 +1179,12 @@
     "caveat": "idem 24-42",
     "rol_sii_actual": "24-43",
     "area_ha_catastral": 0.09,
-    "capa_origen": "SII (KMZ-06 catastro)"
+    "capa_origen": "SII (KMZ-06 catastro)",
+    "estado_canonico": "INFERENCIA",
+    "caveats": [
+     "idem 24-42"
+    ],
+    "no_comercial": "Magnus restringido por cláusula 5ª mandato Cominetti · NO representa colindantes"
    }
   },
   {
@@ -1529,7 +1544,12 @@
     "caveat": "idem 24-42",
     "rol_sii_actual": "24-43",
     "area_ha_catastral": 283.14,
-    "capa_origen": "SII (KMZ-06 catastro)"
+    "capa_origen": "SII (KMZ-06 catastro)",
+    "estado_canonico": "INFERENCIA",
+    "caveats": [
+     "idem 24-42"
+    ],
+    "no_comercial": "Magnus restringido por cláusula 5ª mandato Cominetti · NO representa colindantes"
    }
   },
   {
@@ -1689,7 +1709,12 @@
     "caveat": "Magnus NO opera comercialmente sobre H1 hoy · capa informativa contextual",
     "rol_sii_actual": "24-42",
     "area_ha_catastral": 566.46,
-    "capa_origen": "SII (KMZ-06 catastro)"
+    "capa_origen": "SII (KMZ-06 catastro)",
+    "estado_canonico": "INFERENCIA",
+    "caveats": [
+     "Magnus NO opera comercialmente sobre H1 hoy · capa informativa contextual"
+    ],
+    "no_comercial": "Magnus restringido por cláusula 5ª mandato Cominetti · NO representa colindantes"
    }
   }
  ]
