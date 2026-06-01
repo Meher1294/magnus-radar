@@ -30,6 +30,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<!-- v1.0.7 · canonical para SEO -->
+<link rel="canonical" href="https://meher1294.github.io/magnus-radar/v1-h2/" />
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
 <script type="importmap">
@@ -1820,6 +1822,22 @@
   }
   .epis-legend-dot { width: 7px; height: 7px; border-radius: 50%; }
 
+  /* ============ v1.0.7 · FIX CONTRASTE WCAG AA · botones naranjas ============ */
+  /* Texto blanco sobre #C97B3A (Magnus accent) da ratio 3.29 (FAIL AA para <18px) · agregamos text-shadow para mejorar legibilidad */
+  .btn-primary,
+  .h2-focus-btn:not(.secondary) {
+    text-shadow: 0 1px 2px rgba(0,0,0,0.55);
+    font-weight: 600;
+  }
+  /* botones pill activos · "Calles" "Satélite" "Topo" "Sector" "Superficie" "Estado" · usar texto más oscuro sobre naranja */
+  button.active[data-basemap],
+  button.active[data-color-mode] {
+    color: #0A111F !important;
+    background: var(--accent) !important;
+    text-shadow: none;
+    font-weight: 700;
+  }
+
   /* ============ v1.0.3 · SIDEBAR REORGANIZACIÓN ============ */
   /* Search box sticky en top de sidebar */
   .h2-sidebar-search {
@@ -2171,9 +2189,9 @@
         <button class="map-btn" id="btnHelp" title="Atajos (?)">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
         </button>
-        <button class="map-btn" id="drawBtn">
+        <button class="map-btn" id="drawBtn" disabled title="Próximamente · v2" style="opacity:0.45;cursor:not-allowed">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 19 21 12 17 5 21 12 2"/></svg>
-          Dibujar polígono
+          Dibujar · próximamente
         </button>
       </div>
       <div class="map-overlay-tr">
@@ -2226,7 +2244,7 @@
     <span class="status-sep">|</span>
     <div class="status-item" id="cursorCoords">—</div>
     <div style="flex:1"></div>
-    <div class="status-item">Magnus Radar v0.2 · La Higuera</div>
+    <div class="status-item">Magnus Radar v1.0.7 · La Higuera</div>
   </div>
 </div>
 
@@ -3158,7 +3176,7 @@ function renderPredioPanel(p, isHijuela2) {
         <div class="field"><div class="label">Estado SII</div><div class="value">${p.estado === 'V' ? 'Vigente' : p.estado}</div></div>
         <div class="field"><div class="label">Destino SII</div><div class="value">${p.destino || '—'}</div></div>
         <div class="field"><div class="label">Avalúo fiscal</div><div class="value mono">${p.avaluo_uf ? 'UF '+p.avaluo_uf.toLocaleString('es-CL') : (meta.avaluo_estimado_uf ? 'UF ~'+meta.avaluo_estimado_uf.toLocaleString('es-CL')+' est.' : '—')}</div></div>
-        <div class="field"><div class="label">Centroide</div><div class="value mono" style="font-size:10.5px">${p.lat.toFixed(4)}, ${p.lon.toFixed(4)}</div></div>
+        <div class="field"><div class="label">Centroide</div><div class="value mono" style="font-size:10.5px">${(p._centroide_calc_lat ?? p.lat).toFixed(4)}, ${(p._centroide_calc_lon ?? p.lon).toFixed(4)}${p._n_parcelas && p._n_parcelas > 1 ? ` <span style="color:var(--hipotesis);font-size:9.5px">· ${p._n_parcelas} parcelas</span>` : ''}${p._desfase_significativo ? ` <span title="lat/lon original difiere ${p._desfase_lat_lon_m}m del centroide real" style="color:var(--hipotesis);font-size:9.5px">· Δ ${p._desfase_lat_lon_m}m vs lat/lon</span>` : ''}</div></div>
         <div class="field full"><div class="label">Sector</div><div class="value">${p.sector || 'Sin sector asignado'}</div></div>
       </div>
 
@@ -3747,7 +3765,7 @@ async function solicitarTasacion(rol) {
   const body = encodeURIComponent(
     `Hola Max,\n\nSolicito tasación del siguiente predio:\n\n` +
     `Rol SII: ${rol}\nComuna: La Higuera (4102)\n\n` +
-    `Origen: Magnus Radar v1.0.4 · ${window.location.href}\n\n` +
+    `Origen: Magnus Radar v1.0.7 · ${window.location.href}\n\n` +
     `Gracias.`
   );
   target.innerHTML = `
@@ -4159,7 +4177,7 @@ function showAnalisisPanel() {
     <div class="panel-header">
       <div class="panel-type-row">
         <span class="panel-type">Dashboard analítico</span>
-        <span class="panel-flag info">v0.2</span>
+        <span class="panel-flag info">v1.0.7</span>
       </div>
       <div class="panel-title">Análisis · Comuna La Higuera</div>
       <div class="panel-subtitle">7.686 predios · 17 SEIA · 87 DGA · 3 áreas protegidas</div>
@@ -4847,7 +4865,7 @@ function showDocsPanel() {
     <div class="panel-header">
       <div class="panel-type-row">
         <span class="panel-type">Documentación API</span>
-        <span class="panel-flag info">v0.2 · pública</span>
+        <span class="panel-flag info">v1.0.7 · pública</span>
       </div>
       <div class="panel-title">Magnus Radar REST API</div>
       <div class="panel-subtitle">Supabase PostgREST · sin auth para lecturas públicas</div>
@@ -5027,17 +5045,33 @@ function doGlobalSearch(q) {
   }
   const groups = [];
 
-  // Predios (top 5 por rol/sector match)
+  // Predios (top 5 por rol/sector match) · v1.0.8 · diferenciador multi-polígono
   if (predios) {
-    const matches = predios.features.filter(f => {
+    const matchesRaw = predios.features.filter(f => {
       const p = f.properties;
       return p.rol.toLowerCase().includes(q) || (p.sector||'').toLowerCase().includes(q);
-    }).slice(0, 5);
-    if (matches.length) groups.push({ title: `Predios (${matches.length}${matches.length===5?'+':''})`, items: matches.map(f => ({
-      type: 'predio', icon: 'P', title: `Rol ${f.properties.rol}`,
-      sub: `${f.properties.sector || 'Sin sector'} · ${(f.properties.area_ha||0).toLocaleString('es-CL')} ha`,
-      lat: f.properties.lat, lon: f.properties.lon, feature: f
-    }))});
+    });
+    // v1.0.8 · ordenar por superficie desc · marcar multi-polígono por rol
+    const rolCount = {};
+    matchesRaw.forEach(f => { const r = f.properties.rol; rolCount[r] = (rolCount[r]||0) + 1; });
+    const matchesSorted = matchesRaw.slice().sort((a,b) => (b.properties.area_ha||0) - (a.properties.area_ha||0));
+    const matches = matchesSorted.slice(0, 8); // 8 en lugar de 5 para casos con duplicados
+    if (matches.length) groups.push({ title: `Predios (${matches.length}${matches.length===8?'+':''})`, items: matches.map((f, idx) => {
+      const r = f.properties.rol;
+      const n = rolCount[r];
+      // contar parcela dentro del rol · solo si hay duplicados
+      let parcelaTag = '';
+      if (n > 1) {
+        const sameRol = matchesSorted.filter(x => x.properties.rol === r);
+        const i = sameRol.indexOf(f) + 1;
+        parcelaTag = ` · parcela ${i}/${n}`;
+      }
+      return {
+        type: 'predio', icon: 'P', title: `Rol ${r}${parcelaTag}`,
+        sub: `${f.properties.sector || 'Sin sector'} · ${(f.properties.area_ha||0).toLocaleString('es-CL')} ha`,
+        lat: f.properties.lat, lon: f.properties.lon, feature: f
+      };
+    })});
   }
 
   // SEIA
@@ -6306,7 +6340,7 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
         <div style="font-size:18px;font-weight:700;color:#FFF;margin-bottom:10px">VISOR INVÁLIDO · build rechazado</div>
         <div style="font-size:13px;line-height:1.6;color:#FEE2E2;margin-bottom:18px">
           Las 7 capas H2 fallaron al cargar sobre protocolo <code style="background:#3B0C0C;padding:1px 6px;border-radius:3px;color:#F87171">${window.location.protocol}</code>.<br>
-          Magnus Radar v1.0.4 exige <strong>≥ 1 feature</strong> por capa H2 para considerarse publicable.
+          Magnus Radar v1.0.7 exige <strong>≥ 1 feature</strong> por capa H2 para considerarse publicable.
         </div>
         <div style="background:#0F0610;border-left:3px solid #EF4444;padding:12px 14px;border-radius:4px;margin-bottom:18px">
           <div style="font-size:11px;color:#FCA5A5;margin-bottom:6px;font-weight:600">Errores capturados:</div>
@@ -6386,6 +6420,152 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
   } else {
     document.addEventListener('DOMContentLoaded', () => setTimeout(bootstrapH2, 300));
   }
+})();
+
+// ============================================================
+// v1.0.8 · GEOMETRY FIX · centroide real + distancia haversine
+// Reemplaza properties.lat/lon (que en multi-polígono difiere hasta 6.9 km
+// del centroide real) por valores derivados de la geometría real.
+// Expone window.__MAGNUS_GEO con utilidades centroide / distancia / partes.
+// ============================================================
+window.__MAGNUS_GEO = (function GeometryFix() {
+  // Centroide ponderado por área de polígono cerrado (algoritmo Mapping Lab)
+  function polygonCentroid(ring) {
+    let A = 0, cx = 0, cy = 0;
+    const n = ring.length;
+    for (let i = 0; i < n - 1; i++) {
+      const [x0, y0] = ring[i];
+      const [x1, y1] = ring[i+1];
+      const cross = x0 * y1 - x1 * y0;
+      A  += cross;
+      cx += (x0 + x1) * cross;
+      cy += (y0 + y1) * cross;
+    }
+    A *= 0.5;
+    if (Math.abs(A) < 1e-12) {
+      // degenerado · usar promedio simple
+      const sx = ring.reduce((s,p) => s + p[0], 0) / n;
+      const sy = ring.reduce((s,p) => s + p[1], 0) / n;
+      return { lon: sx, lat: sy, area_sign: 0 };
+    }
+    return { lon: cx / (6 * A), lat: cy / (6 * A), area_sign: A };
+  }
+
+  // Área aproximada en hectáreas usando proyección equirectangular
+  function polygonAreaHa(ring) {
+    if (ring.length < 4) return 0;
+    let A = 0;
+    const lat0 = ring[0][1];
+    const m_per_deg_lat = 111320;
+    const m_per_deg_lon = 111320 * Math.cos(lat0 * Math.PI / 180);
+    for (let i = 0, n = ring.length - 1; i < n; i++) {
+      const x0 = ring[i][0]   * m_per_deg_lon, y0 = ring[i][1]   * m_per_deg_lat;
+      const x1 = ring[i+1][0] * m_per_deg_lon, y1 = ring[i+1][1] * m_per_deg_lat;
+      A += (x0 * y1 - x1 * y0);
+    }
+    return Math.abs(A * 0.5) / 10000; // m² → ha
+  }
+
+  // Para Polygon o MultiPolygon → centroide ponderado por área de cada parte
+  function featureCentroid(geom) {
+    if (!geom) return null;
+    if (geom.type === 'Point') return { lon: geom.coordinates[0], lat: geom.coordinates[1], partes: 1 };
+    const parts = (geom.type === 'MultiPolygon') ? geom.coordinates : [geom.coordinates];
+    if (parts.length === 0) return null;
+    let totalA = 0, sumX = 0, sumY = 0;
+    const partesInfo = [];
+    parts.forEach(poly => {
+      const ring = poly[0]; // outer ring
+      const c = polygonCentroid(ring);
+      const a = polygonAreaHa(ring);
+      partesInfo.push({ lon: c.lon, lat: c.lat, area_ha: a });
+      totalA += a;
+      sumX += c.lon * a;
+      sumY += c.lat * a;
+    });
+    if (totalA === 0) return { lon: parts[0][0][0][0], lat: parts[0][0][0][1], partes: parts.length, partes_detail: partesInfo };
+    return { lon: sumX / totalA, lat: sumY / totalA, partes: parts.length, partes_detail: partesInfo, area_total_ha: totalA };
+  }
+
+  // Distancia haversine entre 2 puntos lat/lon en metros
+  function haversine(lon1, lat1, lon2, lat2) {
+    const R = 6371000;
+    const toRad = d => d * Math.PI / 180;
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
+    const a = Math.sin(dLat/2)**2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon/2)**2;
+    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  }
+
+  // Distancia mínima entre 2 features (entre todas las parcelas de cada uno)
+  function distanceFeatures(featA, featB) {
+    const a = featureCentroid(featA.geometry);
+    const b = featureCentroid(featB.geometry);
+    if (!a || !b) return null;
+    const dirA_to_dirB = haversine(a.lon, a.lat, b.lon, b.lat);
+    // si ambos son multi-polígono · calcular mínimo entre parcelas
+    let minPart = dirA_to_dirB;
+    if (a.partes_detail && b.partes_detail) {
+      a.partes_detail.forEach(pa => {
+        b.partes_detail.forEach(pb => {
+          const d = haversine(pa.lon, pa.lat, pb.lon, pb.lat);
+          if (d < minPart) minPart = d;
+        });
+      });
+    }
+    return {
+      centroide_a_centroide_m: Math.round(dirA_to_dirB),
+      minima_entre_parcelas_m: Math.round(minPart),
+      a_partes: a.partes,
+      b_partes: b.partes
+    };
+  }
+
+  // Auto-corregir properties.lat/lon en sources H2 al cargar
+  function patchSourceCentroids(sourceId) {
+    try {
+      const src = map.getSource(sourceId);
+      if (!src || !src._data || !src._data.features) return 0;
+      let fixed = 0;
+      src._data.features.forEach(f => {
+        if (!f.properties) f.properties = {};
+        const c = featureCentroid(f.geometry);
+        if (c) {
+          f.properties._centroide_calc_lon = c.lon;
+          f.properties._centroide_calc_lat = c.lat;
+          f.properties._n_parcelas = c.partes || 1;
+          if (c.area_total_ha) f.properties._area_geom_ha = +c.area_total_ha.toFixed(2);
+          // Si el lat/lon original difiere > 100 m del centroide calculado, marcar
+          if (f.properties.lat != null && f.properties.lon != null) {
+            const d = haversine(f.properties.lon, f.properties.lat, c.lon, c.lat);
+            f.properties._desfase_lat_lon_m = Math.round(d);
+            if (d > 100) f.properties._desfase_significativo = true;
+          }
+          fixed++;
+        }
+      });
+      return fixed;
+    } catch (e) { return 0; }
+  }
+
+  function applyAll() {
+    if (typeof map === 'undefined') { setTimeout(applyAll, 800); return; }
+    // Capas H2 + predios
+    const sourcesToPatch = ['predios','seia','dga','concesiones'];
+    Object.keys(window.__H2_LAYERS_DATA || {}).forEach(id => sourcesToPatch.push(`h2-src-${id}`));
+    let total = 0;
+    sourcesToPatch.forEach(s => { total += patchSourceCentroids(s); });
+    if (window.__MAGNUS_DEBUG) console.log(`[v1.0.8 GeometryFix] ${total} features con centroide calculado`);
+  }
+
+  // re-run cuando se cargan nuevas capas
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(applyAll, 3500); // después del TruthReconciler
+  } else {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(applyAll, 3500));
+  }
+
+  return { polygonCentroid, polygonAreaHa, featureCentroid, haversine, distanceFeatures, applyAll };
 })();
 
 // ============================================================
@@ -6471,7 +6651,7 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
       });
     } catch (e) {}
 
-    console.log('[v1.0.6 TruthReconciler]', truths);
+    if (window.__MAGNUS_DEBUG) console.log('[v1.0.7 TruthReconciler]', truths);
   }
 
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
