@@ -13,9 +13,11 @@
    "24-48 → 24-123",
    "24-4 → 24-160"
   ],
-  "mandato": "Rep 24.327 · 14-abr-2026 · Notario Pedro Reveco",
-  "remuneracion": "10% comisión bruta",
-  "vigencia": "24 meses (hasta 14-abr-2028)",
+  "mandato": {
+   "estado": "instrumento_firmado",
+   "fuente": "Rep. 24.327 / 2026",
+   "detalle_publico": "reservado"
+  },
   "doctrinas_aplicables": [
    "rol-sii-no-es-identidad-territorial",
    "homonimia-territorial",
@@ -109,7 +111,7 @@
     "nombre": "Cominetti H2 · Lote C (rol 24-160)",
     "tier": 1,
     "estado": "HECHO",
-    "titular": "Cominetti Infanti + Agrícola Cantera Ltda",
+    "titular": "Reservado · mandato Magnus vigente",
     "alias_historicos": [
      "24-4"
     ],
@@ -122,8 +124,6 @@
     "area_ha_catastral": 299.18,
     "capa_origen": "SII (KMZ-06 catastro)",
     "estado_canonico": "HECHO",
-    "comision_bruta": "10% (cláusula 6ª mandato Rep 24.327)",
-    "vigencia_mandato": "24 meses (hasta 14-abr-2028)",
     "caveats": [],
     "estado_raw_legacy": "HECHO"
    }
@@ -1033,7 +1033,7 @@
     "nombre": "Cominetti H2 · Resto Lotes A+B (rol 24-123)",
     "tier": 1,
     "estado": "HECHO",
-    "titular": "Cominetti Infanti + Agrícola Cantera Ltda",
+    "titular": "Reservado · mandato Magnus vigente",
     "alias_historicos": [
      "24-48"
     ],
@@ -1047,8 +1047,6 @@
     "area_ha_catastral": 1399.93,
     "capa_origen": "SII (KMZ-06 catastro)",
     "estado_canonico": "HECHO",
-    "comision_bruta": "10% (cláusula 6ª mandato Rep 24.327)",
-    "vigencia_mandato": "24 meses (hasta 14-abr-2028)",
     "caveats": [],
     "estado_raw_legacy": "HECHO"
    }
@@ -1086,7 +1084,7 @@
     "nombre": "Cominetti H2 · Resto Lotes A+B (rol 24-123)",
     "tier": 1,
     "estado": "HECHO",
-    "titular": "Cominetti Infanti + Agrícola Cantera Ltda",
+    "titular": "Reservado · mandato Magnus vigente",
     "alias_historicos": [
      "24-48"
     ],
@@ -1100,8 +1098,6 @@
     "area_ha_catastral": 0.15,
     "capa_origen": "SII (KMZ-06 catastro)",
     "estado_canonico": "HECHO",
-    "comision_bruta": "10% (cláusula 6ª mandato Rep 24.327)",
-    "vigencia_mandato": "24 meses (hasta 14-abr-2028)",
     "caveats": [],
     "estado_raw_legacy": "HECHO"
    }
@@ -1335,7 +1331,7 @@
     "nombre": "Cominetti H2 · Resto Lotes A+B (rol 24-123)",
     "tier": 1,
     "estado": "HECHO",
-    "titular": "Cominetti Infanti + Agrícola Cantera Ltda",
+    "titular": "Reservado · mandato Magnus vigente",
     "alias_historicos": [
      "24-48"
     ],
@@ -1349,8 +1345,6 @@
     "area_ha_catastral": 901.71,
     "capa_origen": "SII (KMZ-06 catastro)",
     "estado_canonico": "HECHO",
-    "comision_bruta": "10% (cláusula 6ª mandato Rep 24.327)",
-    "vigencia_mandato": "24 meses (hasta 14-abr-2028)",
     "caveats": [],
     "estado_raw_legacy": "HECHO"
    }

@@ -1,0 +1,22 @@
+{
+  "ZU1": "Zona Urbana 1 (HIPÓTESIS · típicamente residencial alta densidad)",
+  "ZU2": "Zona Urbana 2 (HIPÓTESIS · residencial media-baja densidad)",
+  "ZU3": "Zona Urbana 3 (HIPÓTESIS · residencial baja densidad)",
+  "ZU4": "Zona Urbana 4 (HIPÓTESIS · mixta o periurbana)",
+  "ZU5": "Zona Urbana 5 (HIPÓTESIS · expansión o consolidación)",
+  "ZAV": "Zona Área Verde (HIPÓTESIS)",
+  "ZIS": "Zona Infraestructura Sanitaria (HIPÓTESIS)",
+  "ZAP": "Zona Actividades Productivas (HIPÓTESIS)",
+  "ZC": "Zona Comercial (HIPÓTESIS)",
+  "ZE": "Zona Equipamiento (HIPÓTESIS)",
+  "ZEU": "Zona Extensión Urbana (HIPÓTESIS · viene del PRI Elqui)",
+  "ZIP": "Zona Industrial Permitida (HIPÓTESIS)",
+  "ZIT": "Zona Industrial Turística (HIPÓTESIS)",
+  "AV": "Área Verde (HIPÓTESIS · PRI Elqui · puede equivaler a ZAV PRC)",
+  "AR1": "Área de Restricción tipo 1 (HIPÓTESIS · riesgo natural alto)",
+  "AR2": "Área de Restricción tipo 2 (HIPÓTESIS · riesgo natural medio)",
+  "AR3": "Área de Restricción tipo 3 (HIPÓTESIS · riesgo natural bajo o restricción específica)",
+  "ICH": "Inmueble de Conservación Histórica (HIPÓTESIS · Art. 60 LGUC)",
+  "ZCH1": "Zona Caleta Los Hornos 1 (HIPÓTESIS)",
+  "ZCH2": "Zona Caleta Los Hornos 2 (HIPÓTESIS)"
+}

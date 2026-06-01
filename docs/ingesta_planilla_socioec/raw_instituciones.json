@@ -1,0 +1,178 @@
+[
+  {
+    "hoja": "Hoja2",
+    "cat": "instituciones_con_agua",
+    "numero": 1,
+    "nombre": "REGISTRO CIVIL",
+    "direccion": "AV. GABRIELA MISTRAL",
+    "agua": "RED"
+  },
+  {
+    "hoja": "Hoja2",
+    "cat": "instituciones_con_agua",
+    "numero": 2,
+    "nombre": "CONAFE",
+    "direccion": "AV. GABRIELA MISTRAL",
+    "agua": "RED"
+  },
+  {
+    "hoja": "Hoja2",
+    "cat": "instituciones_con_agua",
+    "numero": 3,
+    "nombre": "ESCUELA PEDRO PABLO MUÑOZ",
+    "direccion": "AV. GABRIELA MISTRAL",
+    "agua": "RED"
+  },
+  {
+    "hoja": "Hoja2",
+    "cat": "instituciones_con_agua",
+    "numero": 4,
+    "nombre": "TECHADO MUNICIPAL",
+    "direccion": "AV. GABRIELA MISTRAL",
+    "agua": "RED"
+  },
+  {
+    "hoja": "Hoja2",
+    "cat": "instituciones_con_agua",
+    "numero": 5,
+    "nombre": "PARROQUIA CATOLICA",
+    "direccion": "AV. GABRIELA MISTRAL/ rol 24-010/fs. 2083, número 1978, año 1992",
+    "agua": "RED"
+  },
+  {
+    "hoja": "Hoja2",
+    "cat": "instituciones_con_agua",
+    "numero": 6,
+    "nombre": "HOGAR DE ANCIANOS",
+    "direccion": "AV. GABRIELA MISTRAL",
+    "agua": "RED"
+  },
+  {
+    "hoja": "Hoja2",
+    "cat": "instituciones_con_agua",
+    "numero": 7,
+    "nombre": "CENTROS DE MADRES",
+    "direccion": "AV. GABRIELA MISTRAL",
+    "agua": "RED"
+  },
+  {
+    "hoja": "Hoja2",
+    "cat": "instituciones_con_agua",
+    "numero": 8,
+    "nombre": "IGLESIA PENTECOSTAL",
+    "direccion": null,
+    "agua": "RED"
+  },
+  {
+    "hoja": "Hoja2",
+    "cat": "instituciones_con_agua",
+    "numero": 9,
+    "nombre": "RETEN DE CARABINEROS",
+    "direccion": "AV. LA PAZ",
+    "agua": "RED"
+  },
+  {
+    "hoja": "Hoja2",
+    "cat": "instituciones_con_agua",
+    "numero": 10,
+    "nombre": "IGLESIA ADVENTISTA",
+    "direccion": null,
+    "agua": "RED"
+  },
+  {
+    "hoja": "Hoja2",
+    "cat": "instituciones_con_agua",
+    "numero": 11,
+    "nombre": "MUNICIPALIDAD",
+    "direccion": "AV. LA PAZ esq. VIOLETA SEURA",
+    "agua": "RED"
+  },
+  {
+    "hoja": "Hoja2",
+    "cat": "instituciones_con_agua",
+    "numero": 12,
+    "nombre": "BIBLIOTECA MUNICIPAL",
+    "direccion": "PEDRO PABLO MUÑOZ",
+    "agua": "RED"
+  },
+  {
+    "hoja": "Hoja2",
+    "cat": "instituciones_con_agua",
+    "numero": 13,
+    "nombre": "ASOCIACION MINERA",
+    "direccion": "JOSE ORREGO",
+    "agua": "RED"
+  },
+  {
+    "hoja": "Hoja2",
+    "cat": "instituciones_con_agua",
+    "numero": 14,
+    "nombre": "JARDIN INFANTIL \"CAPULLITO\"",
+    "direccion": "AV. GABRIELA MISTRAL esq. PJE. EL MOLLE",
+    "agua": "RED"
+  },
+  {
+    "hoja": "Hoja2",
+    "cat": "instituciones_con_agua",
+    "numero": 15,
+    "nombre": "POSTA SALUD RURAL",
+    "direccion": "AV. LA PAZ",
+    "agua": null
+  },
+  {
+    "hoja": "Hoja4",
+    "cat": "instituciones_sin_agua",
+    "numero": 1,
+    "nombre": "CLUB DEPORTIVO \"ONCE ESTRELLAS\"",
+    "direccion": null,
+    "agua": null
+  },
+  {
+    "hoja": "Hoja4",
+    "cat": "instituciones_sin_agua",
+    "numero": 2,
+    "nombre": "COMITÉ A.P.R",
+    "direccion": null,
+    "agua": null
+  },
+  {
+    "hoja": "Hoja4",
+    "cat": "instituciones_sin_agua",
+    "numero": 3,
+    "nombre": "TEATRO MUNICIPAL",
+    "direccion": null,
+    "agua": null
+  },
+  {
+    "hoja": "Hoja4",
+    "cat": "instituciones_sin_agua",
+    "numero": 4,
+    "nombre": "SEDE CAMPESINO",
+    "direccion": null,
+    "agua": null
+  },
+  {
+    "hoja": "Hoja4",
+    "cat": "instituciones_sin_agua",
+    "numero": 5,
+    "nombre": "SEDE CLUB DE HUASO",
+    "direccion": null,
+    "agua": null
+  },
+  {
+    "hoja": "Hoja4",
+    "cat": "instituciones_sin_agua",
+    "numero": 6,
+    "nombre": "PLAZA PUBLICA",
+    "direccion": null,
+    "agua": null
+  },
+  {
+    "hoja": "Hoja4",
+    "cat": "instituciones_sin_agua",
+    "numero": 7,
+    "nombre": "SEDE DISCAPACITADOS",
+    "direccion": null,
+    "agua": null
+  }
+]

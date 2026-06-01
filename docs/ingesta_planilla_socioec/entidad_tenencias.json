@@ -1,0 +1,6485 @@
+[
+  {
+    "vivienda_id": "VIV-0001",
+    "tipo": "comodatario",
+    "personas_asociadas_ids": [
+      "PER-0001"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0002",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0002"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1014",
+      "numero": "994",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0003",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0003"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1046",
+      "numero": "1026",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0004",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0004"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2145",
+      "numero": "2040",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0005",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0005"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1019",
+      "numero": "999",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0006",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0006"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1023",
+      "numero": "1003",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0008",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0008"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1024",
+      "numero": "1004",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0009",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0009"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1022",
+      "numero": "1002",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0010",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0010"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "6280",
+      "numero": "4387",
+      "anio": "2012",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0011",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0013"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1018",
+      "numero": "998",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0012",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0014"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "409",
+      "numero": "368",
+      "anio": "2003",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0013",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0015"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "167",
+      "numero": "153",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0014",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0017",
+      "PER-0018"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "8475",
+      "numero": "6825",
+      "anio": "2008",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0014",
+    "tipo": "arrendador",
+    "personas_asociadas_ids": [
+      "PER-0019"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "8475",
+      "numero": "6825",
+      "anio": "2008",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0015",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0020"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "165",
+      "numero": "151",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0016",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0021"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4713",
+      "numero": "3910",
+      "anio": "2009",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0016",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0021",
+      "PER-0022"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4713",
+      "numero": "3910",
+      "anio": "2009",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0017",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0023"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "161",
+      "numero": "147",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0017",
+    "tipo": "arrendador",
+    "personas_asociadas_ids": [
+      "PER-0024"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "161",
+      "numero": "147",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0018",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0025"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "162",
+      "numero": "148",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0019",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0026"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4362",
+      "numero": "4012",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0020",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0027"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1828",
+      "numero": "1750",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0022",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0029"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2078",
+      "numero": "1973",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0023",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0030"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3178",
+      "numero": "2957",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0024",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0031"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2076",
+      "numero": "1971",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0026",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0033"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "871",
+      "numero": "804",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0027",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0034"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2077",
+      "numero": "1972",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0028",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0035"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "410",
+      "numero": "369",
+      "anio": "2003",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0029",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0036"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4215",
+      "numero": "3952",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0031",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0038",
+      "PER-0039"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "997",
+      "numero": "977",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0032",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0040"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1130",
+      "numero": "1110",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0034",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0043"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1117",
+      "numero": "1097",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0035",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0045"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "999",
+      "numero": "979",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0036",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0046"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "7828",
+      "numero": "5541",
+      "anio": "2012",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0037",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0047"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "983",
+      "numero": "960",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0038",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0048"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0039",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0049"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "834",
+      "numero": "806",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0040",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0050"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1103",
+      "numero": "1083",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0041",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0051"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "835",
+      "numero": "722",
+      "anio": "1993",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0042",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0052"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1007",
+      "numero": "987",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0043",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0053"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4141",
+      "numero": "3809",
+      "anio": "20092",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0045",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0055"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "656",
+      "numero": "563",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0046",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0056"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0047",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0057"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4225",
+      "numero": "3962",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0048",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0058"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1662",
+      "numero": "1379",
+      "anio": "1993",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0049",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0059"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "720 V",
+      "numero": "1070",
+      "anio": "1964",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0050",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0060"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0051",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0061"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1095",
+      "numero": "1075",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0052",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0062"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4224",
+      "numero": "3961",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0053",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0063"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "836",
+      "numero": "723",
+      "anio": "1993",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0055",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0065"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2121",
+      "numero": "2016",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0056",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0066"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0057",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0067"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1038",
+      "numero": "1018",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0058",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0068"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2096",
+      "numero": "1991",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0059",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0069"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2445",
+      "numero": "2339",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0060",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0070"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4383",
+      "numero": "4032",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0061",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0071"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4234",
+      "numero": "3971",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0062",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0072"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1037",
+      "numero": "1017",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0063",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0073"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "975",
+      "numero": "955",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0066",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0076"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3884",
+      "numero": "3165",
+      "anio": "2010",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0067",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0078"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2095",
+      "numero": "1990",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0068",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0079"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4233",
+      "numero": "3970",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0069",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0080"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4376",
+      "numero": "4026",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0070",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0081"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3920",
+      "numero": "3066",
+      "anio": "2011",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0071",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0082"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4228",
+      "numero": "3965",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0072",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0083"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1113",
+      "numero": "1093",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0073",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0084"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1050",
+      "numero": "1030",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0074",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0085"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4295",
+      "numero": "3950",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0075",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0086"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4256",
+      "numero": "3993",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0076",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0087",
+      "PER-0088"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1576",
+      "numero": "1519",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0077",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0089"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "8116",
+      "numero": "6449",
+      "anio": "2011",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0078",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0090"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0079",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0091"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0080",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0092"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3613",
+      "numero": "3325",
+      "anio": "2000",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0081",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0093"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1071",
+      "numero": "787",
+      "anio": "2012",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0082",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0094"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1574",
+      "numero": "1517",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0084",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0096"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1572",
+      "numero": "1515",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0085",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0097"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1570",
+      "numero": "1513",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0086",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0098"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1569",
+      "numero": "1512",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0087",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0099"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3191",
+      "numero": "2970",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0088",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0100"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2066",
+      "numero": "1961",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0089",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0101"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "156",
+      "numero": "142",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0090",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0102"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2133",
+      "numero": "2028",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0091",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0103"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1578",
+      "numero": "1521",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0092",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0104"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1580",
+      "numero": "1523",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0093",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0105"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "48",
+      "numero": "41",
+      "anio": "2011",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0094",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0106"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4330",
+      "numero": "4032",
+      "anio": "2004",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0095",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0107"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": null,
+      "numero": "1534",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica",
+      "confianza": "parcial",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0096",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0109"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1585",
+      "numero": "1528",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0097",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0111"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1592",
+      "numero": "1535",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0098",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0112"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1593",
+      "numero": "1536",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0099",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0113",
+      "PER-0114"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1092",
+      "numero": "1072",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0100",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0115"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3213",
+      "numero": "2992",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0101",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0117"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2067",
+      "numero": "1962",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0102",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0118"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1026",
+      "numero": "1006",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0103",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0119"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1057",
+      "numero": "1037",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0105",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0121",
+      "PER-0122"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2442",
+      "numero": "2326",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0106",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0123"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1061",
+      "numero": "1041",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0108",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0125"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1598",
+      "numero": "1541",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0109",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0126"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1596",
+      "numero": "1529",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0110",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0127",
+      "PER-0128"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2449",
+      "numero": "2333",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0111",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0129"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0112",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0130"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1111",
+      "numero": "1091",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0113",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0132"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4237",
+      "numero": "3974",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0114",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0133"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2075",
+      "numero": "1970",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0115",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0134"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "173",
+      "numero": "159",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0117",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0136"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4795",
+      "numero": "3982",
+      "anio": "2009",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0118",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0137"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1427",
+      "numero": "1361",
+      "anio": "2004",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0119",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0138"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3150",
+      "numero": "2138",
+      "anio": "2012",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0121",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0141"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4342",
+      "numero": "4001",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0122",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0142"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4343",
+      "numero": "4002",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0123",
+    "tipo": "arrendador",
+    "personas_asociadas_ids": [
+      "PER-0144"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4334",
+      "numero": "3993",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0126",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0147"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4337",
+      "numero": "3996",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0127",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0149"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "170",
+      "numero": "156",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0128",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0151"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0129",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0154"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": null,
+      "numero": "284",
+      "anio": "1993",
+      "fuente": "planilla_socioeconomica",
+      "confianza": "parcial",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0131",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0156"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2106",
+      "numero": "1086",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0132",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0157"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0132",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0158"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0133",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0159"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "316",
+      "numero": "283",
+      "anio": "1993",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0134",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0161"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "315",
+      "numero": "282",
+      "anio": "1993",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0135",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0162"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "314",
+      "numero": "281",
+      "anio": "1993",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0136",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0163"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4232",
+      "numero": "3969",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0136",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0164"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4232",
+      "numero": "3969",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0137",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0165"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3617",
+      "numero": "3329",
+      "anio": "2000",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0138",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0166"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3614",
+      "numero": "3326",
+      "anio": "2000",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0139",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0167"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3615",
+      "numero": "3327",
+      "anio": "2000",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0140",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0168"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0141",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0169"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1700",
+      "numero": "1505",
+      "anio": "2006",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0142",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0170"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4384",
+      "numero": "4034",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0144",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0172"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4381",
+      "numero": "4031",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0145",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0173"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4450",
+      "numero": "4143",
+      "anio": "1",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0146",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0174"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3186",
+      "numero": "2965",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0147",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0175"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4380",
+      "numero": "4030",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0148",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0176"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3190",
+      "numero": "2969",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0150",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0178"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4368",
+      "numero": "4018",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0152",
+    "tipo": "arrendador",
+    "personas_asociadas_ids": [
+      "PER-0180",
+      "PER-0181"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3183",
+      "numero": "2962",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0153",
+    "tipo": "arrendador",
+    "personas_asociadas_ids": [
+      "PER-0182",
+      "PER-0183"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "8438",
+      "numero": "5981",
+      "anio": "2012",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0154",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0184"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3189",
+      "numero": "2968",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0155",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0185"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3187",
+      "numero": "2966",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0156",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0186"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3188",
+      "numero": "2967",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0158",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0188"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3179",
+      "numero": "2958",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0159",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0189"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0160",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0190"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0161",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0191"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1100",
+      "numero": "1080",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0163",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0194"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1601",
+      "numero": "1544",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0164",
+    "tipo": "arrendador",
+    "personas_asociadas_ids": [
+      "PER-0195"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1603",
+      "numero": "1546",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0165",
+    "tipo": "comodatario",
+    "personas_asociadas_ids": [
+      "PER-0197"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0167",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0199"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3170",
+      "numero": "2949",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0168",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0200"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3165",
+      "numero": "2948",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0170",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0202"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "8231",
+      "numero": "6478",
+      "anio": "2010",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0171",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0203"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "426",
+      "numero": "308",
+      "anio": "2011",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0172",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0204"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "8228",
+      "numero": "6475",
+      "anio": "2010",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0173",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0205"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2360",
+      "numero": "1886",
+      "anio": "2009",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0176",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0208"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1419",
+      "numero": "1305",
+      "anio": "2000",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0177",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0209"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1660",
+      "numero": "1377",
+      "anio": "1993",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0179",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0211"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2040",
+      "numero": "1881",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0180",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0212"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0181",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0213"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2094",
+      "numero": "1935",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0182",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0214"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "394",
+      "numero": "355",
+      "anio": "1993",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0183",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0215"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0185",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0217"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0186",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0218",
+      "PER-0219"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1034",
+      "numero": "1014",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0187",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0220"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2109",
+      "numero": "2004",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0188",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0221"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2120",
+      "numero": "2015",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0189",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0222"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3270",
+      "numero": "3016",
+      "anio": "1996",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0190",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0223"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1069",
+      "numero": "1049",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0193",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0226"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1071",
+      "numero": "1051",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0194",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0227"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2091",
+      "numero": "1986",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0196",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0229"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0197",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0230"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3139",
+      "numero": "2903",
+      "anio": "1996",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0198",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0231"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4255",
+      "numero": "3992",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0199",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0232"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1039",
+      "numero": "1019",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0200",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0233"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2996",
+      "numero": "2831",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0201",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0234"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1078",
+      "numero": "1058",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0202",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0235"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4253",
+      "numero": "3990",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0204",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0237"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1116",
+      "numero": "1096",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0205",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0238"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4252",
+      "numero": "3989",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0206",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0239"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2068",
+      "numero": "1963",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0208",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0241"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3611",
+      "numero": "3323",
+      "anio": "2000",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0209",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0242"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4378",
+      "numero": "4028",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0211",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0244"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0212",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0245"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2087",
+      "numero": "1982",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0215",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0248"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3205",
+      "numero": "2984",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0216",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0249",
+      "PER-0250"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1077",
+      "numero": "1057",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0217",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0251"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3207",
+      "numero": "2986",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0218",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0252"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3208",
+      "numero": "2987",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0219",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0253"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4371",
+      "numero": "4021",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0220",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0254"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4685",
+      "numero": "4361",
+      "anio": "2003",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0221",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0255"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3209",
+      "numero": "2988",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0222",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0256"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0224",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0259"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "978",
+      "numero": "958",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0225",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0260"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2461",
+      "numero": "2345",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0226",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0261"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2463",
+      "numero": "2347",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0227",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0262"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3174",
+      "numero": "2953",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0228",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0263"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3175",
+      "numero": "2954",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0229",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0264"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2456",
+      "numero": "2340",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0230",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0265"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3176",
+      "numero": "2955",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0232",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0267"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "972",
+      "numero": "952",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0233",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0268"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1428",
+      "numero": "1409",
+      "anio": "1988",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0234",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0270"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "505 v.",
+      "numero": "481",
+      "anio": "2007",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0235",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0271"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1325",
+      "numero": "1048",
+      "anio": "1993",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0236",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0273"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1123",
+      "numero": "1103",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0237",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0274"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2099",
+      "numero": "1994",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0238",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0275"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2106",
+      "numero": "2001",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0239",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0276"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1049",
+      "numero": "1029",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0240",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0278"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2123",
+      "numero": "2018",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0240",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0277"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2123",
+      "numero": "2018",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0241",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0279"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4688",
+      "numero": "4364",
+      "anio": "2003",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0242",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0280"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0243",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0281"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4247",
+      "numero": "3984",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0244",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0282"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2097",
+      "numero": "1992",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0245",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0283"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "157",
+      "numero": "143",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0247",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0285"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2107",
+      "numero": "2002",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0248",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0286"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4222",
+      "numero": "3950",
+      "anio": "2007",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0249",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0287"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4221",
+      "numero": "3958",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0250",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0290"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2452",
+      "numero": "2336",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0251",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0291"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1052",
+      "numero": "1032",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0252",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0292"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3929",
+      "numero": "2648",
+      "anio": "2012",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0253",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0293",
+      "PER-0294"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2118",
+      "numero": "2013",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0254",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0295"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2102",
+      "numero": "1997",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0255",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0296"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2117",
+      "numero": "2012",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0256",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0297"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0257",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0299"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1054",
+      "numero": "1034",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0258",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0301"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2129",
+      "numero": "2024",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0259",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0302"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "963",
+      "numero": "943",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0261",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0304"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3198",
+      "numero": "2977",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0262",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0305"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1029",
+      "numero": "1009",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0263",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0306"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "106",
+      "numero": "86",
+      "anio": "2003",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0264",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0308"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "959",
+      "numero": "939",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0265",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0309"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2451",
+      "numero": "2335",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0266",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0310"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2126",
+      "numero": "2021",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0268",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0312"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3788",
+      "numero": "3020",
+      "anio": "2008",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0269",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0313"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1053",
+      "numero": "1033",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0270",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0314"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2704",
+      "numero": "2170",
+      "anio": "2009",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0272",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0316"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3852",
+      "numero": "3692",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0273",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0317"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4361",
+      "numero": "4011",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0274",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0318"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3199",
+      "numero": "2978",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0275",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0319"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3202",
+      "numero": "2982",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0276",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0320"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "5357",
+      "numero": "4286",
+      "anio": "2008",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0278",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0322"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3201",
+      "numero": "2980",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0279",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0324"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "190",
+      "numero": "199",
+      "anio": "1988",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0280",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0325"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0281",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0326"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2997",
+      "numero": "2932",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0282",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0327"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1004",
+      "numero": "984",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0285",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0330",
+      "PER-0331"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4230",
+      "numero": "3967",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0286",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0332"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2071",
+      "numero": "1966",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0287",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0333"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0288",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0334"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3054",
+      "numero": "2800",
+      "anio": "2007",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0289",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0335"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "411",
+      "numero": "370",
+      "anio": "2003",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0290",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0337"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2443",
+      "numero": "2327",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0291",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0338"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4081",
+      "numero": "3313",
+      "anio": "2010",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0292",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0339"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4889",
+      "numero": "4440",
+      "anio": "2007",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0293",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0340"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4374",
+      "numero": "4024",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0294",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0341"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4251",
+      "numero": "3988",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0295",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0342"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1109",
+      "numero": "1089",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0296",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0343"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4297",
+      "numero": "3948",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0297",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0344"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4379",
+      "numero": "4029",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0298",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0345"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4297",
+      "numero": "3952",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0299",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0346"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4363",
+      "numero": "4013",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0300",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0347"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "713",
+      "numero": "686",
+      "anio": "2004",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0301",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0349",
+      "PER-0350"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1084",
+      "numero": "1064",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0302",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0351"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "971",
+      "numero": "951",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0304",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0353",
+      "PER-0354"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "986",
+      "numero": "966",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0304",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0354"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "986",
+      "numero": "966",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0305",
+    "tipo": "arrendador",
+    "personas_asociadas_ids": [
+      "PER-0355"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "979",
+      "numero": "959",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0306",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0357",
+      "PER-0358"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "961",
+      "numero": "941",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0306",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0357",
+      "PER-0358"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "961",
+      "numero": "941",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0307",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0359"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0308",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0361",
+      "PER-0362"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0308",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0362"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0309",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0364"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1120",
+      "numero": "1100",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0310",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0365"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0311",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0366"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "81",
+      "numero": "1766",
+      "anio": "1994",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0312",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0367"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1087",
+      "numero": "1067",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0313",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0368"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1121",
+      "numero": "1101",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0314",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0369"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1082",
+      "numero": "1062",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0315",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0370"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0316",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0371",
+      "PER-0372"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "991",
+      "numero": "971",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0317",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0374"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1118",
+      "numero": "1098",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0318",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0375"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4223",
+      "numero": "3960",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0318",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0376"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4223",
+      "numero": "3960",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0320",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0378"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2995",
+      "numero": "2930",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0321",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0379"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3350",
+      "numero": "2703",
+      "anio": "2008",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0322",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0380"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "970",
+      "numero": "950",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0323",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0381"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4216",
+      "numero": "3953",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0323",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0382"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4216",
+      "numero": "3953",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0324",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0383"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4218",
+      "numero": "3955",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0325",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0384"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "710",
+      "numero": "715",
+      "anio": "1988",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0326",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0385",
+      "PER-0386"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "799",
+      "numero": "797",
+      "anio": "1985",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0327",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0387"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "794",
+      "numero": "792",
+      "anio": "1985",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0328",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0388"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1045",
+      "numero": "1039",
+      "anio": "1988",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0329",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0389",
+      "PER-0390"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "796",
+      "numero": "794",
+      "anio": "1985",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0329",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0389",
+      "PER-0390"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "796",
+      "numero": "794",
+      "anio": "1985",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0330",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0391"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "793",
+      "numero": "791",
+      "anio": "1985",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0331",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0392",
+      "PER-0393"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0331",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0392",
+      "PER-0393"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0332",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0394"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "798",
+      "numero": "796",
+      "anio": "1985",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0332",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0394"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "798",
+      "numero": "796",
+      "anio": "1985",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0333",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0395"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "797",
+      "numero": "795",
+      "anio": "1985",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0334",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0396"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "791",
+      "numero": "789",
+      "anio": "1985",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0336",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0398"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "708",
+      "numero": "713",
+      "anio": "1988",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0337",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0399"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "707",
+      "numero": "712",
+      "anio": "1988",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0338",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0401",
+      "PER-0402"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "712",
+      "numero": "717",
+      "anio": "1988",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0339",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0403"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "35",
+      "numero": "28",
+      "anio": "2011",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0340",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0404"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "709",
+      "numero": "714",
+      "anio": "1998",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0341",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0405"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "713",
+      "numero": "718",
+      "anio": "1988",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0342",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0406"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2122",
+      "numero": "2017",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0343",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0407",
+      "PER-0408"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "5106",
+      "numero": "4358",
+      "anio": "2006",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0347",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0413",
+      "PER-0414"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1043",
+      "numero": "1023",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0348",
+    "tipo": "arrendador",
+    "personas_asociadas_ids": [
+      "PER-0416"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1047",
+      "numero": "1027",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0349",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0417"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2136",
+      "numero": "2031",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0349",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0418"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2136",
+      "numero": "2031",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0350",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0419"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1073",
+      "numero": "1053",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0350",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0420"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1073",
+      "numero": "1053",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0351",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0421"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2128",
+      "numero": "2033",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0353",
+    "tipo": "arrendador",
+    "personas_asociadas_ids": [
+      "PER-0424"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2073",
+      "numero": "1968",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0354",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0425"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4351",
+      "numero": "3946",
+      "anio": "2005",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0355",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0426"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2135",
+      "numero": "2030",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0356",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0427"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3197",
+      "numero": "2976",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0357",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0428"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0358",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0429",
+      "PER-0430"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3178",
+      "numero": "2573",
+      "anio": "2008",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0359",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0431"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "168",
+      "numero": "154",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0360",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0432"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "169",
+      "numero": "155",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0361",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0433"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4385",
+      "numero": "4036",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0362",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0434"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4369",
+      "numero": "4028",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0363",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0435"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4296",
+      "numero": "3951",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0364",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0436"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4382",
+      "numero": "4032",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0366",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0438"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "407",
+      "numero": "366",
+      "anio": "2003",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0366",
+    "tipo": "arrendador",
+    "personas_asociadas_ids": [
+      "PER-0438"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "407",
+      "numero": "366",
+      "anio": "2003",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0367",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0439"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4373",
+      "numero": "4032",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0368",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0440"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "406",
+      "numero": "365",
+      "anio": "2003",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0368",
+    "tipo": "arrendador",
+    "personas_asociadas_ids": [
+      "PER-0441"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "406",
+      "numero": "365",
+      "anio": "2003",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0369",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0442"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "163",
+      "numero": "149",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0370",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0443"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2447",
+      "numero": "2331",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0370",
+    "tipo": "arrendador",
+    "personas_asociadas_ids": [
+      "PER-0444"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2447",
+      "numero": "2331",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0371",
+    "tipo": "arrendador",
+    "personas_asociadas_ids": [
+      "PER-0446"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "159",
+      "numero": "145",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0372",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0447"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2079",
+      "numero": "1974",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0373",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0449"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "984",
+      "numero": "964",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0374",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0451"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1124",
+      "numero": "1104",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0375",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0452"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "993",
+      "numero": "973",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0376",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0453"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2089",
+      "numero": "1984",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0377",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0454"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "994",
+      "numero": "974",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0377",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0455"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "994",
+      "numero": "974",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0378",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0456"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2070",
+      "numero": "1965",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0379",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0457"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1133",
+      "numero": "1113",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0380",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0458"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1009",
+      "numero": "989",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0381",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0459",
+      "PER-0460"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1113",
+      "numero": "1111",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0383",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0462"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2355",
+      "numero": "2246",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0386",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0465",
+      "PER-0466"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "830",
+      "numero": "717",
+      "anio": "1993",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0386",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0466"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "830",
+      "numero": "717",
+      "anio": "1993",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0387",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0467"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2100",
+      "numero": "1840",
+      "anio": "2006",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0387",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0467"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2100",
+      "numero": "1840",
+      "anio": "2006",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0388",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0469"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1348",
+      "numero": "1234",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0389",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0470"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1032",
+      "numero": "1012",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0390",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0471"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4336",
+      "numero": "4038",
+      "anio": "2004",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0391",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0472"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3185",
+      "numero": "2964",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0391",
+    "tipo": "arrendador",
+    "personas_asociadas_ids": [
+      "PER-0473"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3185",
+      "numero": "2964",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0392",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0474",
+      "PER-0475"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1001",
+      "numero": "981",
+      "anio": "1994",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0392",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0475"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1001",
+      "numero": "981",
+      "anio": "1994",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0393",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0476"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0394",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0478"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "958",
+      "numero": "938",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0395",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0480"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1079",
+      "numero": "1059",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0396",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0481"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2099",
+      "numero": "1839",
+      "anio": "2006",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0397",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0483"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "8893",
+      "numero": "7012",
+      "anio": "2011",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0398",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0484"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "8174",
+      "numero": "6437",
+      "anio": "2010",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0399",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0485"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2066",
+      "numero": "1961",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0400",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0486"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4383",
+      "numero": "4081",
+      "anio": "2004",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0401",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0487"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0402",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0488"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "6214",
+      "numero": "5166",
+      "anio": "2009",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0403",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0489"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3202",
+      "numero": "2981",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0404",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0490"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2130",
+      "numero": "2025",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0405",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0492"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "5750",
+      "numero": "4605",
+      "anio": "2008",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0407",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0494"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "3209",
+      "numero": "2944",
+      "anio": "2007",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0408",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0495"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4387",
+      "numero": "4039",
+      "anio": "2004",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0409",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0496"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0410",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0497"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2994",
+      "numero": "2829",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0411",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0499"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1661",
+      "numero": "1378",
+      "anio": "1993",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0412",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0500"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1597",
+      "numero": "1540",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0413",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0502"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0414",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0503"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1602",
+      "numero": "1545",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0415",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0504"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "6213",
+      "numero": "5165",
+      "anio": "2009",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0416",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0505"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1582",
+      "numero": "1525",
+      "anio": "1991",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0417",
+    "tipo": "arrendador",
+    "personas_asociadas_ids": [
+      "PER-0506"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4329",
+      "numero": "4031",
+      "anio": "2004",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0418",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0508"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2082",
+      "numero": "1977",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0419",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0510"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0420",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0512"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4369",
+      "numero": "4019",
+      "anio": "2001",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0421",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0513"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0422",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0514"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0423",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0515"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0424",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0516"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0425",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0517"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0426",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0518"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4227",
+      "numero": "3964",
+      "anio": "1997",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0427",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0520"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4339",
+      "numero": "4041",
+      "anio": "2004",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0427",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0520"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4339",
+      "numero": "4041",
+      "anio": "2004",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0428",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0521"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4338",
+      "numero": "4040",
+      "anio": "2004",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0429",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0522"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "138",
+      "numero": "113",
+      "anio": "2011",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0430",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0523"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2114",
+      "numero": "2009",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0431",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0524"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1013",
+      "numero": "993",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0432",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0525"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2132",
+      "numero": "2077",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0433",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0527"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "964",
+      "numero": "944",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0434",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0529"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0435",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0530"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "4372",
+      "numero": "4031",
+      "anio": "2002",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0436",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0531"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "962",
+      "numero": "942",
+      "anio": "1984",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0437",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0533"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1031",
+      "numero": "753",
+      "anio": "2012",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0438",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0534"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2445",
+      "numero": "2329",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0439",
+    "tipo": "usufructuario",
+    "personas_asociadas_ids": [
+      "PER-0535"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "2457",
+      "numero": "2341",
+      "anio": "1992",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0440",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0537"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "408",
+      "numero": "367",
+      "anio": "2003",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0441",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0538"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": {
+      "fojas": "1698",
+      "numero": "1503",
+      "anio": "2006",
+      "fuente": "planilla_socioeconomica_levantamiento_hojas_1_3_5_6",
+      "confianza": "alta_si_validable_en_CBR",
+      "requiere_validacion": true
+    }
+  },
+  {
+    "vivienda_id": "VIV-0443",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0540"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0444",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0541"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0445",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0542"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0446",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0543"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0447",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0544"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0448",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0545"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0449",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0546"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0450",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0547"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0451",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0548"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0452",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0549"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0453",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0550"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0454",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0551"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0455",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0552"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0456",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0553"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0457",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0554"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0458",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0555"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0459",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0556"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0460",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0557"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0461",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0558"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0462",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0559"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0463",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0560"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0464",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0561"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0465",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0562"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  },
+  {
+    "vivienda_id": "VIV-0466",
+    "tipo": "propietario",
+    "personas_asociadas_ids": [
+      "PER-0563"
+    ],
+    "fuente": "planilla_socioeconomica · columna marca X",
+    "evidencia_documental_cbr": null
+  }
+]

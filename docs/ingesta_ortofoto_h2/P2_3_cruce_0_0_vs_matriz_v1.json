@@ -1,0 +1,346 @@
+{
+  "hipotesis": "H-1: 0-0 categoria 5 podrian corresponder a partes no individualizadas del rol 24-5 Andes Iron",
+  "proxy_usado": "ESTANCIA_LA_HIGUERA_MATRIZ_2021.gpkg (NO declara rol_sii=24-5)",
+  "rol_24_5_en_KMZ_06_vectorial": "NO encontrado",
+  "total_0_0_cat5_ha": 17.62,
+  "total_0_0_cat5_dentro_matriz_ha": 17.65,
+  "pct_dentro_matriz": 100.19,
+  "detalle_por_poligono": [
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.19,
+      "area_en_cat5": 0.18,
+      "area_en_matriz_total": 0.19,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.18
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.1,
+      "area_en_cat5": 0.1,
+      "area_en_matriz_total": 0.1,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.1
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.02,
+      "area_en_cat5": 0.02,
+      "area_en_matriz_total": 0.02,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.02
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 6.17,
+      "area_en_cat5": 6.17,
+      "area_en_matriz_total": 6.17,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 6.17
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.04,
+      "area_en_cat5": 0.04,
+      "area_en_matriz_total": 0.04,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.04
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.03,
+      "area_en_cat5": 0.03,
+      "area_en_matriz_total": 0.03,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.03
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 5.27,
+      "area_en_cat5": 1.32,
+      "area_en_matriz_total": 5.27,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 1.32
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.01,
+      "area_en_cat5": 0.01,
+      "area_en_matriz_total": 0.01,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.01
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 1.36,
+      "area_en_cat5": 0.78,
+      "area_en_matriz_total": 1.36,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.78
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.04,
+      "area_en_cat5": 0.04,
+      "area_en_matriz_total": 0.04,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.04
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.52,
+      "area_en_cat5": 0.05,
+      "area_en_matriz_total": 0.52,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.05
+    },
+    {
+      "sector": "La Higuera",
+      "area_total_ha": 2.94,
+      "area_en_cat5": 0.04,
+      "area_en_matriz_total": 2.94,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.04
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.13,
+      "area_en_cat5": 0.13,
+      "area_en_matriz_total": 0.13,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.13
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 7.16,
+      "area_en_cat5": 1.19,
+      "area_en_matriz_total": 7.16,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 1.19
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 3.12,
+      "area_en_cat5": 0.27,
+      "area_en_matriz_total": 3.12,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.27
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.15,
+      "area_en_cat5": 0.07,
+      "area_en_matriz_total": 0.15,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.07
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.12,
+      "area_en_cat5": 0.12,
+      "area_en_matriz_total": 0.12,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.12
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 1.37,
+      "area_en_cat5": 0.06,
+      "area_en_matriz_total": 1.37,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.06
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 1.43,
+      "area_en_cat5": 1.17,
+      "area_en_matriz_total": 1.43,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 1.17
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.09,
+      "area_en_cat5": 0.02,
+      "area_en_matriz_total": 0.09,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.02
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.09,
+      "area_en_cat5": 0.09,
+      "area_en_matriz_total": 0.09,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.09
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.09,
+      "area_en_cat5": 0.09,
+      "area_en_matriz_total": 0.09,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.09
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.03,
+      "area_en_cat5": 0.03,
+      "area_en_matriz_total": 0.03,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.03
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 2.46,
+      "area_en_cat5": 0.47,
+      "area_en_matriz_total": 2.46,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.47
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.46,
+      "area_en_cat5": 0.04,
+      "area_en_matriz_total": 0.46,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.04
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.15,
+      "area_en_cat5": 0.15,
+      "area_en_matriz_total": 0.15,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.15
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.06,
+      "area_en_cat5": 0.06,
+      "area_en_matriz_total": 0.06,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.06
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.73,
+      "area_en_cat5": 0.27,
+      "area_en_matriz_total": 0.73,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.27
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.14,
+      "area_en_cat5": 0.14,
+      "area_en_matriz_total": 0.14,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.14
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.02,
+      "area_en_cat5": 0.02,
+      "area_en_matriz_total": 0.02,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.02
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.06,
+      "area_en_cat5": 0.06,
+      "area_en_matriz_total": 0.06,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.06
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.02,
+      "area_en_cat5": 0.02,
+      "area_en_matriz_total": 0.02,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.02
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.09,
+      "area_en_cat5": 0.09,
+      "area_en_matriz_total": 0.09,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.09
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.43,
+      "area_en_cat5": 0.43,
+      "area_en_matriz_total": 0.43,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.43
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.02,
+      "area_en_cat5": 0.02,
+      "area_en_matriz_total": 0.02,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.02
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.05,
+      "area_en_cat5": 0.05,
+      "area_en_matriz_total": 0.05,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.05
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.02,
+      "area_en_cat5": 0.02,
+      "area_en_matriz_total": 0.02,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.02
+    },
+    {
+      "sector": "La Higuera",
+      "area_total_ha": 0.81,
+      "area_en_cat5": 0.81,
+      "area_en_matriz_total": 0.81,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.81
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.05,
+      "area_en_cat5": 0.05,
+      "area_en_matriz_total": 0.05,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.05
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.29,
+      "area_en_cat5": 0.29,
+      "area_en_matriz_total": 0.29,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.29
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 0.02,
+      "area_en_cat5": 0.02,
+      "area_en_matriz_total": 0.02,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 0.02
+    },
+    {
+      "sector": "(vacío)",
+      "area_total_ha": 9.61,
+      "area_en_cat5": 2.62,
+      "area_en_matriz_total": 9.61,
+      "pct_dentro_matriz": 100.0,
+      "area_en_cat5_y_matriz_simultaneo_ha": 2.62
+    }
+  ]
+}

@@ -1,0 +1,246 @@
+{
+  "metodo": "poligono_poligono_real_con_shapely",
+  "caveat_metodologico": "los cuadrantes Q10/Q11/Q20/Q21 son sub-rectangulos de grilla 4x4 sobre bbox ortofoto · NO son la silueta exacta del asentamiento detectado",
+  "cat5_area_total_ha": 49.57,
+  "agregado_por_tipo": {
+    "Limite_urbano": 48.22,
+    "ICH": 0.14,
+    "AR3": 1.61,
+    "AR1": 6.77,
+    "AR2": 3.89,
+    "Zonificacion": 34.75
+  },
+  "sin_normativa_PRC_asignada_ha": -45.8,
+  "detalle_por_cuadrante": {
+    "Q10": {
+      "area_total_ha": 12.39,
+      "intersecciones": [
+        {
+          "tipo": "Limite_urbano",
+          "codigo": "2691980,58",
+          "inter_ha": 11.04,
+          "pct": 89.1,
+          "n": 1
+        },
+        {
+          "tipo": "ICH",
+          "codigo": "4",
+          "inter_ha": 0.01,
+          "pct": 0.1,
+          "n": 1
+        },
+        {
+          "tipo": "ICH",
+          "codigo": "5",
+          "inter_ha": 0.01,
+          "pct": 0.1,
+          "n": 1
+        },
+        {
+          "tipo": "ICH",
+          "codigo": "6",
+          "inter_ha": 0.01,
+          "pct": 0.1,
+          "n": 1
+        },
+        {
+          "tipo": "ICH",
+          "codigo": "3",
+          "inter_ha": 0.01,
+          "pct": 0.1,
+          "n": 1
+        },
+        {
+          "tipo": "ICH",
+          "codigo": "2",
+          "inter_ha": 0.01,
+          "pct": 0.1,
+          "n": 1
+        },
+        {
+          "tipo": "ICH",
+          "codigo": "1",
+          "inter_ha": 0.0,
+          "pct": 0.0,
+          "n": 1
+        },
+        {
+          "tipo": "ICH",
+          "codigo": "7",
+          "inter_ha": 0.01,
+          "pct": 0.1,
+          "n": 1
+        },
+        {
+          "tipo": "ICH",
+          "codigo": "8",
+          "inter_ha": 0.0,
+          "pct": 0.0,
+          "n": 1
+        },
+        {
+          "tipo": "ICH",
+          "codigo": "9",
+          "inter_ha": 0.0,
+          "pct": 0.0,
+          "n": 1
+        },
+        {
+          "tipo": "ICH",
+          "codigo": "10",
+          "inter_ha": 0.0,
+          "pct": 0.0,
+          "n": 1
+        },
+        {
+          "tipo": "ICH",
+          "codigo": "11",
+          "inter_ha": 0.03,
+          "pct": 0.2,
+          "n": 1
+        },
+        {
+          "tipo": "AR3",
+          "codigo": "<sin_codigo>",
+          "inter_ha": 0.46,
+          "pct": 3.7,
+          "n": 1
+        },
+        {
+          "tipo": "AR1",
+          "codigo": "<sin_codigo>",
+          "inter_ha": 1.75,
+          "pct": 14.1,
+          "n": 3
+        },
+        {
+          "tipo": "AR2",
+          "codigo": "<sin_codigo>",
+          "inter_ha": 2.61,
+          "pct": 21.0,
+          "n": 7
+        },
+        {
+          "tipo": "Zonificacion",
+          "codigo": "<sin_codigo>",
+          "inter_ha": 7.7,
+          "pct": 62.1,
+          "n": 6
+        }
+      ]
+    },
+    "Q11": {
+      "area_total_ha": 12.39,
+      "intersecciones": [
+        {
+          "tipo": "Limite_urbano",
+          "codigo": "2691980,58",
+          "inter_ha": 12.39,
+          "pct": 100.0,
+          "n": 1
+        },
+        {
+          "tipo": "ICH",
+          "codigo": "12",
+          "inter_ha": 0.03,
+          "pct": 0.3,
+          "n": 1
+        },
+        {
+          "tipo": "AR3",
+          "codigo": "<sin_codigo>",
+          "inter_ha": 1.14,
+          "pct": 9.2,
+          "n": 4
+        },
+        {
+          "tipo": "AR1",
+          "codigo": "<sin_codigo>",
+          "inter_ha": 2.04,
+          "pct": 16.4,
+          "n": 4
+        },
+        {
+          "tipo": "AR2",
+          "codigo": "<sin_codigo>",
+          "inter_ha": 0.01,
+          "pct": 0.1,
+          "n": 2
+        },
+        {
+          "tipo": "Zonificacion",
+          "codigo": "<sin_codigo>",
+          "inter_ha": 7.39,
+          "pct": 59.7,
+          "n": 13
+        }
+      ]
+    },
+    "Q20": {
+      "area_total_ha": 12.39,
+      "intersecciones": [
+        {
+          "tipo": "Limite_urbano",
+          "codigo": "2691980,58",
+          "inter_ha": 12.39,
+          "pct": 100.0,
+          "n": 1
+        },
+        {
+          "tipo": "AR1",
+          "codigo": "<sin_codigo>",
+          "inter_ha": 2.7,
+          "pct": 21.8,
+          "n": 3
+        },
+        {
+          "tipo": "AR2",
+          "codigo": "<sin_codigo>",
+          "inter_ha": 1.11,
+          "pct": 8.9,
+          "n": 7
+        },
+        {
+          "tipo": "Zonificacion",
+          "codigo": "<sin_codigo>",
+          "inter_ha": 8.61,
+          "pct": 69.5,
+          "n": 9
+        }
+      ]
+    },
+    "Q21": {
+      "area_total_ha": 12.39,
+      "intersecciones": [
+        {
+          "tipo": "Limite_urbano",
+          "codigo": "2691980,58",
+          "inter_ha": 12.39,
+          "pct": 100.0,
+          "n": 1
+        },
+        {
+          "tipo": "AR1",
+          "codigo": "<sin_codigo>",
+          "inter_ha": 0.29,
+          "pct": 2.3,
+          "n": 1
+        },
+        {
+          "tipo": "AR2",
+          "codigo": "<sin_codigo>",
+          "inter_ha": 0.16,
+          "pct": 1.3,
+          "n": 3
+        },
+        {
+          "tipo": "Zonificacion",
+          "codigo": "<sin_codigo>",
+          "inter_ha": 11.04,
+          "pct": 89.1,
+          "n": 9
+        }
+      ]
+    }
+  }
+}

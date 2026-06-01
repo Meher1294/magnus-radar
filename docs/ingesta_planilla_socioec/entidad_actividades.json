@@ -1,0 +1,3770 @@
+[
+  {
+    "vivienda_id": "VIV-0002",
+    "personas_asociadas": [
+      "PER-0002"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0003",
+    "personas_asociadas": [
+      "PER-0003"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 50000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0004",
+    "personas_asociadas": [
+      "PER-0004"
+    ],
+    "descripcion": "ADMINISTRATIVO",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0005",
+    "personas_asociadas": [
+      "PER-0005"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 90000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0006",
+    "personas_asociadas": [
+      "PER-0006"
+    ],
+    "descripcion": "CESANTE",
+    "ingresos_clp": 0,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0008",
+    "personas_asociadas": [
+      "PER-0008"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 140000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0009",
+    "personas_asociadas": [
+      "PER-0009"
+    ],
+    "descripcion": "TRANSPORTISTA",
+    "ingresos_clp": 150000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0010",
+    "personas_asociadas": [
+      "PER-0010",
+      "PER-0011"
+    ],
+    "descripcion": "LOCUTORA",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0011",
+    "personas_asociadas": [
+      "PER-0012",
+      "PER-0013"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0012",
+    "personas_asociadas": [
+      "PER-0014"
+    ],
+    "descripcion": "OP. MAQ. PESADA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0013",
+    "personas_asociadas": [
+      "PER-0015",
+      "PER-0016"
+    ],
+    "descripcion": "MANIP. ALIMENTOS",
+    "ingresos_clp": 156000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0014",
+    "personas_asociadas": [
+      "PER-0017",
+      "PER-0018",
+      "PER-0019"
+    ],
+    "descripcion": "SOLDADOR",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0015",
+    "personas_asociadas": [
+      "PER-0020"
+    ],
+    "descripcion": "PIRQUINERO",
+    "ingresos_clp": 160000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0016",
+    "personas_asociadas": [
+      "PER-0021",
+      "PER-0022"
+    ],
+    "descripcion": "PIRQUINERO",
+    "ingresos_clp": 160000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0017",
+    "personas_asociadas": [
+      "PER-0023",
+      "PER-0024"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 160000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0018",
+    "personas_asociadas": [
+      "PER-0025"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 140000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0019",
+    "personas_asociadas": [
+      "PER-0026"
+    ],
+    "descripcion": "OP. MAQ. PESADA",
+    "ingresos_clp": 140000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0020",
+    "personas_asociadas": [
+      "PER-0027"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0022",
+    "personas_asociadas": [
+      "PER-0029"
+    ],
+    "descripcion": "MANIP.ALIMENTOS",
+    "ingresos_clp": 110000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0023",
+    "personas_asociadas": [
+      "PER-0030"
+    ],
+    "descripcion": "CHOFER",
+    "ingresos_clp": 140000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0024",
+    "personas_asociadas": [
+      "PER-0031"
+    ],
+    "descripcion": "PARAMEDICO",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0026",
+    "personas_asociadas": [
+      "PER-0033"
+    ],
+    "descripcion": "AUXILIAR",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0027",
+    "personas_asociadas": [
+      "PER-0034"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0028",
+    "personas_asociadas": [
+      "PER-0035"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0029",
+    "personas_asociadas": [
+      "PER-0036"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 140000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0031",
+    "personas_asociadas": [
+      "PER-0038",
+      "PER-0039"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0032",
+    "personas_asociadas": [
+      "PER-0040",
+      "PER-0041"
+    ],
+    "descripcion": "MANIP.ALIMENTOS",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0034",
+    "personas_asociadas": [
+      "PER-0043"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0035",
+    "personas_asociadas": [
+      "PER-0044",
+      "PER-0045"
+    ],
+    "descripcion": "OP. PLANTA MIN.",
+    "ingresos_clp": 170000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0036",
+    "personas_asociadas": [
+      "PER-0046"
+    ],
+    "descripcion": "COMERCIANTE",
+    "ingresos_clp": 110000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0037",
+    "personas_asociadas": [
+      "PER-0047"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0038",
+    "personas_asociadas": [
+      "PER-0048"
+    ],
+    "descripcion": "ADMINISTRATIVA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0039",
+    "personas_asociadas": [
+      "PER-0049"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 140000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0040",
+    "personas_asociadas": [
+      "PER-0050"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 160000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0041",
+    "personas_asociadas": [
+      "PER-0051"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 65000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0042",
+    "personas_asociadas": [
+      "PER-0052"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 110000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0043",
+    "personas_asociadas": [
+      "PER-0053"
+    ],
+    "descripcion": "SECRETARIA",
+    "ingresos_clp": 350000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0045",
+    "personas_asociadas": [
+      "PER-0055"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 70000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0046",
+    "personas_asociadas": [
+      "PER-0056"
+    ],
+    "descripcion": "PIRQUINERO",
+    "ingresos_clp": 130000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0047",
+    "personas_asociadas": [
+      "PER-0057"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 79000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0048",
+    "personas_asociadas": [
+      "PER-0058"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 72000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0049",
+    "personas_asociadas": [
+      "PER-0059"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 90000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0050",
+    "personas_asociadas": [
+      "PER-0060"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 170000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0051",
+    "personas_asociadas": [
+      "PER-0061"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 155000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0052",
+    "personas_asociadas": [
+      "PER-0062"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 70000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0053",
+    "personas_asociadas": [
+      "PER-0063"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0055",
+    "personas_asociadas": [
+      "PER-0065"
+    ],
+    "descripcion": "COCINERO",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0056",
+    "personas_asociadas": [
+      "PER-0066"
+    ],
+    "descripcion": "PESCADOR",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0057",
+    "personas_asociadas": [
+      "PER-0067"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 980000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0058",
+    "personas_asociadas": [
+      "PER-0068"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0059",
+    "personas_asociadas": [
+      "PER-0069"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 300000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0060",
+    "personas_asociadas": [
+      "PER-0070"
+    ],
+    "descripcion": "JORNAL",
+    "ingresos_clp": 70000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0061",
+    "personas_asociadas": [
+      "PER-0071"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 70000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0062",
+    "personas_asociadas": [
+      "PER-0072"
+    ],
+    "descripcion": "OP. MAQ. PESADA",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0063",
+    "personas_asociadas": [
+      "PER-0073"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 128000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0066",
+    "personas_asociadas": [
+      "PER-0076",
+      "PER-0077"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0067",
+    "personas_asociadas": [
+      "PER-0078"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0068",
+    "personas_asociadas": [
+      "PER-0079"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 160000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0069",
+    "personas_asociadas": [
+      "PER-0080"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 60500,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0070",
+    "personas_asociadas": [
+      "PER-0081"
+    ],
+    "descripcion": "PIRQUINERO",
+    "ingresos_clp": 110000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0071",
+    "personas_asociadas": [
+      "PER-0082"
+    ],
+    "descripcion": "JORNAL",
+    "ingresos_clp": 95000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0072",
+    "personas_asociadas": [
+      "PER-0083"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 73000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0073",
+    "personas_asociadas": [
+      "PER-0084"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 85000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0074",
+    "personas_asociadas": [
+      "PER-0085"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": "$ 000.000",
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0075",
+    "personas_asociadas": [
+      "PER-0086"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 62000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0076",
+    "personas_asociadas": [
+      "PER-0087",
+      "PER-0088"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 95000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0077",
+    "personas_asociadas": [
+      "PER-0089"
+    ],
+    "descripcion": "MECANICO",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0078",
+    "personas_asociadas": [
+      "PER-0090"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 95000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0079",
+    "personas_asociadas": [
+      "PER-0091"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 92000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0080",
+    "personas_asociadas": [
+      "PER-0092"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0081",
+    "personas_asociadas": [
+      "PER-0093"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0082",
+    "personas_asociadas": [
+      "PER-0094"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0084",
+    "personas_asociadas": [
+      "PER-0096"
+    ],
+    "descripcion": "CHOFER",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0085",
+    "personas_asociadas": [
+      "PER-0097"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 85000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0086",
+    "personas_asociadas": [
+      "PER-0098"
+    ],
+    "descripcion": "MANIP.ALIMENTOS",
+    "ingresos_clp": 90000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0087",
+    "personas_asociadas": [
+      "PER-0099"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 75000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0088",
+    "personas_asociadas": [
+      "PER-0100"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0089",
+    "personas_asociadas": [
+      "PER-0101"
+    ],
+    "descripcion": "OP. PLANTA MIN.",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0090",
+    "personas_asociadas": [
+      "PER-0102"
+    ],
+    "descripcion": "PIRQUINERO",
+    "ingresos_clp": 170000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0091",
+    "personas_asociadas": [
+      "PER-0103"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0092",
+    "personas_asociadas": [
+      "PER-0104"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0093",
+    "personas_asociadas": [
+      "PER-0105"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0094",
+    "personas_asociadas": [
+      "PER-0106"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 95000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0095",
+    "personas_asociadas": [
+      "PER-0107",
+      "PER-0108"
+    ],
+    "descripcion": "PELUQUERO",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0096",
+    "personas_asociadas": [
+      "PER-0109",
+      "PER-0110"
+    ],
+    "descripcion": "TEC. ALIMENTOS",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0097",
+    "personas_asociadas": [
+      "PER-0111"
+    ],
+    "descripcion": "ADMINISTRATIVO",
+    "ingresos_clp": 160000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0098",
+    "personas_asociadas": [
+      "PER-0112"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 70000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0099",
+    "personas_asociadas": [
+      "PER-0113",
+      "PER-0114"
+    ],
+    "descripcion": "ALBAÑIL",
+    "ingresos_clp": "000.000",
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0100",
+    "personas_asociadas": [
+      "PER-0115",
+      "PER-0116"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 62000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0101",
+    "personas_asociadas": [
+      "PER-0117"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0102",
+    "personas_asociadas": [
+      "PER-0118"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 62000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0103",
+    "personas_asociadas": [
+      "PER-0119"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0105",
+    "personas_asociadas": [
+      "PER-0121",
+      "PER-0122"
+    ],
+    "descripcion": "COMERCIANTE",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0106",
+    "personas_asociadas": [
+      "PER-0123"
+    ],
+    "descripcion": "COMERCIANTE",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0108",
+    "personas_asociadas": [
+      "PER-0125"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0109",
+    "personas_asociadas": [
+      "PER-0126"
+    ],
+    "descripcion": "PIRQUINERO",
+    "ingresos_clp": 75000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0110",
+    "personas_asociadas": [
+      "PER-0127",
+      "PER-0128"
+    ],
+    "descripcion": "MANIP.ALIMENTOS",
+    "ingresos_clp": 140000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0111",
+    "personas_asociadas": [
+      "PER-0129"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 71000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0112",
+    "personas_asociadas": [
+      "PER-0130",
+      "PER-0131"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 64000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0113",
+    "personas_asociadas": [
+      "PER-0132"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 62000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0114",
+    "personas_asociadas": [
+      "PER-0133"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0115",
+    "personas_asociadas": [
+      "PER-0134"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 95000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0117",
+    "personas_asociadas": [
+      "PER-0136"
+    ],
+    "descripcion": "MECANICO",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0118",
+    "personas_asociadas": [
+      "PER-0137"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 64000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0119",
+    "personas_asociadas": [
+      "PER-0138",
+      "PER-0139"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 20000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0121",
+    "personas_asociadas": [
+      "PER-0141"
+    ],
+    "descripcion": "operador p lanta chancado",
+    "ingresos_clp": 300000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0122",
+    "personas_asociadas": [
+      "PER-0142"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0123",
+    "personas_asociadas": [
+      "PER-0143",
+      "PER-0144"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 76000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0126",
+    "personas_asociadas": [
+      "PER-0147",
+      "PER-0148"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 10000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0127",
+    "personas_asociadas": [
+      "PER-0149",
+      "PER-0150"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0128",
+    "personas_asociadas": [
+      "PER-0151",
+      "PER-0152",
+      "PER-0153"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 90000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0129",
+    "personas_asociadas": [
+      "PER-0154"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 70000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0131",
+    "personas_asociadas": [
+      "PER-0156"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0132",
+    "personas_asociadas": [
+      "PER-0157",
+      "PER-0158"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 0,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0133",
+    "personas_asociadas": [
+      "PER-0159"
+    ],
+    "descripcion": "CONCEJAL",
+    "ingresos_clp": 340000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0134",
+    "personas_asociadas": [
+      "PER-0160",
+      "PER-0161"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 105000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0135",
+    "personas_asociadas": [
+      "PER-0162"
+    ],
+    "descripcion": "VIUDA",
+    "ingresos_clp": 78000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0136",
+    "personas_asociadas": [
+      "PER-0163",
+      "PER-0164"
+    ],
+    "descripcion": "CHOFER",
+    "ingresos_clp": 140000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0137",
+    "personas_asociadas": [
+      "PER-0165"
+    ],
+    "descripcion": "ADMINISTRATIVA",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0138",
+    "personas_asociadas": [
+      "PER-0166"
+    ],
+    "descripcion": "ADMINISTRATIVO",
+    "ingresos_clp": 210000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0139",
+    "personas_asociadas": [
+      "PER-0167"
+    ],
+    "descripcion": "CONDUCTOR",
+    "ingresos_clp": 210000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0140",
+    "personas_asociadas": [
+      "PER-0168"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 70000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0141",
+    "personas_asociadas": [
+      "PER-0169"
+    ],
+    "descripcion": "OP. PLANTA MIN.",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0142",
+    "personas_asociadas": [
+      "PER-0170"
+    ],
+    "descripcion": "CRIANCERO",
+    "ingresos_clp": 30000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0144",
+    "personas_asociadas": [
+      "PER-0172"
+    ],
+    "descripcion": "PIRQUINERO",
+    "ingresos_clp": 82000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0145",
+    "personas_asociadas": [
+      "PER-0173"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 64000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0146",
+    "personas_asociadas": [
+      "PER-0174"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 115000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0147",
+    "personas_asociadas": [
+      "PER-0175"
+    ],
+    "descripcion": "COMERCIANTE",
+    "ingresos_clp": 110000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0148",
+    "personas_asociadas": [
+      "PER-0176"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 92000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0150",
+    "personas_asociadas": [
+      "PER-0178"
+    ],
+    "descripcion": "PIRQUINERO",
+    "ingresos_clp": 75000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0152",
+    "personas_asociadas": [
+      "PER-0180",
+      "PER-0181"
+    ],
+    "descripcion": "JORNAL",
+    "ingresos_clp": 190000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0153",
+    "personas_asociadas": [
+      "PER-0182",
+      "PER-0183"
+    ],
+    "descripcion": "ADMINISTRATIVA",
+    "ingresos_clp": 110000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0154",
+    "personas_asociadas": [
+      "PER-0184"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 210000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0155",
+    "personas_asociadas": [
+      "PER-0185"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0156",
+    "personas_asociadas": [
+      "PER-0186"
+    ],
+    "descripcion": "MANIP.ALIMENTOS",
+    "ingresos_clp": 193000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0158",
+    "personas_asociadas": [
+      "PER-0188"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 170000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0159",
+    "personas_asociadas": [
+      "PER-0189"
+    ],
+    "descripcion": "EDUC. PARVULO",
+    "ingresos_clp": 240000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0160",
+    "personas_asociadas": [
+      "PER-0190"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 62000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0161",
+    "personas_asociadas": [
+      "PER-0191",
+      "PER-0192"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0163",
+    "personas_asociadas": [
+      "PER-0194"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0164",
+    "personas_asociadas": [
+      "PER-0195",
+      "PER-0196"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0165",
+    "personas_asociadas": [
+      "PER-0197"
+    ],
+    "descripcion": "FUNCIONARIO POLICIAL",
+    "ingresos_clp": 230000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0167",
+    "personas_asociadas": [
+      "PER-0199"
+    ],
+    "descripcion": "SECRETARIA",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0168",
+    "personas_asociadas": [
+      "PER-0200"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 110000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0169",
+    "personas_asociadas": [
+      "PER-0201"
+    ],
+    "descripcion": "FUNCIONARIO POLICIAL",
+    "ingresos_clp": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0170",
+    "personas_asociadas": [
+      "PER-0202"
+    ],
+    "descripcion": "PARAMEDICO",
+    "ingresos_clp": 190000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0171",
+    "personas_asociadas": [
+      "PER-0203"
+    ],
+    "descripcion": "OP. PLANTA MIN.",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0172",
+    "personas_asociadas": [
+      "PER-0204"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 50000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0173",
+    "personas_asociadas": [
+      "PER-0205"
+    ],
+    "descripcion": "ADMINISTRATIVO",
+    "ingresos_clp": 190000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0176",
+    "personas_asociadas": [
+      "PER-0208"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 96000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0177",
+    "personas_asociadas": [
+      "PER-0209"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 160000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0179",
+    "personas_asociadas": [
+      "PER-0211"
+    ],
+    "descripcion": "OP. MAQ. PESADA",
+    "ingresos_clp": 240000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0180",
+    "personas_asociadas": [
+      "PER-0212"
+    ],
+    "descripcion": "COMERCIANTE",
+    "ingresos_clp": 130000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0181",
+    "personas_asociadas": [
+      "PER-0213"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 160000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0182",
+    "personas_asociadas": [
+      "PER-0214"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0183",
+    "personas_asociadas": [
+      "PER-0215"
+    ],
+    "descripcion": "EDUC. PARVULO",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0185",
+    "personas_asociadas": [
+      "PER-0217"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 160000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0186",
+    "personas_asociadas": [
+      "PER-0218",
+      "PER-0219"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 90000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0187",
+    "personas_asociadas": [
+      "PER-0220"
+    ],
+    "descripcion": "COMERCIANTE",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0188",
+    "personas_asociadas": [
+      "PER-0221"
+    ],
+    "descripcion": "ASIST. PARVULOS",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0189",
+    "personas_asociadas": [
+      "PER-0222"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0190",
+    "personas_asociadas": [
+      "PER-0223"
+    ],
+    "descripcion": "JUBIALADO",
+    "ingresos_clp": 164000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0193",
+    "personas_asociadas": [
+      "PER-0226"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0194",
+    "personas_asociadas": [
+      "PER-0227"
+    ],
+    "descripcion": "AGRICULTORA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0196",
+    "personas_asociadas": [
+      "PER-0229"
+    ],
+    "descripcion": "PENSIONADA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0197",
+    "personas_asociadas": [
+      "PER-0230"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 140000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0198",
+    "personas_asociadas": [
+      "PER-0231"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 140000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0199",
+    "personas_asociadas": [
+      "PER-0232"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 75000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0200",
+    "personas_asociadas": [
+      "PER-0233"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 70000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0201",
+    "personas_asociadas": [
+      "PER-0234"
+    ],
+    "descripcion": "MECANICO",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0202",
+    "personas_asociadas": [
+      "PER-0235"
+    ],
+    "descripcion": "CHOFER",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0204",
+    "personas_asociadas": [
+      "PER-0237"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0205",
+    "personas_asociadas": [
+      "PER-0238"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0206",
+    "personas_asociadas": [
+      "PER-0239"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0208",
+    "personas_asociadas": [
+      "PER-0241"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0209",
+    "personas_asociadas": [
+      "PER-0242"
+    ],
+    "descripcion": "PENSION ASISTENCIAL",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0211",
+    "personas_asociadas": [
+      "PER-0244"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0212",
+    "personas_asociadas": [
+      "PER-0245"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0215",
+    "personas_asociadas": [
+      "PER-0248"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 146000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0216",
+    "personas_asociadas": [
+      "PER-0249",
+      "PER-0250"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0217",
+    "personas_asociadas": [
+      "PER-0251"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0218",
+    "personas_asociadas": [
+      "PER-0252"
+    ],
+    "descripcion": "CRIANCERA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0220",
+    "personas_asociadas": [
+      "PER-0254"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0221",
+    "personas_asociadas": [
+      "PER-0255"
+    ],
+    "descripcion": "AUXILIAR DE ASEO",
+    "ingresos_clp": 74000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0222",
+    "personas_asociadas": [
+      "PER-0256",
+      "PER-0257"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 250000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0224",
+    "personas_asociadas": [
+      "PER-0259"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0225",
+    "personas_asociadas": [
+      "PER-0260"
+    ],
+    "descripcion": "MANIP.ALIMENTOS",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0226",
+    "personas_asociadas": [
+      "PER-0261"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0227",
+    "personas_asociadas": [
+      "PER-0262"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0228",
+    "personas_asociadas": [
+      "PER-0263"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0229",
+    "personas_asociadas": [
+      "PER-0264"
+    ],
+    "descripcion": "SERENO",
+    "ingresos_clp": 150000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0230",
+    "personas_asociadas": [
+      "PER-0265"
+    ],
+    "descripcion": "CRIANCERA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0232",
+    "personas_asociadas": [
+      "PER-0267"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0233",
+    "personas_asociadas": [
+      "PER-0268",
+      "PER-0269"
+    ],
+    "descripcion": "AUX. DE SALUD",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0234",
+    "personas_asociadas": [
+      "PER-0270"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0235",
+    "personas_asociadas": [
+      "PER-0271",
+      "PER-0272"
+    ],
+    "descripcion": "PENSIONADA",
+    "ingresos_clp": 145000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0236",
+    "personas_asociadas": [
+      "PER-0273"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0237",
+    "personas_asociadas": [
+      "PER-0274"
+    ],
+    "descripcion": "PENSIONADA",
+    "ingresos_clp": 70000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0238",
+    "personas_asociadas": [
+      "PER-0275"
+    ],
+    "descripcion": "CHOFER",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0239",
+    "personas_asociadas": [
+      "PER-0276"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0240",
+    "personas_asociadas": [
+      "PER-0277",
+      "PER-0278"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0241",
+    "personas_asociadas": [
+      "PER-0279"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0242",
+    "personas_asociadas": [
+      "PER-0280"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0243",
+    "personas_asociadas": [
+      "PER-0281"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0244",
+    "personas_asociadas": [
+      "PER-0282"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0245",
+    "personas_asociadas": [
+      "PER-0283"
+    ],
+    "descripcion": "PIRQUINERO",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0247",
+    "personas_asociadas": [
+      "PER-0285"
+    ],
+    "descripcion": "COMERCIANTE",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0248",
+    "personas_asociadas": [
+      "PER-0286"
+    ],
+    "descripcion": "PIRQUINERO",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0249",
+    "personas_asociadas": [
+      "PER-0287",
+      "PER-0288"
+    ],
+    "descripcion": "PIRQUINERO",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0250",
+    "personas_asociadas": [
+      "PER-0289",
+      "PER-0290"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 300000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0251",
+    "personas_asociadas": [
+      "PER-0291"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0252",
+    "personas_asociadas": [
+      "PER-0292"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 90000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0253",
+    "personas_asociadas": [
+      "PER-0293",
+      "PER-0294"
+    ],
+    "descripcion": "PENSIONADA",
+    "ingresos_clp": 70000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0254",
+    "personas_asociadas": [
+      "PER-0295"
+    ],
+    "descripcion": "MINERA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0255",
+    "personas_asociadas": [
+      "PER-0296"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 75000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0256",
+    "personas_asociadas": [
+      "PER-0297",
+      "PER-0298"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0257",
+    "personas_asociadas": [
+      "PER-0299",
+      "PER-0300"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0258",
+    "personas_asociadas": [
+      "PER-0301"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 150000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0259",
+    "personas_asociadas": [
+      "PER-0302"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0261",
+    "personas_asociadas": [
+      "PER-0304"
+    ],
+    "descripcion": "OP.DE PLANTA MIN.",
+    "ingresos_clp": 190000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0262",
+    "personas_asociadas": [
+      "PER-0305"
+    ],
+    "descripcion": "PENSIONADO",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0263",
+    "personas_asociadas": [
+      "PER-0306",
+      "PER-0307"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0264",
+    "personas_asociadas": [
+      "PER-0308"
+    ],
+    "descripcion": "ALBAÑIL",
+    "ingresos_clp": 102000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0265",
+    "personas_asociadas": [
+      "PER-0309"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 150000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0266",
+    "personas_asociadas": [
+      "PER-0310"
+    ],
+    "descripcion": "OPERADOR DE MAQUINA",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0268",
+    "personas_asociadas": [
+      "PER-0312"
+    ],
+    "descripcion": "PENSION / INVALIDEZ",
+    "ingresos_clp": 102000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0269",
+    "personas_asociadas": [
+      "PER-0313"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0270",
+    "personas_asociadas": [
+      "PER-0314"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0272",
+    "personas_asociadas": [
+      "PER-0316"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0273",
+    "personas_asociadas": [
+      "PER-0317"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0274",
+    "personas_asociadas": [
+      "PER-0318"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0275",
+    "personas_asociadas": [
+      "PER-0319"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0276",
+    "personas_asociadas": [
+      "PER-0320"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0278",
+    "personas_asociadas": [
+      "PER-0322",
+      "PER-0323"
+    ],
+    "descripcion": "OP. MAQ. PESADA",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0279",
+    "personas_asociadas": [
+      "PER-0324"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0280",
+    "personas_asociadas": [
+      "PER-0325"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0281",
+    "personas_asociadas": [
+      "PER-0326"
+    ],
+    "descripcion": "JORNAL",
+    "ingresos_clp": 90000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0282",
+    "personas_asociadas": [
+      "PER-0327"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 90000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0285",
+    "personas_asociadas": [
+      "PER-0330",
+      "PER-0331"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0286",
+    "personas_asociadas": [
+      "PER-0332"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 50000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0287",
+    "personas_asociadas": [
+      "PER-0333"
+    ],
+    "descripcion": "JORNAL",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0288",
+    "personas_asociadas": [
+      "PER-0334"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0289",
+    "personas_asociadas": [
+      "PER-0335",
+      "PER-0336"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0290",
+    "personas_asociadas": [
+      "PER-0337"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0291",
+    "personas_asociadas": [
+      "PER-0338"
+    ],
+    "descripcion": "OP. MAQ. PESADA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0292",
+    "personas_asociadas": [
+      "PER-0339"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0293",
+    "personas_asociadas": [
+      "PER-0340"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 40000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0294",
+    "personas_asociadas": [
+      "PER-0341"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0295",
+    "personas_asociadas": [
+      "PER-0342"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 78000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0296",
+    "personas_asociadas": [
+      "PER-0343"
+    ],
+    "descripcion": "OP. PLANTA MIN.",
+    "ingresos_clp": 130000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0297",
+    "personas_asociadas": [
+      "PER-0344"
+    ],
+    "descripcion": "PIRQUINERO",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0298",
+    "personas_asociadas": [
+      "PER-0345"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0299",
+    "personas_asociadas": [
+      "PER-0346"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0300",
+    "personas_asociadas": [
+      "PER-0347",
+      "PER-0348"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0301",
+    "personas_asociadas": [
+      "PER-0349",
+      "PER-0350"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 50000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0302",
+    "personas_asociadas": [
+      "PER-0351"
+    ],
+    "descripcion": "CONSTRUCTOR",
+    "ingresos_clp": 150000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0304",
+    "personas_asociadas": [
+      "PER-0353",
+      "PER-0354"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 75000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0305",
+    "personas_asociadas": [
+      "PER-0355",
+      "PER-0356"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0306",
+    "personas_asociadas": [
+      "PER-0357",
+      "PER-0358"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 70000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0307",
+    "personas_asociadas": [
+      "PER-0359",
+      "PER-0360"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 110000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0308",
+    "personas_asociadas": [
+      "PER-0361",
+      "PER-0362"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0309",
+    "personas_asociadas": [
+      "PER-0363",
+      "PER-0364"
+    ],
+    "descripcion": "CRIANCERO",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0310",
+    "personas_asociadas": [
+      "PER-0365"
+    ],
+    "descripcion": "COMERCIANTE",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0311",
+    "personas_asociadas": [
+      "PER-0366"
+    ],
+    "descripcion": "COMERCIANTE",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0312",
+    "personas_asociadas": [
+      "PER-0367"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 75000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0313",
+    "personas_asociadas": [
+      "PER-0368"
+    ],
+    "descripcion": "PENSIONADA",
+    "ingresos_clp": 66000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0314",
+    "personas_asociadas": [
+      "PER-0369"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 50000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0315",
+    "personas_asociadas": [
+      "PER-0370"
+    ],
+    "descripcion": "AYUD. COCINA",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0316",
+    "personas_asociadas": [
+      "PER-0371",
+      "PER-0372"
+    ],
+    "descripcion": "COMERCIANTE",
+    "ingresos_clp": 150000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0317",
+    "personas_asociadas": [
+      "PER-0373",
+      "PER-0374"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 70000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0318",
+    "personas_asociadas": [
+      "PER-0375",
+      "PER-0376"
+    ],
+    "descripcion": "ASIST. PARVULOS",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0320",
+    "personas_asociadas": [
+      "PER-0378"
+    ],
+    "descripcion": "AUXILIAR DE ASEO",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0321",
+    "personas_asociadas": [
+      "PER-0379"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 250000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0322",
+    "personas_asociadas": [
+      "PER-0380"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 250000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0323",
+    "personas_asociadas": [
+      "PER-0381",
+      "PER-0382"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 40000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0324",
+    "personas_asociadas": [
+      "PER-0383"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0325",
+    "personas_asociadas": [
+      "PER-0384"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0326",
+    "personas_asociadas": [
+      "PER-0385",
+      "PER-0386"
+    ],
+    "descripcion": "ASIST. PARVULOS",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0327",
+    "personas_asociadas": [
+      "PER-0387"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0329",
+    "personas_asociadas": [
+      "PER-0389",
+      "PER-0390"
+    ],
+    "descripcion": "MAESTRO COCINA",
+    "ingresos_clp": 90000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0330",
+    "personas_asociadas": [
+      "PER-0391"
+    ],
+    "descripcion": "MANIPULADORA",
+    "ingresos_clp": 156000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0331",
+    "personas_asociadas": [
+      "PER-0392",
+      "PER-0393"
+    ],
+    "descripcion": "ADMINISTRATIVA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0332",
+    "personas_asociadas": [
+      "PER-0394"
+    ],
+    "descripcion": "CARPINTERO",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0333",
+    "personas_asociadas": [
+      "PER-0395"
+    ],
+    "descripcion": "ADMINISTRATIVO",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0334",
+    "personas_asociadas": [
+      "PER-0396"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0336",
+    "personas_asociadas": [
+      "PER-0398"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 150000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0337",
+    "personas_asociadas": [
+      "PER-0399",
+      "PER-0400"
+    ],
+    "descripcion": "ADMINISTRATIVO",
+    "ingresos_clp": 300000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0338",
+    "personas_asociadas": [
+      "PER-0401",
+      "PER-0402"
+    ],
+    "descripcion": "OP. SONDAJE",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0339",
+    "personas_asociadas": [
+      "PER-0403"
+    ],
+    "descripcion": "CONDUCTOR",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0340",
+    "personas_asociadas": [
+      "PER-0404"
+    ],
+    "descripcion": "MANIP.ALIMENTOS",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0341",
+    "personas_asociadas": [
+      "PER-0405"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0342",
+    "personas_asociadas": [
+      "PER-0406"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0343",
+    "personas_asociadas": [
+      "PER-0407",
+      "PER-0408"
+    ],
+    "descripcion": "TEC. MECANICO",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0347",
+    "personas_asociadas": [
+      "PER-0413",
+      "PER-0414"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 70000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0348",
+    "personas_asociadas": [
+      "PER-0415",
+      "PER-0416"
+    ],
+    "descripcion": "GASFITER",
+    "ingresos_clp": 150000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0349",
+    "personas_asociadas": [
+      "PER-0417",
+      "PER-0418"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 70000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0350",
+    "personas_asociadas": [
+      "PER-0419",
+      "PER-0420"
+    ],
+    "descripcion": "PENSIONADA",
+    "ingresos_clp": 70000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0351",
+    "personas_asociadas": [
+      "PER-0421"
+    ],
+    "descripcion": "OP. MAQ. PESADA",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0352",
+    "personas_asociadas": [
+      "PER-0422"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0353",
+    "personas_asociadas": [
+      "PER-0423",
+      "PER-0424"
+    ],
+    "descripcion": "PIRQUINERO",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0354",
+    "personas_asociadas": [
+      "PER-0425"
+    ],
+    "descripcion": "PERFORISTA",
+    "ingresos_clp": 160000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0355",
+    "personas_asociadas": [
+      "PER-0426"
+    ],
+    "descripcion": "AUXILIAR DE ASEO",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0356",
+    "personas_asociadas": [
+      "PER-0427"
+    ],
+    "descripcion": "MANIP.ALIMENTOS",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0357",
+    "personas_asociadas": [
+      "PER-0428"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0358",
+    "personas_asociadas": [
+      "PER-0429",
+      "PER-0430"
+    ],
+    "descripcion": "MAESTRO",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0359",
+    "personas_asociadas": [
+      "PER-0431"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0360",
+    "personas_asociadas": [
+      "PER-0432"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0361",
+    "personas_asociadas": [
+      "PER-0433"
+    ],
+    "descripcion": "OP. MAQ. PESADA",
+    "ingresos_clp": 280000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0362",
+    "personas_asociadas": [
+      "PER-0434"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0363",
+    "personas_asociadas": [
+      "PER-0435"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0364",
+    "personas_asociadas": [
+      "PER-0436"
+    ],
+    "descripcion": "CHOFER",
+    "ingresos_clp": 150000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0366",
+    "personas_asociadas": [
+      "PER-0438"
+    ],
+    "descripcion": "ADMINISTRATIVO",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0367",
+    "personas_asociadas": [
+      "PER-0439"
+    ],
+    "descripcion": "CHOFER",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0368",
+    "personas_asociadas": [
+      "PER-0440",
+      "PER-0441"
+    ],
+    "descripcion": "OP. MAQ. PESADA",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0369",
+    "personas_asociadas": [
+      "PER-0442"
+    ],
+    "descripcion": "AUXILIAR DE ASEO",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0370",
+    "personas_asociadas": [
+      "PER-0443",
+      "PER-0444"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0371",
+    "personas_asociadas": [
+      "PER-0445",
+      "PER-0446"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0372",
+    "personas_asociadas": [
+      "PER-0447"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0373",
+    "personas_asociadas": [
+      "PER-0448",
+      "PER-0449"
+    ],
+    "descripcion": "CHOFER",
+    "ingresos_clp": 150000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0374",
+    "personas_asociadas": [
+      "PER-0450",
+      "PER-0451"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 250000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0375",
+    "personas_asociadas": [
+      "PER-0452"
+    ],
+    "descripcion": "TRANSPORTISTA",
+    "ingresos_clp": 300000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0376",
+    "personas_asociadas": [
+      "PER-0453"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0377",
+    "personas_asociadas": [
+      "PER-0454",
+      "PER-0455"
+    ],
+    "descripcion": "MINUSVÁLIDO",
+    "ingresos_clp": 40000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0378",
+    "personas_asociadas": [
+      "PER-0456"
+    ],
+    "descripcion": "MECANICO",
+    "ingresos_clp": 150000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0379",
+    "personas_asociadas": [
+      "PER-0457"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0380",
+    "personas_asociadas": [
+      "PER-0458"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0381",
+    "personas_asociadas": [
+      "PER-0459",
+      "PER-0460"
+    ],
+    "descripcion": "COMERCIANTE",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0383",
+    "personas_asociadas": [
+      "PER-0462"
+    ],
+    "descripcion": "MEC. INDUST.",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0386",
+    "personas_asociadas": [
+      "PER-0465",
+      "PER-0466"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0387",
+    "personas_asociadas": [
+      "PER-0467"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 75000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0388",
+    "personas_asociadas": [
+      "PER-0468",
+      "PER-0469"
+    ],
+    "descripcion": "CHOFER",
+    "ingresos_clp": 250000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0389",
+    "personas_asociadas": [
+      "PER-0470"
+    ],
+    "descripcion": "CHOFER",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0390",
+    "personas_asociadas": [
+      "PER-0471"
+    ],
+    "descripcion": "PENSIONADO",
+    "ingresos_clp": 75000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0391",
+    "personas_asociadas": [
+      "PER-0472",
+      "PER-0473"
+    ],
+    "descripcion": "OP. MAQ. PESADA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0392",
+    "personas_asociadas": [
+      "PER-0474",
+      "PER-0475"
+    ],
+    "descripcion": "PENSIONADA",
+    "ingresos_clp": 150000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0393",
+    "personas_asociadas": [
+      "PER-0476"
+    ],
+    "descripcion": "OP. MAQ. PESADA",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0394",
+    "personas_asociadas": [
+      "PER-0477",
+      "PER-0478"
+    ],
+    "descripcion": "PENS. ASIST.",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0395",
+    "personas_asociadas": [
+      "PER-0479",
+      "PER-0480"
+    ],
+    "descripcion": "PENS. ASIST.",
+    "ingresos_clp": 77000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0396",
+    "personas_asociadas": [
+      "PER-0481"
+    ],
+    "descripcion": "CHOFER",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0397",
+    "personas_asociadas": [
+      "PER-0482",
+      "PER-0483"
+    ],
+    "descripcion": "ELECTRICO",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0398",
+    "personas_asociadas": [
+      "PER-0484"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0399",
+    "personas_asociadas": [
+      "PER-0485"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 68000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0400",
+    "personas_asociadas": [
+      "PER-0486"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 130000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0401",
+    "personas_asociadas": [
+      "PER-0487"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0402",
+    "personas_asociadas": [
+      "PER-0488"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0403",
+    "personas_asociadas": [
+      "PER-0489"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 250000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0404",
+    "personas_asociadas": [
+      "PER-0490",
+      "PER-0491"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 50000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0405",
+    "personas_asociadas": [
+      "PER-0492"
+    ],
+    "descripcion": "AYUD. MEC.",
+    "ingresos_clp": 170000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0406",
+    "personas_asociadas": [
+      "PER-0493"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 70000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0407",
+    "personas_asociadas": [
+      "PER-0494"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 150000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0408",
+    "personas_asociadas": [
+      "PER-0495"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 160000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0409",
+    "personas_asociadas": [
+      "PER-0496"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 150000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0410",
+    "personas_asociadas": [
+      "PER-0497",
+      "PER-0498"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0411",
+    "personas_asociadas": [
+      "PER-0499"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 150000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0412",
+    "personas_asociadas": [
+      "PER-0500",
+      "PER-0501"
+    ],
+    "descripcion": "OP. PLANTA MIN.",
+    "ingresos_clp": 190000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0413",
+    "personas_asociadas": [
+      "PER-0502"
+    ],
+    "descripcion": "CHOFER",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0414",
+    "personas_asociadas": [
+      "PER-0503"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0415",
+    "personas_asociadas": [
+      "PER-0504"
+    ],
+    "descripcion": "ADM. TURÍSTICO",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0416",
+    "personas_asociadas": [
+      "PER-0505"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0417",
+    "personas_asociadas": [
+      "PER-0506",
+      "PER-0507"
+    ],
+    "descripcion": "PARAMEDICO",
+    "ingresos_clp": 85000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0418",
+    "personas_asociadas": [
+      "PER-0508",
+      "PER-0509"
+    ],
+    "descripcion": "ALBAÑIL",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0419",
+    "personas_asociadas": [
+      "PER-0510",
+      "PER-0511"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0420",
+    "personas_asociadas": [
+      "PER-0512"
+    ],
+    "descripcion": "CHOFER",
+    "ingresos_clp": 250000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0421",
+    "personas_asociadas": [
+      "PER-0513"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": "$ 000.000",
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0422",
+    "personas_asociadas": [
+      "PER-0514"
+    ],
+    "descripcion": "JUBILADO",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0423",
+    "personas_asociadas": [
+      "PER-0515"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 58000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0424",
+    "personas_asociadas": [
+      "PER-0516"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0425",
+    "personas_asociadas": [
+      "PER-0517"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0426",
+    "personas_asociadas": [
+      "PER-0518",
+      "PER-0519"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0427",
+    "personas_asociadas": [
+      "PER-0520"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0428",
+    "personas_asociadas": [
+      "PER-0521"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0429",
+    "personas_asociadas": [
+      "PER-0522"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0430",
+    "personas_asociadas": [
+      "PER-0523"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 150000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0431",
+    "personas_asociadas": [
+      "PER-0524"
+    ],
+    "descripcion": "COMERCIANTE",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0432",
+    "personas_asociadas": [
+      "PER-0525",
+      "PER-0526"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0433",
+    "personas_asociadas": [
+      "PER-0527",
+      "PER-0528"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0434",
+    "personas_asociadas": [
+      "PER-0529"
+    ],
+    "descripcion": "PIRQUINERO",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0435",
+    "personas_asociadas": [
+      "PER-0530"
+    ],
+    "descripcion": "SONDAJE",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0436",
+    "personas_asociadas": [
+      "PER-0531",
+      "PER-0532"
+    ],
+    "descripcion": "ESTUDIANTE",
+    "ingresos_clp": "$ 000.000",
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0437",
+    "personas_asociadas": [
+      "PER-0533"
+    ],
+    "descripcion": "CHOFER",
+    "ingresos_clp": 200000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0438",
+    "personas_asociadas": [
+      "PER-0534"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0439",
+    "personas_asociadas": [
+      "PER-0535",
+      "PER-0536"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0440",
+    "personas_asociadas": [
+      "PER-0537"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0441",
+    "personas_asociadas": [
+      "PER-0538"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0443",
+    "personas_asociadas": [
+      "PER-0540"
+    ],
+    "descripcion": "COMERCIANTE",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0444",
+    "personas_asociadas": [
+      "PER-0541"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0445",
+    "personas_asociadas": [
+      "PER-0542"
+    ],
+    "descripcion": "S. HABITANTES",
+    "ingresos_clp": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0446",
+    "personas_asociadas": [
+      "PER-0543"
+    ],
+    "descripcion": "PIRQUINERO",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0447",
+    "personas_asociadas": [
+      "PER-0544"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0448",
+    "personas_asociadas": [
+      "PER-0545"
+    ],
+    "descripcion": "COMERCIANTE",
+    "ingresos_clp": 90000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0449",
+    "personas_asociadas": [
+      "PER-0546"
+    ],
+    "descripcion": "PIRQUINERO",
+    "ingresos_clp": 90000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0450",
+    "personas_asociadas": [
+      "PER-0547"
+    ],
+    "descripcion": "ADMINISTRATIVA",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0451",
+    "personas_asociadas": [
+      "PER-0548"
+    ],
+    "descripcion": "CRIANCERA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0452",
+    "personas_asociadas": [
+      "PER-0549"
+    ],
+    "descripcion": "JUBILADA",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0453",
+    "personas_asociadas": [
+      "PER-0550"
+    ],
+    "descripcion": "AGRICULTOR",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0454",
+    "personas_asociadas": [
+      "PER-0551"
+    ],
+    "descripcion": "CRIANCERA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0455",
+    "personas_asociadas": [
+      "PER-0552"
+    ],
+    "descripcion": "CRIANCERA",
+    "ingresos_clp": 120000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0456",
+    "personas_asociadas": [
+      "PER-0553"
+    ],
+    "descripcion": "DUEÑA DE CASA",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0457",
+    "personas_asociadas": [
+      "PER-0554"
+    ],
+    "descripcion": "COMERCIANTE",
+    "ingresos_clp": 180000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0458",
+    "personas_asociadas": [
+      "PER-0555"
+    ],
+    "descripcion": "JORNAL",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0459",
+    "personas_asociadas": [
+      "PER-0556"
+    ],
+    "descripcion": "PIRQUINERO",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0460",
+    "personas_asociadas": [
+      "PER-0557"
+    ],
+    "descripcion": "MANIP. ALIMENTOS",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0461",
+    "personas_asociadas": [
+      "PER-0558"
+    ],
+    "descripcion": "COMERCIANTE",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0462",
+    "personas_asociadas": [
+      "PER-0559"
+    ],
+    "descripcion": "PIRQUINERO",
+    "ingresos_clp": 60000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0463",
+    "personas_asociadas": [
+      "PER-0560"
+    ],
+    "descripcion": "CRIANCERA",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0464",
+    "personas_asociadas": [
+      "PER-0561"
+    ],
+    "descripcion": "CHOFER",
+    "ingresos_clp": 80000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0465",
+    "personas_asociadas": [
+      "PER-0562"
+    ],
+    "descripcion": "MINERO",
+    "ingresos_clp": 90000,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "vivienda_id": "VIV-0466",
+    "personas_asociadas": [
+      "PER-0563"
+    ],
+    "descripcion": "CRIANCERO",
+    "ingresos_clp": 100000,
+    "fuente": "planilla_socioeconomica"
+  }
+]

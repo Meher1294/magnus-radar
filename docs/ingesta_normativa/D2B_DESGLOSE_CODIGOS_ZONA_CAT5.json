@@ -1,0 +1,49 @@
+{
+  "metodo": "poligono-poligono real + extraccion codigo desde HTML description",
+  "caveat_metodologico": [
+    "Los cuadrantes Q10/Q11/Q20/Q21 son sub-rectangulos grilla 4x4 sobre bbox ortofoto · NO silueta exacta del asentamiento",
+    "Los significados de los codigos (ZU1, ZAV, etc.) son HIPOTESIS · pendiente texto del PRC"
+  ],
+  "cat5_total_ha": 49.57,
+  "zonificacion_en_cat5_ha": 34.75,
+  "pct_zonificado": 70.1,
+  "desglose_por_codigo_zonificacion": {
+    "ZAV": 7.91,
+    "ZU1": 26.29,
+    "Plaza": 0.41,
+    "ZU2": 0.14
+  },
+  "desglose_por_cuadrante": {
+    "Q10": {
+      "ha_total": 12.39,
+      "codigos": {
+        "ZU1": 0.48,
+        "ZAV": 0.03
+      }
+    },
+    "Q11": {
+      "ha_total": 12.39,
+      "codigos": {
+        "ZU1": 0.0,
+        "ZAV": 0.07
+      }
+    },
+    "Q20": {
+      "ha_total": 12.39,
+      "codigos": {
+        "ZAV": 0.14,
+        "ZU1": 0.65,
+        "ZU2": 0.03
+      }
+    },
+    "Q21": {
+      "ha_total": 12.39,
+      "codigos": {
+        "ZU1": 0.06,
+        "ZAV": 0.33,
+        "Plaza": 0.15,
+        "ZU2": 0.12
+      }
+    }
+  }
+}

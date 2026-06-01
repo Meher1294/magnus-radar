@@ -1,7 +1,7 @@
 # MAGNUS_RADAR_WEB_V1_H2_LA_HIGUERA
 
-**Versión:** 1.0.1
-**Build:** 2026-05-31
+**Versión:** 1.0.9
+**Build:** 2026-06-01
 **Estado:** MVP operativo · no canon final
 
 ---

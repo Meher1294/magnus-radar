@@ -1,0 +1,256 @@
+[
+  {
+    "id": "INST-001",
+    "nombre": "REGISTRO CIVIL",
+    "direccion": "AV. GABRIELA MISTRAL",
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": "RED",
+    "cat_planilla": "instituciones_con_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-002",
+    "nombre": "CONAFE",
+    "direccion": "AV. GABRIELA MISTRAL",
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": "RED",
+    "cat_planilla": "instituciones_con_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-003",
+    "nombre": "ESCUELA PEDRO PABLO MUÑOZ",
+    "direccion": "AV. GABRIELA MISTRAL",
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": "RED",
+    "cat_planilla": "instituciones_con_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-004",
+    "nombre": "TECHADO MUNICIPAL",
+    "direccion": "AV. GABRIELA MISTRAL",
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": "RED",
+    "cat_planilla": "instituciones_con_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-005",
+    "nombre": "PARROQUIA CATOLICA",
+    "direccion": "AV. GABRIELA MISTRAL/ rol 24-010/fs. 2083, número 1978, año 1992",
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": "RED",
+    "cat_planilla": "instituciones_con_agua",
+    "rol_sii": {
+      "valor": "24-010",
+      "fuente": "planilla Hoja2/4 · campo dirección · PARROQUIA CATOLICA",
+      "confianza": "alta",
+      "requiere_validacion": true
+    },
+    "cbr_inscripcion": {
+      "fojas": "2083",
+      "numero": "1978",
+      "anio": "1992",
+      "fuente": "planilla · campo dirección institución",
+      "confianza": "alta · texto explícito",
+      "requiere_validacion": true
+    },
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-006",
+    "nombre": "HOGAR DE ANCIANOS",
+    "direccion": "AV. GABRIELA MISTRAL",
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": "RED",
+    "cat_planilla": "instituciones_con_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-007",
+    "nombre": "CENTROS DE MADRES",
+    "direccion": "AV. GABRIELA MISTRAL",
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": "RED",
+    "cat_planilla": "instituciones_con_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-008",
+    "nombre": "IGLESIA PENTECOSTAL",
+    "direccion": null,
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": "RED",
+    "cat_planilla": "instituciones_con_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-009",
+    "nombre": "RETEN DE CARABINEROS",
+    "direccion": "AV. LA PAZ",
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": "RED",
+    "cat_planilla": "instituciones_con_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-010",
+    "nombre": "IGLESIA ADVENTISTA",
+    "direccion": null,
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": "RED",
+    "cat_planilla": "instituciones_con_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-011",
+    "nombre": "MUNICIPALIDAD",
+    "direccion": "AV. LA PAZ esq. VIOLETA SEURA",
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": "RED",
+    "cat_planilla": "instituciones_con_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-012",
+    "nombre": "BIBLIOTECA MUNICIPAL",
+    "direccion": "PEDRO PABLO MUÑOZ",
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": "RED",
+    "cat_planilla": "instituciones_con_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-013",
+    "nombre": "ASOCIACION MINERA",
+    "direccion": "JOSE ORREGO",
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": "RED",
+    "cat_planilla": "instituciones_con_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-014",
+    "nombre": "JARDIN INFANTIL \"CAPULLITO\"",
+    "direccion": "AV. GABRIELA MISTRAL esq. PJE. EL MOLLE",
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": "RED",
+    "cat_planilla": "instituciones_con_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-015",
+    "nombre": "POSTA SALUD RURAL",
+    "direccion": "AV. LA PAZ",
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": null,
+    "cat_planilla": "instituciones_con_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-016",
+    "nombre": "CLUB DEPORTIVO \"ONCE ESTRELLAS\"",
+    "direccion": null,
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": null,
+    "cat_planilla": "instituciones_sin_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-017",
+    "nombre": "COMITÉ A.P.R",
+    "direccion": null,
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": null,
+    "cat_planilla": "instituciones_sin_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-018",
+    "nombre": "TEATRO MUNICIPAL",
+    "direccion": null,
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": null,
+    "cat_planilla": "instituciones_sin_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-019",
+    "nombre": "SEDE CAMPESINO",
+    "direccion": null,
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": null,
+    "cat_planilla": "instituciones_sin_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-020",
+    "nombre": "SEDE CLUB DE HUASO",
+    "direccion": null,
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": null,
+    "cat_planilla": "instituciones_sin_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-021",
+    "nombre": "PLAZA PUBLICA",
+    "direccion": null,
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": null,
+    "cat_planilla": "instituciones_sin_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  },
+  {
+    "id": "INST-022",
+    "nombre": "SEDE DISCAPACITADOS",
+    "direccion": null,
+    "tipo": "institucion_publica_o_comunitaria",
+    "agua_potable": null,
+    "cat_planilla": "instituciones_sin_agua",
+    "rol_sii": null,
+    "cbr_inscripcion": null,
+    "fuente": "planilla_socioeconomica"
+  }
+]

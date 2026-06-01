@@ -3124,7 +3124,7 @@ function selectPredio(feature) {
   const isHijuela2 = p.area_ha > 1500 && (p.sector === 'Sin sector' || p.sector === 'Los Choros');
 
   document.getElementById('selectionBar').classList.add('visible');
-  document.getElementById('selectionCount').textContent = `Rol ${p.rol} · ${p.area_ha.toLocaleString('es-CL')} ha`;
+  document.getElementById('selectionCount').textContent = ((p.rol === '0-0' || !p.rol) ? `Sin rol SII · ${p.sector || 'fiscal/no rolado'}` : `Rol ${p.rol}`) + ` · ${p.area_ha.toLocaleString('es-CL')} ha`;
 
   document.getElementById('panel').innerHTML = renderPredioPanel(p, isHijuela2);
 }
@@ -3136,15 +3136,20 @@ function renderPredioPanel(p, isHijuela2) {
   if (flagArr.includes('andes-iron')) flags.push('<span class="panel-flag danger">ANDES IRON</span>');
   if (isHijuela2 && flags.length === 0) flags.push('<span class="panel-flag warning">REVISAR</span>');
   if (p.area_ha > 5000) flags.push('<span class="panel-flag info">GRAN PREDIO</span>');
+  // v1.0.9 · ROL_0_0_FALLBACK · 335 predios con rol literal '0-0' = fiscal/no-rolado/SNASPE/BBNN
+  const rolEsZeroZero = (p.rol === '0-0' || p.rol === '0' || !p.rol);
+  if (rolEsZeroZero) flags.push('<span class="panel-flag info" title="Cluster fiscal · no rolado · SNASPE · BBNN · cauces">SIN ROL SII</span>');
   const meta = p.metadata || {};
+  const rolDisplay = rolEsZeroZero ? 'Sin rol SII · fiscal/no rolado' : 'Rol ' + p.rol;
+  const tipoDisplay = rolEsZeroZero ? 'Predio sin rolar · Bien fiscal / SNASPE / BNUP' : 'Predio · Rol SII';
 
   return `
     <div class="panel-header">
       <div class="panel-type-row">
-        <span class="panel-type">Predio · Rol SII</span>
+        <span class="panel-type">${tipoDisplay}</span>
         ${flags.join('')}
       </div>
-      <div class="panel-title">Rol ${p.rol}</div>
+      <div class="panel-title">${rolDisplay}</div>
       <div class="panel-subtitle">${p.sector || 'Sin sector'} · La Higuera, Coquimbo</div>
       <div class="panel-actions">
         <button class="panel-action">
@@ -3182,21 +3187,21 @@ function renderPredioPanel(p, isHijuela2) {
 
       ${(p.propietario || p.rut) ? `
       <div class="section">
-        <h4>Propietario (uso interno)</h4>
-        <div class="field full"><div class="label">Nombre</div><div class="value">${p.propietario || 'N/D'}</div></div>
-        ${p.rut ? `<div class="field" style="margin-top:6px"><div class="label">RUT</div><div class="value mono">${p.rut}</div></div>` : ''}
+        <h4>Propietario</h4>
+        <div class="alert-item info" style="font-size:12px">
+          Identidad reservada · acceso requiere autenticación (v1.0.9)
+        </div>
         <div style="display:flex;gap:6px;margin-top:8px">
           <a class="btn btn-ghost" href="https://www4.sii.cl/mapasui/internet/" target="_blank" style="flex:1;justify-content:center;padding:8px;font-size:11px">SII Mapas</a>
-          <a class="btn btn-ghost" href="https://www4.sii.cl/sc/contribuyentes/consultaSituacionTributaria.html?contribuyente=${(p.rut||'').replace(/\\./g,'').replace('-','')}" target="_blank" style="flex:1;justify-content:center;padding:8px;font-size:11px">SII Contribuyente</a>
         </div>
       </div>` : ''}
 
       ${meta.mandato ? `
       <div class="section">
-        <h4>Mandato vigente</h4>
+        <h4>Mandato</h4>
         <div class="alert-item critical">
-          <div class="alert-title">${meta.mandato}</div>
-          ${meta.notas_internas ? `<div class="alert-meta" style="margin-top:6px">${meta.notas_internas}</div>` : ''}
+          <div class="alert-title">Instrumento firmado · detalles reservados</div>
+          <div class="alert-meta" style="margin-top:6px">Acceso requiere autenticación</div>
         </div>
       </div>` : ''}
 
@@ -6007,6 +6012,7 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     { id:'h2_ocupaciones', file:'geojson/capa_4_ocupaciones.geojson',                  nombre:'Ocupaciones H2 (ortofoto)',       color:'#F59E0B', tipo:'point', default:true,  meta:'19 features' },
     { id:'h2_servidumbres',file:'geojson/capa_5_servidumbres.geojson',                 nombre:'Servidumbres H2',                 color:'#3B82F6', tipo:'line',  default:true,  meta:'924-644 · InterChile · MOP · Andes Iron' },
     { id:'h2_conflictos',  file:'geojson/capa_6_conflictos.geojson',                   nombre:'Conflictos canonizados',          color:'#EF4444', tipo:'point', default:true,  meta:'C11 · C13 · rol 24-5' },
+    { id:'h2_predios_1ha', file:'geojson/predios_mayores_1ha_v1.geojson',              nombre:'Predios mayores 1 ha (885)',      color:'#94A3B8', tipo:'fill',  default:false, meta:'Inventario v1 · 99,4% territorio · Tier 1: 8 · Tier 2: 49' },
   ];
 
   const H2_STATE = {};
@@ -6137,13 +6143,39 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     map.addSource(srcId, { type:'geojson', data });
 
     if (L.tipo === 'fill' || L.tipo === 'mixto') {
+      // v1.0.9 · paint diferenciado por tier (Tier 1 destacado · Tier 2 medio · Tier 3 fondo)
+      // sólo si el feature trae prop `tier` · si no, fallback al color uniforme L.color
+      const tieredFill = (L.id === 'h2_predios_1ha') ? [
+        'case',
+        ['==', ['get','tier'], 1], '#C97B3A',
+        ['==', ['get','tier'], 2], '#F59E0B',
+        '#94A3B8'
+      ] : L.color;
+      const tieredOpacity = (L.id === 'h2_predios_1ha') ? [
+        'case',
+        ['==', ['get','tier'], 1], 0.45,
+        ['==', ['get','tier'], 2], 0.30,
+        0.12
+      ] : 0.22;
+      const tieredLineColor = (L.id === 'h2_predios_1ha') ? [
+        'case',
+        ['==', ['get','tier'], 1], '#C97B3A',
+        ['==', ['get','tier'], 2], '#F59E0B',
+        '#64748B'
+      ] : L.color;
+      const tieredLineWidth = (L.id === 'h2_predios_1ha') ? [
+        'case',
+        ['==', ['get','tier'], 1], 2.5,
+        ['==', ['get','tier'], 2], 1.5,
+        0.6
+      ] : 2;
       map.addLayer({ id:`h2-${L.id}-fill`, source:srcId, type:'fill',
         filter:['==', ['geometry-type'], 'Polygon'],
-        paint:{ 'fill-color':L.color, 'fill-opacity':0.22 },
+        paint:{ 'fill-color':tieredFill, 'fill-opacity':tieredOpacity },
         layout:{ visibility: H2_STATE[L.id] ? 'visible' : 'none' }});
       map.addLayer({ id:`h2-${L.id}-line`, source:srcId, type:'line',
         filter:['==', ['geometry-type'], 'Polygon'],
-        paint:{ 'line-color':L.color, 'line-width':2, 'line-opacity':0.95 },
+        paint:{ 'line-color':tieredLineColor, 'line-width':tieredLineWidth, 'line-opacity':0.85 },
         layout:{ visibility: H2_STATE[L.id] ? 'visible' : 'none' }});
     }
     if (L.tipo === 'line') {
@@ -6269,9 +6301,8 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     if (p.area_ha_catastral) atts.push(['superficie', p.area_ha_catastral + ' ha (SII)']);
     if (p.tier) atts.push(['tier', 'Tier ' + p.tier]);
     if (p.año) atts.push(['año', p.año]);
-    // v1.0.5 · datos del mandato Rep 24.327 (solo H2 Cominetti)
-    if (p.comision_bruta) atts.push(['comisión', p.comision_bruta]);
-    if (p.vigencia_mandato) atts.push(['vigencia mandato', p.vigencia_mandato]);
+    // v1.0.9 · PII pública saneada · comisión y vigencia mandato no se exponen
+    // Acceso a economía del mandato requiere autenticación (futura migración Supabase RLS)
     if (p.rol_capa) atts.push(['rol capa', p.rol_capa]);
     if (p.autoridad) atts.push(['autoridad', p.autoridad]);
     if (p.titular_dominante) atts.push(['dominante', p.titular_dominante]);
