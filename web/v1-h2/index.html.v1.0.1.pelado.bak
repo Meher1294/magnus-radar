@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magnus Radar v1 · H2 La Higuera</title>
+<meta name="description" content="Visor de inteligencia territorial trazable · Hijuela 2 Cominetti · Estancia La Higuera · 6 capas · estados epistemológicos visibles">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<style>
+:root {
+  --bg: #0A111F; --surface: #111B30; --surface-2: #18243E; --surface-3: #20304F;
+  --border: #243049; --border-soft: #1A2540;
+  --text: #E8EEF8; --text-dim: #B4C0D6; --muted: #7E8CA8; --muted-2: #5A6680;
+  --accent: #C97B3A; --accent-hover: #D88D4D; --accent-soft: rgba(201,123,58,0.12);
+  --hecho: #10B981; --inferencia: #3B82F6; --hipotesis: #F59E0B; --bloqueado: #EF4444;
+  --capa-h2: #C97B3A; --capa-h1: #6B7280; --capa-matriz: #A855F7;
+  --capa-rtk: #10B981; --capa-ocu: #F59E0B; --capa-serv: #3B82F6; --capa-conf: #EF4444;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); overflow: hidden; font-size: 13px; -webkit-font-smoothing: antialiased; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+.app { display: grid; grid-template-rows: 56px 1fr 28px; height: 100vh; }
+
+/* ===== HEADER ===== */
+.header { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 0 20px; background: var(--surface); border-bottom: 1px solid var(--border); gap: 16px; }
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-logo { width: 32px; height: 32px; background: linear-gradient(135deg, var(--accent), #8C5024); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; }
+.brand-text { display: flex; flex-direction: column; gap: 1px; }
+.brand-title { font-size: 14px; font-weight: 600; letter-spacing: -0.01em; }
+.brand-sub { font-size: 10.5px; color: var(--muted); font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.04em; }
+.header-center { text-align: center; }
+.header-center-title { font-size: 13px; font-weight: 500; color: var(--text-dim); }
+.header-center-sub { font-size: 10px; color: var(--muted); margin-top: 2px; font-family: 'JetBrains Mono', monospace; }
+.header-right { display: flex; gap: 8px; justify-content: flex-end; align-items: center; }
+.btn-meta { padding: 6px 12px; background: var(--surface-2); border: 1px solid var(--border); border-radius: 5px; font-size: 11px; color: var(--text-dim); transition: all .15s; }
+.btn-meta:hover { background: var(--surface-3); color: var(--text); }
+
+/* ===== MAIN ===== */
+.main { display: grid; grid-template-columns: 280px 1fr 360px; overflow: hidden; }
+
+/* ===== PANEL CAPAS ===== */
+.panel-capas { background: var(--surface); border-right: 1px solid var(--border); overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 14px; }
+.panel-title { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; padding-bottom: 8px; border-bottom: 1px solid var(--border-soft); }
+.capa-group { display: flex; flex-direction: column; gap: 6px; }
+.capa-item { display: flex; align-items: center; gap: 10px; padding: 9px 11px; background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 6px; cursor: pointer; transition: all .15s; }
+.capa-item:hover { background: var(--surface-3); border-color: var(--border); }
+.capa-toggle { width: 30px; height: 16px; background: var(--surface-3); border-radius: 8px; position: relative; transition: all .15s; flex-shrink: 0; }
+.capa-toggle.on { background: var(--accent); }
+.capa-toggle::after { content: ''; position: absolute; width: 12px; height: 12px; background: white; border-radius: 50%; top: 2px; left: 2px; transition: all .15s; }
+.capa-toggle.on::after { left: 16px; }
+.capa-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.capa-nombre { font-size: 11.5px; font-weight: 500; color: var(--text); }
+.capa-meta { font-size: 9.5px; color: var(--muted); font-family: 'JetBrains Mono', monospace; display: flex; align-items: center; gap: 4px; }
+.capa-feat-count { font-family: 'JetBrains Mono', monospace; font-size: 9px; padding: 1px 5px; border-radius: 3px; background: var(--surface-3); color: var(--text-dim); margin-left: auto; }
+.capa-feat-count.ok { background: rgba(16,185,129,0.18); color: var(--hecho); }
+.capa-feat-count.err { background: rgba(239,68,68,0.18); color: var(--bloqueado); }
+.capa-swatch { width: 12px; height: 12px; border-radius: 3px; flex-shrink: 0; }
+
+.legend-states { padding: 12px; background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 7px; }
+.legend-title { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+.legend-item { display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 11px; color: var(--text-dim); }
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+/* ===== MAPA ===== */
+.map-container { position: relative; }
+#map { position: absolute; inset: 0; }
+
+/* DATA STATUS BADGE · esquina superior izquierda */
+.data-status { position: absolute; top: 12px; left: 12px; background: rgba(17,27,48,0.97); backdrop-filter: blur(8px); padding: 10px 14px; border-radius: 7px; border: 1px solid var(--border); font-size: 11px; color: var(--text-dim); display: flex; flex-direction: column; gap: 6px; max-width: 380px; transition: all .2s; }
+.data-status.ok    { border-color: rgba(16,185,129,0.4); }
+.data-status.err   { border-color: rgba(239,68,68,0.6); background: rgba(43,18,28,0.96); }
+.data-status.warn  { border-color: rgba(245,158,11,0.5); }
+.data-status-row { display: flex; align-items: center; gap: 8px; font-family: 'JetBrains Mono', monospace; }
+.data-status-icon { font-size: 14px; line-height: 1; }
+.data-status.ok   .data-status-icon { color: var(--hecho); }
+.data-status.err  .data-status-icon { color: var(--bloqueado); }
+.data-status.warn .data-status-icon { color: var(--hipotesis); }
+.data-status-title { font-weight: 600; color: var(--text); font-size: 11px; }
+.data-status-detail { font-size: 10.5px; color: var(--muted); line-height: 1.5; }
+.data-status-detail code { background: var(--surface-3); padding: 1px 5px; border-radius: 3px; font-size: 10px; color: var(--accent); }
+.data-status-warning { padding: 8px 10px; background: rgba(239,68,68,0.13); border-left: 3px solid var(--bloqueado); border-radius: 4px; font-size: 10.5px; color: var(--text-dim); line-height: 1.5; margin-top: 4px; }
+.data-status-warning strong { color: var(--text); }
+.data-status .errors-list { font-size: 10px; color: var(--bloqueado); margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+.data-status .errors-list div { padding: 2px 0; }
+
+/* ===== PANEL DETALLE ===== */
+.panel-detail { background: var(--surface); border-left: 1px solid var(--border); overflow-y: auto; }
+.detail-empty { padding: 32px 24px; text-align: center; color: var(--muted); font-size: 12px; line-height: 1.7; }
+.detail-empty-icon { font-size: 32px; margin-bottom: 14px; opacity: 0.4; }
+.detail-content { padding: 18px; }
+.detail-header { padding-bottom: 14px; border-bottom: 1px solid var(--border-soft); margin-bottom: 16px; }
+.detail-capa-tag { display: inline-block; padding: 3px 8px; font-size: 9.5px; font-family: 'JetBrains Mono', monospace; background: var(--accent-soft); color: var(--accent); border-radius: 4px; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+.detail-titulo { font-size: 15px; font-weight: 600; line-height: 1.3; color: var(--text); }
+.detail-section { margin-bottom: 18px; }
+.detail-section-title { font-size: 9.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 10px; }
+.detail-row { display: grid; grid-template-columns: 100px 1fr; gap: 10px; padding: 5px 0; font-size: 11.5px; align-items: start; }
+.detail-row .lbl { color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 10px; padding-top: 2px; }
+.detail-row .val { color: var(--text-dim); word-break: break-word; line-height: 1.5; }
+.detail-row .val strong { color: var(--text); }
+.detail-row.estado .val { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 4px; font-size: 10.5px; font-weight: 600; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; letter-spacing: 0.04em; width: fit-content; }
+.detail-row.estado .val.hecho      { background: rgba(16,185,129,0.13); color: var(--hecho); }
+.detail-row.estado .val.inferencia { background: rgba(59,130,246,0.13); color: var(--inferencia); }
+.detail-row.estado .val.hipotesis  { background: rgba(245,158,11,0.13); color: var(--hipotesis); }
+.detail-row.estado .val.bloqueado  { background: rgba(239,68,68,0.13); color: var(--bloqueado); }
+.detail-caveat { padding: 10px 12px; background: rgba(245,158,11,0.07); border-left: 3px solid var(--hipotesis); border-radius: 4px; font-size: 11px; color: var(--text-dim); line-height: 1.5; margin-top: 8px; }
+.fuente-chip { display: inline-block; padding: 3px 8px; background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 4px; font-size: 10px; font-family: 'JetBrains Mono', monospace; color: var(--text-dim); margin: 2px 3px 2px 0; }
+.alias-chip { display: inline-block; padding: 3px 8px; background: rgba(168,85,247,0.12); color: #C896FF; border-radius: 4px; font-size: 10.5px; font-family: 'JetBrains Mono', monospace; margin: 2px 3px 2px 0; }
+.doctrine-chip { display: block; padding: 5px 9px; background: var(--surface-2); border: 1px solid var(--border-soft); border-left: 3px solid var(--accent); border-radius: 4px; font-size: 10.5px; color: var(--text-dim); margin: 4px 0; font-family: 'JetBrains Mono', monospace; }
+
+/* ===== STATUS BAR ===== */
+.statusbar { display: flex; align-items: center; padding: 0 14px; background: var(--surface); border-top: 1px solid var(--border); font-size: 10.5px; color: var(--muted); font-family: 'JetBrains Mono', monospace; gap: 16px; justify-content: space-between; }
+.statusbar-left, .statusbar-right { display: flex; gap: 14px; align-items: center; }
+.status-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 5px; }
+.status-dot.ok  { background: var(--hecho); }
+.status-dot.warn { background: var(--hipotesis); }
+.status-dot.err { background: var(--bloqueado); }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header class="header">
+    <div class="brand">
+      <div class="brand-logo">M</div>
+      <div class="brand-text">
+        <div class="brand-title">Magnus Radar</div>
+        <div class="brand-sub">v1 · H2 La Higuera</div>
+      </div>
+    </div>
+    <div class="header-center">
+      <div class="header-center-title">Inteligencia territorial trazable · Hijuela 2 Cominetti</div>
+      <div class="header-center-sub">Estancia La Higuera · Comuna La Higuera · IV Región Coquimbo</div>
+    </div>
+    <div class="header-right">
+      <button class="btn-meta" id="btn-fuentes">Fuentes</button>
+      <button class="btn-meta" id="btn-doctrinas">Doctrinas</button>
+      <button class="btn-meta" id="btn-version">v1.0.1</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <aside class="panel-capas">
+      <div class="panel-title">Capas SII / CBR / RTK</div>
+      <div class="capa-group" id="capas-container"></div>
+      <div class="legend-states">
+        <div class="legend-title">Estado epistemológico</div>
+        <div class="legend-item"><span class="legend-dot" style="background:var(--hecho)"></span> HECHO · evidencia documental directa</div>
+        <div class="legend-item"><span class="legend-dot" style="background:var(--inferencia)"></span> INFERENCIA · derivada con respaldo</div>
+        <div class="legend-item"><span class="legend-dot" style="background:var(--hipotesis)"></span> HIPÓTESIS · no demostrada</div>
+        <div class="legend-item"><span class="legend-dot" style="background:var(--bloqueado)"></span> BLOQUEADO · pendiente validación</div>
+      </div>
+      <div class="legend-states">
+        <div class="legend-title">Regla canónica</div>
+        <div style="font-size:10.5px;color:var(--text-dim);line-height:1.6">
+          Rol SII NO es identidad territorial. Visor separa <strong>SII / CBR / RTK</strong> · muestra aliases históricos · todo dato tiene fuente · hipótesis visibles como hipótesis.
+        </div>
+      </div>
+    </aside>
+
+    <div class="map-container">
+      <div id="map"></div>
+      <div class="data-status warn" id="data-status">
+        <div class="data-status-row">
+          <span class="data-status-icon">◐</span>
+          <span class="data-status-title">DATA STATUS</span>
+          <span id="data-status-summary">cargando…</span>
+        </div>
+      </div>
+    </div>
+
+    <aside class="panel-detail" id="panel-detail">
+      <div class="detail-empty">
+        <div class="detail-empty-icon">◇</div>
+        <div><strong style="color:var(--text-dim)">Selecciona una unidad territorial</strong></div>
+        <div style="margin-top:10px;font-size:11px">Click sobre cualquier polígono, marcador o conflicto para ver su ficha completa con estado epistemológico, fuentes y caveats.</div>
+      </div>
+    </aside>
+  </main>
+
+  <div class="statusbar">
+    <div class="statusbar-left">
+      <span><span class="status-dot ok" id="version-dot"></span>v1.0.1 MVP</span>
+      <span>build 2026-05-31</span>
+      <span id="status-features">— features</span>
+      <span id="status-protocol"></span>
+    </div>
+    <div class="statusbar-right">
+      <span>EPSG:4326 → EPSG:32719</span>
+      <span>MapLibre GL JS 4.7.1 · CANON_V1</span>
+      <span>Magnus SpA · Max Medina</span>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+// ===== Detección de protocolo · file:// vs http:// =====
+const IS_FILE_PROTOCOL = window.location.protocol === 'file:';
+document.getElementById('status-protocol').textContent = `protocolo: ${window.location.protocol}`;
+
+const LAYER_CONFIG = [
+  { id:'h2',      file:'geojson/capa_1_h2_cominetti.geojson',                  nombre:'1 · H2 Cominetti',              color:'#C97B3A', tipo:'fill',   default:true,  meta:'canon · 24-123 + 24-160' },
+  { id:'h1',      file:'geojson/capa_h1_garcia_huidobro_contextual.geojson',   nombre:'H1 García Huidobro · contextual', color:'#6B7280', tipo:'fill',   default:false, meta:'capa informativa · NO operacional' },
+  { id:'matriz',  file:'geojson/capa_2_estancia_matriz.geojson',               nombre:'2 · Estancia La Higuera matriz',color:'#A855F7', tipo:'mixto',  default:true,  meta:'IV-1-1777-S.R. · 6.918 ha' },
+  { id:'rtk',     file:'geojson/capa_3_daniel_rtk.geojson',                    nombre:'3 · Daniel RTK',                color:'#10B981', tipo:'point',  default:true,  meta:'capa física pendiente' },
+  { id:'ocu',     file:'geojson/capa_4_ocupaciones.geojson',                   nombre:'4 · Ocupaciones',               color:'#F59E0B', tipo:'point',  default:true,  meta:'observación ortofoto' },
+  { id:'serv',    file:'geojson/capa_5_servidumbres.geojson',                  nombre:'5 · Servidumbres',              color:'#3B82F6', tipo:'line',   default:true,  meta:'924-644 · InterChile · Ruta 5 · Andes Iron' },
+  { id:'conf',    file:'geojson/capa_6_conflictos.geojson',                    nombre:'6 · Conflictos',                color:'#EF4444', tipo:'point',  default:true,  meta:'C11 · C13 · rol 24-5' },
+];
+
+const map = new maplibregl.Map({
+  container: 'map',
+  style: { version:8, sources:{
+    'carto': { type:'raster', tiles:[
+      'https://a.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png',
+      'https://b.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png',
+    ], tileSize:256, attribution:'© Carto · © OpenStreetMap contributors' }
+  }, layers:[{ id:'basemap', type:'raster', source:'carto' }] },
+  center: [-71.22, -29.51], zoom: 11, attributionControl: true,
+});
+map.addControl(new maplibregl.NavigationControl({ visualizePitch:false }), 'top-right');
+map.addControl(new maplibregl.ScaleControl({ maxWidth:120, unit:'metric' }), 'bottom-right');
+
+const capasContainer = document.getElementById('capas-container');
+const layersState = {};
+const layerStats = {};   // {layerId: {count, error}}
+let totalFeatures = 0;
+let layersOk = 0, layersErr = 0;
+
+LAYER_CONFIG.forEach(L => { layersState[L.id] = L.default; layerStats[L.id] = { count: 0, error: null }; });
+
+function renderCapaItems() {
+  capasContainer.innerHTML = '';
+  LAYER_CONFIG.forEach(L => {
+    const stat = layerStats[L.id];
+    const badgeClass = stat.error ? 'err' : (stat.count > 0 ? 'ok' : '');
+    const badgeText = stat.error ? '✗ err' : (stat.count > 0 ? stat.count + ' ft' : '— ft');
+    const item = document.createElement('div');
+    item.className = 'capa-item';
+    item.innerHTML = `
+      <div class="capa-swatch" style="background:${L.color}"></div>
+      <div class="capa-info">
+        <div class="capa-nombre">${L.nombre}</div>
+        <div class="capa-meta">${L.meta}</div>
+      </div>
+      <span class="capa-feat-count ${badgeClass}" title="${esc(stat.error || (stat.count+' features'))}">${badgeText}</span>
+      <div class="capa-toggle ${layersState[L.id]?'on':''}" data-id="${L.id}"></div>
+    `;
+    item.querySelector('.capa-toggle').addEventListener('click', e => {
+      e.stopPropagation();
+      layersState[L.id] = !layersState[L.id];
+      renderCapaItems();
+      toggleLayerVisibility(L.id);
+    });
+    capasContainer.appendChild(item);
+  });
+}
+renderCapaItems();
+
+function updateDataStatus() {
+  const el = document.getElementById('data-status');
+  const sum = document.getElementById('data-status-summary');
+  const icon = el.querySelector('.data-status-icon');
+
+  el.className = 'data-status';
+  while (el.children.length > 1) el.removeChild(el.lastChild);
+
+  if (totalFeatures === 0 && layersErr === 0) {
+    el.classList.add('warn');
+    icon.textContent = '◐';
+    sum.textContent = 'cargando capas...';
+  } else if (totalFeatures === 0 && layersErr > 0) {
+    el.classList.add('err');
+    icon.textContent = '✗';
+    sum.textContent = `0 features · ${layersErr} de ${LAYER_CONFIG.length} capas fallaron`;
+    if (IS_FILE_PROTOCOL) {
+      const warn = document.createElement('div');
+      warn.className = 'data-status-warning';
+      warn.innerHTML = `<strong>⚠ Estás abriendo el visor desde <code>file://</code></strong><br>
+        Los navegadores bloquean <code>fetch()</code> sobre <code>file://</code> por CORS · los GeoJSON no pueden cargarse.<br><br>
+        <strong>Solución:</strong> levantar servidor local desde la carpeta del visor:<br>
+        <code>cd web/v1-h2 && python3 -m http.server 8080</code><br>
+        Luego abrir <code>http://localhost:8080</code>`;
+      el.appendChild(warn);
+    } else {
+      const errs = document.createElement('div');
+      errs.className = 'errors-list';
+      Object.entries(layerStats).filter(([_,s])=>s.error).forEach(([id,s]) => {
+        const div = document.createElement('div');
+        div.textContent = `· ${id}: ${s.error}`;
+        errs.appendChild(div);
+      });
+      el.appendChild(errs);
+    }
+  } else if (layersErr > 0) {
+    el.classList.add('warn');
+    icon.textContent = '⚠';
+    sum.textContent = `${totalFeatures} features · ${layersErr} capas con error`;
+  } else {
+    el.classList.add('ok');
+    icon.textContent = '✓';
+    sum.textContent = `${totalFeatures} features · ${layersOk} capas · v1.0.1`;
+  }
+  document.getElementById('status-features').textContent = `${totalFeatures} features`;
+  const vd = document.getElementById('version-dot');
+  vd.className = 'status-dot ' + (layersErr > 0 ? (totalFeatures===0 ? 'err' : 'warn') : 'ok');
+}
+
+function addGeojsonLayer(L, data) {
+  const n = (data.features || []).length;
+  totalFeatures += n;
+  layerStats[L.id].count = n;
+  layersOk++;
+  if (n === 0) console.warn(`Capa ${L.id} sin features`);
+
+  const srcId = `src-${L.id}`;
+  map.addSource(srcId, { type:'geojson', data });
+
+  if (L.tipo === 'fill' || L.tipo === 'mixto') {
+    map.addLayer({ id:`lyr-${L.id}-fill`, source:srcId, type:'fill',
+      filter: ['==', ['geometry-type'], 'Polygon'],
+      paint: { 'fill-color':L.color, 'fill-opacity':0.18 },
+      layout: { 'visibility': layersState[L.id]?'visible':'none' }
+    });
+    map.addLayer({ id:`lyr-${L.id}-line`, source:srcId, type:'line',
+      filter: ['==', ['geometry-type'], 'Polygon'],
+      paint: { 'line-color':L.color, 'line-width':1.7, 'line-opacity':0.95 },
+      layout: { 'visibility': layersState[L.id]?'visible':'none' }
+    });
+  }
+  if (L.tipo === 'line') {
+    map.addLayer({ id:`lyr-${L.id}-line`, source:srcId, type:'line',
+      paint: { 'line-color':L.color, 'line-width':3, 'line-dasharray':[2,1], 'line-opacity':0.9 },
+      layout: { 'visibility': layersState[L.id]?'visible':'none' }
+    });
+  }
+  if (L.tipo === 'point' || L.tipo === 'mixto') {
+    map.addLayer({ id:`lyr-${L.id}-pt`, source:srcId, type:'circle',
+      filter: ['==', ['geometry-type'], 'Point'],
+      paint: { 'circle-color':L.color, 'circle-radius':7, 'circle-stroke-color':'#fff', 'circle-stroke-width':1.5, 'circle-opacity':0.9 },
+      layout: { 'visibility': layersState[L.id]?'visible':'none' }
+    });
+  }
+
+  ['fill','line','pt'].forEach(suf => {
+    const id = `lyr-${L.id}-${suf}`;
+    if (!map.getLayer(id)) return;
+    map.on('click', id, e => {
+      if (!e.features || !e.features.length) return;
+      renderDetail(L, e.features[0], data.metadata);
+    });
+    map.on('mouseenter', id, () => map.getCanvas().style.cursor='pointer');
+    map.on('mouseleave', id, () => map.getCanvas().style.cursor='');
+  });
+}
+
+function toggleLayerVisibility(id) {
+  ['fill','line','pt'].forEach(suf => {
+    const lid = `lyr-${id}-${suf}`;
+    if (map.getLayer(lid)) map.setLayoutProperty(lid, 'visibility', layersState[id]?'visible':'none');
+  });
+}
+
+function renderDetail(L, feat, capaMeta) {
+  const p = feat.properties || {};
+  const panel = document.getElementById('panel-detail');
+  const estado = (p.estado || p.estado_titularidad || p.estado_correspondencia || 'NO_DECLARADO').toUpperCase();
+  const estadoClass = estado.includes('HECHO')||estado.includes('RESUELTO')||estado.includes('CANON')?'hecho'
+                    : estado.includes('INFERENCIA')?'inferencia'
+                    : estado.includes('HIPOTESIS')||estado.includes('HIPÓTESIS')||estado.includes('PENDIENTE')?'hipotesis'
+                    : estado.includes('BLOQUEADO')?'bloqueado'
+                    : 'inferencia';
+
+  let html = `<div class="detail-content">
+    <div class="detail-header">
+      <div class="detail-capa-tag" style="background:${L.color}22;color:${L.color}">${L.nombre}</div>
+      <div class="detail-titulo">${esc(p.nombre || p.titular || p.descripcion || p.conflicto_id || p.id || 'Sin nombre')}</div>
+    </div>`;
+
+  html += `<div class="detail-section">
+    <div class="detail-section-title">Estado epistemológico</div>
+    <div class="detail-row estado"><span class="lbl">estado</span><span class="val ${estadoClass}">${esc(estado)}</span></div>
+  </div>`;
+
+  const sii = p.rol_sii_actual || p.rol_sii;
+  const aliases = p.alias_historicos || [];
+  const cbr = p.inscripcion_CBR;
+  if (sii || cbr || aliases.length) {
+    html += `<div class="detail-section"><div class="detail-section-title">Identificación SII / CBR</div>`;
+    if (sii) html += rowKV('rol SII', `<strong>${esc(sii)}</strong>`);
+    if (aliases.length) html += rowKV('aliases', aliases.map(a=>`<span class="alias-chip">${esc(a)}</span>`).join(''));
+    if (cbr) html += rowKV('CBR', esc(cbr));
+    html += `</div>`;
+  }
+
+  const atts = [];
+  if (p.titular_documental) atts.push(['titular doc.', p.titular_documental]);
+  if (p.titular) atts.push(['titular', p.titular]);
+  if (p.area_ha_catastral) atts.push(['superficie', p.area_ha_catastral + ' ha (catastral SII)']);
+  if (p.tipo) atts.push(['tipo', p.tipo]);
+  if (p.tier) atts.push(['tier', 'Tier ' + p.tier]);
+  if (p.año) atts.push(['año', p.año]);
+  if (p.longitud_km) atts.push(['longitud', p.longitud_km + ' km']);
+  if (p.superficie_ha) atts.push(['superficie', p.superficie_ha + ' ha']);
+  if (p.ancho_m) atts.push(['ancho', p.ancho_m + ' m']);
+  if (p.vida_util_años) atts.push(['vida útil', p.vida_util_años + ' años']);
+  if (p.titular_dominante) atts.push(['dominante', p.titular_dominante]);
+  if (p.titular_sirviente) atts.push(['sirviente', p.titular_sirviente]);
+  if (p.contacto) atts.push(['contacto', p.contacto]);
+  if (p.torres) atts.push(['torres', p.torres]);
+  if (p.capas) atts.push(['capas', p.capas.join(' · ')]);
+  if (p.choke_point) atts.push(['choke point', p.choke_point]);
+  if (p.lotes_expropiados) atts.push(['lotes', p.lotes_expropiados.join(', ')]);
+  if (p.firmante) atts.push(['firmante', p.firmante]);
+  if (p.planos) atts.push(['planos', Array.isArray(p.planos)?p.planos.join(' · '):p.planos]);
+  if (p.enunciado) atts.push(['enunciado', p.enunciado]);
+  if (p.resolucion) atts.push(['resolución', p.resolucion]);
+  if (p.evidencia) atts.push(['evidencia', p.evidencia]);
+  if (p.estado_actual) atts.push(['estado actual', p.estado_actual]);
+  if (p.observacion) atts.push(['observación', p.observacion]);
+  if (p.categoria_ocupacional !== undefined) atts.push(['cat. ocupacional', p.categoria_ocupacional]);
+  if (p.confianza) atts.push(['confianza', p.confianza]);
+  if (p.cuadrante) atts.push(['cuadrante', p.cuadrante]);
+  if (p.hijuelas_originales) atts.push(['hijuelas', p.hijuelas_originales.join('<br>')]);
+  if (p.requiere) atts.push(['requiere', p.requiere]);
+  if (atts.length) {
+    html += `<div class="detail-section"><div class="detail-section-title">Atributos</div>`;
+    atts.forEach(([k,v]) => html += rowKV(k, esc(v)));
+    html += `</div>`;
+  }
+
+  const caveats = [p.caveat, p.caveat_critico, p.caveat_geometria, p.estado_geometria, p.estado_polígono].filter(Boolean);
+  if (caveats.length) {
+    html += `<div class="detail-section"><div class="detail-section-title">Caveats epistemológicos</div>`;
+    caveats.forEach(c => html += `<div class="detail-caveat">${esc(c)}</div>`);
+    html += `</div>`;
+  }
+
+  const doctrinas = p.doctrinas_aplicables || p.doctrina_canonizada;
+  if (doctrinas) {
+    const arr = Array.isArray(doctrinas) ? doctrinas : [doctrinas];
+    html += `<div class="detail-section"><div class="detail-section-title">Doctrinas canónicas aplicables</div>`;
+    arr.forEach(d => html += `<div class="doctrine-chip">${esc(d)}</div>`);
+    html += `</div>`;
+  }
+
+  const fuentes = p.fuentes || (p.fuente?[p.fuente]:[]);
+  if (fuentes.length) {
+    html += `<div class="detail-section"><div class="detail-section-title">Fuentes</div>`;
+    fuentes.forEach(f => html += `<span class="fuente-chip">${esc(f)}</span>`);
+    html += `</div>`;
+  }
+
+  if (capaMeta) {
+    html += `<div class="detail-section"><div class="detail-section-title">Metadata de capa</div>`;
+    Object.entries(capaMeta).slice(0,8).forEach(([k,v]) => {
+      const val = Array.isArray(v)?v.join(' · ') : typeof v === 'object' ? JSON.stringify(v) : v;
+      html += rowKV(k.replace(/_/g,' '), esc(val).slice(0,200));
+    });
+    html += `</div>`;
+  }
+
+  html += `</div>`;
+  panel.innerHTML = html;
+}
+
+function esc(s) { if (s == null) return ''; return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function rowKV(k,v) { return `<div class="detail-row"><span class="lbl">${esc(k)}</span><span class="val">${v}</span></div>`; }
+
+// ===== Cargar capas con manejo robusto de errores =====
+map.on('load', async () => {
+  const promises = LAYER_CONFIG.map(L =>
+    fetch(L.file)
+      .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+      .then(d => ({ L, d }))
+      .catch(err => {
+        layersErr++;
+        layerStats[L.id].error = err.message || String(err);
+        console.error(`✗ Capa ${L.id} (${L.file}):`, err);
+        renderCapaItems();
+        updateDataStatus();
+        return { L, err };
+      })
+  );
+  const results = await Promise.all(promises);
+  results.forEach(r => {
+    if (r.err) return;
+    addGeojsonLayer(r.L, r.d);
+  });
+  renderCapaItems();
+  updateDataStatus();
+
+  // Warning explícito si 0 features
+  if (totalFeatures === 0) {
+    console.warn("⚠ Magnus Radar · No se cargaron features. Ver DATA STATUS en mapa.");
+  } else {
+    setTimeout(() => map.flyTo({ center:[-71.21,-29.51], zoom:12, duration:1200 }), 800);
+  }
+});
+
+// Reintentos si fetch falla por timing
+map.on('error', e => console.error('MapLibre error:', e));
+
+// ===== Botones meta =====
+document.getElementById('btn-fuentes').addEventListener('click', () => alert(
+  'FUENTES PRIMARIAS DATASET v1\n\n' +
+  '· KMZ-06 catastro SII La Higuera (canon verificado · 7687 placemarks)\n' +
+  '· Mandato firmado Rep 24.327 · 14-abr-2026 · Notario Pedro Reveco\n' +
+  '· Plano MBN IV-1-1777-S.R. · ficha documento\n' +
+  '· Escritura Cofanti 16.pdf · Rep 25.963 · 19-dic-2016\n' +
+  '· ESC-GT-000011 · Notario Villarino · 19-nov-2025\n' +
+  '· EIA Dominga 2013 · A-104 Layout Sector Lineal\n' +
+  '· Ortofoto KMZ super-overlay La Higuera · 6 KMZs\n' +
+  '· ITS-CARTO-PLANO-0001 (plano histórico intervenido · georreferenciación pendiente)\n\n' +
+  'Cadenas canonizadas en CANON_HIJUELA2_v2 + CADENA_REGISTRAL_HIJUELA_2'
+));
+document.getElementById('btn-doctrinas').addEventListener('click', () => alert(
+  'DOCTRINAS OPERACIONALES CANONIZADAS\n\n' +
+  '1. rol-sii-no-es-identidad-territorial\n   Atributo temporal · NO clave primaria\n\n' +
+  '2. homonimia-territorial\n   Similitud toponímica NO implica identidad\n\n' +
+  '3. no-derivar-estrategia-sin-capa-ocupacion\n   Normativa + catastral + jurídica necesarias pero no suficientes\n\n' +
+  '4. correccion-doctrinal-unidad-territorial-historica\n   Objeto = matriz + hijuelas + servidumbres + corredor + mutaciones + CBR + RTK\n\n' +
+  '5. 29-9-pct-es-zona-de-verificacion-fina\n   Residual ≥10% NO se cierra con hipótesis\n\n' +
+  '6. reframing-urbano-planificado-vs-rural-informal\n   cat5 H2 urbano-planificado · NO rural-informal\n\n' +
+  '7. canon-maplibre-motor-cartografico-v1\n   Motor único · prohibido Mapbox/Leaflet/Cesium/OpenLayers'
+));
+document.getElementById('btn-version').addEventListener('click', () => alert(
+  'MAGNUS RADAR · v1.0.1 H2\n' +
+  'Build: 2026-05-31\n' +
+  'Cambios v1.0.1:\n' +
+  '· Badge DATA STATUS visible con detección file:// vs http://\n' +
+  '· Contador features por capa en panel lateral\n' +
+  '· Warning explícito si 0 features cargadas\n' +
+  '· Reestructura: /data → /geojson + /tiles + /styles\n\n' +
+  'Frase rectora: visor de inteligencia territorial trazable de H2 / Estancia La Higuera\n\n' +
+  'Stack: MapLibre GL JS 4.7.1 (CANON_V1) · vanilla JS · GeoJSON estático\n\n' +
+  'Magnus SpA · Max Medina'
+));
+</script>
+</body>
+</html>
