@@ -24,7 +24,7 @@
    },
    "properties": {
     "conflicto_id": "C11",
-    "estado": "RESUELTO_2026-05-31",
+    "estado": "HECHO",
     "tipo": "mutacion_catastral_SII",
     "enunciado": "¿Los roles 24-48 y 24-4 (escritura Cofanti 2014-2016) son la misma identidad territorial que 24-123 y 24-160 (catastro SII actual)?",
     "resolucion": "SI · mutación catastral documentada (24-48→24-123 · 24-4→24-160)",
@@ -36,7 +36,8 @@
     ],
     "caveats": [
      "Doctrina rol_sii_no_es_identidad: el rol SII es atributo temporal"
-    ]
+    ],
+    "estado_raw_legacy": "RESUELTO_2026-05-31"
    }
   },
   {
@@ -50,7 +51,7 @@
    },
    "properties": {
     "conflicto_id": "C13",
-    "estado": "RESUELTO_2026-05-31",
+    "estado": "HECHO",
     "tipo": "identidad_territorial",
     "enunciado": "¿El predio fiscal fs.4856 N°4411/2007 (Totoralillo Norte) coincide con rol 24-5 Estancia La Higuera (Andes Iron)?",
     "resolucion": "NO · son vecinos · ESC-GT-000011 p.7 declara deslinde explícito",
@@ -59,7 +60,8 @@
     "fuentes": [],
     "caveats": [
      "Doctrina homonimia: similitud toponímica NO implica identidad"
-    ]
+    ],
+    "estado_raw_legacy": "RESUELTO_2026-05-31"
    }
   },
   {
@@ -73,7 +75,7 @@
    },
    "properties": {
     "conflicto_id": "rol_24-5_Andes_Iron",
-    "estado": "GEOMETRIA_PENDIENTE",
+    "estado": "BLOQUEADO",
     "tipo": "rol_no_en_KMZ",
     "enunciado": "Rol canon 24-5 Andes Iron NO aparece en KMZ-06 catastro SII",
     "estado_actual": "documental ALTA · geométrica PENDIENTE Daniel RTK",
@@ -84,7 +86,8 @@
      "NUNCA promover superficie 60.000 ha como HECHO",
      "Identidad documental ALTA · geometría PENDIENTE Daniel RTK",
      "NUNCA promover superficie 60.000 ha como HECHO"
-    ]
+    ],
+    "estado_raw_legacy": "GEOMETRIA_PENDIENTE"
    }
   }
  ]

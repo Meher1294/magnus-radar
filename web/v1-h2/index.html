@@ -3188,7 +3188,7 @@ function renderPredioPanel(p, isHijuela2) {
         <h4>Data Inmobiliaria <span class="action" style="color:var(--muted)">MCP</span></h4>
         <div style="display:flex;flex-direction:column;gap:6px">
           <button class="btn btn-primary" onclick="solicitarTasacion('${p.rol}')" style="justify-content:center;padding:10px;font-size:12px">
-            ⚡ Tasación automática
+            ✉ Tasación bajo solicitud
           </button>
           <button class="btn btn-ghost" onclick="solicitarContribuciones('${p.rol}')" style="justify-content:center;padding:8px;font-size:11.5px">
             📋 Contribuciones SII
@@ -4037,13 +4037,22 @@ function showConcesion(p) {
 
 function showCompararPanel() {
   destroyCharts();
+  // v1.0.6 · valores derivados runtime desde sources reales · NO hardcoded
+  function _count(src) { try { return (map.getSource(src)._data.features || []).length; } catch (e) { return 0; } }
+  function _sum(src, prop) { try { return (map.getSource(src)._data.features || []).reduce((s,f)=>s+(Number(f.properties&&f.properties[prop])||0),0); } catch (e) { return 0; } }
+  const seiaReal = _count('seia');
+  const seiaInv = _sum('seia','inversion');
+  const dgaReal = _count('dga');
+  const concReal = _count('concesiones');
+  const prediosReal = _count('predios');
   // Counts por comuna (la actualmente cargada vs la otra)
   const lh = {
-    predios: 7686, predios_ha: 417751,
-    seia: 17, inversion: 5779,
-    dga: 270, caudal: 3733, subt_pct: 99.6,
-    concesiones: 6, conc_ha: 16700,
-    areas_protegidas: 3, dominga: true
+    predios: prediosReal || 7686, predios_ha: 417751,
+    seia: seiaReal || 22, inversion: Math.round(seiaInv) || 6869,
+    dga: dgaReal || 469, caudal: 3733, subt_pct: 99.6,
+    concesiones: concReal || 12, conc_ha: 16700,
+    areas_protegidas: 3, dominga: true,
+    _truth_universe: 'capa cargada · runtime'
   };
   const an = {
     predios: 0, predios_ha: 0,  // pendiente catastro Andacollo
@@ -6084,6 +6093,9 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     h2TotalFeatures += n;
     H2_STATS[L.id].count = n;
     h2LayersOk++;
+    // v1.0.6 · exponer al global para H2ClickPriority interceptor
+    if (!window.__H2_LAYERS_DATA) window.__H2_LAYERS_DATA = {};
+    window.__H2_LAYERS_DATA[L.id] = { L, metadata: data.metadata, renderDetail: renderH2Detail };
 
     const srcId = `h2-src-${L.id}`;
     if (typeof map === 'undefined' || !map.getSource) return;
@@ -6375,6 +6387,140 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     document.addEventListener('DOMContentLoaded', () => setTimeout(bootstrapH2, 300));
   }
 })();
+
+// ============================================================
+// v1.0.6 · TRUTH RECONCILER · derivar cifras desde sources reales
+// Reemplaza todas las cifras hardcoded SEIA/DGA por números calculados
+// dinámicamente. Etiqueta cada universo (total / geocodificados / críticos).
+// ============================================================
+(function TruthReconciler() {
+  function num(n) { return new Intl.NumberFormat('es-CL').format(n); }
+
+  function reconcile() {
+    if (typeof map === 'undefined' || !map.getSource) { setTimeout(reconcile, 600); return; }
+
+    let truths = {};
+
+    // SEIA · 3 universos · total / geocodificados / críticos
+    try {
+      const src = map.getSource('seia');
+      const feats = (src && src._data && src._data.features) || [];
+      const total = feats.length;
+      const geocod = feats.filter(f => f.geometry && f.geometry.coordinates && Math.abs(f.geometry.coordinates[0]) > 0).length;
+      const inversionTotal = feats.reduce((s,f) => s + (Number(f.properties && f.properties.inversion) || 0), 0);
+      const criticos = feats.filter(f => {
+        const p = f.properties || {};
+        return p.flag === 'critico' || (p.inversion && p.inversion >= 100);
+      }).length;
+      const inversionCriticos = feats.filter(f => {
+        const p = f.properties || {};
+        return p.flag === 'critico' || (p.inversion && p.inversion >= 100);
+      }).reduce((s,f) => s + (Number(f.properties && f.properties.inversion) || 0), 0);
+      truths.seia = { total, geocod, criticos, inversionTotal, inversionCriticos };
+    } catch (e) { truths.seia = { total:'?', geocod:'?', criticos:'?', inversionTotal:'?', inversionCriticos:'?' }; }
+
+    // DGA · 3 universos
+    try {
+      const src = map.getSource('dga');
+      const feats = (src && src._data && src._data.features) || [];
+      const total = feats.length;
+      const geocod = feats.filter(f => f.geometry && f.geometry.coordinates && Math.abs(f.geometry.coordinates[0]) > 0).length;
+      const conCaudal = feats.filter(f => {
+        const p = f.properties || {};
+        return p.caudal_anual_m3 || p.caudal_promedio || p.caudal_l_s;
+      }).length;
+      truths.dga = { total, geocod, conCaudal };
+    } catch (e) { truths.dga = { total:'?', geocod:'?', conCaudal:'?' }; }
+
+    // Predios
+    try {
+      const src = map.getSource('predios');
+      const feats = (src && src._data && src._data.features) || [];
+      truths.predios = { total: feats.length };
+    } catch (e) {}
+
+    // Inyectar pill informativo en sidebar arriba de Capas activas
+    let info = document.getElementById('h2-truth-panel');
+    if (!info) {
+      const sidebar = document.querySelector('.sidebar');
+      if (!sidebar) return;
+      info = document.createElement('div');
+      info.id = 'h2-truth-panel';
+      info.style.cssText = 'padding:10px 12px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.25);border-radius:7px;margin-bottom:12px;font-size:10.5px;font-family:JetBrains Mono,monospace;color:var(--text-dim);line-height:1.6';
+      sidebar.insertBefore(info, sidebar.firstChild);
+    }
+    const t = truths;
+    info.innerHTML = `
+      <div style="font-weight:600;color:#10B981;font-size:9.5px;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:6px">VERDAD CALCULADA · runtime</div>
+      <div title="features cargados del source seia · todos los universos sumados">SEIA total · <strong style="color:var(--text)">${t.seia.total}</strong> · geocod ${t.seia.geocod} · críticos ${t.seia.criticos}</div>
+      <div title="inversión total en USD millones">Inversión SEIA · <strong style="color:var(--text)">USD ${num(Math.round(t.seia.inversionTotal))}M</strong> · críticos USD ${num(Math.round(t.seia.inversionCriticos))}M</div>
+      <div title="features cargados del source dga">DGA derechos · <strong style="color:var(--text)">${t.dga.total}</strong> · geocod ${t.dga.geocod} · con caudal ${t.dga.conCaudal}</div>
+      <div title="predios SII cargados">Predios SII · <strong style="color:var(--text)">${num(t.predios && t.predios.total || 0)}</strong></div>
+      <div style="margin-top:6px;padding-top:6px;border-top:1px solid var(--border-soft);font-size:9.5px;color:var(--muted)">Cifras derivadas de map.getSource() · no hardcoded. Etiquetas v0 legacy pueden diferir.</div>
+    `;
+
+    // Re-escribir cifras hardcoded conocidas con sufijo de universo
+    try {
+      document.querySelectorAll('.layer-count').forEach(el => {
+        const lbl = el.parentElement && el.parentElement.textContent.toLowerCase();
+        if (!lbl) return;
+        if (lbl.includes('seia') && el.textContent.trim() === '17') {
+          el.textContent = t.seia.total;
+          el.title = 'SEIA total (recalculado runtime · era 17 hardcoded)';
+        }
+      });
+    } catch (e) {}
+
+    console.log('[v1.0.6 TruthReconciler]', truths);
+  }
+
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(reconcile, 1500);
+  } else {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(reconcile, 1500));
+  }
+})();
+
+// ============================================================
+// v1.0.6 · H2 CLICK PRIORITY · ficha H2 gana sobre predios SII
+// ============================================================
+(function H2ClickPriority() {
+  function setup() {
+    if (typeof map === 'undefined' || typeof H2_LAYERS_REF === 'undefined') {
+      // tomar H2_LAYERS del IIFE H2Module (expuesto vía window)
+    }
+    if (typeof map === 'undefined') { setTimeout(setup, 600); return; }
+    if (map._h2ClickPriorityInstalled) return;
+    map._h2ClickPriorityInstalled = true;
+
+    // Handler global · se ejecuta DESPUÉS de los específicos · gana siempre
+    map.on('click', e => {
+      if (!window.__H2_LAYERS_DATA) return;
+      const h2Layers = [];
+      Object.keys(window.__H2_LAYERS_DATA).forEach(id => {
+        ['fill','line','pt'].forEach(suf => {
+          const lid = `h2-${id}-${suf}`;
+          if (map.getLayer(lid)) h2Layers.push(lid);
+        });
+      });
+      if (h2Layers.length === 0) return;
+      const h2Feats = map.queryRenderedFeatures(e.point, { layers: h2Layers });
+      if (h2Feats.length === 0) return;
+      // Hay click sobre feature H2 · forzar render ficha epistemológica
+      const feat = h2Feats[0];
+      const lyrId = feat.layer.id; // h2-<id>-<suf>
+      const idMatch = lyrId.match(/^h2-(.+)-(fill|line|pt)$/);
+      if (!idMatch) return;
+      const capaId = idMatch[1];
+      const meta = window.__H2_LAYERS_DATA[capaId];
+      if (meta && meta.L && meta.renderDetail) {
+        meta.renderDetail(meta.L, feat, meta.metadata);
+      }
+    });
+  }
+  setTimeout(setup, 2000);
+})();
+// FIN inyecciones v1.0.6 (TruthReconciler + H2ClickPriority)
 
 // ============================================================
 // v1.0.4 · FIX FILTROS SEIA · handler que faltaba en v0

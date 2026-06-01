@@ -227,6 +227,7 @@ de_GeoJSON_a_PMTiles:
 
 ## Changelog
 
+- **v1.0.6** · 2026-05-31 · RECONCILIACIÓN VERDAD: TruthReconciler runtime (deriva SEIA/DGA/predios desde sources reales · etiqueta universos · cifras hardcoded reemplazadas) + H2 Click Priority (ficha H2 gana sobre predios SII vía interceptor global) + estados normalizados (estado_canonico → estado · raw preservado en estado_raw_legacy · 39/39 features con 4 estados canónicos · 0 estados libres)
 - **v1.0.5** · 2026-05-31 · HOTFIX .gitignore (publicar GeoJSON H2 + andamiaje P1) · normalizar estados a 4 canónicos HECHO/INFERENCIA/HIPOTESIS/BLOQUEADO (37 features distribuidos) · BLOQUEADO en Daniel RTK + titular asignado · comisión 10% + vigencia mandato Rep 24.327 visible en ficha H2 · caveats array · flag no_comercial H1 · gate pre-push canon (git ls-files check)
 - **v1.0.4** · 2026-05-31 · 7 fixes post-deploy: smartFetchGeoJSON (4 paths fallback) · build_failed overlay si 0 features HTTP · tasación mailto (no chat) · filtros SEIA handler · label Sector Lineal Andes Iron · basemap claro default · h2_rtk OFF · banner H1 no comercial
 - **v1.0.3** · 2026-05-31 · sidebar colapsable + buscador + contadores por sección

@@ -124,7 +124,8 @@
     "estado_canonico": "HECHO",
     "comision_bruta": "10% (cláusula 6ª mandato Rep 24.327)",
     "vigencia_mandato": "24 meses (hasta 14-abr-2028)",
-    "caveats": []
+    "caveats": [],
+    "estado_raw_legacy": "HECHO"
    }
   },
   {
@@ -1048,7 +1049,8 @@
     "estado_canonico": "HECHO",
     "comision_bruta": "10% (cláusula 6ª mandato Rep 24.327)",
     "vigencia_mandato": "24 meses (hasta 14-abr-2028)",
-    "caveats": []
+    "caveats": [],
+    "estado_raw_legacy": "HECHO"
    }
   },
   {
@@ -1100,7 +1102,8 @@
     "estado_canonico": "HECHO",
     "comision_bruta": "10% (cláusula 6ª mandato Rep 24.327)",
     "vigencia_mandato": "24 meses (hasta 14-abr-2028)",
-    "caveats": []
+    "caveats": [],
+    "estado_raw_legacy": "HECHO"
    }
   },
   {
@@ -1348,7 +1351,8 @@
     "estado_canonico": "HECHO",
     "comision_bruta": "10% (cláusula 6ª mandato Rep 24.327)",
     "vigencia_mandato": "24 meses (hasta 14-abr-2028)",
-    "caveats": []
+    "caveats": [],
+    "estado_raw_legacy": "HECHO"
    }
   }
  ]
