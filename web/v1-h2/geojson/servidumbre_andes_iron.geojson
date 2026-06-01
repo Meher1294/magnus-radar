@@ -1,0 +1,235 @@
+{
+ "type": "FeatureCollection",
+ "name": "servidumbre_andes_iron",
+ "crs": {
+  "type": "name",
+  "properties": {
+   "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+  }
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 1,
+    "predio_sirviente": "Lote A Hijuela 1 Estancia La Higuera",
+    "rol": "24-43",
+    "propietario": "Reservado · acceso requiere autenticación",
+    "superficie_ha": 57.545,
+    "concesionario": "Andes Iron SpA",
+    "tipo": "Servidumbre legal minera ocupación y tránsito",
+    "fecha_plano": "Diciembre 2025",
+    "rev": "0",
+    "estado": "Vinculante (entregado por GH 17-may-2026)",
+    "fuente": "Plano Andes Iron AIPD-01-AI-AIP001",
+    "etiqueta": "Servidumbre AI · rol 24-43\n57.545 ha",
+    "estado_canonico": "HECHO",
+    "fuentes": [
+     "Plano Andes Iron AIPD-01-AI-AIP001 · entregado GH 17-may-2026"
+    ],
+    "caveats": [
+     "Servidumbre legal minera vinculante Dic-2025"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -71.22773538388816,
+       -29.488138386848693
+      ],
+      [
+       -71.22431999921919,
+       -29.488924973007023
+      ],
+      [
+       -71.24999878643125,
+       -29.49682420242966
+      ],
+      [
+       -71.25369949040797,
+       -29.495965176684415
+      ],
+      [
+       -71.24749117437712,
+       -29.49338261844875
+      ],
+      [
+       -71.23779023673663,
+       -29.49130858836567
+      ],
+      [
+       -71.22773538388816,
+       -29.488138386848693
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "id": 2,
+    "predio_sirviente": "Resto Hijuela 2 Estancia La Higuera Lote A (Lote 2A)",
+    "rol": "24-123",
+    "propietario": "Reservado · acceso requiere autenticación",
+    "superficie_ha": 124.145,
+    "concesionario": "Andes Iron SpA",
+    "tipo": "Servidumbre legal minera ocupación y tránsito",
+    "fecha_plano": "Diciembre 2025",
+    "rev": "0",
+    "estado": "Vinculante (entregado por GH 17-may-2026)",
+    "fuente": "Plano Andes Iron AIPD-01-AI-AIP001 (Ejecutó: Angela Suckel D'Arcangeli)",
+    "etiqueta": "Servidumbre AI · rol 24-123\n124.145 ha",
+    "estado_canonico": "HECHO",
+    "fuentes": [
+     "Plano Andes Iron AIPD-01-AI-AIP001 · entregado GH 17-may-2026"
+    ],
+    "caveats": [
+     "Servidumbre legal minera vinculante Dic-2025"
+    ]
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -71.25369949040797,
+       -29.495965176684415
+      ],
+      [
+       -71.24999878643125,
+       -29.49682420242966
+      ],
+      [
+       -71.25991864922557,
+       -29.502090682099585
+      ],
+      [
+       -71.27057763290486,
+       -29.51107428000015
+      ],
+      [
+       -71.27090019392287,
+       -29.510826899743627
+      ],
+      [
+       -71.27112807966303,
+       -29.510584474594257
+      ],
+      [
+       -71.27126784451825,
+       -29.510349509271723
+      ],
+      [
+       -71.27149634601646,
+       -29.510093179754293
+      ],
+      [
+       -71.27160479954699,
+       -29.510017168593162
+      ],
+      [
+       -71.27231343653375,
+       -29.509725295240113
+      ],
+      [
+       -71.2726240590192,
+       -29.509520967768836
+      ],
+      [
+       -71.27277659002961,
+       -29.509451329077397
+      ],
+      [
+       -71.27296714319681,
+       -29.509389339859936
+      ],
+      [
+       -71.27318934516423,
+       -29.50926212422436
+      ],
+      [
+       -71.27347345421207,
+       -29.50905761681342
+      ],
+      [
+       -71.27366131019154,
+       -29.508879655028416
+      ],
+      [
+       -71.2739518225688,
+       -29.5086894716736
+      ],
+      [
+       -71.27435357537911,
+       -29.508188394598253
+      ],
+      [
+       -71.27464273999145,
+       -29.507961154137593
+      ],
+      [
+       -71.27486662093673,
+       -29.50782623877115
+      ],
+      [
+       -71.2750747270285,
+       -29.507659295752866
+      ],
+      [
+       -71.27522229261638,
+       -29.507409397719368
+      ],
+      [
+       -71.27531161868633,
+       -29.507299248635615
+      ],
+      [
+       -71.27541918590872,
+       -29.50710551791304
+      ],
+      [
+       -71.27560355464742,
+       -29.506910291828223
+      ],
+      [
+       -71.27566067367047,
+       -29.506803490621145
+      ],
+      [
+       -71.27573808065328,
+       -29.506732247978125
+      ],
+      [
+       -71.27598770290516,
+       -29.50637901865425
+      ],
+      [
+       -71.26359962238371,
+       -29.49924695151965
+      ],
+      [
+       -71.25369949040797,
+       -29.495965176684415
+      ]
+     ]
+    ]
+   }
+  }
+ ],
+ "metadata": {
+  "capa": "Sector Lineal AI · Servidumbre vinculante Dic-2025",
+  "estado": "CANON_alta_confianza",
+  "fecha_publicacion": "2026-06-01",
+  "tipo": "corredor_minero",
+  "titular": "Andes Iron SpA",
+  "fuente_primaria": "Plano AIPD-01-AI-AIP001 Diciembre 2025",
+  "cierra_hipotesis": "artefacto_perdido_andes_iron_geojson",
+  "doctrinas_aplicables": [
+   "no-derivar-estrategia-sin-capa-ocupacion",
+   "comparables-separados-por-naturaleza-juridica"
+  ]
+ }
+}

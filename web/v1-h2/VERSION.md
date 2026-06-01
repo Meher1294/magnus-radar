@@ -1,7 +1,7 @@
 # MAGNUS_RADAR_WEB_V1_H2_LA_HIGUERA
 
-**Versión:** 1.1.6
-**Build:** 2026-06-01 (campo Propietario Registrado debajo de Sector en ficha predio)
+**Versión:** 1.1.7
+**Build:** 2026-06-01 (Sector Lineal AI · servidumbre vinculante Dic-2025 · 181,6 ha documentadas)
 **Estado:** MVP operativo · no canon final
 
 ---
