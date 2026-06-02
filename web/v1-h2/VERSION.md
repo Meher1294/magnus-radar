@@ -1,8 +1,168 @@
 # MAGNUS_RADAR_WEB_V1_H2_LA_HIGUERA
 
-**Versión:** 1.1.8
-**Build:** 2026-06-01 (TOP 5 capas QGIS · RTK Daniel real + Titularidad 2023 + InterChile exacto + Matriz AI 2021)
+**Versión:** 1.1.10
+**Build:** 2026-06-02 (ortofoto KMZ deploy · image source MapLibre · sector oriental 6.8 km²)
 **Estado:** MVP operativo · no canon final
+
+---
+
+## Cambios v1.1.10 · ortofoto KMZ deploy
+
+```yaml
+contexto:
+  observación_Max_2026-06-02: "la ortofoto en kmz no hizo deploy"
+  HECHO_pre_v1.1.10:
+    6 KMZ super-overlay (283 MB · 2.122 GroundOverlays) procesados desde 2026-05-31
+    16 cuadrantes + mosaicos PNG generados en docs/ingesta_ortofoto_h2/
+    /v1-h2/tiles/ vacío (solo README placeholder PMTiles futuro)
+    visor tenía capa h2_ocupaciones (puntos derivados) pero NO el raster base
+  
+  gap_resuelto: raster ortofoto ahora visible en visor como image source MapLibre
+
+pipeline_de_optimización:
+  fuente: docs/ingesta_ortofoto_h2/05_mosaico_asentamiento_amplio.png
+  original: 2125 × 2400 px · 8.2 MB · PNG
+  procesado: PIL/Pillow downscale + JPEG progressive quality 82
+  destino: tiles/h2_ortofoto.jpg
+  resultado: 1700 × 1920 px · 834 KB · JPEG (10% del peso original)
+  decisión: suficiente para zoom 16-17 en uso interno · sin pyramid tiles
+
+bbox_geo_de_la_ortofoto:
+  W: -71.2056624238989
+  E: -71.19200880981892
+  S: -29.518136215465194
+  N: -29.50462817876295
+  extensión: 1.32 km × 1.50 km = ~6.8 km²
+  cobertura_relativa: 12.6% del perímetro Daniel RTK (2.164,97 ha)
+  zona: sector oriental H2 · incluye asentamiento + sector lineal AI
+
+integración_técnica:
+  archivo_index.html_cambios:
+    1. nueva const H2_RASTERS array (capa h2_ortofoto · coords NW/NE/SE/SW)
+    2. nueva función addH2RasterLayer(R) usando image source + raster layer
+    3. toggleH2Layer extendido con 'raster' suffix
+    4. renderH2Sidebar unifica H2_LAYERS + H2_RASTERS
+    5. doLoad invoca addH2RasterLayer post-fetch GeoJSON
+    6. APP_VERSION bumpada a '1.1.10'
+    7. statusbar data-app-version fallback actualizado
+  
+  layer_insertion_order:
+    ortofoto se inserta DEBAJO de capas vectoriales H2 (fondo)
+    para que polígonos y líneas queden visibles encima
+  
+  paint:
+    raster-opacity: 0.85 (no totalmente opaco · permite ver base map debajo)
+    raster-fade-duration: 250ms
+  
+  default_visibility:
+    OFF al cargar (descubrimiento progresivo)
+    activable desde sidebar FOCO H2 · marcada con "IMG" en lugar de count
+
+estado_canónico_del_evento:
+  EVT-H2-OCCUPATION-BASELINE-20260531 (categoría: identidad_fisica)
+  ahora visualizable directamente en el visor
+  NO genera TENSIÓN nueva (canon doctrina-taxonomía-5-entidades)
+  alimenta diagnóstico territorial · referencia para deltas futuros
+```
+
+---
+
+## Audit pre-deploy v1.1.10
+
+```yaml
+verificaciones_locales_OK:
+  ortofoto JPG: tiles/h2_ortofoto.jpg (834 KB · 1700×1920 progressive)
+  H2_RASTERS array: 1 entry con bbox correcto extraído de mosaico_amplio_meta.json
+  addH2RasterLayer: definida + invocada post doLoad
+  toggleH2Layer: 'raster' suffix añadido
+  renderH2Sidebar: allH2 unifica vector + raster
+  APP_VERSION: '1.1.10'
+
+verificaciones_pendientes_post-deploy_(único_audit_válido):
+  doctrina-audit-post-deploy aplica
+  push desde Mac de Max
+  cache-bust ?v=1110
+  abrir checkbox "Ortofoto sector oriental (raster)" en sidebar FOCO H2
+  verificar overlay visible sobre OSM/satelital basemap
+  zoom a bbox (-71.205, -29.51) y comprobar 0.4 m/px resolución
+  verificar que polígonos H2 (Cominetti · sector lineal AI) quedan encima de la ortofoto
+```
+
+---
+
+## Cambios v1.1.9 · UX quick wins (post-Auditoría 2026-06-01)
+
+---
+
+## Cambios v1.1.9 · UX quick wins (post-Auditoría 2026-06-01)
+
+```yaml
+3_quick_wins_ejecutados:
+
+  qw_1_variables_CSS_huerfanas_declaradas:
+    archivo: index.html (:root linea 61-66)
+    declaradas:
+      --text-bright: #FFFFFF
+      --surface-1: #0F1721
+      --ink: #E8EEF8
+    severidad_resuelta: P0
+    impacto: elimina fallback gris-negro sobre dark theme (5+ usos --text-bright, 30+ usos --ink)
+    sub_fix: --muted-2 subido de #5A6680 (2.8:1) a #8290AA (~4.6:1) para WCAG AA
+
+  qw_2_APP_VERSION_centralizada:
+    archivo: index.html (linea 2420)
+    declarada: const APP_VERSION = '1.1.9'
+    funcion: applyAppVersion() reemplaza data-app-version en el DOM
+    bind: bindAppVersion() corre en DOMContentLoaded
+    reemplazos_aplicados:
+      - statusbar: '<span data-app-version>v1.1.9</span>' · auto-actualizable
+      - export tasacion (linea 3951): `v${APP_VERSION}` en template literal
+      - panel-flag analisis (linea 4363): template literal
+      - panel-flag docs (linea 5051): template literal
+      - build-failed overlay (linea 6687): template literal
+      - console log TruthReconciler (linea 7013): concatenacion
+    severidad_resuelta: P0
+    impacto: proximo bump = cambiar 1 constante + statusbar texto fallback
+    deuda_restante: 2 comments historicos en linea 33 + 1993 (no se renderizan)
+
+  qw_3_focus_visible_global:
+    archivo: index.html (linea 67-72)
+    regla:
+      *:focus { outline: none; }
+      *:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+        border-radius: 4px;
+      }
+    severidad_resuelta: P1
+    impacto: navegacion teclado universal sobre tabs · botones · CTAs · layer-items · sidebar
+```
+
+---
+
+## Audit pre-deploy v1.1.9
+
+```yaml
+verificaciones_locales_OK:
+  variables_declaradas: 3 nuevas en :root
+  focus_visible_global: 1 regla aplicada
+  APP_VERSION_constante: declarada antes de cualquier uso
+  applyAppVersion: bindeado a DOMContentLoaded
+  reemplazos_visibles: 6 lugares actualizados
+  comments_historicos_v1.0.7: 2 intencionalmente preservados (no se renderizan)
+
+verificaciones_pendientes_post-deploy_(unico_audit_valido):
+  ver pull request en URL viva
+  cache-bust ?v=119
+  verificar 'Magnus Radar v1.1.9 · La Higuera' en statusbar
+  verificar focus-ring naranja al tabular por tabs
+  verificar texto blanco/bright en bloques ITS (chip-unidad · breadcrumb · subtabs)
+  doctrina-audit-post-deploy-único-valido aplica · Max ejecuta push desde Mac
+```
+
+---
+
+## Cambios v1.0.1
 
 ---
 

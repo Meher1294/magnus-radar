@@ -48,7 +48,7 @@
     --text: #E8EEF8;
     --text-dim: #B4C0D6;
     --muted: #7E8CA8;
-    --muted-2: #5A6680;
+    --muted-2: #8290AA;
     --accent: #C97B3A;
     --accent-hover: #D88D4D;
     --accent-soft: rgba(201,123,58,0.12);
@@ -58,8 +58,19 @@
     --danger: #EF4444;
     --info: #3B82F6;
     --purple: #A855F7;
+    /* v1.1.9 · variables huerfanas declaradas (antes hacian fallback gris-negro sobre dark) */
+    --text-bright: #FFFFFF;
+    --surface-1: #0F1721;
+    --ink: #E8EEF8;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  /* v1.1.9 · focus visible global para navegacion teclado */
+  *:focus { outline: none; }
+  *:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
   html, body { height: 100%; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--text); overflow: hidden; -webkit-font-smoothing: antialiased; font-size: 13px; }
   button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
   input { font-family: inherit; }
@@ -2401,11 +2412,20 @@
     <span class="status-sep">|</span>
     <div class="status-item" id="cursorCoords">—</div>
     <div style="flex:1"></div>
-    <div class="status-item">Magnus Radar v1.0.7 · La Higuera</div>
+    <div class="status-item">Magnus Radar <span data-app-version>v1.1.10</span> · La Higuera</div>
   </div>
 </div>
 
 <script>
+// ============ APP VERSION centralizada (v1.1.10) ============
+// Single source of truth para version visible · evita drift entre statusbar · panel-flags · export · console
+const APP_VERSION = '1.1.10';
+function applyAppVersion() {
+  document.querySelectorAll('[data-app-version]').forEach(el => {
+    const suffix = el.dataset.appVersionSuffix || '';
+    el.textContent = 'v' + APP_VERSION + suffix;
+  });
+}
 // ============ DATOS SEIA REALES — Comuna La Higuera ============
 // Fuente: seia.sea.gob.cl + investigación pública (SEA, Diario Financiero, La Tercera, Revista EI, BNamericas, etc.)
 const seiaPoints = {
@@ -3928,7 +3948,7 @@ async function solicitarTasacion(rol) {
   const body = encodeURIComponent(
     `Hola Max,\n\nSolicito tasación del siguiente predio:\n\n` +
     `Rol SII: ${rol}\nComuna: La Higuera (4102)\n\n` +
-    `Origen: Magnus Radar v1.0.7 · ${window.location.href}\n\n` +
+    `Origen: Magnus Radar v${APP_VERSION} · ${window.location.href}\n\n` +
     `Gracias.`
   );
   target.innerHTML = `
@@ -4340,7 +4360,7 @@ function showAnalisisPanel() {
     <div class="panel-header">
       <div class="panel-type-row">
         <span class="panel-type">Dashboard analítico</span>
-        <span class="panel-flag info">v1.0.7</span>
+        <span class="panel-flag info">v${APP_VERSION}</span>
       </div>
       <div class="panel-title">Análisis · Comuna La Higuera</div>
       <div class="panel-subtitle">7.686 predios · 17 SEIA · 87 DGA · 3 áreas protegidas</div>
@@ -5028,7 +5048,7 @@ function showDocsPanel() {
     <div class="panel-header">
       <div class="panel-type-row">
         <span class="panel-type">Documentación API</span>
-        <span class="panel-flag info">v1.0.7 · pública</span>
+        <span class="panel-flag info">v${APP_VERSION} · pública</span>
       </div>
       <div class="panel-title">Magnus Radar REST API</div>
       <div class="panel-subtitle">Supabase PostgREST · sin auth para lecturas públicas</div>
@@ -6176,11 +6196,32 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     { id:'h2_interchile_torres',   file:'geojson/interchile_torres.geojson',           nombre:'InterChile · 9 torres físicas',   color:'#7C3AED', tipo:'point', default:false, meta:'Torres T280-T288 · infraestructura física consolidada 2014' },
   ];
 
+  // v1.1.10 · capas raster (ortofoto · image source MapLibre)
+  // bbox proviene de docs/ingesta_ortofoto_h2/mosaico_amplio_meta.json
+  // coordinates en orden MapLibre: NW · NE · SE · SW (sentido horario desde top-left)
+  const H2_RASTERS = [
+    {
+      id: 'h2_ortofoto',
+      url: 'tiles/h2_ortofoto.jpg',
+      nombre: 'Ortofoto sector oriental (raster)',
+      color: '#A78BFA',
+      meta: 'Mosaico 2026-05 · 0.4 m/px · cubre 6.8 km² = 12.6% perímetro RTK · sector lineal AI + asentamiento',
+      coordinates: [
+        [-71.2056624238989, -29.50462817876295],  // NW
+        [-71.19200880981892, -29.50462817876295], // NE
+        [-71.19200880981892, -29.518136215465194],// SE
+        [-71.2056624238989, -29.518136215465194]  // SW
+      ],
+      default: false
+    }
+  ];
+
   const H2_STATE = {};
   const H2_STATS = {};
   let h2TotalFeatures = 0;
   let h2LayersOk = 0, h2LayersErr = 0;
   H2_LAYERS.forEach(L => { H2_STATE[L.id] = L.default; H2_STATS[L.id] = { count:0, error:null }; });
+  H2_RASTERS.forEach(R => { H2_STATE[R.id] = R.default; H2_STATS[R.id] = { count:0, error:null }; });
 
   // === DATA STATUS badge ===
   const mapEl = document.getElementById('map') || document.querySelector('.map');
@@ -6239,10 +6280,12 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
       host.className = 'h2-focus-section';
       sidebar.insertBefore(host, sidebar.firstChild);
     }
-    const rows = H2_LAYERS.map(L => {
+    // v1.1.10 · unificar H2_LAYERS + H2_RASTERS en la misma lista del sidebar
+    const allH2 = [...H2_LAYERS, ...H2_RASTERS];
+    const rows = allH2.map(L => {
       const s = H2_STATS[L.id];
       const cls = s.error ? 'err' : (s.count > 0 ? 'ok' : '');
-      const txt = s.error ? '✗' : (s.count > 0 ? s.count : '—');
+      const txt = s.error ? '✗' : (s.count > 0 ? (L.id === 'h2_ortofoto' ? 'IMG' : s.count) : '—');
       const checked = H2_STATE[L.id] ? 'checked' : '';
       return `<label class="h2-capa-row" style="cursor:pointer">
         <input type="checkbox" data-h2-id="${L.id}" ${checked} style="margin:0">
@@ -6520,10 +6563,41 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
 
   function toggleH2Layer(id) {
     if (typeof map === 'undefined') return;
-    ['fill','line','pt','label'].forEach(suf => {
+    // v1.1.10 · 'raster' añadido para soportar capas image source (ortofoto)
+    ['fill','line','pt','label','raster'].forEach(suf => {
       const lid = `h2-${id}-${suf}`;
       if (map.getLayer(lid)) map.setLayoutProperty(lid, 'visibility', H2_STATE[id] ? 'visible' : 'none');
     });
+  }
+
+  // v1.1.10 · cargar capa raster (image source MapLibre · ortofoto KMZ pre-procesada)
+  function addH2RasterLayer(R) {
+    if (typeof map === 'undefined' || !map.getSource) return;
+    const srcId = `h2-src-${R.id}`;
+    if (map.getSource(srcId)) return;
+    try {
+      map.addSource(srcId, {
+        type: 'image',
+        url: R.url,
+        coordinates: R.coordinates
+      });
+      // Insertar DEBAJO de las capas vectoriales H2 si existen (ortofoto va al fondo)
+      const firstH2Vec = H2_LAYERS.map(L => `h2-${L.id}-fill`).find(id => map.getLayer(id));
+      map.addLayer({
+        id: `h2-${R.id}-raster`,
+        source: srcId,
+        type: 'raster',
+        paint: { 'raster-opacity': 0.85, 'raster-fade-duration': 250 },
+        layout: { visibility: H2_STATE[R.id] ? 'visible' : 'none' }
+      }, firstH2Vec);
+      H2_STATS[R.id].count = 1;
+      h2LayersOk++;
+      h2TotalFeatures += 1;
+    } catch (e) {
+      H2_STATS[R.id].error = e.message || String(e);
+      h2LayersErr++;
+      console.warn(`[H2 raster ${R.id}] ${e.message}`);
+    }
   }
 
   // === Renderizar ficha epistemológica en panel derecho ===
@@ -6664,7 +6738,7 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
         <div style="font-size:18px;font-weight:700;color:#FFF;margin-bottom:10px">VISOR INVÁLIDO · build rechazado</div>
         <div style="font-size:13px;line-height:1.6;color:#FEE2E2;margin-bottom:18px">
           Las 7 capas H2 fallaron al cargar sobre protocolo <code style="background:#3B0C0C;padding:1px 6px;border-radius:3px;color:#F87171">${window.location.protocol}</code>.<br>
-          Magnus Radar v1.0.7 exige <strong>≥ 1 feature</strong> por capa H2 para considerarse publicable.
+          Magnus Radar v${APP_VERSION} exige <strong>≥ 1 feature</strong> por capa H2 para considerarse publicable.
         </div>
         <div style="background:#0F0610;border-left:3px solid #EF4444;padding:12px 14px;border-radius:4px;margin-bottom:18px">
           <div style="font-size:11px;color:#FCA5A5;margin-bottom:6px;font-weight:600">Errores capturados:</div>
@@ -6726,6 +6800,8 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
       );
       const results = await Promise.all(promises);
       results.forEach(r => { if (r.err) return; addH2GeojsonLayer(r.L, r.d); });
+      // v1.1.10 · cargar rasters (image source · sin fetch · MapLibre los pide directo)
+      H2_RASTERS.forEach(R => addH2RasterLayer(R));
       updateBadge();
 
       // v1.0.4 · BUILD REJECTION si 0 features en HTTP (no aplica para file:// que ya tiene warning específico)
@@ -6743,6 +6819,18 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     setTimeout(bootstrapH2, 300);
   } else {
     document.addEventListener('DOMContentLoaded', () => setTimeout(bootstrapH2, 300));
+  }
+})();
+
+// ============================================================
+// v1.1.9 · auto-aplicar APP_VERSION en todos los nodos data-app-version
+// ============================================================
+(function bindAppVersion() {
+  const run = () => { try { applyAppVersion(); } catch (e) {} };
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    run();
+  } else {
+    document.addEventListener('DOMContentLoaded', run);
   }
 })();
 
@@ -6988,7 +7076,7 @@ window.__MAGNUS_GEO = (function GeometryFix() {
       });
     } catch (e) {}
 
-    if (window.__MAGNUS_DEBUG) console.log('[v1.0.7 TruthReconciler]', truths);
+    if (window.__MAGNUS_DEBUG) console.log('[v' + APP_VERSION + ' TruthReconciler]', truths);
   }
 
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
