@@ -2412,14 +2412,14 @@
     <span class="status-sep">|</span>
     <div class="status-item" id="cursorCoords">—</div>
     <div style="flex:1"></div>
-    <div class="status-item">Magnus Radar <span data-app-version>v1.1.10</span> · La Higuera</div>
+    <div class="status-item">Magnus Radar <span data-app-version>v1.1.11</span> · La Higuera</div>
   </div>
 </div>
 
 <script>
-// ============ APP VERSION centralizada (v1.1.10) ============
+// ============ APP VERSION centralizada (v1.1.11) ============
 // Single source of truth para version visible · evita drift entre statusbar · panel-flags · export · console
-const APP_VERSION = '1.1.10';
+const APP_VERSION = '1.1.11';
 function applyAppVersion() {
   document.querySelectorAll('[data-app-version]').forEach(el => {
     const suffix = el.dataset.appVersionSuffix || '';
@@ -6212,7 +6212,7 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
         [-71.19200880981892, -29.518136215465194],// SE
         [-71.2056624238989, -29.518136215465194]  // SW
       ],
-      default: false
+      default: true  // v1.1.11 · ENCENDIDA por default · evita bug re-render sidebar checkbox
     }
   ];
 
