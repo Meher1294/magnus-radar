@@ -2412,14 +2412,14 @@
     <span class="status-sep">|</span>
     <div class="status-item" id="cursorCoords">—</div>
     <div style="flex:1"></div>
-    <div class="status-item">Magnus Radar <span data-app-version>v1.1.11</span> · La Higuera</div>
+    <div class="status-item">Magnus Radar <span data-app-version>v1.1.12</span> · La Higuera</div>
   </div>
 </div>
 
 <script>
-// ============ APP VERSION centralizada (v1.1.11) ============
+// ============ APP VERSION centralizada (v1.1.12) ============
 // Single source of truth para version visible · evita drift entre statusbar · panel-flags · export · console
-const APP_VERSION = '1.1.11';
+const APP_VERSION = '1.1.12';
 function applyAppVersion() {
   document.querySelectorAll('[data-app-version]').forEach(el => {
     const suffix = el.dataset.appVersionSuffix || '';
@@ -6811,8 +6811,15 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
       }
     };
 
-    if (map.loaded()) doLoad();
-    else map.on('load', doLoad);
+    // v1.1.12 · fix bootstrap race condition · doLoad nunca ejecutaba si load event ya pasó
+    let __h2DoLoadCalled = false;
+    const safeDoLoad = () => { if (__h2DoLoadCalled) return; __h2DoLoadCalled = true; doLoad(); };
+    if (map.loaded()) safeDoLoad();
+    else {
+      map.once('load', safeDoLoad);
+      // fallback · si load nunca emite o ya emitió antes del listener · fuerza ejecución a los 3s
+      setTimeout(safeDoLoad, 3000);
+    }
   }
 
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
