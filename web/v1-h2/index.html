@@ -17,8 +17,13 @@ html.meeting-mode #dynamicLegend.collapsed .lc-row{display:flex !important;}
 html.meeting-mode #dynamicLegend.collapsed{padding:12px !important;}
 html.meeting-mode #dynamicLegend .lc-title{cursor:default;}
 html.meeting-mode .panel>.panel-empty{display:none !important;}
-#meetingExecPanel{display:none;}
-html.meeting-mode #meetingExecPanel{display:block;}
+/* v1.2-foco.2 · C4: ocultar COMPLETOS los bloques colapsables del sidebar (capas/filtros/mapa/métricas) */
+html.meeting-mode #sidebar-cta-container{display:none !important;}
+html.meeting-mode [data-cta-group]{display:none !important;}
+/* v1.2-foco.2 · C1: panel ejecutivo como overlay HERMANO de #panel · sobrevive a cualquier panel.innerHTML */
+#meetingExecWrap{display:none;}
+html.meeting-mode .main{position:relative;}
+html.meeting-mode #meetingExecWrap.exec-on{display:block;position:absolute;top:0;right:0;bottom:0;width:400px;background:var(--surface);border-left:1px solid var(--border);overflow-y:auto;z-index:25;}
 </style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Magnus Radar — Inteligencia Territorial · La Higuera</title>
@@ -2412,6 +2417,10 @@ html.meeting-mode #meetingExecPanel{display:block;}
         <div class="e-title">Selecciona un elemento del mapa</div>
         <div>Click sobre un predio, proyecto SEIA o localidad<br>para ver su ficha de inteligencia territorial.</div>
       </div>
+    </div>
+
+    <!-- v1.2-foco.2 · C1: overlay ejecutivo del corredor · HERMANO de #panel (sobrevive a panel.innerHTML) -->
+    <div id="meetingExecWrap">
       <div id="meetingExecPanel">
         <div style="padding:22px">
           <div style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:10px">Corredor · Estancia La Higuera</div>
@@ -2429,7 +2438,7 @@ html.meeting-mode #meetingExecPanel{display:block;}
             <div style="display:flex;gap:9px;align-items:flex-start"><span style="width:10px;height:10px;border-radius:2px;background:#3B82F6;margin-top:3px;flex:none"></span><span><strong style="color:var(--text)">Servidumbres</strong> — líneas de transmisión y accesos sobre el área.</span></div>
           </div>
           <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--border-soft);font-size:12px;color:var(--muted);line-height:1.5">
-            Haz clic sobre un predio o una servidumbre en el mapa para ver su lectura territorial.
+            Haz clic sobre un predio o una servidumbre del corredor para ver su lectura territorial. Al limpiar la selección, este panel vuelve.
           </div>
         </div>
       </div>
@@ -2651,8 +2660,9 @@ const map = new maplibregl.Map({
     sources: { 'base': { type: 'raster', tiles: basemaps.osm.tiles, tileSize: 256 } },
     layers: [{ id: 'base', type: 'raster', source: 'base' }]
   },
-  center: [-71.05, -29.39],
-  zoom: 9.5,
+  // v1.2-foco.2 · C2: en modo reunión el mapa NACE sobre el corredor (luego fitBounds afina con datos reales)
+  center: window.MEETING ? [-71.198, -29.516] : [-71.05, -29.39],
+  zoom: window.MEETING ? 12 : 9.5,
   maxZoom: 18,
   minZoom: 7,
   preserveDrawingBuffer: true  // permite exportar PNG (toDataURL)
@@ -3327,6 +3337,18 @@ function addPrediosLayer(data) {
   });
   map.on('mouseenter', 'seia-points', () => map.getCanvas().style.cursor = 'pointer');
   map.on('mouseleave', 'seia-points', () => map.getCanvas().style.cursor = '');
+
+  // v1.2-foco.2 · C1/C2: en modo reunión apagar overlays comuna-wide (ruido + clic abriría fichas no gateadas, p.ej. SEIA Dominga)
+  // Se conserva ruta5-line como referencia vial. Sin el parámetro ?foco=corredor este bloque no corre.
+  if (window.MEETING) {
+    ['seia-points','seia-labels','dga-points','dga-heatmap','pueblos-points',
+     'areas-protegidas-fill','areas-protegidas-line','areas-protegidas-label',
+     'caminos-sec-line','zona-dominga-fill','zona-dominga-line',
+     'concesiones-fill','concesiones-line','interchile-line',
+     'subestaciones-points','subestaciones-labels'].forEach(id => {
+      if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', 'none');
+    });
+  }
 }
 
 let selectedFeatureId = null;
@@ -3680,6 +3702,7 @@ document.querySelectorAll('[data-color]').forEach(btn => {
 });
 
 function updateLegend(mode) {
+  if (window.MEETING) return; // v1.2-foco.2 · C3: en reunión la leyenda es del corredor, fija
   const card = document.getElementById('dynamicLegend');
   if (mode === 'sector') {
     card.innerHTML = `
@@ -5955,6 +5978,7 @@ if (typeof showSeia === 'function') {
 // ============ URL STATE + COMPARTIR ============
 // Sincroniza estado en URL hash: #map=zoom/lat/lng&tab=catastro
 function updateUrlHash() {
+  if (window.MEETING) return; // v1.2-foco.2 · C1: en reunión la URL no acumula estado (#map/...)
   const c = map.getCenter();
   const z = map.getZoom().toFixed(1);
   const tab = document.querySelector('.tab.active')?.dataset.tab || 'catastro';
@@ -5963,6 +5987,7 @@ function updateUrlHash() {
 }
 
 function applyUrlHash() {
+  if (window.MEETING) return; // v1.2-foco.2 · C1: NO restaurar estado previo (hash #map=/tab=) en reunión
   const h = location.hash.slice(1);
   if (!h) return;
   const params = Object.fromEntries(h.split('&').map(p => p.split('=')));
@@ -6264,9 +6289,81 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
   H2_LAYERS.forEach(L => { H2_STATE[L.id] = L.default; H2_STATS[L.id] = { count:0, error:null }; });
   H2_RASTERS.forEach(R => { H2_STATE[R.id] = R.default; H2_STATS[R.id] = { count:0, error:null }; });
   // v1.2-foco · preset reunión: encender SOLO el corredor, apagar todo lo demás
+  // v1.2-foco.2 · h2_matriz default OFF en reunión: su geometría es bbox 5 vértices ~120 km (no perímetro real,
+  // doctrina bbox-no-es-perimetro) → teñía todo el mapa y es indefendible frente a la contraparte. Queda como toggle.
   if (window.MEETING) {
-    const _corridor = ['h2_cominetti','h2_h1_ctx','h2_matriz','h2_rtk','h2_servidumbres','h2_sector_lineal_ai','h2_interchile_corredor','h2_interchile_torres','h2_ortofoto'];
+    const _corridor = ['h2_cominetti','h2_h1_ctx','h2_rtk','h2_servidumbres','h2_sector_lineal_ai','h2_interchile_corredor','h2_interchile_torres','h2_ortofoto'];
     Object.keys(H2_STATE).forEach(id => { H2_STATE[id] = _corridor.includes(id); });
+  }
+
+  // ============================================================
+  // v1.2-foco.2 · C1+C2+C3 · apertura de reunión
+  // C2: fitBounds automático a Cominetti + García Huidobro + Sector Lineal (datos reales, no botón)
+  // C1: overlay ejecutivo persistente (MutationObserver · vuelve al limpiar selección)
+  // C3: leyenda fija del corredor (reemplaza "Predios por sector")
+  // Nada de esto corre sin ?foco=corredor.
+  // ============================================================
+  const MEETING_FIT_IDS = ['h2_cominetti','h2_h1_ctx','h2_sector_lineal_ai'];
+  const meetingBBoxes = {};
+  let meetingFitDone = false;
+  function meetingBBox(coords, b) {
+    if (typeof coords[0] === 'number') {
+      if (coords[0] < b[0]) b[0] = coords[0];
+      if (coords[1] < b[1]) b[1] = coords[1];
+      if (coords[0] > b[2]) b[2] = coords[0];
+      if (coords[1] > b[3]) b[3] = coords[1];
+    } else { coords.forEach(c => meetingBBox(c, b)); }
+    return b;
+  }
+  function meetingCollectBounds(id, data) {
+    if (!window.MEETING || meetingFitDone || !MEETING_FIT_IDS.includes(id)) return;
+    const b = [Infinity, Infinity, -Infinity, -Infinity];
+    (data.features || []).forEach(f => { if (f.geometry && f.geometry.coordinates) meetingBBox(f.geometry.coordinates, b); });
+    if (isFinite(b[0])) meetingBBoxes[id] = b;
+    if (MEETING_FIT_IDS.every(k => meetingBBoxes[k])) meetingFit();
+  }
+  function meetingFit() {
+    if (meetingFitDone || typeof map === 'undefined') return;
+    const list = Object.keys(meetingBBoxes).map(k => meetingBBoxes[k]);
+    if (!list.length) return;
+    meetingFitDone = true;
+    const u = [Infinity, Infinity, -Infinity, -Infinity];
+    list.forEach(b => { u[0]=Math.min(u[0],b[0]); u[1]=Math.min(u[1],b[1]); u[2]=Math.max(u[2],b[2]); u[3]=Math.max(u[3],b[3]); });
+    try {
+      // padding right 440: deja el corredor libre del panel derecho (400px) · top/bottom aire visual
+      map.fitBounds([[u[0],u[1]],[u[2],u[3]]], { padding:{top:70,bottom:70,left:80,right:440}, duration:900, maxZoom:14.5 });
+    } catch(e) {}
+  }
+  if (window.MEETING) {
+    // fallback: si a los 5s no llegaron las 3 capas, encuadrar con lo que haya
+    setTimeout(() => { if (!meetingFitDone) meetingFit(); }, 5000);
+
+    // C3 · leyenda fija del corredor (colores = capas visibles)
+    const lg = document.getElementById('dynamicLegend');
+    if (lg) {
+      lg.classList.remove('collapsed');
+      lg.innerHTML = `
+        <div class="lc-title">Corredor · Estancia La Higuera</div>
+        <div class="lc-row"><span class="lc-bar" style="background:#C97B3A"></span>Cominetti (H2)</div>
+        <div class="lc-row"><span class="lc-bar" style="background:#6B7280"></span>García Huidobro (H1)</div>
+        <div class="lc-row"><span class="lc-bar" style="background:#EC4899"></span>Sector Lineal AI</div>
+        <div class="lc-row"><span class="lc-bar" style="background:#3B82F6"></span>Servidumbres H2</div>
+        <div class="lc-row"><span class="lc-bar" style="background:#7C3AED"></span>InterChile 2×500 kV</div>
+        <div class="lc-row"><span class="lc-bar" style="background:#10B981"></span>Perímetro RTK</div>`;
+    }
+
+    // C1 · overlay ejecutivo: visible al abrir · se oculta al renderizar CUALQUIER ficha · vuelve al limpiar
+    // detector: hay ficha si #panel tiene contenido distinto del placeholder .panel-empty
+    // (cubre fichas .panel-header Y fichas H2 de renderH2Detail, que no usan .panel-header)
+    const execWrap = document.getElementById('meetingExecWrap');
+    const panelEl = document.getElementById('panel');
+    if (execWrap && panelEl) {
+      execWrap.classList.add('exec-on');
+      new MutationObserver(() => {
+        const ficha = panelEl.children.length > 0 && !panelEl.querySelector(':scope > .panel-empty');
+        execWrap.classList.toggle('exec-on', !ficha);
+      }).observe(panelEl, { childList: true });
+    }
   }
 
   // === DATA STATUS badge ===
@@ -6377,6 +6474,7 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
 
     // v1.1.5 · legend-card "Predios por sector" minimizable
     (function setupLegendToggle(){
+      if (window.MEETING) return; // v1.2-foco.2 · C3: leyenda fija en reunión · sin toggle ni restore de colapso
       const card = document.getElementById('dynamicLegend');
       if (!card) return;
       const title = card.querySelector('.lc-title');
@@ -6523,6 +6621,7 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     // v1.0.6 · exponer al global para H2ClickPriority interceptor
     if (!window.__H2_LAYERS_DATA) window.__H2_LAYERS_DATA = {};
     window.__H2_LAYERS_DATA[L.id] = { L, metadata: data.metadata, renderDetail: renderH2Detail };
+    meetingCollectBounds(L.id, data); // v1.2-foco.2 · C2 (no-op fuera de reunión)
 
     const srcId = `h2-src-${L.id}`;
     if (typeof map === 'undefined' || !map.getSource) return;
