@@ -2,6 +2,24 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8" />
+<!-- v1.2-foco · preset de reunión Andes Iron · NO destructivo · se activa SOLO con ?foco=corredor -->
+<script>
+(function(){try{if(new URLSearchParams(location.search).get('foco')==='corredor'){window.MEETING=true;document.documentElement.classList.add('meeting-mode');}}catch(e){}})();
+</script>
+<style>
+/* ===== MODO REUNIÓN (?foco=corredor) · sin el parámetro NADA de esto aplica ===== */
+html.meeting-mode .tabs .tab:not([data-tab="catastro"]){display:none !important;}
+html.meeting-mode .sidebar-section[data-cta-group="capas"]{display:none !important;}
+html.meeting-mode #h2-doctrinas-btn,html.meeting-mode #h2-mesa-ai-btn{display:none !important;}
+html.meeting-mode #btnShare,html.meeting-mode .header-right>.btn-ghost,html.meeting-mode #authSlot{display:none !important;}
+html.meeting-mode .header-center{display:none !important;}
+html.meeting-mode #dynamicLegend.collapsed .lc-row{display:flex !important;}
+html.meeting-mode #dynamicLegend.collapsed{padding:12px !important;}
+html.meeting-mode #dynamicLegend .lc-title{cursor:default;}
+html.meeting-mode .panel>.panel-empty{display:none !important;}
+#meetingExecPanel{display:none;}
+html.meeting-mode #meetingExecPanel{display:block;}
+</style>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Magnus Radar — Inteligencia Territorial · La Higuera</title>
 <meta name="description" content="Visor público de inteligencia territorial de la comuna La Higuera, Coquimbo. 7.686 predios SII, 17 proyectos SEIA, áreas protegidas y derechos DGA en tiempo real." />
@@ -2394,6 +2412,27 @@
         <div class="e-title">Selecciona un elemento del mapa</div>
         <div>Click sobre un predio, proyecto SEIA o localidad<br>para ver su ficha de inteligencia territorial.</div>
       </div>
+      <div id="meetingExecPanel">
+        <div style="padding:22px">
+          <div style="font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-family:'JetBrains Mono',monospace;margin-bottom:10px">Corredor · Estancia La Higuera</div>
+          <div style="font-size:17px;font-weight:600;line-height:1.3;color:var(--text);margin-bottom:14px">García Huidobro · Cominetti · Sector Lineal</div>
+          <div style="font-size:13px;color:var(--text-dim);line-height:1.65;margin-bottom:18px">
+            Lectura territorial de un corredor continuo: el predio <strong style="color:var(--text)">Cominetti (H2)</strong>,
+            su entorno colindante <strong style="color:var(--text)">García Huidobro (H1)</strong>, y el
+            <strong style="color:var(--text)">Sector Lineal</strong> que los articula, junto con las
+            <strong style="color:var(--text)">servidumbres</strong> eléctricas y de acceso que cruzan el área.
+          </div>
+          <div style="display:flex;flex-direction:column;gap:9px;font-size:12.5px;color:var(--text-dim)">
+            <div style="display:flex;gap:9px;align-items:flex-start"><span style="width:10px;height:10px;border-radius:2px;background:#C97B3A;margin-top:3px;flex:none"></span><span><strong style="color:var(--text)">Cominetti (H2)</strong> — predio central del corredor.</span></div>
+            <div style="display:flex;gap:9px;align-items:flex-start"><span style="width:10px;height:10px;border-radius:2px;background:#6B7280;margin-top:3px;flex:none"></span><span><strong style="color:var(--text)">García Huidobro (H1)</strong> — contexto territorial colindante.</span></div>
+            <div style="display:flex;gap:9px;align-items:flex-start"><span style="width:10px;height:10px;border-radius:2px;background:#EC4899;margin-top:3px;flex:none"></span><span><strong style="color:var(--text)">Sector Lineal</strong> — franja que recorre y articula el corredor.</span></div>
+            <div style="display:flex;gap:9px;align-items:flex-start"><span style="width:10px;height:10px;border-radius:2px;background:#3B82F6;margin-top:3px;flex:none"></span><span><strong style="color:var(--text)">Servidumbres</strong> — líneas de transmisión y accesos sobre el área.</span></div>
+          </div>
+          <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--border-soft);font-size:12px;color:var(--muted);line-height:1.5">
+            Haz clic sobre un predio o una servidumbre en el mapa para ver su lectura territorial.
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -2953,7 +2992,8 @@ function addPrediosLayer(data) {
     paint: {
       'fill-color': getColorExpression('sector'),
       'fill-opacity': ['case', ['boolean', ['feature-state', 'selected'], false], 0.9, 0.45]
-    }
+    },
+    layout: { visibility: window.MEETING ? 'none' : 'visible' }   // v1.2-foco · base catastral oculta en reunión (solo corredor + cierra renderPredioPanel)
   });
   map.addLayer({
     id: 'predios-line',
@@ -2962,7 +3002,8 @@ function addPrediosLayer(data) {
     paint: {
       'line-color': ['case', ['boolean', ['feature-state', 'selected'], false], '#FFFFFF', '#0B1220'],
       'line-width': ['case', ['boolean', ['feature-state', 'selected'], false], 2.5, 0.4]
-    }
+    },
+    layout: { visibility: window.MEETING ? 'none' : 'visible' }   // v1.2-foco
   });
 
   // Ruta 5
@@ -4091,7 +4132,7 @@ function showOferta(p) {
         <div class="field"><div class="label">Publicada</div><div class="value mono">${p.publicada || '—'}</div></div>
       </div>
 
-      ${p.notas ? `
+      ${p.notas && !window.MEETING ? `
       <div class="section">
         <h4>Notas internas</h4>
         <div style="font-size:12px;color:var(--text-dim);background:rgba(201,123,58,0.08);padding:10px;border-left:3px solid var(--accent);border-radius:4px;line-height:1.5">${p.notas}</div>
@@ -4138,7 +4179,7 @@ function showTransaccion(p) {
         <div class="field"><div class="label">RUT comprador</div><div class="value mono">${p.comprador_rut || '—'}</div></div>
         <div class="field full"><div class="label">Comprador</div><div class="value">${p.comprador}</div></div>
       </div>
-      ${p.notas ? `<div class="section"><h4>Notas</h4><div style="font-size:12px;color:var(--text-dim);line-height:1.5">${p.notas}</div></div>` : ''}
+      ${p.notas && !window.MEETING ? `<div class="section"><h4>Notas</h4><div style="font-size:12px;color:var(--text-dim);line-height:1.5">${p.notas}</div></div>` : ''}
     </div>`;
 }
 
@@ -6172,7 +6213,7 @@ function endTour() {
   localStorage.setItem(TOUR_KEY, '1');
 }
 // Lanzar tour cuando el mapa termina de cargar (1 vez por navegador)
-setTimeout(() => { if (!localStorage.getItem(TOUR_KEY)) startTour(); }, 2500);
+setTimeout(() => { if (!window.MEETING && !localStorage.getItem(TOUR_KEY)) startTour(); }, 2500);
 window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
 
 // ============================================================
@@ -6222,6 +6263,11 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
   let h2LayersOk = 0, h2LayersErr = 0;
   H2_LAYERS.forEach(L => { H2_STATE[L.id] = L.default; H2_STATS[L.id] = { count:0, error:null }; });
   H2_RASTERS.forEach(R => { H2_STATE[R.id] = R.default; H2_STATS[R.id] = { count:0, error:null }; });
+  // v1.2-foco · preset reunión: encender SOLO el corredor, apagar todo lo demás
+  if (window.MEETING) {
+    const _corridor = ['h2_cominetti','h2_h1_ctx','h2_matriz','h2_rtk','h2_servidumbres','h2_sector_lineal_ai','h2_interchile_corredor','h2_interchile_torres','h2_ortofoto'];
+    Object.keys(H2_STATE).forEach(id => { H2_STATE[id] = _corridor.includes(id); });
+  }
 
   // === DATA STATUS badge ===
   const mapEl = document.getElementById('map') || document.querySelector('.map');
@@ -6281,7 +6327,12 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
       sidebar.insertBefore(host, sidebar.firstChild);
     }
     // v1.1.10 · unificar H2_LAYERS + H2_RASTERS en la misma lista del sidebar
-    const allH2 = [...H2_LAYERS, ...H2_RASTERS];
+    let allH2 = [...H2_LAYERS, ...H2_RASTERS];
+    // v1.2-foco · preset reunión: el sidebar lista solo el corredor
+    if (window.MEETING) {
+      const _corridor = ['h2_cominetti','h2_h1_ctx','h2_matriz','h2_rtk','h2_servidumbres','h2_sector_lineal_ai','h2_interchile_corredor','h2_interchile_torres','h2_ortofoto'];
+      allH2 = allH2.filter(L => _corridor.includes(L.id));
+    }
     const rows = allH2.map(L => {
       const s = H2_STATS[L.id];
       const cls = s.error ? 'err' : (s.count > 0 ? 'ok' : '');
@@ -6297,8 +6348,8 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     host.innerHTML = `
       <h4>◇ Foco Hijuela 2 Cominetti</h4>
       <button class="h2-focus-btn" id="h2-zoom-btn">Zoom a H2 (rol 24-123 + 24-160)</button>
-      <button class="h2-focus-btn secondary" id="h2-doctrinas-btn">Ver doctrinas canónicas</button>
-      <button class="h2-focus-btn secondary" id="h2-mesa-ai-btn">◆ Estado del conocimiento · Mesa AI</button>
+      ${window.MEETING ? '' : `<button class="h2-focus-btn secondary" id="h2-doctrinas-btn">Ver doctrinas canónicas</button>
+      <button class="h2-focus-btn secondary" id="h2-mesa-ai-btn">◆ Estado del conocimiento · Mesa AI</button>`}
       ${rows}
     `;
     host.querySelectorAll('input[data-h2-id]').forEach(inp => {
@@ -6638,7 +6689,7 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
       <div style="padding:10px 12px;margin-bottom:14px;background:rgba(107,114,128,0.12);border-left:3px solid #9CA3AF;border-radius:4px;font-size:10.5px;color:var(--text-dim);line-height:1.5">
         <strong style="color:#D1D5DB">H1 informativa · sin oferta comercial activa</strong><br>
         Magnus Radar muestra H1 García Huidobro como contexto territorial del corredor Estancia La Higuera.
-        Magnus SpA está restringido por la cláusula 5ª del mandato Cominetti (Rep 24.327) de representar a propietarios colindantes.
+        Magnus SpA está restringido por la cláusula 5ª del mandato Cominetti de representar a propietarios colindantes.
         Esta capa NO implica negociación, oferta ni intermediación sobre H1.
       </div>` : '';
 
@@ -6648,10 +6699,10 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
         <div style="font-size:15px;font-weight:600;line-height:1.3;color:var(--text)">${esc(p.nombre || p.titular || p.descripcion || p.conflicto_id || p.id || 'Sin nombre')}</div>
       </div>
       ${h1Banner}
-      <div class="epis-section">
+      ${window.MEETING ? '' : `<div class="epis-section">
         <div class="epis-section-title">Estado epistemológico</div>
         <span class="epis-badge ${cls}">${esc(estado)}</span>
-      </div>`;
+      </div>`}`;
 
     if (sii || cbr || aliases.length) {
       html += `<div class="epis-section">
@@ -6666,7 +6717,7 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     if (p.titular_documental) atts.push(['titular doc.', p.titular_documental]);
     if (p.titular) atts.push(['titular', p.titular]);
     if (p.area_ha_catastral) atts.push(['superficie', p.area_ha_catastral + ' ha (SII)']);
-    if (p.tier) atts.push(['tier', 'Tier ' + p.tier]);
+    if (p.tier && !window.MEETING) atts.push(['tier', 'Tier ' + p.tier]);
     if (p.año) atts.push(['año', p.año]);
     // v1.0.9 · PII pública saneada · comisión y vigencia mandato no se exponen
     // Acceso a economía del mandato requiere autenticación (futura migración Supabase RLS)
@@ -6687,16 +6738,16 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
         atts.map(([k,v]) => `<div style="display:grid;grid-template-columns:110px 1fr;gap:8px;padding:4px 0;font-size:11px"><span style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10px">${esc(k)}</span><span style="color:var(--text-dim);line-height:1.5">${esc(v)}</span></div>`).join('') +
         `</div>`;
     }
-    if (caveats.length) {
+    if (caveats.length && !window.MEETING) {
       html += `<div class="epis-section"><div class="epis-section-title">Caveats epistemológicos</div>` +
         caveats.map(c => `<div class="epis-caveat">${esc(c)}</div>`).join('') + `</div>`;
     }
-    if (doctrinas) {
+    if (doctrinas && !window.MEETING) {
       const arr = Array.isArray(doctrinas) ? doctrinas : [doctrinas];
       html += `<div class="epis-section"><div class="epis-section-title">Doctrinas canónicas</div>` +
         arr.map(d => `<div class="epis-doctrine-chip">${esc(d)}</div>`).join('') + `</div>`;
     }
-    if (fuentes.length) {
+    if (fuentes.length && !window.MEETING) {
       html += `<div class="epis-section"><div class="epis-section-title">Fuentes</div>` +
         fuentes.map(f => `<span class="epis-fuente-chip">${esc(f)}</span>`).join('') + `</div>`;
     }
