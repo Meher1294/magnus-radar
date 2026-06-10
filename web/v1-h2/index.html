@@ -3155,6 +3155,8 @@ function addPrediosLayer(data) {
   map.addSource('ofertas', { type:'geojson', data: ofertasData });
   map.addLayer({
     id: 'ofertas-points', type: 'circle', source: 'ofertas',
+    // v1.2-foco.2 · C1: capa nace de fetch Supabase DESPUÉS del barrido meeting → gate en origen
+    layout: { visibility: window.MEETING ? 'none' : 'visible' },
     paint: {
       'circle-radius': [
         'case',
@@ -3341,13 +3343,20 @@ function addPrediosLayer(data) {
   // v1.2-foco.2 · C1/C2: en modo reunión apagar overlays comuna-wide (ruido + clic abriría fichas no gateadas, p.ej. SEIA Dominga)
   // Se conserva ruta5-line como referencia vial. Sin el parámetro ?foco=corredor este bloque no corre.
   if (window.MEETING) {
-    ['seia-points','seia-labels','dga-points','dga-heatmap','pueblos-points',
-     'areas-protegidas-fill','areas-protegidas-line','areas-protegidas-label',
-     'caminos-sec-line','zona-dominga-fill','zona-dominga-line',
-     'concesiones-fill','concesiones-line','interchile-line',
-     'subestaciones-points','subestaciones-labels'].forEach(id => {
-      if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', 'none');
-    });
+    const _meetingOff = () => {
+      ['seia-points','seia-labels','dga-points','dga-heatmap','pueblos-points',
+       'areas-protegidas-fill','areas-protegidas-line','areas-protegidas-label',
+       'caminos-sec-line','zona-dominga-fill','zona-dominga-line',
+       'concesiones-fill','concesiones-line','interchile-line',
+       'subestaciones-points','subestaciones-labels',
+       'ofertas-points','tx-points'].forEach(id => {
+        if (map.getLayer(id)) map.setLayoutProperty(id, 'visibility', 'none');
+      });
+    };
+    _meetingOff();
+    // barrido tardío: cubre capas que nacen de fetches Supabase posteriores (p.ej. ofertas-points)
+    setTimeout(_meetingOff, 4000);
+    setTimeout(_meetingOff, 9000);
   }
 }
 
