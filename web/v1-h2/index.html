@@ -2432,7 +2432,7 @@ html.meeting-mode #meetingExecWrap.exec-on{display:block;position:absolute;top:0
             <strong style="color:var(--text)">servidumbres</strong> eléctricas y de acceso que cruzan el área.
           </div>
           <div style="display:flex;flex-direction:column;gap:9px;font-size:12.5px;color:var(--text-dim)">
-            <div style="display:flex;gap:9px;align-items:flex-start"><span style="width:10px;height:10px;border-radius:2px;background:#C97B3A;margin-top:3px;flex:none"></span><span><strong style="color:var(--text)">Cominetti (H2)</strong> — predio central del corredor.</span></div>
+            <div style="display:flex;gap:9px;align-items:flex-start"><span style="width:10px;height:10px;border-radius:2px;background:#C97B3A;margin-top:3px;flex:none"></span><span><strong style="color:var(--text)">Cominetti (H2)</strong> — predio central del corredor, compuesto por <strong style="color:var(--text)">Resto A</strong>, <strong style="color:var(--text)">Resto B</strong> y <strong style="color:var(--text)">Lote C</strong>.</span></div>
             <div style="display:flex;gap:9px;align-items:flex-start"><span style="width:10px;height:10px;border-radius:2px;background:#6B7280;margin-top:3px;flex:none"></span><span><strong style="color:var(--text)">García Huidobro (H1)</strong> — contexto territorial colindante.</span></div>
             <div style="display:flex;gap:9px;align-items:flex-start"><span style="width:10px;height:10px;border-radius:2px;background:#EC4899;margin-top:3px;flex:none"></span><span><strong style="color:var(--text)">Sector Lineal</strong> — franja que recorre y articula el corredor.</span></div>
             <div style="display:flex;gap:9px;align-items:flex-start"><span style="width:10px;height:10px;border-radius:2px;background:#3B82F6;margin-top:3px;flex:none"></span><span><strong style="color:var(--text)">Servidumbres</strong> — líneas de transmisión y accesos sobre el área.</span></div>
@@ -6672,6 +6672,20 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
         filter:['==', ['geometry-type'], 'Polygon'],
         paint:{ 'line-color':tieredLineColor, 'line-width':tieredLineWidth, 'line-opacity':0.85 },
         layout:{ visibility: H2_STATE[L.id] ? 'visible' : 'none' }});
+      // v1.2-foco.3 · estructura operacional: label de mapa SOLO para features que declaran label_mapa
+      // (hoy: capa_1 H2 = Lote C / Resto A+B) · expresa la unidad territorial, no el rol SII abstracto
+      map.addLayer({ id:`h2-${L.id}-namelabel`, source:srcId, type:'symbol',
+        filter:['all', ['==', ['geometry-type'], 'Polygon'], ['has', 'label_mapa']],
+        layout:{
+          visibility: H2_STATE[L.id] ? 'visible' : 'none',
+          'symbol-placement': 'point',
+          'text-field': ['get','label_mapa'],
+          'text-size': 12,
+          'text-font': ['Open Sans Regular','Arial Unicode MS Regular'],
+          'text-letter-spacing': 0.06,
+          'text-allow-overlap': false
+        },
+        paint:{ 'text-color': '#FFFFFF', 'text-halo-color': L.color, 'text-halo-width': 1.6 }});
     }
     if (L.tipo === 'line') {
       map.addLayer({ id:`h2-${L.id}-line`, source:srcId, type:'line',

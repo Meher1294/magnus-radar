@@ -23,7 +23,23 @@
    "homonimia-territorial",
    "no-derivar-estrategia-sin-capa-ocupacion",
    "correccion-doctrinal-unidad-territorial-historica"
-  ]
+  ],
+  "estructura_operacional": {
+   "regla_negocio": "H2 = Resto A + Resto B + Lote C (lectura operacional, 2026-06-10)",
+   "fuentes": [
+    "Adjudicaciones Cofanti feb-2017 (Rep FS 694 N°26.309 y FS 695 N°26.310-26.314): 'Resto Hijuela 2 (Resto a + b)' 1.839,35 ha + 'Lote C' 300 ha — via titularidad_cominetti_2023.geojson",
+    "Plano histórico ITS-CARTO-PLANO-0001: anotaciones 863 + 976 + 300 = 2.139 ha (coincide con cifra CBR del plano coordenado) — georreferenciación PENDIENTE",
+    "Plano AI AIPD-01-AI-AIP001 usa denominación 'Resto Hijuela 2 ... Lote A (Lote 2A)' para rol 24-123"
+   ],
+   "particion_resto_a_b": "PENDIENTE_RECONCILIACION — no existe geometría de fuente que separe Resto A de Resto B; los 3 cuerpos catastrales SII del rol 24-123 NO corresponden a la división jurídica A/B (verificado 2026-06-10: titularidad_2023 usa una sola geometría-placeholder para todas las cuotas; superficies SII por cuerpo 1.399,93/0,15/901,71 no cuadran con 863/976 históricas)",
+   "fuentes_pendientes_para_particion": [
+    "ITS-CARTO-PLANO-0001 georreferenciado (RMSE<=50m)",
+    "plano CBR coordenado de las adjudicaciones",
+    "cruce perímetro RTK",
+    "inscripciones CBR fs 1.671 N°1.159 / fs 1.729 N°1.197 (2017)"
+   ],
+   "nota_metodo": "Cambio 2026-06-10 = SOLO reetiquetado y propiedades; geometrías y superficies intactas (hash verificado)"
+  }
  },
  "features": [
   {
@@ -108,7 +124,7 @@
     ]
    },
    "properties": {
-    "nombre": "Cominetti H2 · Lote C (rol 24-160)",
+    "nombre": "Cominetti H2 · Lote C",
     "tier": 1,
     "estado": "HECHO",
     "titular": "Reservado · mandato Magnus vigente",
@@ -125,7 +141,14 @@
     "capa_origen": "SII (KMZ-06 catastro)",
     "estado_canonico": "HECHO",
     "caveats": [],
-    "estado_raw_legacy": "HECHO"
+    "estado_raw_legacy": "HECHO",
+    "estructura_operacional": "Lote C",
+    "label_mapa": "Lote C",
+    "superficie_por_autoridad": {
+     "sii_ha": 299.18,
+     "adjudicacion_2017_ha": 300.0,
+     "plano_historico_ha": 300
+    }
    }
   },
   {
@@ -1030,7 +1053,7 @@
     ]
    },
    "properties": {
-    "nombre": "Cominetti H2 · Resto Lotes A+B (rol 24-123)",
+    "nombre": "Cominetti H2 · Resto A+B · cuerpo catastral mayor",
     "tier": 1,
     "estado": "HECHO",
     "titular": "Reservado · mandato Magnus vigente",
@@ -1047,8 +1070,19 @@
     "area_ha_catastral": 1399.93,
     "capa_origen": "SII (KMZ-06 catastro)",
     "estado_canonico": "HECHO",
-    "caveats": [],
-    "estado_raw_legacy": "HECHO"
+    "caveats": [
+     "Partición Resto A / Resto B sin geometría de fuente: los cuerpos catastrales SII no corresponden a la división jurídica A/B · pendiente: ITS-CARTO-PLANO-0001 georreferenciado / plano CBR coordenado / cruce RTK"
+    ],
+    "estado_raw_legacy": "HECHO",
+    "estructura_operacional": "Resto A + Resto B (unidad jurídica 1.839,35 ha) · partición A/B pendiente de reconciliación",
+    "label_mapa": "Resto A+B",
+    "particion_ab": "PENDIENTE_RECONCILIACION",
+    "superficie_por_autoridad": {
+     "sii_cuerpo_ha": 1399.93,
+     "juridica_resto_ab_total_ha": 1839.35,
+     "historico_resto_a_ha": 863,
+     "historico_resto_b_ha": 976
+    }
    }
   },
   {
@@ -1081,7 +1115,7 @@
     ]
    },
    "properties": {
-    "nombre": "Cominetti H2 · Resto Lotes A+B (rol 24-123)",
+    "nombre": "Cominetti H2 · Resto A+B · astilla catastral (0,15 ha)",
     "tier": 1,
     "estado": "HECHO",
     "titular": "Reservado · mandato Magnus vigente",
@@ -1098,8 +1132,16 @@
     "area_ha_catastral": 0.15,
     "capa_origen": "SII (KMZ-06 catastro)",
     "estado_canonico": "HECHO",
-    "caveats": [],
-    "estado_raw_legacy": "HECHO"
+    "caveats": [
+     "Partición Resto A / Resto B sin geometría de fuente: los cuerpos catastrales SII no corresponden a la división jurídica A/B · pendiente: ITS-CARTO-PLANO-0001 georreferenciado / plano CBR coordenado / cruce RTK"
+    ],
+    "estado_raw_legacy": "HECHO",
+    "estructura_operacional": "Resto A + Resto B (unidad jurídica) · astilla del catastro SII",
+    "particion_ab": "PENDIENTE_RECONCILIACION",
+    "superficie_por_autoridad": {
+     "sii_cuerpo_ha": 0.15,
+     "juridica_resto_ab_total_ha": 1839.35
+    }
    }
   },
   {
@@ -1328,7 +1370,7 @@
     ]
    },
    "properties": {
-    "nombre": "Cominetti H2 · Resto Lotes A+B (rol 24-123)",
+    "nombre": "Cominetti H2 · Resto A+B · cuerpo catastral menor",
     "tier": 1,
     "estado": "HECHO",
     "titular": "Reservado · mandato Magnus vigente",
@@ -1345,8 +1387,19 @@
     "area_ha_catastral": 901.71,
     "capa_origen": "SII (KMZ-06 catastro)",
     "estado_canonico": "HECHO",
-    "caveats": [],
-    "estado_raw_legacy": "HECHO"
+    "caveats": [
+     "Partición Resto A / Resto B sin geometría de fuente: los cuerpos catastrales SII no corresponden a la división jurídica A/B · pendiente: ITS-CARTO-PLANO-0001 georreferenciado / plano CBR coordenado / cruce RTK"
+    ],
+    "estado_raw_legacy": "HECHO",
+    "estructura_operacional": "Resto A + Resto B (unidad jurídica 1.839,35 ha) · partición A/B pendiente de reconciliación",
+    "label_mapa": "Resto A+B",
+    "particion_ab": "PENDIENTE_RECONCILIACION",
+    "superficie_por_autoridad": {
+     "sii_cuerpo_ha": 901.71,
+     "juridica_resto_ab_total_ha": 1839.35,
+     "historico_resto_a_ha": 863,
+     "historico_resto_b_ha": 976
+    }
    }
   }
  ]
