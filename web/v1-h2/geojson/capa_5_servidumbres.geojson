@@ -9,7 +9,8 @@
    "MEMO_EIA_Dominga_Sector_Lineal",
    "XPU_Analisis_EIA_Dominga_Sector_Lineal"
   ],
-  "caveat_global": "Las geometrías son aproximadas · estado=HIPÓTESIS hasta recuperar capas QGIS originales o vectorizar planos oficiales"
+  "caveat_global": "Las geometrías son aproximadas · estado=HIPÓTESIS hasta recuperar capas QGIS originales o vectorizar planos oficiales",
+  "regla_uso_2026_06_10": "Línea esquemática 26 km = contexto/hipótesis histórica · NO base de negociación · superada para H2/H1 por plano AIPD-01-AI-AIP001"
  },
  "features": [
   {
@@ -67,7 +68,11 @@
     "caveats": [
      "TRAZADO_APROXIMADO · pendiente recuperar andes_iron.geojson o vectorizar A-104 Layout EIA"
     ],
-    "estado_raw_legacy": "vinculante_dic_2025 · firma_pendiente"
+    "estado_raw_legacy": "vinculante_dic_2025 · firma_pendiente",
+    "vigencia_negociacion": "NO_BASE_DE_NEGOCIACION",
+    "rol_actual": "contexto · hipótesis histórica del trazado comuna-wide",
+    "superada_por": "servidumbre_andes_iron.geojson (Plano AI AIPD-01-AI-AIP001 Dic-2025) para el cruce H2/H1",
+    "observacion": "Instrucción 2026-06-10: NO usar como referencia principal en mesa AI · la capa vigente del cruce es Sector Lineal AI Dic-2025"
    }
   },
   {

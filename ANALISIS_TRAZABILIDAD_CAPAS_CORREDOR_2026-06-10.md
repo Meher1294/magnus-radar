@@ -273,4 +273,13 @@ Delta SII vs RTK ≈ **+436 ha**. Candidato documental principal (declarado en c
 **Redactar la "Ficha Territorial Corredor v0"** (documento, no visor): tabla de autoridades de superficie + inventario de gravámenes con naturaleza jurídica separada + las 3 brechas declaradas (SII↔RTK/CBR, 924-644, vectorización AI sin RMSE) + anexo de fuentes citadas. Insumo directo: este informe. Es el entregable que convierte el corredor en objeto defendible ante AI, municipio o un tercero técnico, y define el backlog de reconciliación documental con dueño y acción por brecha.
 
 ---
+
+## ADDENDUM — Instrucción consolidada ejecutada (2026-06-10, v1.2-foco.3)
+
+Posterior a este informe, Max emitió la instrucción consolidada "Corredor AI + Estructura Operacional H2". Cambios aplicados (geometrías invariantes, hashes verificados):
+
+1. **§2.1/§3 actualizados en los datos**: la capa H2 canon ahora se etiqueta `Lote C` / `Resto A+B · cuerpo catastral mayor/menor/astilla`, con labels de mapa, `estructura_operacional`, `superficie_por_autoridad` y "Partición A/B pendiente de reconciliación documental" visible en ficha. Roles SII = atributo secundario de trazabilidad. **Hallazgo que cierra la aritmética jurídica:** adjudicaciones feb-2017 "Resto Hijuela 2 (Resto a+b)" 1.839,35 ha + Lote C 300 ha = 2.139,35 ha ≈ CBR 2.139 ✓ ≈ 863+976+300 (plano histórico) ✓. La capa `titularidad_2023` usa geometría placeholder única (8 cuotas, mismo hash) → confirmado que NO existe fuente geométrica para partir A/B.
+2. **§2.5/§2.6**: la línea esquemática 26 km quedó marcada en el dato como `NO_BASE_DE_NEGOCIACION` (superada por AIPD-01 para el cruce H2/H1) y su capa salió del set default del modo reunión. `servidumbre_andes_iron.geojson` lleva ahora bloque `auditoria_geometrica: NO_AUDITADA` con los 5 NO-VERIFICADOS y los entregables del P1.
+3. **Backlog formalizado** en `BACKLOG_CORREDOR_P1_P2_2026-06-10.md`: P1 auditoría geométrica AI · P2 reconciliación A/B · P3 brecha SII↔CBR/RTK (la reconciliación que un tercero técnico cuestionará primero, ≈436–462 ha, candidato documental: expropiaciones Ruta 5).
+
 *Generado 2026-06-10 · fuentes: 8 GeoJSON + meta ortofoto + H2_LAYERS (inspección directa) · recálculos geométricos propios · memoria operacional citada como tal · sin fuentes inventadas.*

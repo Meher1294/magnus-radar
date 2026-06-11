@@ -2434,8 +2434,8 @@ html.meeting-mode #meetingExecWrap.exec-on{display:block;position:absolute;top:0
           <div style="display:flex;flex-direction:column;gap:9px;font-size:12.5px;color:var(--text-dim)">
             <div style="display:flex;gap:9px;align-items:flex-start"><span style="width:10px;height:10px;border-radius:2px;background:#C97B3A;margin-top:3px;flex:none"></span><span><strong style="color:var(--text)">Cominetti (H2)</strong> — predio central del corredor, compuesto por <strong style="color:var(--text)">Resto A</strong>, <strong style="color:var(--text)">Resto B</strong> y <strong style="color:var(--text)">Lote C</strong>.</span></div>
             <div style="display:flex;gap:9px;align-items:flex-start"><span style="width:10px;height:10px;border-radius:2px;background:#6B7280;margin-top:3px;flex:none"></span><span><strong style="color:var(--text)">García Huidobro (H1)</strong> — contexto territorial colindante.</span></div>
-            <div style="display:flex;gap:9px;align-items:flex-start"><span style="width:10px;height:10px;border-radius:2px;background:#EC4899;margin-top:3px;flex:none"></span><span><strong style="color:var(--text)">Sector Lineal</strong> — franja que recorre y articula el corredor.</span></div>
-            <div style="display:flex;gap:9px;align-items:flex-start"><span style="width:10px;height:10px;border-radius:2px;background:#3B82F6;margin-top:3px;flex:none"></span><span><strong style="color:var(--text)">Servidumbres</strong> — líneas de transmisión y accesos sobre el área.</span></div>
+            <div style="display:flex;gap:9px;align-items:flex-start"><span style="width:10px;height:10px;border-radius:2px;background:#EC4899;margin-top:3px;flex:none"></span><span><strong style="color:var(--text)">Servidumbre AI · Dic-2025</strong> — franja minera que recorre y articula el corredor (181,7 ha sobre H1+H2).</span></div>
+            <div style="display:flex;gap:9px;align-items:flex-start"><span style="width:10px;height:10px;border-radius:2px;background:#7C3AED;margin-top:3px;flex:none"></span><span><strong style="color:var(--text)">Servidumbre InterChile · 2014</strong> — línea 2×500 kV y 9 torres sobre el área.</span></div>
           </div>
           <div style="margin-top:20px;padding-top:14px;border-top:1px solid var(--border-soft);font-size:12px;color:var(--muted);line-height:1.5">
             Haz clic sobre un predio o una servidumbre del corredor para ver su lectura territorial. Al limpiar la selección, este panel vuelve.
@@ -6300,8 +6300,11 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
   // v1.2-foco · preset reunión: encender SOLO el corredor, apagar todo lo demás
   // v1.2-foco.2 · h2_matriz default OFF en reunión: su geometría es bbox 5 vértices ~120 km (no perímetro real,
   // doctrina bbox-no-es-perimetro) → teñía todo el mapa y es indefendible frente a la contraparte. Queda como toggle.
+  // v1.2-foco.3 · h2_servidumbres default OFF en reunión (instrucción 2026-06-10): contiene la línea esquemática
+  // 26 km (HIPÓTESIS histórica) → NO base de negociación. La capa vigente del cruce AI es h2_sector_lineal_ai
+  // (plano AIPD-01-AI-AIP001). Ambas quedan como toggle en el sidebar.
   if (window.MEETING) {
-    const _corridor = ['h2_cominetti','h2_h1_ctx','h2_rtk','h2_servidumbres','h2_sector_lineal_ai','h2_interchile_corredor','h2_interchile_torres','h2_ortofoto'];
+    const _corridor = ['h2_cominetti','h2_h1_ctx','h2_rtk','h2_sector_lineal_ai','h2_interchile_corredor','h2_interchile_torres','h2_ortofoto'];
     Object.keys(H2_STATE).forEach(id => { H2_STATE[id] = _corridor.includes(id); });
   }
 
@@ -6353,11 +6356,10 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
       lg.classList.remove('collapsed');
       lg.innerHTML = `
         <div class="lc-title">Corredor · Estancia La Higuera</div>
-        <div class="lc-row"><span class="lc-bar" style="background:#C97B3A"></span>Cominetti (H2)</div>
+        <div class="lc-row"><span class="lc-bar" style="background:#C97B3A"></span>Cominetti (H2) · Resto A+B / Lote C</div>
         <div class="lc-row"><span class="lc-bar" style="background:#6B7280"></span>García Huidobro (H1)</div>
-        <div class="lc-row"><span class="lc-bar" style="background:#EC4899"></span>Sector Lineal AI</div>
-        <div class="lc-row"><span class="lc-bar" style="background:#3B82F6"></span>Servidumbres H2</div>
-        <div class="lc-row"><span class="lc-bar" style="background:#7C3AED"></span>InterChile 2×500 kV</div>
+        <div class="lc-row"><span class="lc-bar" style="background:#EC4899"></span>Servidumbre AI · Dic-2025</div>
+        <div class="lc-row"><span class="lc-bar" style="background:#7C3AED"></span>InterChile 2×500 kV · 2014</div>
         <div class="lc-row"><span class="lc-bar" style="background:#10B981"></span>Perímetro RTK</div>`;
     }
 

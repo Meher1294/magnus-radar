@@ -1082,7 +1082,8 @@
      "juridica_resto_ab_total_ha": 1839.35,
      "historico_resto_a_ha": 863,
      "historico_resto_b_ha": 976
-    }
+    },
+    "observacion": "Partición A/B pendiente de reconciliación documental"
    }
   },
   {
@@ -1141,7 +1142,8 @@
     "superficie_por_autoridad": {
      "sii_cuerpo_ha": 0.15,
      "juridica_resto_ab_total_ha": 1839.35
-    }
+    },
+    "observacion": "Partición A/B pendiente de reconciliación documental"
    }
   },
   {
@@ -1399,7 +1401,8 @@
      "juridica_resto_ab_total_ha": 1839.35,
      "historico_resto_a_ha": 863,
      "historico_resto_b_ha": 976
-    }
+    },
+    "observacion": "Partición A/B pendiente de reconciliación documental"
    }
   }
  ]

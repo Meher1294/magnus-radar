@@ -230,6 +230,31 @@
   "doctrinas_aplicables": [
    "no-derivar-estrategia-sin-capa-ocupacion",
    "comparables-separados-por-naturaleza-juridica"
-  ]
+  ],
+  "auditoria_geometrica": {
+   "estado": "NO_AUDITADA",
+   "declarado_hecho": [
+    "existencia del plano AIPD-01-AI-AIP001 Dic-2025 Rev.0",
+    "predios afectados (roles 24-43 / 24-123)",
+    "superficies declaradas 57,545 + 124,145 = 181,69 ha",
+    "entrega por GH 17-may-2026",
+    "coincidencia superficies GeoJSON vs declaradas"
+   ],
+   "no_verificado": [
+    "método de vectorización",
+    "RMSE",
+    "sistema de control geométrico",
+    "precisión posicional",
+    "auditoría plano→GeoJSON"
+   ],
+   "backlog": "P1 — Auditoría geométrica servidumbre AI (2026-06-10) · veredictos posibles: VALIDADO / REQUIERE_AJUSTE / NO_AUDITABLE",
+   "entregables_p1": [
+    "plano fuente en data room",
+    "datum identificado",
+    "método documentado",
+    "RMSE documentado",
+    "comparación superficie plano vs GeoJSON"
+   ]
+  }
  }
 }
