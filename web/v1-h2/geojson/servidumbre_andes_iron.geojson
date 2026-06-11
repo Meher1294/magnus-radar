@@ -232,7 +232,7 @@
    "comparables-separados-por-naturaleza-juridica"
   ],
   "auditoria_geometrica": {
-   "estado": "NO_AUDITADA",
+   "estado": "PARCIALMENTE_VALIDADA",
    "declarado_hecho": [
     "existencia del plano AIPD-01-AI-AIP001 Dic-2025 Rev.0",
     "predios afectados (roles 24-43 / 24-123)",
@@ -254,7 +254,11 @@
     "método documentado",
     "RMSE documentado",
     "comparación superficie plano vs GeoJSON"
-   ]
+   ],
+   "veredicto_24_123": "VALIDADO — P1-AUDIT-AIPD v2 (2026-06-10): polígono GeoJSON idéntico al Cuadro de Coordenadas UTM Perímetro Servidumbre del plano (29 puntos, fotografía aportada por Max). Hausdorff 0,00 m · IoU 100,00% · delta área 0,000% · centroides 0,00 m. La vectorización SE CONSTRUYÓ desde el cuadro de coordenadas.",
+   "veredicto_24_43": "PENDIENTE — cuadro de coordenadas del rol 24-43 no capturado en la fotografía (fragmentos de otros cuadros visibles en el plano). NO_AUDITABLE hasta nueva captura.",
+   "datum_plano": "NO_VERIFICADO en viñeta (foto solo muestra el cuadro) · consistencia interna cuadro↔GeoJSON-EPSG:32719 exacta · huso 19 hemisferio sur por rangos de coordenadas (HECHO contextual)",
+   "fuente_validacion": "Fotografía cuadro coordenadas plano AIPD-01 aportada 2026-06-10 · transcripción 29/29 puntos legibles · auto-validada por identidad geométrica"
   }
  }
 }
