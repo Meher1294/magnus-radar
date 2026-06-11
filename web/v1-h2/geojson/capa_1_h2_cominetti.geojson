@@ -52,6 +52,26 @@
    },
    "brecha_sii_rtk_ha": 436.0,
    "estado_brecha": "P3 · en reconciliación · candidato documental: expropiaciones faja Ruta 5 (MOP 2011-2017)"
+  },
+  "superficies_rol_24_123": {
+   "juridicas": {
+    "resto_a_ha": 863,
+    "resto_a_nota": "polígono no validado",
+    "resto_b_ha": 976,
+    "resto_b_nota": "polígono no validado",
+    "total_ab_ha": 1839.35,
+    "total_ab_fuente": "adjudicaciones feb-2017 / CBR"
+   },
+   "catastro_sii": {
+    "rol_total_ha": 2301.79,
+    "cuerpos_ha": [
+     1399.93,
+     901.71,
+     0.15
+    ]
+   },
+   "mensaje_obligatorio": "Resto A y Resto B existen jurídicamente, pero su separación geométrica aún no está validada. El visor representa actualmente el rol 24-123 como Resto A+B.",
+   "regla": "PROHIBIDO asignar un cuerpo SII a Resto A o Resto B hasta cerrar P2 · existe_jurídicamente: SÍ · polígono_validado: NO"
   }
  },
  "features": [
@@ -1066,7 +1086,7 @@
     ]
    },
    "properties": {
-    "nombre": "Cominetti H2 · Resto A+B · cuerpo catastral mayor",
+    "nombre": "Cominetti H2 · Resto A+B (rol 24-123)",
     "tier": 1,
     "estado": "HECHO",
     "titular": "Reservado · mandato Magnus vigente",
@@ -1087,7 +1107,7 @@
      "Partición Resto A / Resto B sin geometría de fuente: los cuerpos catastrales SII no corresponden a la división jurídica A/B · pendiente: ITS-CARTO-PLANO-0001 georreferenciado / plano CBR coordenado / cruce RTK"
     ],
     "estado_raw_legacy": "HECHO",
-    "estructura_operacional": "Resto A + Resto B (unidad jurídica 1.839,35 ha) · partición A/B pendiente de reconciliación",
+    "estructura_operacional": "Resto A + Resto B (unidad jurídica 1.839,35 ha) · partición A/B pendiente de reconciliación documental y geométrica",
     "label_mapa": "Resto A+B",
     "particion_ab": "PENDIENTE_RECONCILIACION",
     "superficie_por_autoridad": {
@@ -1129,7 +1149,7 @@
     ]
    },
    "properties": {
-    "nombre": "Cominetti H2 · Resto A+B · astilla catastral (0,15 ha)",
+    "nombre": "Cominetti H2 · Resto A+B (rol 24-123)",
     "tier": 1,
     "estado": "HECHO",
     "titular": "Reservado · mandato Magnus vigente",
@@ -1150,7 +1170,7 @@
      "Partición Resto A / Resto B sin geometría de fuente: los cuerpos catastrales SII no corresponden a la división jurídica A/B · pendiente: ITS-CARTO-PLANO-0001 georreferenciado / plano CBR coordenado / cruce RTK"
     ],
     "estado_raw_legacy": "HECHO",
-    "estructura_operacional": "Resto A + Resto B (unidad jurídica) · astilla del catastro SII",
+    "estructura_operacional": "Resto A + Resto B (unidad jurídica 1.839,35 ha) · partición A/B pendiente de reconciliación documental y geométrica",
     "particion_ab": "PENDIENTE_RECONCILIACION",
     "superficie_por_autoridad": {
      "sii_cuerpo_ha": 0.15,
@@ -1385,7 +1405,7 @@
     ]
    },
    "properties": {
-    "nombre": "Cominetti H2 · Resto A+B · cuerpo catastral menor",
+    "nombre": "Cominetti H2 · Resto A+B (rol 24-123)",
     "tier": 1,
     "estado": "HECHO",
     "titular": "Reservado · mandato Magnus vigente",
@@ -1406,7 +1426,7 @@
      "Partición Resto A / Resto B sin geometría de fuente: los cuerpos catastrales SII no corresponden a la división jurídica A/B · pendiente: ITS-CARTO-PLANO-0001 georreferenciado / plano CBR coordenado / cruce RTK"
     ],
     "estado_raw_legacy": "HECHO",
-    "estructura_operacional": "Resto A + Resto B (unidad jurídica 1.839,35 ha) · partición A/B pendiente de reconciliación",
+    "estructura_operacional": "Resto A + Resto B (unidad jurídica 1.839,35 ha) · partición A/B pendiente de reconciliación documental y geométrica",
     "label_mapa": "Resto A+B",
     "particion_ab": "PENDIENTE_RECONCILIACION",
     "superficie_por_autoridad": {

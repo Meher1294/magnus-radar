@@ -6858,6 +6858,29 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
       </div>`;
     }
 
+    // v1.2-foco.7 · corrección representación A/B (instrucción 2026-06-10): para el rol 24-123,
+    // bloques SEPARADOS jurídico vs catastro + mensaje obligatorio · prohibido sugerir cuerpo=A o cuerpo=B
+    if (L.id === 'h2_cominetti' && capaMeta && capaMeta.superficies_rol_24_123 && String(sii) === '24-123') {
+      const S = capaMeta.superficies_rol_24_123;
+      const j = S.juridicas, c = S.catastro_sii;
+      const f2 = n => Number(n).toLocaleString('es-CL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      html += `
+      <div style="padding:10px 12px;margin-bottom:14px;background:rgba(201,123,58,0.10);border-left:3px solid #C97B3A;border-radius:4px;font-size:11px;color:var(--text-dim);line-height:1.55">
+        ${esc(S.mensaje_obligatorio)}
+      </div>
+      <div class="epis-section">
+        <div class="epis-section-title">Superficies jurídicas</div>
+        <div style="display:grid;grid-template-columns:90px 1fr;gap:10px;padding:3px 0;align-items:center"><span style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10px">Resto A</span><span style="color:var(--text-dim);font-size:12.5px">${j.resto_a_ha} ha <span style="color:var(--muted);font-size:10.5px">(${esc(j.resto_a_nota)})</span></span></div>
+        <div style="display:grid;grid-template-columns:90px 1fr;gap:10px;padding:3px 0;align-items:center"><span style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10px">Resto B</span><span style="color:var(--text-dim);font-size:12.5px">${j.resto_b_ha} ha <span style="color:var(--muted);font-size:10.5px">(${esc(j.resto_b_nota)})</span></span></div>
+        <div style="display:grid;grid-template-columns:90px 1fr;gap:10px;padding:3px 0;align-items:center"><span style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10px">Resto A+B</span><strong style="color:var(--text);font-size:14px">${f2(j.total_ab_ha)} ha <span style="color:var(--muted);font-size:10.5px;font-weight:400">(${esc(j.total_ab_fuente)})</span></strong></div>
+      </div>
+      <div class="epis-section">
+        <div class="epis-section-title">Catastro SII · rol 24-123</div>
+        <div style="display:grid;grid-template-columns:90px 1fr;gap:10px;padding:3px 0;align-items:center"><span style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10px">Total rol</span><span style="color:var(--text-dim);font-size:12.5px">${f2(c.rol_total_ha)} ha</span></div>
+        <div style="font-size:11px;color:var(--muted);padding:2px 0 0">Distribuido en ${c.cuerpos_ha.length} cuerpos: ${c.cuerpos_ha.map(f2).join(' · ')} ha</div>
+      </div>`;
+    }
+
     // v1.2-foco.5 · P3 Sprint UX-A: tabla de autoridades de superficie H2 (regla 3.4)
     // "La primera pregunta que hará cualquier tercero técnico" — RTK destacada como autoridad vigente
     if (L.id === 'h2_cominetti' && capaMeta && capaMeta.superficies_h2_totales) {
