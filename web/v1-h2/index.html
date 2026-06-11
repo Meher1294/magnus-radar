@@ -6259,7 +6259,7 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
   const H2_LAYERS = [
     { id:'h2_cominetti',   file:'geojson/capa_1_h2_cominetti.geojson',                 nombre:'H2 Cominetti (canon)',          color:'#C97B3A', tipo:'fill',  default:true,  meta:'24-123 + 24-160' },
     { id:'h2_h1_ctx',      file:'geojson/capa_h1_garcia_huidobro_contextual.geojson',  nombre:'H1 García Huidobro · contextual', color:'#6B7280', tipo:'fill',  default:false, meta:'NO operacional' },
-    { id:'h2_matriz',      file:'geojson/estancia_la_higuera_matriz_2021.geojson',     nombre:'Matriz AI 2021 · envoltorio',     color:'#A855F7', tipo:'fill',  default:false, meta:'Andes Iron · Rep FS 313 N°14.461 · contexto histórico' },
+    { id:'h2_matriz',      file:'geojson/estancia_la_higuera_matriz_2021.geojson',     nombre:'Matriz AI 2021 · contexto histórico', color:'#A855F7', tipo:'fill',  default:false, meta:'Compra Andes Iron 2021 · NO representa perímetro real · Rep FS 313 N°14.461' },
     { id:'h2_rtk',         file:'geojson/perimetro_rtk_daniel.geojson',                nombre:'Perímetro RTK · capa física',     color:'#10B981', tipo:'fill',  default:false, meta:'RTK 10m · 2.164,97 ha medidas · identidad física canon' },
     { id:'h2_ocupaciones', file:'geojson/capa_4_ocupaciones.geojson',                  nombre:'Ocupaciones H2 (ortofoto)',       color:'#F59E0B', tipo:'point', default:false, meta:'19 features' },
     { id:'h2_servidumbres',file:'geojson/capa_5_servidumbres.geojson',                 nombre:'Servidumbres H2',                 color:'#3B82F6', tipo:'line',  default:false, meta:'924-644 · InterChile · MOP · Andes Iron' },
@@ -6303,8 +6303,10 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
   // v1.2-foco.3 · h2_servidumbres default OFF en reunión (instrucción 2026-06-10): contiene la línea esquemática
   // 26 km (HIPÓTESIS histórica) → NO base de negociación. La capa vigente del cruce AI es h2_sector_lineal_ai
   // (plano AIPD-01-AI-AIP001). Ambas quedan como toggle en el sidebar.
+  // v1.2-foco.4 · EJE 2: h2_ortofoto fuera del preset corredor (cubre ~12,6% del perímetro, pueblo centro;
+  // no explica corredor/servidumbre/afectación). Queda como capa auxiliar (toggle).
   if (window.MEETING) {
-    const _corridor = ['h2_cominetti','h2_h1_ctx','h2_rtk','h2_sector_lineal_ai','h2_interchile_corredor','h2_interchile_torres','h2_ortofoto'];
+    const _corridor = ['h2_cominetti','h2_h1_ctx','h2_rtk','h2_sector_lineal_ai','h2_interchile_corredor','h2_interchile_torres'];
     Object.keys(H2_STATE).forEach(id => { H2_STATE[id] = _corridor.includes(id); });
   }
 
@@ -6446,7 +6448,7 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
       const cls = s.error ? 'err' : (s.count > 0 ? 'ok' : '');
       const txt = s.error ? '✗' : (s.count > 0 ? (L.id === 'h2_ortofoto' ? 'IMG' : s.count) : '—');
       const checked = H2_STATE[L.id] ? 'checked' : '';
-      return `<label class="h2-capa-row" style="cursor:pointer">
+      return `<label class="h2-capa-row" style="cursor:pointer" title="${(s.error||L.meta)}">
         <input type="checkbox" data-h2-id="${L.id}" ${checked} style="margin:0">
         <span class="h2-capa-swatch" style="background:${L.color}"></span>
         <span>${L.nombre}</span>
