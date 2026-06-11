@@ -39,6 +39,19 @@
     "inscripciones CBR fs 1.671 N°1.159 / fs 1.729 N°1.197 (2017)"
    ],
    "nota_metodo": "Cambio 2026-06-10 = SOLO reetiquetado y propiedades; geometrías y superficies intactas (hash verificado)"
+  },
+  "superficies_h2_totales": {
+   "rtk_ha": 2164.97,
+   "cbr_ha": 2139.35,
+   "sii_ha": 2600.97,
+   "autoridad_vigente": "RTK",
+   "fuentes": {
+    "rtk": "EVT-H2-RTK-DANIEL-202605 · perímetro físico-legal · precisión 10 m",
+    "cbr": "Adjudicaciones feb-2017: Resto a+b 1.839,35 ha + Lote C 300 ha (= plano histórico 863+976+300)",
+    "sii": "Suma 4 cuerpos catastrales KMZ-06 (299,18 + 1.399,93 + 0,15 + 901,71)"
+   },
+   "brecha_sii_rtk_ha": 436.0,
+   "estado_brecha": "P3 · en reconciliación · candidato documental: expropiaciones faja Ruta 5 (MOP 2011-2017)"
   }
  },
  "features": [

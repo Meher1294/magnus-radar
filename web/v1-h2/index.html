@@ -6804,8 +6804,16 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
               : 'inferencia';
 
     const esc = s => s == null ? '' : String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-    const sii = p.rol_sii_actual || p.rol_sii;
+    const sii = p.rol_sii_actual || p.rol_sii || p.rol;
     const aliases = p.alias_historicos || [];
+
+    // v1.2-foco.5 · Sprint UX-A · título operacional por capa (regla 3.3: sin nombres de schema ni archivo)
+    let tituloOp = p.titulo_operacional || p.nombre || p.titular || p.descripcion || p.conflicto_id || p.id || 'Sin nombre';
+    if (L.id === 'h2_sector_lineal_ai') tituloOp = 'Servidumbre AI · ' + (String(p.rol) === '24-123' ? 'H2 (Cominetti)' : 'H1 (García Huidobro)');
+    else if (L.id === 'h2_rtk') tituloOp = 'Perímetro RTK · Hijuela 2';
+    else if (L.id === 'h2_matriz') tituloOp = 'Matriz AI 2021 · contexto histórico';
+    else if (L.id === 'h2_interchile_corredor') tituloOp = 'InterChile 2×500 kV · servidumbre 2014' + (p.plano ? ' · ' + p.plano : '');
+    else if (L.id === 'h2_interchile_torres') tituloOp = 'Torre ' + (p.torre_id || '');
     const cbr = p.inscripcion_CBR;
     // v1.0.5 · caveats array (preferido) o legacy strings
     let caveats;
@@ -6831,7 +6839,7 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     let html = `<div style="padding:18px">
       <div style="padding-bottom:14px;border-bottom:1px solid var(--border-soft);margin-bottom:16px">
         <div style="display:inline-block;padding:3px 8px;font-size:9.5px;font-family:'JetBrains Mono',monospace;background:${L.color}22;color:${L.color};border-radius:4px;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:8px">${esc(L.nombre)}</div>
-        <div style="font-size:15px;font-weight:600;line-height:1.3;color:var(--text)">${esc(p.nombre || p.titular || p.descripcion || p.conflicto_id || p.id || 'Sin nombre')}</div>
+        <div style="font-size:15px;font-weight:600;line-height:1.3;color:var(--text)">${esc(tituloOp)}</div>
       </div>
       ${h1Banner}
       ${window.MEETING ? '' : `<div class="epis-section">
@@ -6848,10 +6856,24 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
       </div>`;
     }
 
+    // v1.2-foco.5 · P3 Sprint UX-A: tabla de autoridades de superficie H2 (regla 3.4)
+    // "La primera pregunta que hará cualquier tercero técnico" — RTK destacada como autoridad vigente
+    if (L.id === 'h2_cominetti' && capaMeta && capaMeta.superficies_h2_totales) {
+      const t = capaMeta.superficies_h2_totales;
+      const fmt = n => Number(n).toLocaleString('es-CL', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      html += `<div class="epis-section">
+        <div class="epis-section-title">Autoridades de superficie · H2 total</div>
+        <div style="display:grid;grid-template-columns:56px 1fr;gap:10px;padding:4px 0;align-items:center"><span style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10px">RTK</span><strong style="color:var(--text);font-size:15px">${fmt(t.rtk_ha)} ha</strong></div>
+        <div style="display:grid;grid-template-columns:56px 1fr;gap:10px;padding:3px 0;align-items:center"><span style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10px">CBR</span><span style="color:var(--text-dim);font-size:12.5px">${fmt(t.cbr_ha)} ha</span></div>
+        <div style="display:grid;grid-template-columns:56px 1fr;gap:10px;padding:3px 0;align-items:center"><span style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10px">SII</span><span style="color:var(--text-dim);font-size:12.5px">${fmt(t.sii_ha)} ha</span></div>
+        <div style="font-size:10.5px;color:var(--muted);margin-top:6px;line-height:1.5">Autoridad geométrica vigente: ${esc(t.autoridad_vigente)} · brecha SII−RTK ≈ ${Math.round(t.brecha_sii_rtk_ha)} ha en reconciliación</div>
+      </div>`;
+    }
+
     const atts = [];
     if (p.titular_documental) atts.push(['titular doc.', p.titular_documental]);
     if (p.titular) atts.push(['titular', p.titular]);
-    if (p.area_ha_catastral) atts.push(['superficie', p.area_ha_catastral + ' ha (SII)']);
+    if (p.area_ha_catastral) atts.push(['superficie', Number(p.area_ha_catastral).toLocaleString('es-CL') + ' ha (SII · cuerpo catastral)']);
     if (p.tier && !window.MEETING) atts.push(['tier', 'Tier ' + p.tier]);
     if (p.año) atts.push(['año', p.año]);
     // v1.0.9 · PII pública saneada · comisión y vigencia mandato no se exponen
@@ -6868,6 +6890,43 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     if (p.evidencia) atts.push(['evidencia', p.evidencia]);
     if (p.observacion) atts.push(['observación', p.observacion]);
     if (p.categoria_ocupacional !== undefined) atts.push(['cat. ocupacional', p.categoria_ocupacional]);
+
+    // v1.2-foco.5 · Sprint UX-A · claves de capas clave que el mapeo original no cubría
+    // Regla 3.4: ninguna superficie sin su autoridad · Regla 3.3: labels humanos, no schema
+    if (p.superficie_ha) atts.unshift(['superficie', Number(p.superficie_ha).toLocaleString('es-CL') + ' ha (plano AI · Dic-2025)']);
+    if (L.id === 'h2_rtk' && capaMeta && capaMeta.superficie_medida_ha) atts.unshift(['superficie', Number(capaMeta.superficie_medida_ha).toLocaleString('es-CL') + ' ha (RTK 2026 · autoridad geométrica vigente)']);
+    if (p.precision_metros) atts.push(['precisión', p.precision_metros + ' m']);
+    if (p.jerarquia_fuente) atts.push(['jerarquía de fuente', p.jerarquia_fuente]);
+    if (p.observacion_operacional) atts.push(['observación', p.observacion_operacional]);
+    if (p.concesionario) atts.push(['concesionario', p.concesionario]);
+    if (p.predio_sirviente) atts.push(['predio sirviente', p.predio_sirviente]);
+    if (L.id === 'h2_sector_lineal_ai' && p.tipo) atts.push(['naturaleza jurídica', p.tipo]);
+    if (p.estado && /vinculante/i.test(String(p.estado))) atts.push(['estado documental', p.estado]);
+    if (p.fecha_plano) atts.push(['plano · fecha', p.fecha_plano + (p.rev !== undefined ? ' · Rev. ' + p.rev : '')]);
+    if (capaMeta && capaMeta.auditoria_geometrica) atts.push(['auditoría geométrica', capaMeta.auditoria_geometrica.estado === 'NO_AUDITADA' ? 'Pendiente (P1 backlog)' : capaMeta.auditoria_geometrica.estado]);
+    if (p.observacion_obligatoria) atts.push(['observación', p.observacion_obligatoria]);
+    if (p.concesionaria) atts.push(['concesionaria', p.concesionaria]);
+    if (p.proyecto) atts.push(['proyecto', p.proyecto]);
+    if (L.id === 'h2_interchile_corredor' && p.predio) atts.push(['predio', p.predio]);
+    if (L.id === 'h2_interchile_torres') {
+      if (p.tipo) atts.push(['tipo torre', p.tipo + (p.cuerpos ? ' · ' + p.cuerpos + ' cuerpos' : '')]);
+      if (p.ancho_servidumbre_m) atts.push(['ancho servidumbre', p.ancho_servidumbre_m + ' m']);
+      atts.push(['afecta predio', p.afecta_predio ? 'Sí' : 'No · solo referencia']);
+      if (p.plano_pes) atts.push(['plano', 'PES-' + p.plano_pes]);
+      if (p.nota) atts.push(['nota', p.nota]);
+    }
+    if (L.id === 'h2_matriz') {
+      if (p.titular_actual) atts.push(['titular', p.titular_actual]);
+      if (p.instrumento_actual) atts.push(['instrumento', p.instrumento_actual]);
+      if (p.fecha_adquisicion) atts.push(['adquisición', p.fecha_adquisicion]);
+      atts.push(['geometría', 'Envolvente conceptual · NO representa perímetro real']);
+      if (!window.MEETING) {
+        if (p.precio) atts.push(['precio', p.precio]);
+        if (p.cadena_previa) atts.push(['cadena previa', p.cadena_previa]);
+        if (p.exclusiones) atts.push(['exclusiones', p.exclusiones]);
+      }
+    }
+
     if (atts.length) {
       html += `<div class="epis-section"><div class="epis-section-title">Atributos</div>` +
         atts.map(([k,v]) => `<div style="display:grid;grid-template-columns:110px 1fr;gap:8px;padding:4px 0;font-size:11px"><span style="color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10px">${esc(k)}</span><span style="color:var(--text-dim);line-height:1.5">${esc(v)}</span></div>`).join('') +

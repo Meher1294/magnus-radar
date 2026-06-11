@@ -148,4 +148,19 @@ Brecha SII–RTK: Abierta (≈436 ha) · Partición A/B: Pendiente · Auditoría
 NO se agregaron capas, IA, scoring ni datos nuevos en este documento. Todo lo propuesto reutiliza propiedades existentes de los GeoJSON o cruces de capas ya cargadas. La única creación de datos sugerida es `titulo_operacional` (campo de presentación, no de evidencia) y queda para la fase de implementación autorizada.
 
 ---
-*EJE 3 ejecutado 2026-06-10 · fuentes: renderH2Detail/renderPredioPanel trazados línea a línea + inventario de props del análisis de trazabilidad · diseño sin implementación, conforme al mandato.*
+
+## ADDENDUM — EJE 3.1–3.5 formalizados + Sprint UX-A ejecutado (2026-06-10, v1.2-foco.5)
+
+**EJE 3.1 · Criterio rector (regla nueva canonizada):** `ninguna_capa_puede_mostrar_menos_información_que_la_importancia_que_tiene_en_el_caso`. La tabla de jerarquía invertida de Max (Servidumbre AI/RTK importancia máxima ↔ ficha muy pobre; Predios SII importancia baja ↔ ficha rica) queda como test de regresión permanente: cualquier capa nueva debe pasar por esta matriz antes de publicarse.
+
+**EJE 3.2 · Sprint UX-A — EJECUTADO con autorización expresa:** P1 Servidumbre AI: ficha ahora titula "Servidumbre AI · H2 (Cominetti)" y muestra superficie 124,145 ha (plano AI · Dic-2025), rol, concesionario, predio sirviente, naturaleza jurídica, estado Vinculante, plano Dic-2025 Rev.0 y auditoría geométrica Pendiente (P1). P2 RTK: titula "Perímetro RTK · Hijuela 2", superficie 2.164,97 ha (RTK 2026 · autoridad geométrica vigente), precisión 10 m, jerarquía primaria, observación con delta CBR. P3 H2: bloque "Autoridades de superficie · H2 total" con RTK 2.164,97 destacada / CBR 2.139,35 / SII 2.600,97 + brecha ≈436 ha en reconciliación (fuente: `metadata.superficies_h2_totales` agregada a capa_1 con fuentes declaradas). Bonus del mismo mapeo: Torres ("Torre T280", tipo, ancho servidumbre, afecta predio), InterChile (título humano + observación obligatoria visible), Matriz (titular/instrumento/adquisición + "Envolvente conceptual · NO representa perímetro real" EN la ficha; precio/cadena/exclusiones gated a modo interno).
+
+**EJE 3.3 · Regla de lenguaje:** aplicada en fichas (títulos operacionales, labels humanos). Pendiente menor en sidebar: "(canon)", "capa física", "(raster)" — inventariado en UX-CARTO §8.
+
+**EJE 3.4 · Regla de autoridad:** implementada en las fichas tocadas — ninguna superficie se muestra sin autoridad: "(SII · cuerpo catastral)", "(RTK 2026 · autoridad geométrica vigente)", "(plano AI · Dic-2025)". Esta regla es extensión UI de las doctrinas no-superficie-única y UF-total-HECHO.
+
+**EJE 3.5 · Preset reuniones AI:** verificado CONFORME al set aprobado (ON: H2, H1, RTK, Servidumbre AI, InterChile, Torres · OFF: ortofoto, matriz, línea 26 km, predios SII) — implementado en foco.3/foco.4, sin cambios adicionales necesarios.
+
+**Regla de cierre del mandato:** cada clic debe responder qué es / por qué importa / qué evidencia lo respalda / qué incertidumbres siguen abiertas / qué decisión habilita — las fichas P1/P2/P3 ya responden las cinco; el resto de capas queda mapeado en §3 y priorizado en §6.
+
+*EJE 3 ejecutado 2026-06-10 · fuentes: renderH2Detail/renderPredioPanel trazados línea a línea + inventario de props del análisis de trazabilidad · Sprint UX-A implementado bajo autorización expresa; el resto del estándar sigue en diseño.*
