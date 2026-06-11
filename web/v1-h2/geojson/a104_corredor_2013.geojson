@@ -1,0 +1,148 @@
+{
+ "type": "FeatureCollection",
+ "metadata": {
+  "capa": "A104 · Corredor Dominga 2013 · contexto histórico",
+  "clasificacion": "HECHO_DOCUMENTAL (plano) · trazas digitalizadas = INFERENCIA_DERIVADA",
+  "fuente": "Andes Iron / SRK Consulting · Plano A104 'Layout Sector Lineal' Rev 0 · 2013-08-07 (EIA Dominga)",
+  "archivo_fuente": "docs/planos/A-104_Layout_SECTOR_Lineal_Rev_0_07082013_AI.pdf",
+  "datum_declarado_plano": "WGS84 · UTM Huso 19 Sur · escala 1:40.000 (derivada de grilla 2 km = 393,7 px @200dpi)",
+  "metodo_digitalizacion": "Afín por grilla del plano (GCPs E274000/N6732000 + paso 5,080 m/px, residuo <5 m) + digitalización manual de trazas en ventana corredor H2 · precisión estimada ±50-80 m",
+  "cobertura": "SOLO ventana del corredor H2/H1 (~E279-285k / N6733-6736k) · extensión completa mina-Totoralillo PENDIENTE de digitalización",
+  "estado": "incorporado",
+  "categoria": "antecedente_historico",
+  "relacion_con_AIPD": "AUDITADA 2026-06-10: el polígono AIPD-2025 NO envuelve el corredor principal de ductos del A104 (0% dentro, ~1,2 km al poniente del paquete); envuelve/sigue el ramal que el plano etiqueta 'LÍNEA ELÉCTRICA 66 kV' hacia Estación Disipadora de Energía 1; la punta NE del polígono coincide con la bifurcación (±51 m)",
+  "NO_ES": [
+   "plano_de_servidumbre_2025",
+   "plano_catastral",
+   "plano_CBR",
+   "cuadro_oficial_AIPD_2025"
+  ],
+  "regla_representacion": "Contexto histórico / Diseño conceptual 2013 · NUNCA servidumbre vigente, corredor validado ni afectación legal"
+ },
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "nombre": "A104 · ramal hacia Estación Disipadora 1 (etiqueta plano: Línea Eléctrica 66 kV)",
+    "titulo_operacional": "A104 (2013) · ramal disipadora · diseño conceptual",
+    "estado_canonico": "INFERENCIA",
+    "tipo_traza": "ramal",
+    "fuentes": [
+     "Plano A104 Rev 0 2013 · digitalización 2026-06-10 ±50-80 m"
+    ],
+    "caveats": [
+     "Diseño conceptual 2013 · NO es servidumbre vigente ni afectación legal",
+     "Identificación de la instalación según etiqueta con flecha del plano · zona densa de etiquetas"
+    ],
+    "observacion": "El polígono de servidumbre AIPD Dic-2025 sigue esta traza · contexto histórico"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.22614496347306,
+      -29.48997306375551
+     ],
+     [
+      -71.23203209727498,
+      -29.492380158341124
+     ],
+     [
+      -71.23738111428855,
+      -29.49442481082446
+     ],
+     [
+      -71.24272419983735,
+      -29.496190919907335
+     ],
+     [
+      -71.24806130874569,
+      -29.497678488824018
+     ],
+     [
+      -71.25340472493549,
+      -29.499444148692515
+     ],
+     [
+      -71.25821806597177,
+      -29.501218591975707
+     ],
+     [
+      -71.26250749970984,
+      -29.503280189711088
+     ],
+     [
+      -71.26627510247658,
+      -29.50572176254667
+     ],
+     [
+      -71.26973092627806,
+      -29.508446962054716
+     ],
+     [
+      -71.27114073441385,
+      -29.509814961260638
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "nombre": "A104 · corredor principal de ductos (concentraducto · agua desalinizada · agua recuperada)",
+    "titulo_operacional": "A104 (2013) · corredor principal · diseño conceptual",
+    "estado_canonico": "INFERENCIA",
+    "tipo_traza": "principal",
+    "fuentes": [
+     "Plano A104 Rev 0 2013 · digitalización 2026-06-10 ±50-80 m"
+    ],
+    "caveats": [
+     "Diseño conceptual 2013 · NO es servidumbre vigente",
+     "Tramo digitalizado solo en ventana corredor H2 · trazado completo mina-Totoralillo pendiente"
+    ],
+    "observacion": "Discurre FUERA del polígono AIPD-2025 (~1,2 km) · contexto histórico"
+   },
+   "geometry": {
+    "type": "LineString",
+    "coordinates": [
+     [
+      -71.22229176437271,
+      -29.483541006226474
+     ],
+     [
+      -71.22363915005315,
+      -29.486952353257365
+     ],
+     [
+      -71.22479077580911,
+      -29.49110941498294
+     ],
+     [
+      -71.22594250667986,
+      -29.495266459381558
+     ],
+     [
+      -71.22667014258843,
+      -29.499430592177383
+     ],
+     [
+      -71.22718574084982,
+      -29.503598269418948
+     ],
+     [
+      -71.22759533431754,
+      -29.507767717521734
+     ],
+     [
+      -71.22800497304408,
+      -29.51193716017913
+     ],
+     [
+      -71.22831875656355,
+      -29.516572239281402
+     ]
+    ]
+   }
+  }
+ ]
+}

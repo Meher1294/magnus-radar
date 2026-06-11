@@ -61,7 +61,7 @@
     "estado": "HIPOTESIS",
     "titular_dominante": "Andes Iron SpA",
     "choke_point": "PAS Art 96 Reglamento SEIA · cambio uso suelo rural",
-    "artefacto_perdido": "andes_iron.geojson (referenciado en 4 .qgz · ausente)",
+    "artefacto_perdido": "RECUPERADO 2026-06-10: A-104 Layout Sector Lineal Rev 0 (07-08-2013) incorporado en docs/planos/ · capa a104_corredor_2013.geojson",
     "estado_geometria": "TRAZADO_APROXIMADO · pendiente recuperar andes_iron.geojson o vectorizar A-104 Layout EIA",
     "estado_canonico": "HIPOTESIS",
     "fuentes": [],
@@ -72,7 +72,8 @@
     "vigencia_negociacion": "NO_BASE_DE_NEGOCIACION",
     "rol_actual": "contexto · hipótesis histórica del trazado comuna-wide",
     "superada_por": "servidumbre_andes_iron.geojson (Plano AI AIPD-01-AI-AIP001 Dic-2025) para el cruce H2/H1",
-    "observacion": "Instrucción 2026-06-10: NO usar como referencia principal en mesa AI · la capa vigente del cruce es Sector Lineal AI Dic-2025"
+    "observacion": "Instrucción 2026-06-10: NO usar como referencia principal en mesa AI · la capa vigente del cruce es Sector Lineal AI Dic-2025",
+    "relacion_a104": "La hipótesis de trazado de esta línea esquemática queda contrastable contra el A104 real · ver AUDITORIA_A104_vs_AIPD"
    }
   },
   {
