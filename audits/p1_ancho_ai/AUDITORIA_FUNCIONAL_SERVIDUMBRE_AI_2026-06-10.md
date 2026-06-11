@@ -57,3 +57,49 @@ Servidumbre AI sigue como capa principal ✓ · A104 contexto histórico gris OF
 
 ## Pregunta de mesa resultante (del mandato, ahora con sustento triple)
 **"Si el corredor troncal descrito en A104 y PAS-85 pasa fuera de H2, ¿qué obra específica justifica la solicitud de 124,145 ha sobre el rol 24-123 y anchos observados de hasta 726 m?"** — La carga de la prueba queda documentalmente del lado de Andes Iron: la evidencia disponible no contiene esa justificación (P3 pendiente: verificar si la viñeta/notas del AIPD declaran ancho de faja o áreas de construcción/temporal/permanente).
+
+---
+
+# ADDENDUM v2 — Corrección metodológica (instrucción consolidada Max, 2026-06-10)
+
+## Reformulación obligatoria del resultado principal
+
+Quedan **eliminadas** de esta auditoría las expresiones "0 ha justificadas/explicadas" (podían confundirse con ausencia total de respaldo para las obras). Formulación vigente:
+
+- **HECHO** — Existe respaldo documental para la **existencia** de obras asociadas al proyecto Dominga (A104 y PAS-85 según composición declarada: línea 66 kV doble circuito, concentraducto, acueductos, camino de servicio, estaciones disipadoras, piscinas de emergencia).
+- **HECHO** — Existe un polígono oficialmente solicitado y su geometría está **validada** contra el cuadro oficial de coordenadas (Hausdorff 0,00 m).
+- **NO DEMOSTRADO** — Que dichas obras **requieran la superficie específica de 124,145 ha** solicitada sobre H2.
+- **NO DEMOSTRADO** — Que los **anchos observados** del polígono (abanico estructural 699→184 m; máx 725,5 m) sean necesarios para ejecutar dichas obras.
+- **PENDIENTE DE VERIFICACIÓN** — La documentación que fundamente dicha necesidad.
+
+La regla de carga de la prueba queda asumida: esta auditoría **no intenta demostrar que el ancho sea exagerado**; verifica si existen antecedentes técnicos que expliquen lo solicitado.
+
+## Pregunta principal
+
+> ¿Cuál es el antecedente técnico específico que sustenta la delimitación geométrica del polígono AIPD-01-AI-AIP001 sobre el rol 24-123?
+
+**Estado: SIN RESPUESTA EN LA EVIDENCIA DISPONIBLE** (búsqueda en árbol local 2026-06-10: sin PAS-85, sin RCA/anexos, sin memorias de cálculo archivadas).
+
+## Preguntas secundarias obligatorias — estado
+
+| # | Pregunta | Estado |
+|---|---|---|
+| 1 | ¿Existe memoria de cálculo asociada al polígono? | NO IDENTIFICADA en evidencia disponible · PENDIENTE DE VERIFICACIÓN |
+| 2 | ¿Existe plano de ingeniería que defina el ancho requerido? | NO IDENTIFICADO (A104 no lo declara — HECHO; AIPD: viñeta/notas sin capturar — P3) · PENDIENTE |
+| 3 | ¿Existe zona de seguridad normada que explique la geometría? | NO IDENTIFICADA en evidencia disponible · PENDIENTE (prohibido suplir con criterio normativo no citado por AI) |
+| 4 | ¿Existe zona de construcción temporal incorporada al cálculo? | NO IDENTIFICADA · PENDIENTE (P3: áreas temporal/permanente en notas AIPD) |
+| 5 | ¿Existe servidumbre auxiliar incorporada dentro del mismo polígono? | NO IDENTIFICADA · PENDIENTE |
+| 6 | ¿Existe antecedente PAS-85 que indique ocupación superficial equivalente? | NO VERIFICADO — documento PAS-85 no archivado en data room local; su composición declarada (obras lineales) no menciona ocupación equivalente · PENDIENTE |
+| 7 | ¿Existe documento que vincule explícitamente las 124,145 ha con una obra determinada? | NO IDENTIFICADO en evidencia disponible · PENDIENTE |
+
+## Matriz de cierre (resultado esperado del mandato)
+
+| Tramo | Obra identificada | Documento fuente | Superficie asociada explícitamente | Estado |
+|---|---|---|---|---|
+| 24-43 · faja completa (132–271 m) | Ramal 66 kV (traza) | A104 (etiqueta) | Ninguna | NO DEMOSTRADO |
+| 24-123 · abanico NE est. 0–500 (653–699 m) | Bifurcación troncal/ramal | A104 | Ninguna | NO DEMOSTRADO |
+| 24-123 · est. 750–2.250 (304–607 m) | Ramal 66 kV (traza) | A104 | Ninguna | NO DEMOSTRADO |
+| 24-123 · extremo SO est. 2.500 (184 m) | Disipadora 1 + piscina | A104 | Ninguna | NO DEMOSTRADO |
+| Todos | Troncal ductos (concentraducto/acueductos) | A104/PAS-85 decl. | No aplica — pasa a 2,5–4,6 km del polígono | HECHO (no lo utiliza) |
+
+**Estado de la auditoría: ABIERTA.** Por regla de cierre del mandato, se cierra únicamente cuando cada sector del polígono tenga obra identificada **y** fuente documental explícita que justifique su ocupación superficial. Insumos de cierre requeridos (en poder de AI o del expediente SEIA): memoria de cálculo, plano de ingeniería del ancho, notas/viñeta AIPD, PAS-85 íntegro, RCA y anexos.

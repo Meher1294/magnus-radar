@@ -6906,7 +6906,7 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
     if (p.estado && /vinculante/i.test(String(p.estado))) atts.push(['estado documental', p.estado]);
     if (p.fecha_plano) atts.push(['plano · fecha', p.fecha_plano + (p.rev !== undefined ? ' · Rev. ' + p.rev : '')]);
     if (capaMeta && capaMeta.auditoria_geometrica) atts.push(['auditoría geométrica', capaMeta.auditoria_geometrica.estado === 'NO_AUDITADA' ? 'Pendiente (P1 backlog)' : capaMeta.auditoria_geometrica.estado]);
-    if (capaMeta && capaMeta.auditoria_funcional) atts.push(['auditoría funcional', 'Ejecutada 2026-06-10 · superficie documentalmente explicada: 0,0 ha · ver informe']);
+    if (capaMeta && capaMeta.auditoria_funcional) atts.push(['auditoría funcional', 'Necesidad técnica de la superficie solicitada: NO DEMOSTRADA · antecedentes pendientes de verificación · auditoría ABIERTA']);
     if (p.observacion_obligatoria) atts.push(['observación', p.observacion_obligatoria]);
     if (p.concesionaria) atts.push(['concesionaria', p.concesionaria]);
     if (p.proyecto) atts.push(['proyecto', p.proyecto]);

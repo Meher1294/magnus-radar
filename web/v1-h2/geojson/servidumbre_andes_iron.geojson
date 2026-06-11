@@ -261,16 +261,16 @@
    "fuente_validacion": "Fotografía cuadro coordenadas plano AIPD-01 aportada 2026-06-10 · transcripción 29/29 puntos legibles · auto-validada por identidad geométrica"
   },
   "auditoria_funcional": {
-   "fecha": "2026-06-10",
-   "pregunta": "¿Qué obras específicas justifican geométrica y funcionalmente las 181,69 ha?",
-   "resultado": "SUPERFICIE DOCUMENTALMENTE EXPLICADA: 0,0 ha — ninguna fuente disponible (AIPD cuadro, A104, PAS-85 según composición declarada) declara ancho ni superficie de faja. Única obra posicionalmente asociable al polígono: ramal A104 (etiq. 66 kV→Disipadora 1). Asociación aritmética bajo supuestos declarados NO documentados: ±60 m=19,0 ha · ±100 m=33,9 ha · ±200 m=79,5 ha de 181,69. El corredor troncal de ductos (concentraducto+acueductos) pasa a 2,5-4,6 km del polígono en H2: NO lo utiliza.",
-   "sobreanchos": "24-123: extremos >p90 (653-699 m) en el abanico NE est. 250-500 m · 24-43: perfil estable 132-270 m",
-   "pendientes": [
-    "PAS-85 documento al data room",
-    "viñeta/notas AIPD: ancho de faja, áreas construcción/temporal/permanente (P3)",
-    "cuadro 24-43"
-   ],
-   "ver": "audits/p1_ancho_ai/AUDITORIA_FUNCIONAL_SERVIDUMBRE_AI_2026-06-10.md"
+   "fecha": "2026-06-10 · corrección metodológica v2 (instrucción Max)",
+   "pregunta_principal": "¿Cuál es el antecedente técnico específico que sustenta la delimitación geométrica del polígono AIPD-01-AI-AIP001 sobre el rol 24-123?",
+   "hecho_1": "Existe respaldo documental para la EXISTENCIA de obras asociadas al proyecto Dominga (A104/PAS-85: 66 kV, ductos, camino, disipadoras, piscinas)",
+   "hecho_2": "Existe un polígono oficialmente solicitado y su geometría está validada contra el cuadro oficial (Hausdorff 0,00 m)",
+   "no_demostrado_1": "Que dichas obras requieran la superficie específica de 124,145 ha solicitada sobre H2",
+   "no_demostrado_2": "Que los anchos observados del polígono (184-726 m, abanico estructural) sean necesarios para ejecutar dichas obras",
+   "pendiente_de_verificacion": "Documentación que fundamente la necesidad: memoria de cálculo, plano de ingeniería de ancho, zona de seguridad normada, zona de construcción temporal, servidumbre auxiliar, antecedente PAS-85 de ocupación equivalente, vínculo expreso 124,145 ha↔obra — NINGUNO identificado en la evidencia disponible a la fecha",
+   "carga_de_la_prueba": "Verificar si Andes Iron dispone de antecedentes técnicos que expliquen ancho y superficie solicitados — no demostrar exageración",
+   "estado_auditoria": "ABIERTA — se cierra solo cuando cada sector del polígono tenga obra identificada y fuente documental explícita de su ocupación superficial",
+   "ver": "audits/p1_ancho_ai/AUDITORIA_FUNCIONAL_SERVIDUMBRE_AI_2026-06-10.md (incl. addendum v2)"
   }
  }
 }
