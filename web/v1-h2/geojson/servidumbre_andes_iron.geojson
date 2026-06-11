@@ -259,6 +259,18 @@
    "veredicto_24_43": "PENDIENTE — cuadro de coordenadas del rol 24-43 no capturado en la fotografía (fragmentos de otros cuadros visibles en el plano). NO_AUDITABLE hasta nueva captura.",
    "datum_plano": "NO_VERIFICADO en viñeta (foto solo muestra el cuadro) · consistencia interna cuadro↔GeoJSON-EPSG:32719 exacta · huso 19 hemisferio sur por rangos de coordenadas (HECHO contextual)",
    "fuente_validacion": "Fotografía cuadro coordenadas plano AIPD-01 aportada 2026-06-10 · transcripción 29/29 puntos legibles · auto-validada por identidad geométrica"
+  },
+  "auditoria_funcional": {
+   "fecha": "2026-06-10",
+   "pregunta": "¿Qué obras específicas justifican geométrica y funcionalmente las 181,69 ha?",
+   "resultado": "SUPERFICIE DOCUMENTALMENTE EXPLICADA: 0,0 ha — ninguna fuente disponible (AIPD cuadro, A104, PAS-85 según composición declarada) declara ancho ni superficie de faja. Única obra posicionalmente asociable al polígono: ramal A104 (etiq. 66 kV→Disipadora 1). Asociación aritmética bajo supuestos declarados NO documentados: ±60 m=19,0 ha · ±100 m=33,9 ha · ±200 m=79,5 ha de 181,69. El corredor troncal de ductos (concentraducto+acueductos) pasa a 2,5-4,6 km del polígono en H2: NO lo utiliza.",
+   "sobreanchos": "24-123: extremos >p90 (653-699 m) en el abanico NE est. 250-500 m · 24-43: perfil estable 132-270 m",
+   "pendientes": [
+    "PAS-85 documento al data room",
+    "viñeta/notas AIPD: ancho de faja, áreas construcción/temporal/permanente (P3)",
+    "cuadro 24-43"
+   ],
+   "ver": "audits/p1_ancho_ai/AUDITORIA_FUNCIONAL_SERVIDUMBRE_AI_2026-06-10.md"
   }
  }
 }
