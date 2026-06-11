@@ -6761,7 +6761,16 @@ window.__resetTour = () => { localStorage.removeItem(TOUR_KEY); startTour(); };
 
   // === Renderizar ficha epistemológica en panel derecho ===
   function renderH2Detail(L, feat, capaMeta) {
-    const p = feat.properties || {};
+    const p = Object.assign({}, feat.properties || {});
+    // v1.2-foco.2 · BUGFIX pre-existente: las features que vienen de queryRenderedFeatures (H2ClickPriority)
+    // traen los arrays/objetos anidados STRINGIFICADOS por MapLibre → aliases.map() reventaba y la ficha
+    // nunca abría (p.ej. clic sobre el polígono Cominetti). Se normaliza parseando strings JSON.
+    Object.keys(p).forEach(k => {
+      const v = p[k];
+      if (typeof v === 'string' && (v[0] === '[' || v[0] === '{')) {
+        try { p[k] = JSON.parse(v); } catch(e) {}
+      }
+    });
     // v1.0.5 · prioridad: estado_canonico (4 canónicos) → estado legacy
     const estadoCanon = (p.estado_canonico || '').toUpperCase();
     const estadoRaw = (p.estado || p.estado_titularidad || p.estado_correspondencia || 'NO_DECLARADO').toUpperCase();
